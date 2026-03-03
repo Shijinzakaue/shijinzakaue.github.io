@@ -6,7 +6,7 @@ const officialConfig = [
   { name: "乃木坂46 ブログ", link: "https://www.nogizaka46.com/s/n46/diary/MEMBER", group: "nogi" },
   { name: "乃木坂46 OFFICIAL WEB SHOP", link: "https://www.nogizaka46shop.com/", group: "nogi" },
   { name: "乃木坂46 Mobile", link: "https://sp.nogizaka46.com", group: "nogi" }, 
-  { name: "のぎ動画", link: "https://www.sakurazaka46.com", group: "nogi" },
+  { name: "のぎ動画", link: "https://nogidoga.com/", group: "nogi" },
   { name: "MYNOGI", link: "https://mynogi.snft.jp/", group: "nogi" },
   { name: "EVENT 握手会/ミーグリ/CD購入イベント", link: "https://www.nogizaka46.com/s/n46/live?ima=0000&ct=HANDSHAKE", group: "nogi" },
   { name: "乃木坂46 メッセージ", link: "https://message.nogizaka46.com/", group: "nogi" },
