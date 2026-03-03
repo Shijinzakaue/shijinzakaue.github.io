@@ -8,7 +8,7 @@ const officialConfig = [
   { name: "乃木坂46 Mobile", link: "https://sp.nogizaka46.com", group: "nogi" }, 
   { name: "のぎ動画", link: "https://nogidoga.com/", group: "nogi" },
   { name: "MYNOGI", link: "https://mynogi.snft.jp/", group: "nogi" },
-  { name: "EVENT 握手会/ミーグリ/CD購入イベント", link: "https://www.nogizaka46.com/s/n46/live?ima=0000&ct=HANDSHAKE", group: "nogi" },
+  { name: "ミーグリ/CD購入イベント", link: "https://www.nogizaka46.com/s/n46/live?ima=0000&ct=HANDSHAKE", group: "nogi" },
   { name: "乃木坂46 メッセージ", link: "https://message.nogizaka46.com/", group: "nogi" },
   { name: "乃木坂工事中", link: "https://tv-aichi.co.jp/nogi-kou/", group: "nogi" },
 	
@@ -21,7 +21,7 @@ const officialConfig = [
   { name: "MY PAGE", link: "https://sakurazaka46.com/s/s46/mypage", group: "saku" },
   { name: "マネージャー日記", link: "https://sakurazaka46.com/s/s46/diary/managers_diary/list", group: "saku" },
   { name: "さくみみ", link: "https://sakurazaka46.com/s/s46/diary/radio", group: "saku" },
-  { name: "EVENT ミーグリ", link: "https://sakurazaka46.com/s/s46/diary/event_page/list?ima=0000", group: "saku" },
+  { name: "ミーグリ", link: "https://sakurazaka46.com/s/s46/diary/event_page/list?ima=0000", group: "saku" },
   { name: "櫻坂46 メッセージ", link: "https://message.sakurazaka46.com/", group: "saku" },
   { name: "そこ曲がったら、櫻坂？", link: "https://www.tv-tokyo.co.jp/keyaki/", group: "saku" },
 
@@ -34,7 +34,7 @@ const officialConfig = [
   { name: "マイページ", link: "https://www.hinatazaka46.com/s/official/mypage", group: "hina" },
   { name: "ひなたぼっこ日記", link: "https://www.hinatazaka46.com/s/official/diary/manager/list", group: "hina" },
   { name: "日向坂46 ファンクラブ", link: "https://www.hinatazaka46.com/s/official/page/about_fanclub", group: "hina" },
-  { name: "EVENT ミーグリ", link: "https://www.hinatazaka46.com/s/official/diary/event/list?ima=0000", group: "hina" },
+  { name: "ミーグリ", link: "https://www.hinatazaka46.com/s/official/diary/event/list?ima=0000", group: "hina" },
   { name: "日向坂46 メッセージ", link: "https://message.hinatazaka46.com/", group: "hina" },
   { name: "日向坂で会いましょう", link: "日向坂で会いましょう", group: "hina" },
 
@@ -42,12 +42,12 @@ const officialConfig = [
 
 const toolConfig = [
   {
-    name: "",
-    desc: "",
-    detail: "",
-    tags: ["sns","meet","information"],
-    groups: [],
-    link: ""
+    name: "乃木坂46データベース",
+    desc: "n46db.com 坂道グループデータベース",
+    detail: "坂道グループのメンバーのプロフォールや参加曲、フォーメーション、楽曲の作曲者・編曲者、MVや個人PVの監督などの情報のデータベースです。",
+    tags: ["information", "song", "photo", "create"],
+    groups: ["nogi", "saku", "hina"],
+    link: "https://n46db.com/"
   },
   {
     name: "",
