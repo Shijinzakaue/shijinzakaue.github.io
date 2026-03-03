@@ -29,6 +29,7 @@
       --dock-rail-width: calc(var(--dock-btn-size) + 14px);
       --dock-gap: 8px;
       --fab-size: 66px;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
 
     * { box-sizing: border-box; }
@@ -704,15 +705,15 @@
       }
 
       .sidebar {
-        left: 50%;
-        right: auto;
-        bottom: 16px;
+        left: 16px;
+        right: 16px;
+        bottom: calc(16px + var(--safe-bottom));
         top: auto;
-        transform: translateX(-50%);
+        transform: none;
         flex-direction: row;
         justify-content: space-between;
         gap: var(--dock-gap);
-        width: calc(100vw - 32px);
+        width: auto;
         padding: 8px 12px;
         border-radius: 999px;
         align-items: center;
@@ -742,36 +743,48 @@
       }
 
       #reportBtnContainer {
-        left: 50%;
-        right: auto;
-        bottom: calc(16px + var(--dock-btn-size) + 10px);
-        width: calc(100vw - 32px);
-        transform: translateX(-50%);
+        left: 16px;
+        right: 16px;
+        bottom: calc(16px + var(--dock-btn-size) + 10px + var(--safe-bottom));
+        width: auto;
+        transform: none;
         align-items: flex-end;
         gap: var(--dock-gap);
       }
 
       #toTop {
+        position: fixed;
+        left: 0;
+        top: 0;
         width: var(--dock-btn-size);
         height: var(--dock-btn-size);
-        margin-right: var(--dock-gap);
-        margin-bottom: calc(var(--dock-gap) * 2);
+        margin: 0;
+        z-index: 31;
+        transform: translate(-50%, -100%) scale(0.8) translateY(20px);
+      }
+
+      #toTop.visible {
+        transform: translate(-50%, -100%) scale(1) translateY(0);
+      }
+
+      #toTop.visible:hover {
+        transform: translate(-50%, -100%) scale(1.1) translateY(0);
       }
 
       .filter-panel {
-        left: 50%;
-        right: auto;
-        bottom: calc(16px + var(--dock-btn-size) + 26px + 18px);
+        left: 16px;
+        right: 16px;
+        bottom: calc(16px + var(--dock-btn-size) + 26px + 18px + var(--safe-bottom));
         top: auto;
-        transform: translate(-50%, 24px);
-        width: calc(100vw - 32px);
+        transform: translateY(24px);
+        width: auto;
         max-width: none;
         min-width: 0;
         border-radius: 20px;
       }
 
       body.filter-open .filter-panel {
-        transform: translate(-50%, 0);
+        transform: translateY(0);
       }
 
       .container {
@@ -1140,7 +1153,7 @@
 
         <div class="info-author-row">
           <span class="info-author-label">author</span>
-          <span class="info-author-name">坂上の棘人／shijinzakaue</span>
+          <span class="info-author-name">坂上の棘人</span>
           <a class="info-author-avatar" href="https://linktr.ee/shijinzakaue" target="_blank" rel="noopener noreferrer">
             <img src="https://ugc.production.linktr.ee/e89e5c3c-bbf8-48ec-83dd-f7aff19b1f65_PicsArt-09-22-02.44.50.jpeg" alt="author avatar" />
           </a>
@@ -1802,6 +1815,38 @@
     });
 
     const toTopBtn = document.getElementById('toTop');
+
+    function positionToTopAboveFilter() {
+      if (!toTopBtn || !filterToggle) return;
+
+      // 只在底欄 dock 模式（mobile breakpoint）才做錨定定位
+      if (window.innerWidth > 600) {
+        toTopBtn.style.left = '';
+        toTopBtn.style.top = '';
+        return;
+      }
+
+      const filterRect = filterToggle.getBoundingClientRect();
+      const rootStyles = getComputedStyle(document.documentElement);
+      const dockGap = parseFloat(rootStyles.getPropertyValue('--dock-gap')) || 8;
+      const gap = dockGap * 2; // 與篩選按鈕間距（跟既有設計一致）
+      const x = filterRect.left + filterRect.width / 2;
+      const y = filterRect.top - gap;
+
+      // 以「錨點」方式定位：CSS 會用 translate(-50%, -100%) 把按鈕放到此點的正上方
+      toTopBtn.style.left = `${Math.round(x)}px`;
+      toTopBtn.style.top = `${Math.round(y)}px`;
+    }
+
+    // 初始定位 + 在縮放/旋轉/視窗大小變更時更新
+    positionToTopAboveFilter();
+    window.addEventListener('resize', positionToTopAboveFilter, { passive: true });
+    window.addEventListener('orientationchange', positionToTopAboveFilter, { passive: true });
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', positionToTopAboveFilter, { passive: true });
+      window.visualViewport.addEventListener('scroll', positionToTopAboveFilter, { passive: true });
+    }
+
     window.addEventListener('scroll', () => {
       if (window.scrollY > 150) {
         toTopBtn.classList.add('visible');
