@@ -43,100 +43,52 @@ const officialConfig = [
 const toolConfig = [
   {
     name: "乃木坂46データベース",
-    desc: "n46db.com 坂道グループデータベース",
-    detail: "坂道グループのメンバーのプロフォールや参加曲、フォーメーション、楽曲の作曲者・編曲者、MVや個人PVの監督などの情報のデータベースです。",
+    desc: "n46db.com",
+    detail: "坂道グループのメンバーのプロフォールや参加曲、フォーメーション、楽曲の作曲者・編曲者、MVや個人PVの監督などの情報のデータベースです。\n\n・[About this website](https://n46db.com/about.php)",
     tags: ["information", "song", "photo", "create"],
     groups: ["nogi", "saku", "hina"],
     link: "https://n46db.com/"
   },
-  {
-    name: "",
-    desc: "",
-    detail: "",
-    tags: ["live","tool"],
-    groups: ["nogi"],
-    link: ""
-  },
-  {
-    name: "",
-    desc: "",
-    detail: "",
-    tags: ["message","create","forum"],
-    groups: ["hina"],
-    link: ""
-  },
-  {
-    name: "",
-    desc: "",
-    detail: "",
-    tags: ["message","create","forum"],
-    groups: ["hina"],
-    link: ""
-  },
-  {
-    name: "",
-    desc: "",
-    detail: "",
-    tags: ["message","create","forum"],
-    groups: ["hina"],
-    link: ""
-  },
-  {
-    name: "",
-    desc: "",
-    detail: "",
-    tags: ["message","create","forum"],
-    groups: ["hina"],
-    link: ""
-  },
-  {
-    name: "",
-    desc: "",
-    detail: "",
-    tags: ["message","create","forum"],
-    groups: ["hina"],
-    link: ""
-  },
-  {
-    name: "",
-    desc: "",
-    detail: "",
-    tags: ["message","create","forum"],
-    groups: ["hina"],
-    link: ""
-  },
-  {
-    name: "",
-    desc: "",
-    detail: "",
-    tags: ["message","create","forum"],
-    groups: ["hina"],
-    link: ""
-  },
-  {
-    name: "",
-    desc: "",
-    detail: "",
-    tags: ["song","sale","streaming"],
-    groups: ["saku"],
-    link: ""
-  },
-  {
-    name: "",
-    desc: "",
-    detail: "",
-    tags: ["item","clothes","place","sns","meet","information","song","sale","streaming","photo","message","create","forum","live","tool"],
-    groups: ["nogi", "saku", "hina"],
-    link: ""
-  },
-  {
-    name: "",
-    desc: "",
-    detail: "",
-    tags: ["item","clothes","place"],
-    groups: ["nogi"],
-    link: ""
-  }
+{
+  name: "坂道雑文帳",
+  desc: "meaning-of-goodbye.com",
+  detail: "文章を書くことと坂道シリーズが好きな個人が運営するサイト。\nフォーメーションやセットリストなど、まとめ系の記事。\n関連ツール：[坂道シリーズ 統合データベース検索](https://meaning-of-goodbye.com/sakamichi-search/)\n\n・[サイトについて](https://meaning-of-goodbye.com/about/)",
+  tags: ["song","forum","live"],
+  groups: ["nogi","saku","hina"],
+  link: "https://meaning-of-goodbye.com/"
+},
+{
+  name: "坂道シリーズ 統合データベース検索",
+  desc: "[坂道雑文帳] Sakamichi Universe",
+  detail: "「坂道雑文帳」が運営する、坂道シリーズの情報を集約した検索サイトです。\nメンバー、楽曲、ライブ、フォーメーション、データなど、最新の公演やリリース情報のほか、過去の特定日を再現する「タイムマシンモード」やネタバレ配慮機能を搭載。\n\n・[サイト紹介記事](https://note.com/nogikeyaksh/n/n95f652f7d114)",
+  tags: ["information","song","live"],
+  groups: ["nogi","saku","hina"],
+  link: "https://meaning-of-goodbye.com/sakamichi-search/"
+},
+{
+  name: "あの坂道を登れ",
+  desc: "anosaka.com",
+  detail: "・ライブなど、様々なイベントへの参加レポート\n・出演メディア（テレビ・ラジオ・本・曲）の感想\n・人気ランキング\n・関連ゲーム攻略\n\n・[ABOUT](https://anosaka.com/about-us)",
+  tags: ["meet","information","song","sale","create","forum","live","game","ranking","sns","oshi"],
+  groups: ["nogi","saku","hina"],
+  link: "https://anosaka.com/"
+},
+{
+  name: "坂道データベース",
+  desc: "sakamichidb.anosaka.com",
+  detail: "「あの坂道」が運営する坂道グループのMV再生回数やチャート情報まとめた非公式ファンサイトです。\n\n・[このサイトについて](https://sakamichidb.anosaka.com/other/about)",
+  tags: ["information","song","streaming","create","tool","ranking"],
+  groups: ["nogi","saku","hina"],
+  link: "https://sakamichidb.anosaka.com/"
+},
+{
+  name: "FrontPage - sakamichi",
+  desc: "坂道グループ配信まとめサイト",
+  detail: "坂道グループのShowroom、SNSなど生配信動画のまとめサイト。",
+  tags: ["information","streaming","sns"],
+  groups: ["nogi","saku","hina"],
+  link: "https://www.wikihouse.com/sakamichi/index.php?FrontPage"
+},
 ];
 
 const tagLabels = {
@@ -148,10 +100,13 @@ const tagLabels = {
   "information": "個人・グループ情報",
   "song": "楽曲資料",
   "sale": "売上",
+ "game": "ゲーム", 
   "streaming": "ストリーミング・配信",
   "photo": "写真",
   "message": "メッセージ",
   "create": "作成ツール",
+  "oshi": "推し活", 
+  "ranking": "ランキング", 
   "forum": "まとめ・RSS",
   "live": "ライブ・セトリ",
   "tool": "関連ツール",
