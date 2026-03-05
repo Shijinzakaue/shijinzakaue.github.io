@@ -24,7 +24,6 @@ const officialConfig = [
   { name: "ミーグリ", link: "https://sakurazaka46.com/s/s46/diary/event_page/list?ima=0000", group: "saku" },
   { name: "櫻坂46 メッセージ", link: "https://message.sakurazaka46.com/", group: "saku" },
   { name: "そこ曲がったら、櫻坂？", link: "https://www.tv-tokyo.co.jp/keyaki/", group: "saku" },
-  { name: "COSTUME", link: "https://sakurazaka46.com/s/s46/page/costume?ima=0000", group: "saku" },
 
   { name: "日向坂46 公式サイト", link: "https://www.hinatazaka46.com/s/official/", group: "hina" },
   { name: "日向坂46 ニュース", link: "https://www.hinatazaka46.com/s/official/news/list", group: "hina" },
@@ -225,6 +224,14 @@ const toolConfig = [
   tags: ["information","song","sale","forum"],
   groups: ["nogi","saku","hina"],
   link: "https://the0ries.com/category/nogizaka/"
+},
+{
+  name: "COSTUME | 櫻坂46公式サイト",
+  desc: "sakurazaka46.com",
+  detail: "櫻坂46公式衣裝",
+  tags: ["clothes","公式"],
+  groups: ["saku"],
+  link: "https://sakurazaka46.com/s/s46/page/costume?ima=0000"
 },
 ];
 
