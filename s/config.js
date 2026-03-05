@@ -24,6 +24,7 @@ const officialConfig = [
   { name: "ミーグリ", link: "https://sakurazaka46.com/s/s46/diary/event_page/list?ima=0000", group: "saku" },
   { name: "櫻坂46 メッセージ", link: "https://message.sakurazaka46.com/", group: "saku" },
   { name: "そこ曲がったら、櫻坂？", link: "https://www.tv-tokyo.co.jp/keyaki/", group: "saku" },
+  { name: "COSTUME", link: "https://sakurazaka46.com/s/s46/page/costume?ima=0000", group: "saku" },
 
   { name: "日向坂46 公式サイト", link: "https://www.hinatazaka46.com/s/official/", group: "hina" },
   { name: "日向坂46 ニュース", link: "https://www.hinatazaka46.com/s/official/news/list", group: "hina" },
@@ -82,12 +83,148 @@ const toolConfig = [
   link: "https://sakamichidb.anosaka.com/"
 },
 {
+  name: "坂道シリーズ楽曲DB",
+  desc: "saka46.fun",
+  detail: "アイドルグループ・坂道シリーズの楽曲ファンです。坂道シリーズの楽曲やクリエイター（作曲家、MV監督、パフォーマーなど）についての情報を発信しています。",
+  tags: ["song","streaming","live","ranking"],
+  groups: ["nogi","saku","hina"],
+  link: "https://saka46.fun/"
+},
+{
+  name: "乃木坂46まとめ",
+  desc: "nogizaka46.u-ff.com",
+  detail: "[乃木坂46データベース](https://nogizaka46.u-ff.com/database/)\n・最新ニュース\n・メンバーやグループ資料まとめ\n・セットリスト\n・ミーグリ資料\n・外仕事の動画まとめ",
+  tags: ["clothes","meet","information","song","sale","forum","live","ranking"],
+  groups: ["nogi"],
+  link: "https://nogizaka46.u-ff.com/"
+},
+{
+  name: "日向坂46まとめ",
+  desc: "hinatazaka46.u-ff.com",
+  detail: "[日向坂46データベース](https://hinatazaka46.u-ff.com/database/)\n・最新ニュース\n・メンバーやグループ資料まとめ\n・セットリスト\n・ミーグリ資料\n・動画まとめ（Smartnews）\n・Podcast（Audee）",
+  tags: ["clothes","meet","information","song","sale","streaming","forum","live","ranking"],
+  groups: ["hina"],
+  link: "https://hinatazaka46.u-ff.com/"
+},
+{
+  name: "まいにち日向坂",
+  desc: "hinatafan.com",
+  detail: "・ほぼセトリ専門\n・日向坂46聖地巡礼\n・メンバー資料まとめ",
+  tags: ["place","meet","information","song","forum","live","oshi"],
+  groups: ["nogi","saku","hina"],
+  link: "https://hinatafan.com/"
+},
+{
   name: "FrontPage - sakamichi",
   desc: "坂道グループ配信まとめサイト",
   detail: "坂道グループのShowroom、SNSなど生配信動画のまとめサイト。",
   tags: ["information","streaming","sns"],
   groups: ["nogi","saku","hina"],
   link: "https://www.wikihouse.com/sakamichi/index.php?FrontPage"
+},
+{
+  name: "がなぷら",
+  desc: "ファン向けの応援ブログ「がなぷら」",
+  detail: "【坂道/イコノイジョイ/PassCode/MFS】ファン向けの応援ブログ「がなぷら」を運営中‖Live参戦記事も書いてます",
+  tags: ["information","forum","ranking","oshi"],
+  groups: ["nogi","saku","hina"],
+  link: "https://hiragana-plan.com/"
+},
+{
+  name: "アイドルの愛犬の名前まとめ",
+  desc: "seesaawiki.jp/nameofidolsdog",
+  detail: "不完全",
+  tags: ["information"],
+  groups: ["nogi","saku","hina"],
+  link: "https://seesaawiki.jp/nameofidolsdog/"
+},
+{
+  name: "日向坂46　ライブ情報まとめ",
+  desc: "w.atwiki.jp/hinatazaka46liveinfo",
+  detail: "日向坂46のライブに関しての質問に関して、まとめたWIKIです。",
+  tags: ["place","sns","information","song","live","oshi"],
+  groups: ["hina"],
+  link: "https://w.atwiki.jp/hinatazaka46liveinfo/"
+},
+{
+  name: "乃木坂パープルハート",
+  desc: "nogizaka.info",
+  detail: "「乃木坂パープルハート」はどちらかというと、乃木坂46についてはよく知らないよ、っていう「乃木坂初心者向け」のページです。とはいえ、長く応援している人にも楽しんでもらえるように、いろいろな情報を載せていきたいと思います。",
+  tags: ["clothes","information","song","oshi"],
+  groups: ["nogi"],
+  link: "https://www.nogizaka.info/index.html"
+},
+{
+  name: "坂道 store",
+  desc: "sakamichi-store.net",
+  detail: "坂道グループの私服・衣装・スニーカー・カメラ・コスメ等を紹介しています。blog/Youtube /TV/TikTok等で得た情報を参考にまとめています🌷たまに推し活レポや聖地巡礼も...！！ ※個人での特定になりますので間違っていたらすみません。\n\n・[坂道store / X](https://x.com/sakamichi_store)",
+  tags: ["item","clothes","place","oshi"],
+  groups: ["nogi","saku","hina"],
+  link: "https://sakamichi-store.net/"
+},
+{
+  name: "N46 fashion │ 乃木坂46×私服･衣装",
+  desc: "instagram.com/ngz46.fashionsnap",
+  detail: "・私服\n・衣装\n・私物\n・アイテム\n・愛用品",
+  tags: ["item","clothes","oshi"],
+  groups: ["nogi"],
+  link: "https://www.instagram.com/ngz46.fashionsnap/"
+},
+{
+  name: "アイドルバケット",
+  desc: "坂道グループの情報を発信中",
+  detail: "・私服・衣装特定\n・セットリスト\n・ペンライトカラー",
+  tags: ["item","clothes","information","song","live","oshi"],
+  groups: ["nogi","saku","hina"],
+  link: "https://idolbucket.jp/"
+},
+{
+  name: "ゆにめいと Yunimate",
+  desc: "yunimate.jp",
+  detail: "坂道（乃木坂46・櫻坂46・欅坂46・日向坂46）衣装情報",
+  tags: ["clothes","song"],
+  groups: ["nogi","saku","hina"],
+  link: "https://yunimate.jp/"
+},
+{
+  name: "乃木坂46 N46ネットワーク",
+  desc: "nogizaka46.net",
+  detail: "・乃木坂46 セットリスト\n・楽曲情報\n・[RSS link](https://nogizaka46.net/feed/atom)",
+  tags: ["clothes","information","song","forum","live"],
+  groups: ["nogi"],
+  link: "https://nogizaka46.net/"
+},
+{
+  name: "JOYFUL LOVE 虹色作戦まとめwiki",
+  desc: "w.atwiki.jp/joyfullove",
+  detail: "日向坂46のライブで行われるJOYFUL LOVE 虹色作戦に関してまとめたwikiです。",
+  tags: ["live","oshi"],
+  groups: ["hina"],
+  link: "https://w.atwiki.jp/joyfullove/"
+},
+{
+  name: "乃木坂コール中",
+  desc: "nogizaka46-live.hatenablog.jp",
+  detail: "乃木坂46コール個人ブログ",
+  tags: ["song","live","oshi"],
+  groups: ["nogi"],
+  link: "https://nogizaka46-live.hatenablog.jp/"
+},
+{
+  name: "乃木坂紹介中",
+  desc: "n46hako.com",
+  detail: "乃木坂46 セットリストのみ",
+  tags: ["song","live"],
+  groups: ["nogi"],
+  link: "https://n46hako.com/"
+},
+{
+  name: "SEKAIWEEK 坂道シリーズ＆僕青応援サイト",
+  desc: "the0ries.com",
+  detail: "坂道グループまとめ記事",
+  tags: ["information","song","sale","forum"],
+  groups: ["nogi","saku","hina"],
+  link: "https://the0ries.com/category/nogizaka/"
 },
 ];
 
