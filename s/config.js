@@ -75,7 +75,7 @@ const toolConfig = [
 },
 {
   name: "坂道データベース",
-  desc: "sakamichidb.anosaka.com",
+  desc: "[あの坂道] sakamichidb.anosaka.com",
   detail: "「あの坂道」が運営する坂道グループのMV再生回数やチャート情報まとめた非公式ファンサイトです。\n\n・[このサイトについて](https://sakamichidb.anosaka.com/other/about)",
   tags: ["information","song","streaming","create","tool","ranking"],
   groups: ["nogi","saku","hina"],
@@ -114,16 +114,16 @@ const toolConfig = [
   link: "https://hinatafan.com/"
 },
 {
-  name: "FrontPage - sakamichi",
-  desc: "坂道グループ配信まとめサイト",
+  name: "坂道グループ配信まとめサイト",
+  desc: "wikihouse.com/sakamichi",
   detail: "坂道グループのShowroom、SNSなど生配信動画のまとめサイト。",
   tags: ["information","streaming","sns"],
   groups: ["nogi","saku","hina"],
   link: "https://www.wikihouse.com/sakamichi/index.php?FrontPage"
 },
 {
-  name: "がなぷら",
-  desc: "ファン向けの応援ブログ「がなぷら」",
+  name: "ファン向けの応援ブログ「がなぷら」",
+  desc: "hiragana-plan.com",
   detail: "【坂道/イコノイジョイ/PassCode/MFS】ファン向けの応援ブログ「がなぷら」を運営中‖Live参戦記事も書いてます",
   tags: ["information","forum","ranking","oshi"],
   groups: ["nogi","saku","hina"],
@@ -154,15 +154,23 @@ const toolConfig = [
   link: "https://www.nogizaka.info/index.html"
 },
 {
+  name: "SHOWROOMデータ",
+  desc: "aknog.github.io/srdata",
+  detail: "SHOWROOMでの乃木坂46・櫻坂46(欅坂46)・日向坂46の配信データをまとめたものです。\n\n・[SHOWROOMデータ / X](https://x.com/srdxsa)\n・Smartnews動画データ（放課後トークなど）",
+  tags: ["streaming","ranking"],
+  groups: ["nogi","saku","hina"],
+  link: "https://aknog.github.io/srdata/"
+},
+{
   name: "坂道 store",
   desc: "sakamichi-store.net",
   detail: "坂道グループの私服・衣装・スニーカー・カメラ・コスメ等を紹介しています。blog/Youtube /TV/TikTok等で得た情報を参考にまとめています🌷たまに推し活レポや聖地巡礼も...！！ ※個人での特定になりますので間違っていたらすみません。\n\n・[坂道store / X](https://x.com/sakamichi_store)",
-  tags: ["item","clothes","place","oshi"],
+  tags: ["item","clothes","oshi"],
   groups: ["nogi","saku","hina"],
   link: "https://sakamichi-store.net/"
 },
 {
-  name: "N46 fashion │ 乃木坂46×私服･衣装",
+  name: "N46 fashion│乃木坂46×私服･衣装",
   desc: "instagram.com/ngz46.fashionsnap",
   detail: "・私服\n・衣装\n・私物\n・アイテム\n・愛用品",
   tags: ["item","clothes","oshi"],
@@ -171,7 +179,7 @@ const toolConfig = [
 },
 {
   name: "アイドルバケット",
-  desc: "坂道グループの情報を発信中",
+  desc: "idolbucket.jp",
   detail: "・私服・衣装特定\n・セットリスト\n・ペンライトカラー",
   tags: ["item","clothes","information","song","live","oshi"],
   groups: ["nogi","saku","hina"],
@@ -218,12 +226,276 @@ const toolConfig = [
   link: "https://n46hako.com/"
 },
 {
-  name: "SEKAIWEEK 坂道シリーズ＆僕青応援サイト",
+  name: "SEKAIWEEK 坂道シリーズ",
   desc: "the0ries.com",
   detail: "坂道グループまとめ記事",
   tags: ["information","song","sale","forum"],
   groups: ["nogi","saku","hina"],
   link: "https://the0ries.com/category/nogizaka/"
+},
+{
+  name: "坂道愛用品 坂道どっとこむ",
+  desc: "nekokosyan.com",
+  detail: "・更新頻度低い\n\nメンバー愛用品\n・イヤホン\n・カメラ\n・スニーカー\n・化粧水\n・書籍・雑誌\n・香水",
+  tags: ["item"],
+  groups: ["nogi","saku","hina"],
+  link: "https://nekokosyan.com/"
+},
+{
+  name: "乃木地圖 | Nogimap",
+  desc: "nogimap.com",
+  detail: "Nogimap は、聖地巡礼をより便利にすることを目的とした、コミュニティが管理する地図プロジェクトです。",
+  tags: ["place","oshi"],
+  groups: ["nogi"],
+  link: "https://nogimap.com/"
+},
+{
+  name: "坂道グループ聖地巡礼地図",
+  desc: "[nekokosyan] google.com/maps",
+  detail: "・MVや写真集ロケ地",
+  tags: ["place","oshi"],
+  groups: ["nogi","saku","hina"],
+  link: "https://www.google.com/maps/d/u/0/viewer?ll=38.00318233668623%2C139.5474794800408&z=6&mid=1uTzHlTnEyFZOgZVwoHkpe0ZhGzNlfT0"
+},
+{
+  name: "乃木坂46のロケ地まとめ",
+  desc: "tsuredure-nogi-blog.com",
+  detail: "・主にMV撮影のロケ地\n・最後更新 2025.07.27",
+  tags: ["place","oshi"],
+  groups: ["nogi"],
+  link: "https://tsuredure-nogi-blog.com/rokechi-matome/"
+},
+{
+  name: "乃木旅",
+  desc: "nogitabi.blog.jp",
+  detail: "・坂道聖巡情報\n・生写真/ソロアー写\n・[取扱説明書（地図 Map）](https://nogitabi.blog.jp/archives/admin_message.html)\n\n・[インスタ](https://www.instagram.com/nogitabi/)　・[X（Twitter）](https://x.com/nogitabi46)",
+  tags: ["place","photo","oshi"],
+  groups: ["nogi","saku","hina"],
+  link: "https://nogitabi.blog.jp/"
+},
+{
+  name: "日向坂46　聖地一覧",
+  desc: "[清水ひなた] google.com/maps",
+  detail: "日向坂46の聖地一覧です",
+  tags: ["place","oshi"],
+  groups: ["hina"],
+  link: "https://www.google.com/maps/d/u/0/viewer?mid=14Otcijw10dc-Fyu1P-q-BygLgiLK2sQ&ll=35.33666676792876%2C139.69073570374468&z=9"
+},
+{
+  name: "聖地巡礼したい",
+  desc: "tsuredure-nogi-blog.com",
+  detail: "このサイトは坂道グループ（乃木坂46、櫻坂46、日向坂46）のロケ地、撮影地を紹介するサイトです。\n・主にMV撮影のロケ地\n\n・[聖地巡礼したい / X](https://x.com/junrei_shitai)",
+  tags: ["place","oshi"],
+  groups: ["nogi","saku","hina"],
+  link: "https://tsuredure-nogi-blog.com/"
+},
+{
+  name: "坂道ツールズ",
+  desc: "[聖地巡礼したい] tools.yotujoho.com",
+  detail: "・ブログ検索 画像保存\n・ニュース検索\n・シリアルナンバーを画像から検出\n・誕生日一覧・比較",
+  tags: ["information","tool","blog"],
+  groups: ["nogi","saku","hina"],
+  link: "https://tools.yotujoho.com/"
+},
+{
+  name: "Sakamichi Blog Archive",
+  desc: "sakamichi.co",
+  detail: "・坂道ブログ画像保存サイト\n・乃木坂46以外、メンバーの宣材写真を高画質で保管しています。\n　・乃木坂46：2017年7月 -\n　・欅坂46：開設（2015年11月）- 改名（2020年10月）\n　・日向坂46：けやき坂46として開設（2016年8月）-\n　・櫻坂46：改名（2020年10月）-\n\n・[坂道ブログ画像BOT / X](https://x.com/foxtrotal)",
+  tags: ["blog","photo"],
+  groups: ["nogi","saku","hina"],
+  link: "https://www.sakamichi.co/"
+},
+{
+  name: "fumi Diary 2号店: ロケ地ノート",
+  desc: "blog.livedoor.jp/fumichen2",
+  detail: "櫻坂46 ロケ地",
+  tags: ["place","oshi"],
+  groups: ["saku"],
+  link: "http://blog.livedoor.jp/fumichen2/tag/%E6%AB%BB%E5%9D%8246"
+},
+{
+  name: "乃木坂生写真のすゝめ-レート解析-",
+  desc: "nogizakarate.com",
+  detail: "・生写真資料\n・レート表\n・最後更新 2025.09.16",
+  tags: ["photo","ranking"],
+  groups: ["nogi","saku","hina"],
+  link: "https://nogizakarate.com/"
+},
+{
+  name: "高画質壁紙iPhone工事中",
+  desc: "iphone46.blog.jp",
+  detail: "・生写真\n・高画質壁紙",
+  tags: ["photo"],
+  groups: ["nogi"],
+  link: "https://iphone46.blog.jp/"
+},
+{
+  name: "日向坂辞典",
+  desc: "hinatadic.blog.jp",
+  detail: "・生写真",
+  tags: ["photo"],
+  groups: ["hina"],
+  link: "https://hinatadic.blog.jp/"
+},
+{
+  name: "ngzkHandshakeTable",
+  desc: "universallyleo.github.io/ngzkHandshakeTable",
+  detail: "乃木坂46のみ\n・完売表（個別・全国）\n・完売推移・比較\n・売上データ\n・個人資料\n・モバメ・メッセージ集計",
+  tags: ["meet","information","sale","message","create","tool"],
+  groups: ["nogi"],
+  link: "https://universallyleo.github.io/ngzkHandshakeTable/"
+},
+{
+  name: "坂道完売表 Senu Blog",
+  desc: "senublog.com",
+  detail: "[せぬ / X](https://x.com/Senu_Blog)",
+  tags: ["meet"],
+  groups: ["nogi","saku","hina"],
+  link: "https://senublog.com/"
+},
+{
+  name: "ミリアンペア(milli ampere)",
+  desc: "x.com/1milliampere",
+  detail: "坂道グループMV再生数データ",
+  tags: ["song","streaming","ranking"],
+  groups: ["nogi","saku","hina"],
+  link: "https://x.com/1milliampere"
+},
+{
+  name: "Unjustified",
+  desc: "x.com/unjustified1005",
+  detail: "坂道グループの各種データ",
+  tags: ["song","streaming","live","ranking"],
+  groups: ["nogi","saku","hina"],
+  link: "https://x.com/unjustified1005"
+},
+{
+  name: "たたん",
+  desc: "x.com/itsunogi46",
+  detail: "・完売表・応募・抽選結果",
+  tags: ["meet"],
+  groups: ["nogi","saku","hina"],
+  link: "https://x.com/itsunogi46"
+},
+{
+  name: "坂道の完売表",
+  desc: "x.com/nogi_kanbai",
+  detail: "・完売表・応募・抽選結果",
+  tags: ["meet"],
+  groups: ["nogi","saku","hina"],
+  link: "https://x.com/nogi_kanbai"
+},
+{
+  name: "坂道グループデータベース",
+  desc: "sakamichi-data.com",
+  detail: "・ミーグリ完売表\n・メンバープロフィール",
+  tags: ["meet","information","ranking"],
+  groups: ["nogi","saku","hina"],
+  link: "https://sakamichi-data.com/"
+},
+{
+  name: "沈黙した村人よ🍣",
+  desc: "x.com/makoto46_CYC",
+  detail: "・完売表・応募・抽選結果",
+  tags: ["meet"],
+  groups: ["hina"],
+  link: "https://x.com/makoto46_CYC"
+},
+{
+  name: "メッセージ統計分析",
+  desc: "msg.nogi46.me",
+  detail: "中国語のみ",
+  tags: ["message","ranking"],
+  groups: ["nogi","saku","hina"],
+  link: "https://msg.nogi46.me/stats"
+},
+{
+  name: "こけし",
+  desc: "x.com/kks_slope",
+  detail: "乃木坂メッセージ集計",
+  tags: ["message","ranking"],
+  groups: ["nogi"],
+  link: "https://x.com/kks_slope"
+},
+{
+  name: "櫻坂46トーク集計",
+  desc: "x.com/sakuratotalling",
+  detail: "・[櫻坂46トーク集計 - YouTube](https://www.youtube.com/@sakuratotalling)",
+  tags: ["message","ranking"],
+  groups: ["saku"],
+  link: "https://x.com/sakuratotalling"
+},
+{
+  name: "田代光輝",
+  desc: "x.com/mitsu0227",
+  detail: "写真集データ・売上推移",
+  tags: ["sale","photo","ranking"],
+  groups: ["nogi","saku","hina"],
+  link: "https://x.com/mitsu0227"
+},
+{
+  name: "ブログ統計分析",
+  desc: "blog.sakamichi-tools.cn",
+  detail: "中国語のみ",
+  tags: ["ranking","blog"],
+  groups: ["nogi","saku","hina"],
+  link: "https://blog.sakamichi-tools.cn/stats"
+},
+{
+  name: "🪦アレチボルト",
+  desc: "x.com/sabakunonezumi",
+  detail: "・MVのYouTube累計再生回数の推移\n・最後更新 2024.07.14",
+  tags: ["song","streaming"],
+  groups: ["nogi","saku","hina"],
+  link: "https://x.com/sabakunonezumi"
+},
+{
+  name: "坂道もろもろデータ集",
+  desc: "x.com/WAJty8A2vuHn0Nn",
+  detail: "・各公式X《週間》フォロワー数推移\n・最後更新 2025.11.02",
+  tags: ["sns","information"],
+  groups: ["nogi","saku","hina"],
+  link: "https://x.com/WAJty8A2vuHn0Nn"
+},
+{
+  name: "🪦握手会情報まとめ",
+  desc: "ameblo.jp/seto-kasumi",
+  detail: "・過去の握手会完売情報やブログコメント数等の人気指標データをひたすら集計していきます。\n・最後更新 2019.12.26",
+  tags: ["meet"],
+  groups: ["nogi","saku","hina"],
+  link: "https://ameblo.jp/seto-kasumi/"
+},
+{
+  name: "🪦NOGILIB",
+  desc: "nogilib.vercel.app",
+  detail: "乃木坂46 31枚目シングルまでの楽曲、フォーメーション、プロフィール。",
+  tags: ["information","song"],
+  groups: ["nogi"],
+  link: "https://nogilib.vercel.app/"
+},
+{
+  name: "TVAL now",
+  desc: "tval-now.switch-m.com",
+  detail: "テレビ番組リアルタイム視聴率",
+  tags: ["tool","ranking","公式"],
+  groups: [],
+  link: "https://tval-now.switch-m.com/"
+},
+{
+  name: "番組表.Gガイド",
+  desc: "bangumi.org",
+  detail: "・ランキング\n・今日の番組表\n　・[地上波](https://bangumi.org/epg/td)\n　・[BS](https://bangumi.org/epg/bs)\n　・[CS](https://bangumi.org/epg/cs)\n　・[ラジオ](https://bangumi.org/epg/radio)",
+  tags: ["ranking","公式"],
+  groups: [],
+  link: "https://bangumi.org/"
+},
+{
+  name: "テレビ出演ランキング",
+  desc: "tv-ranking.com",
+  detail: "このサイトではテレビ番組表に掲載されている出演者データを基に、独自に集計した人物ごとの出演時間・出演番組数ランキングを掲載しています。\n\nデータは番組表を基に算出しているため、番組の人気（視聴率）との関係性は分かりません。番組に出演していても番組表に掲載されていなければ、出演したとカウントされません。また、出演した場合でも番組内でのどの程度の時間出演したかについては分かりません。このサイトででは「番組表に掲載される出演者」＝「番組の宣伝に価値がある出演者」と捉えました。番組提供者側が考える出演者の価値を推し量るためのものとお考えいただければ幸いです。",
+  tags: ["ranking","公式"],
+  groups: [],
+  link: "https://www.tv-ranking.com/"
 },
 {
   name: "COSTUME | 櫻坂46公式サイト",
@@ -240,6 +512,7 @@ const tagLabels = {
   "clothes": "私服・衣装・制服",
   "place": "場所・聖地巡礼",
   "sns": "SNS",
+ "blog": "ブログ",
   "meet": "握手・ミーグリ",
   "information": "個人・グループ情報",
   "song": "楽曲資料",
