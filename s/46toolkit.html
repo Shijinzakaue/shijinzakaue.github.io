@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>坂道TOOLKIT</title>
   <link rel="icon" href="LOGO.png" type="image/png" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -138,21 +138,21 @@
       line-height: 1;
       transition: opacity .2s ease;
     }
-    .site-title.hidden { display: none !important; }
+    .site-title.hidden { opacity: 0; pointer-events: none; }
 
     @media (max-width: 1200px) {
-      .site-title { display: none; }
+      .site-title {
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 30px;
+        width: calc(100% - 120px);
+        text-align: center;
+      }
     }
     @media (max-width: 600px) {
       .site-title {
-        left: 50%;
-        top: 40px;
-        transform: translate(-50%, -50%);
         font-size: 30px;
-        width: calc(100% - 64px);
-        text-align: center;
       }
-      .site-title.mobile-visible { display: block !important; }
     }
 
     .search-wrap {
@@ -639,7 +639,7 @@
       .language-control[data-role="top"] { display: none; }
     }
     @media (max-width: 800px) {
-      :root { --content-max: 100%; }
+      :root { --content-max: var(--card-width); }
       .official-panel { padding: 20px; }
       .official-group-content { grid-template-columns: minmax(0, 1fr); }
       
@@ -678,61 +678,49 @@
       .cards { grid-template-columns: repeat(2, minmax(0, var(--card-width))); }
     }
     @media (max-width: 800px) {
-      .cards { grid-template-columns: minmax(0, 1fr); }
+      .cards { grid-template-columns: minmax(0, var(--card-width)); }
       .container { padding-right: 102px; padding-left: 20px; }
       .filter-panel { right: 100px; }
     }
 
     @media (max-width: 600px) {
       :root {
-        --m: 16px;
-        --dock-inner-pad: 7px;
-        /* btn 精確填滿 dock：(視窗 - 外margin×2 - 內pad×2 - gap×5 - divider 1px) ÷ 6 */
-        --dock-btn-size: calc((100vw - var(--m) * 2 - var(--dock-inner-pad) * 8 - 1px) / 6);
-        --dock-height: calc(var(--dock-btn-size) + var(--dock-inner-pad) * 2);
-        --top-height: 80px;
         --content-max: 100%;
-        --logo-safe: 64px;
+        --dock-btn-size: clamp(40px, 11.5vw, 58px);
+        --logo-safe: clamp(48px, 10vw, 56px);
+        --dock-gap: clamp(4px, 2vw, 10px);
         --fab-size: var(--dock-btn-size);
       }
-
       .language-control[data-role="top"] { display: none; }
-
-      /* ── 頂欄：fixed，鎖死頂部全寬 ── */
-      .top-zone {
-        position: fixed;
-        top: 0; left: 0; right: 0;
-        width: 100%;
-        height: var(--top-height);
-        z-index: 60;
-        padding: 16px var(--m);
-        display: flex;
-        align-items: center;
+      .main-logo {
+        left: 16px;
+        top: 16px;
+        width: 48px;
+        height: 48px;
+        z-index: 90;
       }
+
+      .top-zone {
+        padding: 16px 8px 18px;
+      }
+
       .top-zone-inner {
         max-width: none;
         width: 100%;
-        padding: 0;
+        padding: 0 8px;
         margin: 0;
       }
 
-      .main-logo {
-        left: var(--m);
-        top: calc(var(--top-height) / 2);
-        transform: translateY(-50%);
-        width: 44px;
-        height: 44px;
-      }
-
-      /* ── 搜尋 ── */
       .search-wrap {
         width: 100%;
         justify-content: flex-end;
         align-items: center;
-        padding: 0 0 0 var(--logo-safe);
+        padding: 0 0 0 calc(var(--logo-safe) / 2);
       }
+
       .search-pill {
-        width: 44px; height: 44px;
+        width: 48px;
+        height: 48px;
         border-radius: 50%;
         padding: 0;
         justify-content: center;
@@ -740,111 +728,144 @@
         background: var(--panel-2);
         max-width: none;
       }
+
       .search-pill:not(.expanded) #searchInput,
       .search-pill:not(.expanded) .search-meta,
-      .search-pill:not(.expanded) #clearBtn { display: none !important; }
+      .search-pill:not(.expanded) #clearBtn {
+        display: none !important;
+      }
+
       .search-icon {
         display: block;
         position: absolute;
-        left: 50%; transform: translateX(-50%);
+        left: 50%;
+        transform: translateX(-50%);
         pointer-events: none;
+        transition: opacity 0.2s, transform 0.3s;
       }
+
       .search-pill.expanded {
-        width: calc(100% - var(--logo-safe) - 8px);
-        height: 44px;
+        width: clamp(240px, calc(100% - var(--logo-safe) - 12px), 100%);
+        height: 48px;
         border-radius: 999px;
-        padding: 0 44px 0 40px;
+        padding: 0 48px 0 44px;
         max-width: none;
       }
-      .search-pill.expanded .search-icon { left: 14px; transform: none; }
-      .search-pill.expanded #searchInput { display: block !important; opacity: 1; pointer-events: auto; }
-      .search-pill.expanded .search-meta { display: flex !important; position: absolute; right: 40px; }
 
-      /* ── Dock：fixed，左右距離等於 --m，高度精確 ── */
+      .search-pill.expanded .search-icon {
+        left: 16px;
+        transform: none;
+      }
+
+      .search-pill.expanded #searchInput {
+        display: block !important;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .search-pill.expanded .search-meta {
+        display: flex !important;
+        position: absolute;
+        right: 44px;
+      }
+
       .sidebar {
-        position: fixed;
-        left: var(--m);
-        right: var(--m);
-        bottom: calc(var(--m) + var(--safe-bottom));
+        left: 16px;
+        right: 16px;
+        bottom: calc(16px + var(--safe-bottom));
         top: auto;
         transform: none;
-        width: auto;
-        height: var(--dock-height);
         flex-direction: row;
-        justify-content: flex-start;
-        gap: var(--dock-inner-pad);
-        padding: var(--dock-inner-pad);
-        border-radius: calc(var(--dock-height) / 2);
+        justify-content: space-between;
+        gap: var(--dock-gap);
+        width: auto;
+        max-width: calc(100% - 32px);
+        padding: 6px 10px;
+        min-height: calc(var(--dock-btn-size) + 16px);
+        border-radius: 999px;
         align-items: center;
         overflow: hidden;
       }
 
-      /* ── Dock 按鈕：精確填滿，強制正方形 ── */
-      .dock-btn {
-        flex: 0 0 var(--dock-btn-size);
-        width: var(--dock-btn-size);
-        height: var(--dock-btn-size);
-        font-size: calc(var(--dock-btn-size) * 0.48);
-      }
-      .dock-btn .material-icons { font-size: calc(var(--dock-btn-size) * 0.52); }
-      .dock-btn img { width: 60%; height: 60%; }
       .dock-btn[data-site="all"] .material-icons,
       .dock-btn[data-site="other"] .material-icons,
-      #filterToggle .material-icons { font-size: calc(var(--dock-btn-size) * 0.58); }
+      #filterToggle .material-icons {
+        font-size: clamp(30px, 4.8vw, 32px);
+      }
 
-      /* ── 分隔線：高度跟按鈕一致 ── */
+      .dock-btn {
+        width: var(--dock-btn-size);
+        height: var(--dock-btn-size);
+        font-size: clamp(18px, 4vw, 26px);
+        flex: 0 1 auto;
+        min-width: calc(var(--dock-btn-size) * 0.75);
+      }
+
+      .dock-btn .material-icons { font-size: clamp(20px, 4.2vw, 28px); }
+
+      .dock-btn img { width: 62%; height: 62%; }
+
       .dock-divider {
         width: 1px;
         height: calc(var(--dock-btn-size) * 0.75);
-        flex-shrink: 0;
-        margin: 0;
+        margin: 0 2px;
       }
 
-      /* ── 回頂按鈕 ── */
       #reportBtnContainer {
-        left: var(--m);
-        right: var(--m);
-        bottom: calc(var(--m) + var(--dock-height) + var(--m) + var(--safe-bottom));
+        left: 16px;
+        right: 16px;
+        bottom: calc(16px + var(--dock-btn-size) + 10px + var(--safe-bottom));
         width: auto;
         transform: none;
         align-items: flex-end;
+        gap: var(--dock-gap);
       }
+
       #toTop {
         position: fixed;
-        right: calc(var(--m) + 10px);
-        bottom: calc(var(--m) + var(--dock-height) + var(--m) + var(--safe-bottom));
-        left: auto; top: auto;
+        right: 26px;
+        bottom: calc(32px + var(--dock-btn-size) + var(--safe-bottom) + var(--dock-gap) * 3);
+        left: auto;
+        top: auto;
         width: var(--dock-btn-size);
         height: var(--dock-btn-size);
-        margin: 0; z-index: 31; transform: none;
+        margin: 0;
+        z-index: 31;
+        transform: none;
       }
-      #toTop.visible { transform: none; }
-      #toTop.visible:hover { transform: scale(1.08); }
 
-      /* ── 篩選面板 ── */
+      #toTop.visible {
+        transform: none;
+      }
+
+      #toTop.visible:hover {
+        transform: scale(1.08);
+      }
+
       .filter-panel {
-        left: var(--m); right: var(--m);
-        bottom: calc(var(--m) + var(--dock-height) + var(--m) + var(--safe-bottom));
+        left: 16px;
+        right: 16px;
+        bottom: calc(var(--dock-btn-size) + 26px + 18px + var(--safe-bottom));
         top: auto;
-        transform: translateY(20px);
-        width: auto; max-width: none; min-width: 0;
+        transform: translateY(24px);
+        width: auto;
+        max-width: none;
+        min-width: 0;
         border-radius: 20px;
       }
-      body.filter-open .filter-panel { transform: translateY(0); }
 
-      /* ── 容器：頂部讓開頂欄，底部讓開 dock ── */
-      .container {
-        padding-top: calc(var(--top-height) + 12px);
-        padding-left: var(--m);
-        padding-right: var(--m);
-        padding-bottom: calc(var(--m) + var(--dock-height) + var(--m) + var(--safe-bottom) + 24px);
+      body.filter-open .filter-panel {
+        transform: translateY(0);
       }
 
-      /* ── 卡片：與 dock 同寬（都是 left/right: --m）── */
+      .container {
+        padding: 20px 16px 200px 16px;
+      }
+
       .cards {
         grid-template-columns: minmax(0, 1fr);
-        width: 100%;
         max-width: none;
+        width: 100%;
       }
     }
 
@@ -1625,7 +1646,7 @@
     const supportSheet = document.getElementById('supportSheet');
     const supportPanel = document.getElementById('supportPanel');
     const supportHandle = document.getElementById('supportHandle');
-    const APP_VERSION = 'v1.1.2';
+    const APP_VERSION = 'v1.1.0';
     const appVersionEl = document.getElementById('appVersion');
     if (appVersionEl) appVersionEl.textContent = APP_VERSION;
     const LANGUAGE_STORAGE_KEY = 'toolkit:lang';
@@ -2150,17 +2171,8 @@
 
     function updateSiteTitleVisibility() {
       if (!siteTitle) return;
-      const width = window.innerWidth;
       const searchExpanded = searchPill?.classList.contains('expanded');
-      const showDesktop = width > 1200;
-      const showCollapsedMobile = width <= 600 && !searchExpanded;
-      const shouldShow = showDesktop || showCollapsedMobile;
-      siteTitle.classList.toggle('hidden', !shouldShow);
-      if (showCollapsedMobile) {
-        siteTitle.classList.add('mobile-visible');
-      } else {
-        siteTitle.classList.remove('mobile-visible');
-      }
+      siteTitle.classList.toggle('hidden', searchExpanded);
     }
 
     function cardVisible(card) {
