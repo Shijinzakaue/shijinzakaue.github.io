@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>坂道TOOLKIT</title>
   <link rel="icon" href="LOGO.png" type="image/png" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -709,8 +709,6 @@
         width: 100%;
         z-index: 60;
         padding: 16px 8px 18px;
-        transform-origin: top center;
-        transform: scale(calc(1 / var(--zoom-scale, 1)));
       }
 
       .top-zone-inner {
@@ -784,8 +782,7 @@
         right: 16px;
         bottom: calc(16px + var(--safe-bottom));
         top: auto;
-        transform: scale(calc(1 / var(--zoom-scale, 1)));
-        transform-origin: bottom center;
+        transform: none;
         width: auto;
         max-width: none;
         flex-direction: row;
@@ -2450,16 +2447,6 @@
 
     updateSiteTitleVisibility();
     applyFilters();
-
-    if (window.visualViewport) {
-      function onViewportChange() {
-        const scale = window.innerWidth / window.visualViewport.width;
-        document.documentElement.style.setProperty('--zoom-scale', scale);
-      }
-      window.visualViewport.addEventListener('resize', onViewportChange);
-      window.visualViewport.addEventListener('scroll', onViewportChange);
-      onViewportChange();
-    }
   </script>
 </body>
 </html>
