@@ -34,7 +34,7 @@
 
     * { box-sizing: border-box; }
     html { -webkit-tap-highlight-color: transparent; }
-    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: 'Noto Sans TC', sans-serif; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: 'Noto Sans TC', sans-serif; overflow-x: hidden; }
     body.sheet-open { overflow: hidden; }
 
     /* Prevent mobile blue tap highlight / text selection on controls */
@@ -754,6 +754,7 @@
         justify-content: space-between;
         gap: var(--dock-gap);
         width: auto;
+        max-width: calc(100% - 32px);
         padding: 6px 10px;
         min-height: calc(var(--dock-btn-size) + 16px);
         border-radius: 999px;
@@ -771,7 +772,8 @@
         width: var(--dock-btn-size);
         height: var(--dock-btn-size);
         font-size: clamp(18px, 4vw, 26px);
-        flex: 0 0 auto;
+        flex: 0 1 auto;
+        min-width: calc(var(--dock-btn-size) * 0.75);
       }
 
       .dock-btn .material-icons { font-size: clamp(20px, 4.2vw, 28px); }
@@ -796,21 +798,23 @@
 
       #toTop {
         position: fixed;
-        left: 0;
-        top: 0;
+        right: 26px;
+        bottom: calc(32px + var(--dock-btn-size) + var(--safe-bottom) + var(--dock-gap) * 3);
+        left: auto;
+        top: auto;
         width: var(--dock-btn-size);
         height: var(--dock-btn-size);
         margin: 0;
         z-index: 31;
-        transform: translate(-50%, -100%);
+        transform: none;
       }
 
       #toTop.visible {
-        transform: translate(-50%, -100%);
+        transform: none;
       }
 
       #toTop.visible:hover {
-        transform: translate(-50%, -100%);
+        transform: scale(1.08);
       }
 
       .filter-panel {
@@ -1290,7 +1294,7 @@
     const supportSheet = document.getElementById('supportSheet');
     const supportPanel = document.getElementById('supportPanel');
     const supportHandle = document.getElementById('supportHandle');
-    const APP_VERSION = 'v1.0.3';
+    const APP_VERSION = 'v1.0.4';
     const appVersionEl = document.getElementById('appVersion');
     if (appVersionEl) appVersionEl.textContent = APP_VERSION;
     const LANGUAGE_STORAGE_KEY = 'toolkit:lang';
@@ -1952,75 +1956,6 @@
     });
 
     const toTopBtn = document.getElementById('toTop');
-
-    function positionToTopAboveFilter() {
-      if (!toTopBtn || !filterToggle) return;
-
-      // 只在底欄 dock 模式（mobile breakpoint）才做錨定定位
-      if (window.innerWidth > 600) {
-        toTopBtn.style.left = '';
-        toTopBtn.style.top = '';
-        return;
-      }
-
-      const filterRect = filterToggle.getBoundingClientRect();
-      const rootStyles = getComputedStyle(document.documentElement);
-      const dockGap = parseFloat(rootStyles.getPropertyValue('--dock-gap')) || 8;
-      const gap = dockGap * 3; // 與篩選按鈕間距（上移一點）
-      const x = filterRect.left + filterRect.width / 2;
-      const y = filterRect.top - gap;
-
-      // 以「錨點」方式定位：CSS 會用 translate(-50%, -100%) 把按鈕放到此點的正上方
-      toTopBtn.style.left = `${Math.round(x)}px`;
-      toTopBtn.style.top = `${Math.round(y)}px`;
-    }
-
-    let toTopPositionRaf = 0;
-    function scheduleToTopPosition() {
-      if (toTopPositionRaf) cancelAnimationFrame(toTopPositionRaf);
-      toTopPositionRaf = requestAnimationFrame(() => {
-        toTopPositionRaf = 0;
-        positionToTopAboveFilter();
-      });
-    }
-
-    function stabilizeToTopPosition(maxFrames = 20) {
-      if (!filterToggle) return;
-
-      let framesLeft = maxFrames;
-      let stableFrames = 0;
-      let lastKey = '';
-
-      const tick = () => {
-        framesLeft -= 1;
-
-        // 每一幀都重算一次，直到 #filterToggle 位置不再變動
-        scheduleToTopPosition();
-
-        const r = filterToggle.getBoundingClientRect();
-        const key = `${Math.round(r.left)}:${Math.round(r.top)}:${Math.round(r.width)}:${Math.round(r.height)}`;
-        if (key === lastKey) stableFrames += 1;
-        else stableFrames = 0;
-        lastKey = key;
-
-        if (stableFrames >= 2 || framesLeft <= 0) return;
-        requestAnimationFrame(tick);
-      };
-
-      requestAnimationFrame(tick);
-    }
-
-    // 初始定位：用 rAF 追蹤到版面穩定（避免固定延遲太久）
-    stabilizeToTopPosition(20);
-    window.addEventListener('pageshow', () => stabilizeToTopPosition(20), { passive: true });
-    window.addEventListener('load', () => stabilizeToTopPosition(20), { passive: true });
-
-    // 在縮放/旋轉/視窗大小變更時更新
-    window.addEventListener('resize', scheduleToTopPosition, { passive: true });
-    window.addEventListener('orientationchange', scheduleToTopPosition, { passive: true });
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', scheduleToTopPosition, { passive: true });
-    }
 
     window.addEventListener('scroll', () => {
       if (window.scrollY > 150) {
