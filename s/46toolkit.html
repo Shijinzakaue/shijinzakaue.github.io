@@ -709,6 +709,8 @@
         width: 100%;
         z-index: 60;
         padding: 16px 8px 18px;
+        transform-origin: top center;
+        transform: scale(calc(1 / var(--zoom-scale, 1)));
       }
 
       .top-zone-inner {
@@ -782,7 +784,8 @@
         right: 16px;
         bottom: calc(16px + var(--safe-bottom));
         top: auto;
-        transform: none;
+        transform: scale(calc(1 / var(--zoom-scale, 1)));
+        transform-origin: bottom center;
         width: auto;
         max-width: none;
         flex-direction: row;
@@ -2447,6 +2450,16 @@
 
     updateSiteTitleVisibility();
     applyFilters();
+
+    if (window.visualViewport) {
+      function onViewportChange() {
+        const scale = window.innerWidth / window.visualViewport.width;
+        document.documentElement.style.setProperty('--zoom-scale', scale);
+      }
+      window.visualViewport.addEventListener('resize', onViewportChange);
+      window.visualViewport.addEventListener('scroll', onViewportChange);
+      onViewportChange();
+    }
   </script>
 </body>
 </html>
