@@ -701,6 +701,12 @@
       }
 
       .top-zone {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 60;
         padding: 16px 8px 18px;
       }
 
@@ -770,16 +776,16 @@
       }
 
       .sidebar {
-        left: 16px;
-        right: 16px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
         bottom: calc(16px + var(--safe-bottom));
         top: auto;
-        transform: none;
         flex-direction: row;
         justify-content: space-between;
         gap: var(--dock-gap);
-        width: auto;
-        max-width: calc(100% - 32px);
+        width: calc(100% - 32px);
+        max-width: calc(100vw - 32px);
         padding: 6px 10px;
         min-height: calc(var(--dock-btn-size) + 16px);
         border-radius: 999px;
@@ -859,7 +865,7 @@
       }
 
       .container {
-        padding: 20px 16px 200px 16px;
+        padding: 100px 16px 200px 16px;
       }
 
       .cards {
