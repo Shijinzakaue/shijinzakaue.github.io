@@ -702,13 +702,15 @@
 
       .top-zone {
         padding: 16px 8px 18px;
+        overflow-x: hidden;
       }
 
       .top-zone-inner {
         max-width: none;
-        width: 100%;
+        width: calc(100% - 16px);
         padding: 0 8px;
         margin: 0;
+        box-sizing: border-box;
       }
 
       .search-wrap {
@@ -777,14 +779,15 @@
         transform: none;
         flex-direction: row;
         justify-content: space-between;
-        gap: var(--dock-gap);
-        width: auto;
-        max-width: calc(100% - 32px);
+        gap: clamp(2px, 1.5vw, var(--dock-gap));
+        width: calc(100% - 32px);
+        max-width: none;
         padding: 6px 10px;
         min-height: calc(var(--dock-btn-size) + 16px);
         border-radius: 999px;
         align-items: center;
-        overflow: hidden;
+        overflow-x: auto;
+        overflow-y: hidden;
       }
 
       .dock-btn[data-site="all"] .material-icons,
@@ -797,8 +800,8 @@
         width: var(--dock-btn-size);
         height: var(--dock-btn-size);
         font-size: clamp(18px, 4vw, 26px);
-        flex: 1 1 auto;
-        min-width: 0;
+        flex: 0 0 auto;
+        min-width: var(--dock-btn-size);
       }
 
       .dock-btn .material-icons { font-size: clamp(20px, 4.2vw, 28px); }
