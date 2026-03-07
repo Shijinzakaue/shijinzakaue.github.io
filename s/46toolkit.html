@@ -54,8 +54,8 @@
     }
 
     * { box-sizing: border-box; }
-    html { -webkit-tap-highlight-color: transparent; }
-    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: 'Noto Sans TC', sans-serif; }
+    html { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: 'Noto Sans TC', sans-serif; overflow-x: hidden; }
     body.sheet-open { overflow: hidden; }
 
     /* Prevent mobile blue tap highlight / text selection on controls */
@@ -702,12 +702,12 @@
 
       .top-zone {
         padding: 16px 8px 18px;
-        overflow-x: hidden;
+        overflow: hidden;
       }
 
       .top-zone-inner {
         max-width: none;
-        width: calc(100% - 16px);
+        width: 100%;
         padding: 0 8px;
         margin: 0;
         box-sizing: border-box;
@@ -780,14 +780,11 @@
         flex-direction: row;
         justify-content: space-between;
         gap: clamp(2px, 1.5vw, var(--dock-gap));
-        width: calc(100% - 32px);
-        max-width: none;
         padding: 6px 10px;
         min-height: calc(var(--dock-btn-size) + 16px);
         border-radius: 999px;
         align-items: center;
-        overflow-x: auto;
-        overflow-y: hidden;
+        overflow: hidden;
       }
 
       .dock-btn[data-site="all"] .material-icons,
@@ -1650,7 +1647,7 @@
     const supportSheet = document.getElementById('supportSheet');
     const supportPanel = document.getElementById('supportPanel');
     const supportHandle = document.getElementById('supportHandle');
-    const APP_VERSION = 'v1.1.0';
+    const APP_VERSION = 'v1.1.1';
     const appVersionEl = document.getElementById('appVersion');
     if (appVersionEl) appVersionEl.textContent = APP_VERSION;
     const LANGUAGE_STORAGE_KEY = 'toolkit:lang';
