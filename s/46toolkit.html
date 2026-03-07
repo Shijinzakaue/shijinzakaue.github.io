@@ -685,49 +685,54 @@
 
     @media (max-width: 600px) {
       :root {
-        --content-max: 100%;
-        --dock-btn-size: clamp(40px, 11.5vw, 58px);
-        --logo-safe: clamp(48px, 10vw, 56px);
-        --dock-gap: clamp(4px, 2vw, 10px);
+        --m: 16px;
         --dock-inner-pad: 7px;
+        /* btn 精確填滿 dock：(視窗 - 外margin×2 - 內pad×2 - gap×5 - divider 1px) ÷ 6 */
+        --dock-btn-size: calc((100vw - var(--m) * 2 - var(--dock-inner-pad) * 8 - 1px) / 6);
+        --dock-height: calc(var(--dock-btn-size) + var(--dock-inner-pad) * 2);
+        --top-height: 80px;
+        --content-max: 100%;
+        --logo-safe: 64px;
         --fab-size: var(--dock-btn-size);
       }
-      .language-control[data-role="top"] { display: none; }
-      .main-logo {
-        left: 16px;
-        top: 16px;
-        width: 48px;
-        height: 48px;
-        z-index: 90;
-      }
 
+      .language-control[data-role="top"] { display: none; }
+
+      /* ── 頂欄：fixed，鎖死頂部全寬 ── */
       .top-zone {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
+        top: 0; left: 0; right: 0;
         width: 100%;
+        height: var(--top-height);
         z-index: 60;
-        padding: 16px 8px 18px;
+        padding: 16px var(--m);
+        display: flex;
+        align-items: center;
       }
-
       .top-zone-inner {
         max-width: none;
         width: 100%;
-        padding: 0 8px;
+        padding: 0;
         margin: 0;
       }
 
+      .main-logo {
+        left: var(--m);
+        top: calc(var(--top-height) / 2);
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+      }
+
+      /* ── 搜尋 ── */
       .search-wrap {
         width: 100%;
         justify-content: flex-end;
         align-items: center;
-        padding: 0 0 0 calc(var(--logo-safe) / 2);
+        padding: 0 0 0 var(--logo-safe);
       }
-
       .search-pill {
-        width: 48px;
-        height: 48px;
+        width: 44px; height: 44px;
         border-radius: 50%;
         padding: 0;
         justify-content: center;
@@ -735,85 +740,59 @@
         background: var(--panel-2);
         max-width: none;
       }
-
       .search-pill:not(.expanded) #searchInput,
       .search-pill:not(.expanded) .search-meta,
-      .search-pill:not(.expanded) #clearBtn {
-        display: none !important;
-      }
-
+      .search-pill:not(.expanded) #clearBtn { display: none !important; }
       .search-icon {
         display: block;
         position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 50%; transform: translateX(-50%);
         pointer-events: none;
-        transition: opacity 0.2s, transform 0.3s;
       }
-
       .search-pill.expanded {
-        width: clamp(240px, calc(100% - var(--logo-safe) - 12px), 100%);
-        height: 48px;
+        width: calc(100% - var(--logo-safe) - 8px);
+        height: 44px;
         border-radius: 999px;
-        padding: 0 48px 0 44px;
+        padding: 0 44px 0 40px;
         max-width: none;
       }
+      .search-pill.expanded .search-icon { left: 14px; transform: none; }
+      .search-pill.expanded #searchInput { display: block !important; opacity: 1; pointer-events: auto; }
+      .search-pill.expanded .search-meta { display: flex !important; position: absolute; right: 40px; }
 
-      .search-pill.expanded .search-icon {
-        left: 16px;
-        transform: none;
-      }
-
-      .search-pill.expanded #searchInput {
-        display: block !important;
-        opacity: 1;
-        pointer-events: auto;
-      }
-
-      .search-pill.expanded .search-meta {
-        display: flex !important;
-        position: absolute;
-        right: 44px;
-      }
-
+      /* ── Dock：fixed，左右距離等於 --m，高度精確 ── */
       .sidebar {
         position: fixed;
-        left: 16px;
-        right: 16px;
-        bottom: calc(16px + var(--safe-bottom));
+        left: var(--m);
+        right: var(--m);
+        bottom: calc(var(--m) + var(--safe-bottom));
         top: auto;
         transform: none;
         width: auto;
-        max-width: none;
+        height: var(--dock-height);
         flex-direction: row;
         justify-content: flex-start;
         gap: var(--dock-inner-pad);
         padding: var(--dock-inner-pad);
-        min-height: 0;
-        border-radius: 999px;
+        border-radius: calc(var(--dock-height) / 2);
         align-items: center;
         overflow: hidden;
       }
 
+      /* ── Dock 按鈕：精確填滿，強制正方形 ── */
+      .dock-btn {
+        flex: 0 0 var(--dock-btn-size);
+        width: var(--dock-btn-size);
+        height: var(--dock-btn-size);
+        font-size: calc(var(--dock-btn-size) * 0.48);
+      }
+      .dock-btn .material-icons { font-size: calc(var(--dock-btn-size) * 0.52); }
+      .dock-btn img { width: 60%; height: 60%; }
       .dock-btn[data-site="all"] .material-icons,
       .dock-btn[data-site="other"] .material-icons,
-      #filterToggle .material-icons {
-        font-size: clamp(30px, 4.8vw, 32px);
-      }
+      #filterToggle .material-icons { font-size: calc(var(--dock-btn-size) * 0.58); }
 
-      .dock-btn {
-        flex: 1 1 0;
-        min-width: 0;
-        aspect-ratio: 1;
-        width: auto;
-        height: auto;
-        font-size: clamp(18px, 4vw, 26px);
-      }
-
-      .dock-btn .material-icons { font-size: clamp(20px, 4.2vw, 28px); }
-
-      .dock-btn img { width: 62%; height: 62%; }
-
+      /* ── 分隔線：高度跟按鈕一致 ── */
       .dock-divider {
         width: 1px;
         height: calc(var(--dock-btn-size) * 0.75);
@@ -821,61 +800,51 @@
         margin: 0;
       }
 
+      /* ── 回頂按鈕 ── */
       #reportBtnContainer {
-        left: 16px;
-        right: 16px;
-        bottom: calc(16px + var(--dock-btn-size) + 10px + var(--safe-bottom));
+        left: var(--m);
+        right: var(--m);
+        bottom: calc(var(--m) + var(--dock-height) + var(--m) + var(--safe-bottom));
         width: auto;
         transform: none;
         align-items: flex-end;
-        gap: var(--dock-gap);
       }
-
       #toTop {
         position: fixed;
-        right: 26px;
-        bottom: calc(32px + var(--dock-btn-size) + var(--safe-bottom) + var(--dock-gap) * 3);
-        left: auto;
-        top: auto;
+        right: calc(var(--m) + 10px);
+        bottom: calc(var(--m) + var(--dock-height) + var(--m) + var(--safe-bottom));
+        left: auto; top: auto;
         width: var(--dock-btn-size);
         height: var(--dock-btn-size);
-        margin: 0;
-        z-index: 31;
-        transform: none;
+        margin: 0; z-index: 31; transform: none;
       }
+      #toTop.visible { transform: none; }
+      #toTop.visible:hover { transform: scale(1.08); }
 
-      #toTop.visible {
-        transform: none;
-      }
-
-      #toTop.visible:hover {
-        transform: scale(1.08);
-      }
-
+      /* ── 篩選面板 ── */
       .filter-panel {
-        left: 16px;
-        right: 16px;
-        bottom: calc(var(--dock-btn-size) + 26px + 18px + var(--safe-bottom));
+        left: var(--m); right: var(--m);
+        bottom: calc(var(--m) + var(--dock-height) + var(--m) + var(--safe-bottom));
         top: auto;
-        transform: translateY(24px);
-        width: auto;
-        max-width: none;
-        min-width: 0;
+        transform: translateY(20px);
+        width: auto; max-width: none; min-width: 0;
         border-radius: 20px;
       }
+      body.filter-open .filter-panel { transform: translateY(0); }
 
-      body.filter-open .filter-panel {
-        transform: translateY(0);
-      }
-
+      /* ── 容器：頂部讓開頂欄，底部讓開 dock ── */
       .container {
-        padding: 100px 16px 200px 16px;
+        padding-top: calc(var(--top-height) + 12px);
+        padding-left: var(--m);
+        padding-right: var(--m);
+        padding-bottom: calc(var(--m) + var(--dock-height) + var(--m) + var(--safe-bottom) + 24px);
       }
 
+      /* ── 卡片：與 dock 同寬（都是 left/right: --m）── */
       .cards {
         grid-template-columns: minmax(0, 1fr);
-        max-width: none;
         width: 100%;
+        max-width: none;
       }
     }
 
@@ -1656,7 +1625,7 @@
     const supportSheet = document.getElementById('supportSheet');
     const supportPanel = document.getElementById('supportPanel');
     const supportHandle = document.getElementById('supportHandle');
-    const APP_VERSION = 'v1.1.0';
+    const APP_VERSION = 'v1.1.2';
     const appVersionEl = document.getElementById('appVersion');
     if (appVersionEl) appVersionEl.textContent = APP_VERSION;
     const LANGUAGE_STORAGE_KEY = 'toolkit:lang';
