@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-08 14:40";
+var lastUpdated = "2026-03-08 15:34";
 
 var officialConfig = [
   {
@@ -1129,7 +1129,8 @@ var toolConfig = [
     "link": "https://status.meet.oshi-katsu.app/",
     "detail": "ミーグリリアルタイム参加者数",
     "tags": [
-      "meet"
+      "meet",
+      "公式"
     ],
     "groups": [
       "nogi",
@@ -1187,6 +1188,7 @@ var toolConfig = [
 ];
 
 var tagLabels = {
+  "公式": "公式",
   "item": "アイテム・愛用品",
   "clothes": "私服・衣装・制服",
   "place": "場所・聖地巡禮",
