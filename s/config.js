@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-08 15:47";
+var lastUpdated = "2026-03-09 00:57";
 
 var officialConfig = [
   {
@@ -1124,19 +1124,6 @@ var toolConfig = [
     "link": ""
   },
   {
-    "name": "COSTUME | 櫻坂46公式サイト",
-    "desc": "sakurazaka46.com",
-    "detail": "櫻坂46公式衣裝",
-    "tags": [
-      "clothes",
-      "公式"
-    ],
-    "groups": [
-      "saku"
-    ],
-    "link": "https://sakurazaka46.com/s/s46/page/costume?ima=0000"
-  },
-  {
     "name": "46◢ Online Meet Waiting Room",
     "desc": "status.meet.oshi-katsu.app",
     "link": "https://status.meet.oshi-katsu.app/",
@@ -1183,6 +1170,19 @@ var toolConfig = [
     ],
     "groups": [],
     "link": "https://www.tv-ranking.com/"
+  },
+  {
+    "name": "COSTUME | 櫻坂46公式サイト",
+    "desc": "sakurazaka46.com",
+    "detail": "櫻坂46公式衣裝",
+    "tags": [
+      "clothes",
+      "公式"
+    ],
+    "groups": [
+      "saku"
+    ],
+    "link": "https://sakurazaka46.com/s/s46/page/costume?ima=0000"
   }
 ];
 
