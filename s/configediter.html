@@ -80,6 +80,7 @@
             if(!token) return alert("請先輸入 Token");
 
             const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${BASE_PATH}/${file}`;
+            try {
                 const res = await fetch(url, { headers: { 'Authorization': `token ${token}` } });
                 const json = await res.json();
                 currentSha = json.sha;
@@ -236,3 +237,4 @@
     </script>
 </body>
 </html>
+
