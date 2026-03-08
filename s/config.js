@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-08 15:42";
+var lastUpdated = "2026-03-08 15:47";
 
 var officialConfig = [
   {
@@ -1124,6 +1124,19 @@ var toolConfig = [
     "link": ""
   },
   {
+    "name": "COSTUME | 櫻坂46公式サイト",
+    "desc": "sakurazaka46.com",
+    "detail": "櫻坂46公式衣裝",
+    "tags": [
+      "clothes",
+      "公式"
+    ],
+    "groups": [
+      "saku"
+    ],
+    "link": "https://sakurazaka46.com/s/s46/page/costume?ima=0000"
+  },
+  {
     "name": "46◢ Online Meet Waiting Room",
     "desc": "status.meet.oshi-katsu.app",
     "link": "https://status.meet.oshi-katsu.app/",
@@ -1166,24 +1179,10 @@ var toolConfig = [
     "desc": "tv-ranking.com",
     "detail": "このサイトではテレビ番組表に掲載されている出演者データを基に、独自に集計した人物ごとの出演時間・出演番組数ランキングを掲載しています。\n\nデータは番組表を基に算出しているため、番組の人気（視聴率）との関係性は分かりません。番組に出演していても番組表に掲載されていなければ、出演したとカウントされません。また、出演した場合でも番組内でのどの程度の時間出演したかについては分かりません。このサイトででは「番組表に掲載される出演者」＝「番組の宣伝に価値がある出演者」と捉えました。番組提供者側が考える出演者の価値を推し量るためのものとお考えいただければ幸いです。",
     "tags": [
-      "ranking",
-      "公式"
+      "ranking"
     ],
     "groups": [],
     "link": "https://www.tv-ranking.com/"
-  },
-  {
-    "name": "COSTUME | 櫻坂46公式サイト",
-    "desc": "sakurazaka46.com",
-    "detail": "櫻坂46公式衣裝",
-    "tags": [
-      "clothes",
-      "公式"
-    ],
-    "groups": [
-      "saku"
-    ],
-    "link": "https://sakurazaka46.com/s/s46/page/costume?ima=0000"
   }
 ];
 
