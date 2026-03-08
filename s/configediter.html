@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>?? Config Editor</title>
+    <title>坂道 Config Editor</title>
     <style>
         :root {
             --bg: #0f1117;
@@ -25,7 +25,7 @@
         html { -webkit-tap-highlight-color: transparent; }
         body { background: var(--bg); color: var(--text); font-family: -apple-system, 'Noto Sans TC', sans-serif; min-height: 100vh; padding-bottom: 100px; }
 
-        /* ?? Header ?? */
+        /* Header */
         .header {
             position: sticky; top: 0; z-index: 100;
             background: rgba(15,17,23,.92);
@@ -37,7 +37,7 @@
         .header h1 { font-size: 17px; font-weight: 700; letter-spacing: .5px; flex: 1; }
         .header h1 span { color: var(--accent); }
 
-        /* ?? Load Panel ?? */
+        /* Load Panel */
         .load-panel {
             margin: 16px; padding: 16px;
             background: var(--surface);
@@ -60,7 +60,7 @@
         .load-status { font-size: 13px; margin-top: 8px; min-height: 18px; color: var(--green); }
         .load-status.err { color: var(--red); }
 
-        /* ?? Buttons ?? */
+        /* Buttons */
         .btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 6px;
             padding: 10px 18px; border: none; border-radius: var(--radius-sm);
@@ -75,7 +75,7 @@
         .btn-ghost   { background: var(--surface2); color: var(--text); border: 1px solid var(--border); padding: 6px 10px; font-size: 12px; }
         .btn-add     { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(147,58,253,.3); font-size: 13px; padding: 7px 14px; }
 
-        /* ?? Section ?? */
+        /* Section */
         .section {
             margin: 0 16px 16px;
             background: var(--surface);
@@ -94,7 +94,7 @@
             font-size: 11px; padding: 2px 7px; border-radius: 99px; margin-left: 8px; font-weight: 600;
         }
 
-        /* ?? Card ?? */
+        /* Card */
         .card {
             border-bottom: 1px solid var(--border);
             overflow: hidden;
@@ -117,7 +117,7 @@
         .card.open .card-body { display: block; }
         .card-move { display: flex; flex-direction: column; gap: 3px; flex-shrink: 0; }
 
-        /* ?? Form inside card ?? */
+        /* Form inside card */
         .form-group { margin-top: 12px; }
         .form-group label { display: block; font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 4px; }
         .form-group input[type="text"],
@@ -134,7 +134,7 @@
         }
         .form-group textarea { resize: vertical; min-height: 80px; }
 
-        /* ?? Checkboxes ?? */
+        /* Checkboxes */
         .check-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
         .check-item {
             display: flex; align-items: center; gap: 5px;
@@ -148,10 +148,10 @@
         }
         .check-item input { display: none; }
 
-        /* ?? Card actions ?? */
+        /* Card actions */
         .card-actions { display: flex; gap: 8px; align-items: center; margin-top: 14px; flex-wrap: wrap; }
 
-        /* ?? Sticky save bar ?? */
+        /* Sticky save bar */
         .save-bar {
             position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
             background: rgba(15,17,23,.95); backdrop-filter: blur(12px);
@@ -163,7 +163,7 @@
         #saveStatus.ok  { color: var(--green); }
         #saveStatus.err { color: var(--red); }
 
-        /* ?? Move buttons ?? */
+        /* Move buttons */
         .btn-move {
             background: var(--surface2); border: 1px solid var(--border);
             color: var(--muted); border-radius: 6px;
@@ -177,28 +177,28 @@
 <body>
 
     <div class="header">
-        <h1>?? <span>Config</span> Editor</h1>
+        <h1>坂道 <span>Config</span> Editor</h1>
     </div>
 
-    <!-- 頛閮剖? -->
+    <!-- 載入設定 -->
     <div class="load-panel" id="loadPanel">
-        <h2>???閮剖?</h2>
+        <h2>連線設定</h2>
         <div class="load-row">
             <div class="field">
                 <label>GitHub Token</label>
                 <input type="password" id="token" placeholder="github_pat_...">
             </div>
             <div class="field">
-                <label>瑼?</label>
+                <label>檔案</label>
                 <select id="fileName">
-                    <option value="config.js">config.js嚗隤??身嚗?/option>
-                    <option value="config_en.js">config_en.js嚗隤?</option>
-                    <option value="config_zh-Hans.js">config_zh-Hans.js嚗陛擃?</option>
-                    <option value="config_zh-Hant.js">config_zh-Hant.js嚗?擃?</option>
+                    <option value="config.js">config.js（日語 / 預設）</option>
+                    <option value="config_en.js">config_en.js（英語）</option>
+                    <option value="config_zh-Hans.js">config_zh-Hans.js（簡體）</option>
+                    <option value="config_zh-Hant.js">config_zh-Hant.js（繁體）</option>
                 </select>
             </div>
             <div class="field" style="justify-content: flex-end; flex-direction: row; align-items: flex-end; min-width: unset; flex: 0;">
-                <button class="btn btn-primary" onclick="fetchFile()">霈??/button>
+                <button class="btn btn-primary" onclick="fetchFile()">讀取</button>
             </div>
         </div>
         <div class="load-status" id="loadStatus"></div>
@@ -208,8 +208,8 @@
         <!-- Official -->
         <div class="section">
             <div class="section-header">
-                <h2>摰蝬脩? <span class="badge" id="offCount">0</span></h2>
-                <button class="btn btn-add" onclick="addItem('official')">嚗??啣?</button>
+                <h2>官方網站 <span class="badge" id="offCount">0</span></h2>
+                <button class="btn btn-add" onclick="addItem('official')">＋ 新增</button>
             </div>
             <div id="officialList"></div>
         </div>
@@ -217,16 +217,16 @@
         <!-- Tool -->
         <div class="section">
             <div class="section-header">
-                <h2>?賊?撌亙 <span class="badge" id="toolCount">0</span></h2>
-                <button class="btn btn-add" onclick="addItem('tool')">嚗??啣?</button>
+                <h2>相關工具 <span class="badge" id="toolCount">0</span></h2>
+                <button class="btn btn-add" onclick="addItem('tool')">＋ 新增</button>
             </div>
             <div id="toolList"></div>
         </div>
     </div>
 
-    <!-- ?箏??脣???-->
+    <!-- 固定儲存列 -->
     <div class="save-bar" id="saveBar" style="display:none;">
-        <button class="btn btn-success" onclick="saveToFile()">???脣?銝行??GitHub</button>
+        <button class="btn btn-success" onclick="saveToFile()">✓ 儲存並推送 GitHub</button>
         <span id="saveStatus"></span>
     </div>
 
@@ -236,14 +236,32 @@
         const BASE_PATH = 's';
 
         const tagLabels = {
-            "?砍?": "?砍?",
-            "item": "?Ｕ???餅??典?", "clothes": "蝘??餉﹝鋆?嗆?", "place": "?湔??餉??啣楚蝳?, "sns": "SNS",
-            "blog": "???, "meet": "?⊥??颯??潦??, "information": "?犖?颯?怒????, "song": "璆賣鞈?",
-            "sale": "憯脖?", "game": "?脯??, "streaming": "?嫘??芥??啜?縑", "photo": "??",
-            "message": "?～??颯??, "create": "雿????, "oshi": "?具?瘣?, "ranking": "?押?准??,
-            "forum": "?整?RSS", "live": "?押??颯???, "tool": "?ａ???潦"
+            "\u516c\u5f0f": "\u516c\u5f0f",
+            "item": "\u30a2\u30a4\u30c6\u30e0\u30fb\u611b\u7528\u54c1",
+            "clothes": "\u79c1\u670d\u30fb\u8863\u88c5\u30fb\u5236\u670d",
+            "place": "\u5834\u6240\u30fb\u8056\u5730\u5de1\u79ae",
+            "sns": "SNS",
+            "blog": "\u30d6\u30ed\u30b0",
+            "meet": "\u63e1\u624b\u30fb\u30df\u30fc\u30b0\u30ea",
+            "information": "\u500b\u4eba\u30fb\u30b0\u30eb\u30fc\u30d7\u60c5\u5831",
+            "song": "\u697d\u66f2\u8cc7\u6599",
+            "sale": "\u58f2\u4e0a",
+            "game": "\u30b2\u30fc\u30e0",
+            "streaming": "\u30b9\u30c8\u30ea\u30fc\u30df\u30f3\u30b0\u30fb\u914d\u4fe1",
+            "photo": "\u5199\u771f",
+            "message": "\u30e1\u30c3\u30bb\u30fc\u30b8",
+            "create": "\u4f5c\u6210\u30c4\u30fc\u30eb",
+            "oshi": "\u63a8\u3057\u6d3b",
+            "ranking": "\u30e9\u30f3\u30ad\u30f3\u30b0",
+            "forum": "\u307e\u3068\u3081\u30fbRSS",
+            "live": "\u30e9\u30a4\u30d6\u30fb\u30bb\u30c8\u30ea",
+            "tool": "\u95a2\u9023\u30c4\u30fc\u30eb"
         };
-        const groups = { "nogi": "銋??6", "saku": "瑹餃?46", "hina": "?亙???6" };
+        const groups = {
+            "nogi": "\u4e43\u6728\u574a46",
+            "saku": "\u6afb\u574a46",
+            "hina": "\u65e5\u5411\u574a46"
+        };
 
         let currentSha = '';
         let dataStore = { officialConfig: [], toolConfig: [] };
@@ -252,8 +270,8 @@
             const token = document.getElementById('token').value.trim();
             const file  = document.getElementById('fileName').value;
             const statusEl = document.getElementById('loadStatus');
-            if (!token) { statusEl.textContent = '隢?頛詨 Token'; statusEl.className = 'load-status err'; return; }
-            statusEl.textContent = '頛銝?..'; statusEl.className = 'load-status';
+            if (!token) { statusEl.textContent = '\u8acb\u5148\u8f38\u5165 Token'; statusEl.className = 'load-status err'; return; }
+            statusEl.textContent = '\u8f09\u5165\u4e2d...'; statusEl.className = 'load-status';
             const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${BASE_PATH}/${file}`;
             try {
                 const res  = await fetch(url, { headers: { Authorization: `token ${token}` } });
@@ -265,10 +283,10 @@
                 renderUI();
                 document.getElementById('editorArea').style.display = 'block';
                 document.getElementById('saveBar').style.display = 'flex';
-                statusEl.textContent = '??頛??';
+                statusEl.textContent = '\u2713 \u8f09\u5165\u6210\u529f';
                 statusEl.className = 'load-status';
             } catch (e) {
-                statusEl.textContent = '??頛憭望?嚗? + e.message;
+                statusEl.textContent = '\u2717 \u8f09\u5165\u5931\u6557\uff1a' + e.message;
                 statusEl.className = 'load-status err';
             }
         }
@@ -283,7 +301,7 @@
                 const r = fn();
                 dataStore.officialConfig = Array.isArray(r.officialConfig) ? r.officialConfig : [];
                 dataStore.toolConfig     = Array.isArray(r.toolConfig)     ? r.toolConfig     : [];
-            } catch (e) { alert('閫??憭望?嚗? + e.message); }
+            } catch (e) { alert('\u89e3\u6790\u5931\u6557\uff1a' + e.message); }
         }
 
         function esc(s) {
@@ -324,7 +342,7 @@
         function moveBtns(type, index) {
             const wrap = document.createElement('div');
             wrap.className = 'card-move';
-            ['??,'??].forEach((t, d) => {
+            ['\u2191','\u2193'].forEach((t, d) => {
                 const b = document.createElement('button');
                 b.className = 'btn-move'; b.textContent = t;
                 b.addEventListener('click', () => moveItem(type, index, d === 0 ? -1 : 1));
@@ -336,29 +354,29 @@
         function createOfficialCard(item, index) {
             const headHTML = `
                 <div style="flex:1;min-width:0;">
-                    <div class="name">${esc(item.name) || '<span style="color:var(--muted)">嚗?賢?嚗?/span>'}</div>
+                    <div class="name">${esc(item.name) || '<span style="color:var(--muted)">\uff08\u672a\u547d\u540d\uff09</span>'}</div>
                     <div class="sub">${esc(item.link)}</div>
                 </div>
-                <span style="font-size:11px;color:var(--muted);flex-shrink:0;">${groups[item.group]||item.group}</span>
-                <span class="chevron">??/span>`;
+                <span style="font-size:11px;color:var(--muted);flex-shrink:0;">${groups[item.group]||item.group||''}</span>
+                <span class="chevron">\u25be</span>`;
 
             const body = document.createElement('div');
             body.innerHTML = `
-                <div class="form-group"><label>?迂</label>
-                    <input type="text" value="${esc(item.name)}" placeholder="?迂"></div>
-                <div class="form-group"><label>???</label>
+                <div class="form-group"><label>\u540d\u7a31</label>
+                    <input type="text" value="${esc(item.name)}" placeholder="\u540d\u7a31"></div>
+                <div class="form-group"><label>\u9023\u7d50</label>
                     <input type="text" value="${esc(item.link)}" placeholder="https://..."></div>
-                <div class="form-group"><label>?撅?/label>
+                <div class="form-group"><label>\u6240\u5c6c</label>
                     <select>${Object.entries(groups).map(([k,v])=>`<option value="${k}"${item.group===k?' selected':''}>${v}</option>`).join('')}</select></div>`;
-            body.querySelector('input[placeholder="?迂"]').addEventListener('input', e => { updateValue('official',index,'name',e.target.value); syncHead(card); });
+            body.querySelector('input[placeholder="\u540d\u7a31"]').addEventListener('input', e => { updateValue('official',index,'name',e.target.value); });
             body.querySelector('input[placeholder="https://..."]').addEventListener('input', e => updateValue('official',index,'link',e.target.value));
-            body.querySelector('select').addEventListener('change', e => { updateValue('official',index,'group',e.target.value); syncHead(card); });
+            body.querySelector('select').addEventListener('change', e => updateValue('official',index,'group',e.target.value));
 
             const actions = document.createElement('div');
             actions.className = 'card-actions';
             const del = document.createElement('button');
-            del.className = 'btn btn-danger'; del.textContent = '?芷';
-            del.addEventListener('click', () => { removeItem('official', index); });
+            del.className = 'btn btn-danger'; del.textContent = '\u522a\u9664';
+            del.addEventListener('click', () => removeItem('official', index));
             actions.appendChild(del);
             body.appendChild(actions);
 
@@ -370,33 +388,33 @@
         function createToolCard(item, index) {
             const headHTML = `
                 <div style="flex:1;min-width:0;">
-                    <div class="name">${esc(item.name) || '<span style="color:var(--muted)">嚗?賢?嚗?/span>'}</div>
+                    <div class="name">${esc(item.name) || '<span style="color:var(--muted)">\uff08\u672a\u547d\u540d\uff09</span>'}</div>
                     <div class="sub">${esc(item.desc)}</div>
                 </div>
-                <span class="chevron">??/span>`;
+                <span class="chevron">\u25be</span>`;
 
             const body = document.createElement('div');
 
-            // ?箸甈?
-            [['name','璅?',item.name,''],['desc','?舀?憿?蝬脣??膩',item.desc,''],['link','???嚗憛恬?',item.link,'https://...']].forEach(([key,lbl,val,ph]) => {
+            [['\u6a19\u984c','name',item.name,''],
+             ['\u526f\u6a19\u984c / \u8aaa\u660e','desc',item.desc,''],
+             ['\u9023\u7d50\uff08\u9078\u586b\uff09','link',item.link,'https://...']].forEach(([lbl,key,val,ph]) => {
                 const g = document.createElement('div'); g.className = 'form-group';
                 g.innerHTML = `<label>${lbl}</label><input type="text" value="${esc(val)}" placeholder="${ph||lbl}">`;
-                g.querySelector('input').addEventListener('input', e => { updateValue('tool',index,key,e.target.value); if(key==='name'||key==='desc') syncHead(card); });
+                g.querySelector('input').addEventListener('input', e => updateValue('tool',index,key,e.target.value));
                 body.appendChild(g);
             });
 
-            // detail
             const dg = document.createElement('div'); dg.className = 'form-group';
-            dg.innerHTML = `<label>閰喟敦?批捆</label><textarea placeholder="?舀 Markdown ??? [??](url)">${esc(item.detail)}</textarea>`;
+            dg.innerHTML = `<label>\u8a73\u7d30\u5167\u5bb9</label><textarea placeholder="\u652f\u63f4 Markdown \u9023\u7d50 [\u6587\u5b57](url)">${esc(item.detail)}</textarea>`;
             dg.querySelector('textarea').addEventListener('input', e => updateValue('tool',index,'detail',e.target.value));
             body.appendChild(dg);
 
             // groups
             const gg = document.createElement('div'); gg.className = 'form-group';
-            gg.innerHTML = `<label>?撅祉???/label><div class="check-grid"></div>`;
+            gg.innerHTML = `<label>\u6240\u5c6c\u7d44\u5408</label><div class="check-grid"></div>`;
             Object.entries(groups).forEach(([k,v]) => {
                 const lbl = document.createElement('label'); lbl.className = 'check-item';
-                const cb  = document.createElement('input'); cb.type = 'checkbox'; cb.dataset.group = k;
+                const cb  = document.createElement('input'); cb.type = 'checkbox';
                 if (item.groups?.includes(k)) cb.checked = true;
                 lbl.appendChild(cb); lbl.appendChild(document.createTextNode(v));
                 cb.addEventListener('change', () => {
@@ -410,12 +428,12 @@
 
             // tags
             const tg = document.createElement('div'); tg.className = 'form-group';
-            tg.innerHTML = `<label>璅惜</label><div class="check-grid"></div>`;
+            tg.innerHTML = `<label>\u6a19\u7c64</label><div class="check-grid"></div>`;
             Object.entries(tagLabels).forEach(([k,v]) => {
                 const lbl = document.createElement('label'); lbl.className = 'check-item';
-                const cb  = document.createElement('input'); cb.type = 'checkbox'; cb.dataset.tag = k;
+                const cb  = document.createElement('input'); cb.type = 'checkbox';
                 if (item.tags?.includes(k)) cb.checked = true;
-                lbl.appendChild(cb); lbl.appendChild(document.createTextNode(v.split('??).pop()));
+                lbl.appendChild(cb); lbl.appendChild(document.createTextNode(v.split('\u30fb').pop()));
                 cb.addEventListener('change', () => {
                     let tags = dataStore.toolConfig[index].tags || [];
                     tags = cb.checked ? [...new Set([...tags,k])] : tags.filter(x=>x!==k);
@@ -426,7 +444,7 @@
             body.appendChild(tg);
 
             const actions = document.createElement('div'); actions.className = 'card-actions';
-            const del = document.createElement('button'); del.className = 'btn btn-danger'; del.textContent = '?芷';
+            const del = document.createElement('button'); del.className = 'btn btn-danger'; del.textContent = '\u522a\u9664';
             del.addEventListener('click', () => removeItem('tool', index));
             actions.appendChild(del);
             body.appendChild(actions);
@@ -434,14 +452,6 @@
             const card = makeCard(headHTML, body);
             card.querySelector('.card-head').prepend(moveBtns('tool', index));
             return card;
-        }
-
-        function syncHead(card) {
-            const nameEl = card.querySelector('.card-head .name');
-            const subEl  = card.querySelector('.card-head .sub');
-            if (!nameEl) return;
-            const nameInput = card.querySelector('.card-body input[placeholder], .card-body input');
-            if (nameInput) nameEl.textContent = nameInput.value || '嚗?賢?嚗?;
         }
 
         function updateValue(type, i, key, val) { dataStore[`${type}Config`][i][key] = val; }
@@ -455,7 +465,6 @@
             if (type==='official') dataStore.officialConfig.push({name:'',link:'',group:'nogi'});
             else dataStore.toolConfig.push({name:'',desc:'',link:'',detail:'',tags:[],groups:['nogi']});
             renderUI();
-            // 撅??敺?撘?
             const list = document.getElementById(type==='official'?'officialList':'toolList');
             const last = list.lastElementChild;
             if (last) { last.classList.add('open'); last.scrollIntoView({behavior:'smooth',block:'center'}); }
@@ -465,7 +474,7 @@
             const token    = document.getElementById('token').value.trim();
             const file     = document.getElementById('fileName').value;
             const statusEl = document.getElementById('saveStatus');
-            statusEl.textContent = '?脣?銝?..'; statusEl.className = '';
+            statusEl.textContent = '\u5132\u5b58\u4e2d...'; statusEl.className = '';
             const newContent = `var lastUpdated = "${new Date().toISOString().slice(0,16).replace('T',' ')}";\n\nvar officialConfig = ${JSON.stringify(dataStore.officialConfig, null, 2)};\n\nvar toolConfig = ${JSON.stringify(dataStore.toolConfig, null, 2)};\n\nvar tagLabels = ${JSON.stringify(tagLabels, null, 2)};`;
             const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${BASE_PATH}/${file}`;
             try {
@@ -476,12 +485,12 @@
                 });
                 if (res.ok) {
                     const j = await res.json(); currentSha = j.content.sha;
-                    statusEl.textContent = '???脣???嚗? 1 ??敺???; statusEl.className = 'ok';
+                    statusEl.textContent = '\u2713 \u5132\u5b58\u6210\u529f\uff0c\u7d041\u5206\u9418\u5f8c\u751f\u6548'; statusEl.className = 'ok';
                 } else {
                     const j = await res.json(); throw new Error(j.message);
                 }
             } catch (e) {
-                statusEl.textContent = '??憭望?嚗? + e.message; statusEl.className = 'err';
+                statusEl.textContent = '\u2717 \u5931\u6557\uff1a' + e.message; statusEl.className = 'err';
             }
         }
     </script>
