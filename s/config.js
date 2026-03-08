@@ -1,4 +1,6 @@
-const officialConfig = [
+var lastUpdated = "2026.03.08 13:54";
+
+var officialConfig = [
   { name: "乃木坂46 公式サイト", link: "https://www.nogizaka46.com", group: "nogi" },
   { name: "乃木坂46 ニュース", link: "https://www.nogizaka46.com/s/n46/news/list", group: "nogi" },  
   { name: "乃木坂46 スケジュール", link: "https://www.nogizaka46.com/s/n46/media/list", group: "nogi" },
@@ -40,7 +42,31 @@ const officialConfig = [
 
 ];
 
-const toolConfig = [
+var toolConfig = [
+{
+  name: "乃木坂46 SNS",
+  desc: "t.me/nogizaka46_SNS",
+  detail: "・[乃木坂46 OFFICIAL YouTube CHANNEL](https://www.youtube.com/@nogizaka46SMEJ)\n・[乃木坂配信中](https://www.youtube.com/@nogizakahaishinchu)\n・[X（旧Twitter）](https://x.com/nogizaka46)\n・[Instagram](https://www.instagram.com/nogizaka46_official/)\n・[Facebook](https://www.facebook.com/nogizaka46)\n・[TikTok](https://www.tiktok.com/@nogizaka46_official)\n・[Line](https://lin.ee/EwCV3ub)\n・[Weibo](https://weibo.com/u/6372196907)\n・[Bilibili](https://space.bilibili.com/603028270)",
+  tags: ["公式","sns","blog","photo"],
+  groups: ["nogi"],
+  link: "https://t.me/s/nogizaka46_SNS/"
+},
+{
+  name: "櫻坂46 SNS",
+  desc: "t.me/sakurazaka46_sns",
+  detail: "・[櫻坂46 OFFICIAL YouTube CHANNEL](https://www.youtube.com/@sakurazaka46SMEJ)\n・[櫻坂チャンネル](https://www.youtube.com/@sakurazakachannel/)\n・[X（旧Twitter）](https://x.com/sakurazaka46)\n・[Instagram @sakurazaka46jp](https://www.instagram.com/sakurazaka46jp)\n・[Instagram @sakurazaka46_info_official](https://www.instagram.com/sakurazaka46_info_official/)\n・[TikTok](https://www.tiktok.com/@sakurazaka46.officialtk)",
+  tags: ["公式","sns","blog","photo"],
+  groups: ["saku"],
+  link: "https://t.me/s/sakurazaka46_sns/"
+},
+{
+  name: "日向坂46 SNS",
+  desc: "t.me/hinatazaka46_sns",
+  detail: "・[日向坂46 OFFICIAL YouTube CHANNEL](https://www.youtube.com/@46officialyoutubechannel99)\n・[日向坂ちゃんねる](https://www.youtube.com/@hinatazakachannel)\n・[X（旧Twitter）](https://x.com/hinatazaka46)\n・[Instagram](https://www.instagram.com/hinatazaka46)\n・[TikTok](https://www.tiktok.com/@hinatazakanews)",
+  tags: ["公式","sns","blog","photo"],
+  groups: ["hina"],
+  link: "https://t.me/s/hinatazaka46_sns/"
+},
   {
     name: "乃木坂46データベース",
     desc: "n46db.com",
@@ -539,7 +565,7 @@ const toolConfig = [
 },
 ];
 
-const tagLabels = {
+var tagLabels = {
   "item": "アイテム・愛用品",
   "clothes": "私服・衣装・制服",
   "place": "場所・聖地巡礼",
