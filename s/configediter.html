@@ -475,9 +475,9 @@
             const file     = document.getElementById('fileName').value;
             const statusEl = document.getElementById('saveStatus');
             statusEl.textContent = '\u5132\u5b58\u4e2d...'; statusEl.className = '';
-            const _now = new Date();
             const _p = n => String(n).padStart(2,'0');
-            const _ts = `${_now.getFullYear()}.${_p(_now.getMonth()+1)}.${_p(_now.getDate())} ${_p(_now.getHours())}:${_p(_now.getMinutes())}`;
+            const _jst = new Date(Date.now() + 9 * 60 * 60 * 1000);
+            const _ts = `${_jst.getUTCFullYear()}-${_p(_jst.getUTCMonth()+1)}-${_p(_jst.getUTCDate())} ${_p(_jst.getUTCHours())}:${_p(_jst.getUTCMinutes())}`;
             const newContent = `var lastUpdated = "${_ts}";\n\nvar officialConfig = ${JSON.stringify(dataStore.officialConfig, null, 2)};\n\nvar toolConfig = ${JSON.stringify(dataStore.toolConfig, null, 2)};\n\nvar tagLabels = ${JSON.stringify(tagLabels, null, 2)};`;
             const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${BASE_PATH}/${file}`;
             try {
