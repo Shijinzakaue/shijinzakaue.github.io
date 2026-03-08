@@ -57,8 +57,9 @@
     </div>
 
     <script>
-        const OWNER = 'Shijinzakaue'; // 改成你的 GitHub 帳號
-        const REPO = 'shijinzakaue.github.io'; // 改成你的 Repository 名稱
+        const OWNER = 'shijinzakaue'; // GitHub 帳號
+        const REPO = 'shijinzakaue.github.io'; // Repository 名稱
+        const BASE_PATH = 's'; // config 檔所在子資料夾
         
         // 你的標籤定義 
         const tagLabels = {
@@ -78,8 +79,7 @@
             const file = document.getElementById('fileName').value;
             if(!token) return alert("請先輸入 Token");
 
-            const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${file}`;
-            try {
+            const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${BASE_PATH}/${file}`;
                 const res = await fetch(url, { headers: { 'Authorization': `token ${token}` } });
                 const json = await res.json();
                 currentSha = json.sha;
@@ -91,14 +91,22 @@
             } catch (e) { alert("載入失敗，請檢查帳號、專案名或 Token"); }
         }
 
-        // 解析 JS 內容 (粗暴但有效的解析)
+        // 解析 JS 內容：用 Function 在沙盒執行，避免 regex 非貪婪截斷問題
         function parseJS(str) {
             try {
-                const offMatch = str.match(/var officialConfig = (\[[\s\S]*?\]);/);
-                const toolMatch = str.match(/var toolConfig = (\[[\s\S]*?\]);/);
-                dataStore.officialConfig = offMatch ? eval(offMatch[1]) : [];
-                dataStore.toolConfig = toolMatch ? eval(toolMatch[1]) : [];
-            } catch (e) { alert("解析 JS 失敗，請確保檔案格式正確"); }
+                const fn = new Function(`
+                    var officialConfig, toolConfig, tagLabels, lastUpdated;
+                    ${str}
+                    return { officialConfig, toolConfig };
+                `);
+                const result = fn();
+                dataStore.officialConfig = Array.isArray(result.officialConfig) ? result.officialConfig : [];
+                dataStore.toolConfig = Array.isArray(result.toolConfig) ? result.toolConfig : [];
+            } catch (e) { alert("解析 JS 失敗，請確保檔案格式正確：" + e.message); }
+        }
+
+        function esc(str) {
+            return String(str ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
         }
 
         function renderUI() {
@@ -107,50 +115,76 @@
             offList.innerHTML = ''; toolList.innerHTML = '';
 
             dataStore.officialConfig.forEach((item, i) => {
-                offList.innerHTML += createCard('official', item, i);
+                offList.appendChild(createOfficialCard(item, i));
             });
             dataStore.toolConfig.forEach((item, i) => {
-                toolList.innerHTML += createCard('tool', item, i);
+                toolList.appendChild(createToolCard(item, i));
             });
         }
 
-        function createCard(type, item, index) {
-            if (type === 'official') {
-                return `
-                <div class="card">
-                    <button class="move" onclick="moveItem('official', ${index}, -1)">↑</button>
-                    <button class="move" onclick="moveItem('official', ${index}, 1)">↓</button>
-                    <input type="text" value="${item.name}" onchange="updateValue('official', ${index}, 'name', this.value)" placeholder="名稱">
-                    <input type="text" value="${item.link}" onchange="updateValue('official', ${index}, 'link', this.value)" placeholder="連結">
-                    <select onchange="updateValue('official', ${index}, 'group', this.value)">
-                        ${Object.entries(groups).map(([k,v]) => `<option value="${k}" ${item.group==k?'selected':''}>${v}</option>`).join('')}
-                    </select>
-                    <button class="delete" onclick="removeItem('official', ${index})">刪除</button>
-                </div>`;
-            } else {
-                return `
-                <div class="card">
-                    <button class="move" onclick="moveItem('tool', ${index}, -1)">↑</button>
-                    <button class="move" onclick="moveItem('tool', ${index}, 1)">↓</button>
-                    <input type="text" value="${item.name}" onchange="updateValue('tool', ${index}, 'name', this.value)" placeholder="標題">
-                    <input type="text" value="${item.desc}" onchange="updateValue('tool', ${index}, 'desc', this.value)" placeholder="副標題">
-                    <input type="text" value="${item.link}" onchange="updateValue('tool', ${index}, 'link', this.value)" placeholder="連結 (選填)">
-                    <textarea onchange="updateValue('tool', ${index}, 'detail', this.value)" placeholder="詳細內容">${item.detail || ''}</textarea>
-                    <div>標籤 (多選): ${Object.entries(tagLabels).map(([k, v]) => `
-                        <label><input type="checkbox" ${item.tags?.includes(k)?'checked':''} onclick="toggleTag(${index}, '${k}')">${v.split('・').pop()}</label>
-                    `).join('')}</div>
-                    <button class="delete" onclick="removeItem('tool', ${index})">刪除</button>
-                </div>`;
-            }
+        function createOfficialCard(item, index) {
+            const div = document.createElement('div');
+            div.className = 'card';
+            div.innerHTML = `
+                <button class="move" onclick="moveItem('official',${index},-1)">↑</button>
+                <button class="move" onclick="moveItem('official',${index},1)">↓</button>
+                <input type="text" value="${esc(item.name)}" onchange="updateValue('official',${index},'name',this.value)" placeholder="名稱">
+                <input type="text" value="${esc(item.link)}" onchange="updateValue('official',${index},'link',this.value)" placeholder="連結">
+                <select onchange="updateValue('official',${index},'group',this.value)">
+                    ${Object.entries(groups).map(([k,v]) => `<option value="${k}"${item.group===k?' selected':''}>${v}</option>`).join('')}
+                </select>
+                <button class="delete" onclick="removeItem('official',${index})">刪除</button>`;
+            return div;
         }
 
-        function updateValue(type, i, key, val) { dataStore[`${type}Config`][i][key] = val; }
-        
-        function toggleTag(i, tag) {
-            let tags = dataStore.toolConfig[i].tags || [];
-            if(tags.includes(tag)) tags = tags.filter(t => t !== tag);
-            else tags.push(tag);
-            dataStore.toolConfig[i].tags = tags;
+        function createToolCard(item, index) {
+            const div = document.createElement('div');
+            div.className = 'card';
+
+            const tagsHtml = Object.entries(tagLabels).map(([k, v]) => {
+                const checked = item.tags?.includes(k) ? ' checked' : '';
+                return `<label style="font-size:12px"><input type="checkbox" data-tag="${k}"${checked}> ${v.split('・').pop()}</label>`;
+            }).join('');
+
+            const groupsHtml = Object.entries(groups).map(([k, v]) => {
+                const checked = item.groups?.includes(k) ? ' checked' : '';
+                return `<label style="font-size:12px"><input type="checkbox" data-group="${k}"${checked}> ${v}</label>`;
+            }).join('');
+
+            div.innerHTML = `
+                <button class="move" onclick="moveItem('tool',${index},-1)">↑</button>
+                <button class="move" onclick="moveItem('tool',${index},1)">↓</button>
+                <input type="text" value="${esc(item.name)}" onchange="updateValue('tool',${index},'name',this.value)" placeholder="標題">
+                <input type="text" value="${esc(item.desc)}" onchange="updateValue('tool',${index},'desc',this.value)" placeholder="副標題">
+                <input type="text" value="${esc(item.link)}" onchange="updateValue('tool',${index},'link',this.value)" placeholder="連結 (選填)">
+                <textarea onchange="updateValue('tool',${index},'detail',this.value)" placeholder="詳細內容">${esc(item.detail)}</textarea>
+                <div style="margin-top:6px"><strong>所屬組合：</strong> <span class="tag-group">${groupsHtml}</span></div>
+                <div style="margin-top:6px"><strong>標籤：</strong> <span class="tag-group">${tagsHtml}</span></div>
+                <button class="delete" onclick="removeItem('tool',${index})">刪除</button>`;
+
+            // 綁定 groups checkbox
+            div.querySelectorAll('[data-group]').forEach(cb => {
+                cb.addEventListener('change', () => {
+                    let grps = dataStore.toolConfig[index].groups || [];
+                    const g = cb.dataset.group;
+                    if (cb.checked) { if (!grps.includes(g)) grps.push(g); }
+                    else grps = grps.filter(x => x !== g);
+                    dataStore.toolConfig[index].groups = grps;
+                });
+            });
+
+            // 綁定 tags checkbox
+            div.querySelectorAll('[data-tag]').forEach(cb => {
+                cb.addEventListener('change', () => {
+                    let tags = dataStore.toolConfig[index].tags || [];
+                    const t = cb.dataset.tag;
+                    if (cb.checked) { if (!tags.includes(t)) tags.push(t); }
+                    else tags = tags.filter(x => x !== t);
+                    dataStore.toolConfig[index].tags = tags;
+                });
+            });
+
+            return div;
         }
 
         function addItem(type) {
@@ -158,6 +192,8 @@
             else dataStore.toolConfig.push({name:"", desc:"", link:"", detail:"", tags:[], groups:["nogi"]});
             renderUI();
         }
+
+        function updateValue(type, i, key, val) { dataStore[`${type}Config`][i][key] = val; }
 
         function removeItem(type, i) { dataStore[`${type}Config`].splice(i, 1); renderUI(); }
 
@@ -178,7 +214,7 @@
 
             const newContent = `var lastUpdated = "${new Date().toISOString().slice(0,16).replace('T',' ')}";\n\nvar officialConfig = ${JSON.stringify(dataStore.officialConfig, null, 2)};\n\nvar toolConfig = ${JSON.stringify(dataStore.toolConfig, null, 2)};\n\nvar tagLabels = ${JSON.stringify(tagLabels, null, 2)};`;
 
-            const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${file}`;
+            const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${BASE_PATH}/${file}`;
             const res = await fetch(url, {
                 method: 'PUT',
                 headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
