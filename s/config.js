@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-09 00:57";
+var lastUpdated = "2026-03-09 02:16";
 
 var officialConfig = [
   {
@@ -178,7 +178,7 @@ var officialConfig = [
   },
   {
     "name": "日向坂で会いましょう",
-    "link": "日向坂で会いましょう",
+    "link": "https://www.tv-tokyo.co.jp/hinatazaka/",
     "group": "hina"
   }
 ];
