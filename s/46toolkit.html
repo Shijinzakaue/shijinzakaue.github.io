@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja">
+<html lang="ja" translate="no">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -432,8 +432,41 @@
       flex-direction: column;
       overflow: hidden;
     }
-    .filter-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .filter-title { font-size: 14px; color: var(--text); font-weight: 700; }
+    .filter-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 8px; }
+    .filter-title { font-size: 14px; color: var(--text); font-weight: 700; flex-shrink: 0; }
+    .filter-mode-toggle {
+      display: flex;
+      background: rgba(255,255,255,.05);
+      border-radius: 999px;
+      padding: 2px;
+      gap: 2px;
+      margin-left: auto;
+    }
+    .filter-mode-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all .15s;
+      white-space: nowrap;
+    }
+    .filter-mode-btn.active {
+      background: rgba(147,58,253,.25);
+      color: var(--accent);
+    }
+    html[data-theme="light"] .filter-mode-toggle {
+      background: rgba(0,0,0,.06);
+    }
+    html[data-theme="light"] .filter-mode-btn {
+      color: #888;
+    }
+    html[data-theme="light"] .filter-mode-btn.active {
+      background: rgba(147,58,253,.2);
+      color: #7c3aed;
+    }
     .clear-filters-btn {
       background: rgba(255,255,255,.05);
       border: 1px solid rgba(255,255,255,.08);
@@ -516,6 +549,41 @@
     }
     .filter-tag:hover:not(.active) {
       background: rgba(255,255,255,.08);
+    }
+
+    .update-pill {
+      position: fixed;
+      top: 75px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px 6px 12px;
+      width: fit-content;
+      white-space: nowrap;
+      background: rgba(255,255,255,.05);
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+      pointer-events: none;
+      user-select: none;
+      z-index: 25;
+      opacity: 1;
+      transition: opacity .1s ease;
+    }
+    .update-pill.hidden {
+      opacity: 0;
+    }
+    .update-pill .material-icons { font-size: 16px; opacity: .7; }
+    html[data-theme="light"] .update-pill {
+      background: rgba(0,0,0,.05);
+    }
+    @media (max-width: 600px) {
+      .update-pill {
+        top: 65px;
+        transform: translateX(-50%) scale(0.9);
+      }
     }
 
     .official-panel {
@@ -1090,6 +1158,10 @@
     .close-info { background: transparent; border: none; color: var(--muted); cursor: pointer; display: grid; place-items: center; padding: 6px; border-radius: 50%; font-size: 0; height: 44px; width: 44px; position: absolute; right: -6px; top: -6px; }
     .close-info:hover { color: var(--text); background: var(--overlay-light-hover); }
     .close-info .material-icons { font-size: 20px; }
+    .share-info { background: transparent; border: none; color: var(--muted); cursor: pointer; display: grid; place-items: center; padding: 6px; border-radius: 50%; font-size: 0; height: 44px; width: 44px; position: absolute; left: -6px; top: -6px; transition: color .2s, background .2s; }
+    .share-info:hover { color: var(--text); background: var(--overlay-light-hover); }
+    .share-info.copied { color: var(--accent); }
+    .share-info .material-icons { font-size: 20px; }
     .info-modal-body { display: flex; flex-direction: column; gap: 16px; }
     .info-modal-body p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
     .info-modal-desc { text-align: center; font-size: 15px; color: var(--muted); }
@@ -1388,10 +1460,8 @@
       color: #7c3aed;
     }
     html[data-theme="light"] .fab {
+      background: var(--panel);
       color: #1a1a1a;
-    }
-    html[data-theme="light"] .fab:hover {
-      background: rgba(147,58,253,.15);
     }
     html[data-theme="light"] .paypal-btn {
       color: #1a1a1a;
@@ -1492,7 +1562,7 @@
 
 
 <body>
-  <div class="main-logo" id="mainLogo" title="詳細情報">
+  <div class="main-logo" id="mainLogo" title="MENU">
     <img src="LOGO.png" alt="坂道TOOLKIT Logo">
   </div>
 
@@ -1503,11 +1573,11 @@
       <div class="search-wrap" id="searchWrap">
         <div class="search-pill" id="searchPill">
           <span class="material-icons search-icon" id="searchIcon">search</span>
-          <input id="searchInput" type="text" placeholder="ツールを検索..." />
+          <input id="searchInput" type="text" placeholder="ツールを検索..." data-i18n-placeholder="search_placeholder" />
           <div class="search-meta">
             <span id="searchCount">0件</span>
           </div>
-          <button id="clearBtn" aria-label="入力をクリア"><span class="material-icons">close</span></button>
+          <button id="clearBtn" aria-label="入力をクリア" data-i18n-aria-label="clear_input"><span class="material-icons">close</span></button>
         </div>
       </div>
       <div class="language-control" data-role="top">
@@ -1515,6 +1585,7 @@
         <div class="language-menu" role="menu">
           <button class="language-option" data-lang="ja" role="menuitem">日本語</button>
           <button class="language-option" data-lang="zh-Hant" role="menuitem">繁體中文</button>
+          <button class="language-option" data-lang="zh-Hans" role="menuitem">简体中文</button>
           <button class="language-option" data-lang="en" role="menuitem">English</button>
         </div>
       </div>
@@ -1522,7 +1593,7 @@
   </div>
 
   <aside class="sidebar" id="dock">
-    <button class="dock-btn active" data-site="all" title="すべて"><span class="material-icons">dashboard</span></button>
+    <button class="dock-btn active" data-site="all" title="すべて" data-i18n-title="all"><span class="material-icons">dashboard</span></button>
     <button class="dock-btn" data-site="nogi" title="乃木坂46"><img alt="乃木坂46" src="https://www.nogizaka46.com/files/46/page/31thSG_ul_xF2c/images/logo.svg" /></button>
     <button class="dock-btn" data-site="saku" title="櫻坂46"><img alt="櫻坂46" src="https://sakurazaka46.com/files/14/s46/img/com-logo-no-framed.svg" /></button>
     <button class="dock-btn" data-site="hina" title="日向坂46"><img alt="日向坂46" src="https://cdn.hinatazaka46.com/files/14/hinata/pages/4th_anniv/images/logo_hinata.svg" /></button>
@@ -1530,19 +1601,23 @@
     
     <div class="dock-divider"></div>
     
-    <button class="dock-btn" id="filterToggle" title="フィルター"><span class="material-icons">tune</span></button>
+    <button class="dock-btn" id="filterToggle" title="フィルター" data-i18n-title="filter"><span class="material-icons">tune</span></button>
   </aside>
 
   <div id="reportBtnContainer">
-    <a id="toTop" class="fab" href="#" title="トップへ"><span class="material-icons">arrow_upward</span></a>
+    <a id="toTop" class="fab" href="#" title="トップへ" data-i18n-title="to_top"><span class="material-icons">arrow_upward</span></a>
   </div>
 
   <div class="filter-backdrop" id="filterBackdrop" aria-hidden="true"></div>
 
   <section class="filter-panel" id="filterPanel">
     <div class="filter-header">
-      <div class="filter-title">タグで絞り込み</div>
-      <button class="clear-filters-btn" id="clearFiltersBtn">クリア</button>
+      <div class="filter-title" data-i18n="filter_by_tag">タグで絞り込み</div>
+      <div class="filter-mode-toggle">
+        <button class="filter-mode-btn active" id="filterModeAny" data-i18n="filter_any">いずれか</button>
+        <button class="filter-mode-btn" id="filterModeAll" data-i18n="filter_all">すべて</button>
+      </div>
+      <button class="clear-filters-btn" id="clearFiltersBtn" data-i18n="filter_clear">クリア</button>
     </div>
     <div class="filter-tags" id="filterTags"></div>
   </section>
@@ -1551,10 +1626,11 @@
     <div class="info-modal" id="infoModal">
       <div class="info-modal-header">
         <h3 class="info-modal-heading">坂道TOOLKIT</h3>
-        <button class="close-info" id="closeInfoBtn" aria-label="閉じる"><span class="material-icons">close</span></button>
+        <button class="share-info" id="shareInfoBtn" aria-label="シェア" data-i18n-aria-label="share"><span class="material-icons">share</span></button>
+        <button class="close-info" id="closeInfoBtn" aria-label="閉じる" data-i18n-aria-label="close"><span class="material-icons">close</span></button>
       </div>
       <div class="info-modal-body">
-        <p class="info-modal-desc">乃木坂46／櫻坂46／日向坂46に関連するツールやウェブサイトをまとめたサイトです。</p>
+        <p class="info-modal-desc" data-i18n="site_desc">乃木坂46／櫻坂46／日向坂46に関連するツールやウェブサイトをまとめたサイトです。</p>
 
         <div class="info-author-row">
           <span class="info-author-label">author</span>
@@ -1567,38 +1643,39 @@
         </div>
 
         <div class="info-feedback-row">
-          <span class="info-feedback-label">お問い合わせ</span>
-          <a class="info-icon-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSc7s-9W5JGve8KtvR0CAe0vZtv0GxDtSG_Fu2DG4fhcAFYCrQ/viewform?usp=header" target="_blank" rel="noopener noreferrer" title="リンクを開く">
+          <span class="info-feedback-label" data-i18n="contact">お問い合わせ</span>
+          <a class="info-icon-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSc7s-9W5JGve8KtvR0CAe0vZtv0GxDtSG_Fu2DG4fhcAFYCrQ/viewform?usp=header" target="_blank" rel="noopener noreferrer" title="リンクを開く" data-i18n-title="open_link">
             <span class="material-icons">open_in_new</span>
           </a>
         </div>
 
         <div class="info-language-row">
-          <span class="info-language-heading">言語</span>
+          <span class="info-language-heading" data-i18n="language">言語</span>
           <div class="language-control language-control--modal" data-role="modal">
             <button type="button" class="language-trigger" aria-haspopup="true" aria-expanded="false">日本語</button>
             <div class="language-menu" role="menu">
               <button class="language-option" data-lang="ja" role="menuitem">日本語</button>
               <button class="language-option" data-lang="zh-Hant" role="menuitem">繁體中文</button>
+              <button class="language-option" data-lang="zh-Hans" role="menuitem">简体中文</button>
               <button class="language-option" data-lang="en" role="menuitem">English</button>
             </div>
           </div>
         </div>
 
         <div class="info-appearance">
-          <span class="info-support-label">デサント</span>
-          <div class="appearance-container" role="group" aria-label="デサントオプション">
-            <button type="button" class="appearance-btn appearance-btn--light" data-theme="light" title="ライトモード" aria-pressed="false">
+          <span class="info-support-label" data-i18n="appearance">デサント</span>
+          <div class="appearance-container" role="group" aria-label="デサントオプション" data-i18n-aria-label="appearance_options">
+            <button type="button" class="appearance-btn appearance-btn--light" data-theme="light" title="ライトモード" aria-pressed="false" data-i18n-title="light_mode">
               <span class="material-icons">light_mode</span>
             </button>
-            <button type="button" class="appearance-btn appearance-btn--dark" data-theme="dark" title="ダークモード" aria-pressed="true">
+            <button type="button" class="appearance-btn appearance-btn--dark" data-theme="dark" title="ダークモード" aria-pressed="true" data-i18n-title="dark_mode">
               <span class="material-icons">dark_mode</span>
             </button>
           </div>
         </div>
 
         <div class="info-support">
-          <span class="info-support-label">支援する</span>
+          <span class="info-support-label" data-i18n="support">支援する</span>
           <button class="paypal-btn" id="supportToggle" type="button">
             <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal" />
             PayPal
@@ -1613,24 +1690,27 @@
   <div class="support-sheet" id="supportSheet" aria-hidden="true">
     <div class="support-sheet__panel" id="supportPanel">
       <div class="support-sheet__handle" id="supportHandle"></div>
-      <div class="support-sheet__title">作者を支援</div>
+      <div class="support-sheet__title" data-i18n="support_sheet_title">作者を支援</div>
       <div id="paypal-container-2PE77EL5SYHCS"></div>
     </div>
   </div>
 
   <main class="container">
+    <div class="update-pill" id="updatePill">
+      <span class="material-icons">update</span>
+      <span id="updateDate"></span>
+    </div>
     <section class="official-panel" id="officialPanel" style="display: none;">
-      <div class="official-header">公式サイト</div>
+      <div class="official-header" data-i18n="official_sites">公式サイト</div>
       <div class="official-groups" id="officialGroups"></div>
     </section>
 
-    <div id="noResultsMsg" style="display: none; text-align: center; color: var(--muted); font-size: 16px; margin-top: 40px;">見つかりません...</div>
+    <div id="noResultsMsg" style="display: none; text-align: center; color: var(--muted); font-size: 16px; margin-top: 40px;" data-i18n="no_results">見つかりません...</div>
     <section class="cards" id="cards">
       <!-- 卡片內容將由 JavaScript 動態生成 -->
     </section>
   </main>
 
-  <script src="config.js"></script>
   <script>
     const searchWrap = document.getElementById('searchWrap');
     const input = document.getElementById('searchInput');
@@ -1646,15 +1726,143 @@
     const supportSheet = document.getElementById('supportSheet');
     const supportPanel = document.getElementById('supportPanel');
     const supportHandle = document.getElementById('supportHandle');
-    const APP_VERSION = 'v1.1.0';
+    const APP_VERSION = 'v1.2.0';
     const appVersionEl = document.getElementById('appVersion');
     if (appVersionEl) appVersionEl.textContent = APP_VERSION;
     const LANGUAGE_STORAGE_KEY = 'toolkit:lang';
     const LANGUAGE_LABELS = {
       'ja': '日本語',
       'zh-Hant': '繁體中文',
+      'zh-Hans': '简体中文',
       'en': 'English'
     };
+
+    const UI_STRINGS = {
+      'ja': {
+        search_placeholder: 'ツールを検索...',
+        clear_input: '入力をクリア',
+        all: 'すべて',
+        filter: 'フィルター',
+        to_top: 'トップへ',
+        filter_by_tag: 'タグで絞り込み',
+        filter_any: 'いずれか',
+        filter_all: 'すべて',
+        filter_clear: 'クリア',
+        share: 'シェア',
+        close: '閉じる',
+        site_desc: '乃木坂46／櫻坂46／日向坂46に関連するツールやウェブサイトをまとめたサイトです。',
+        contact: 'お問い合わせ',
+        open_link: 'リンクを開く',
+        language: '言語',
+        appearance: 'デザイン',
+        appearance_options: 'デザインオプション',
+        light_mode: 'ライトモード',
+        dark_mode: 'ダークモード',
+        support: '支援する',
+        support_sheet_title: '作者を支援',
+        official_sites: '公式サイト',
+        no_results: '見つかりません...',
+        count_suffix: '件',
+      },
+      'zh-Hant': {
+        search_placeholder: '搜尋工具...',
+        clear_input: '清除輸入',
+        all: '全部',
+        filter: '篩選',
+        to_top: '返回頂部',
+        filter_by_tag: '依標籤篩選',
+        filter_any: '任一',
+        filter_all: '全部',
+        filter_clear: '清除',
+        share: '分享',
+        close: '關閉',
+        site_desc: '彙整乃木坂46／櫻坂46／日向坂46 相關工具與網站。',
+        contact: '聯絡我們',
+        open_link: '開啟連結',
+        language: '語言',
+        appearance: '外觀',
+        appearance_options: '外觀選項',
+        light_mode: '淺色模式',
+        dark_mode: '深色模式',
+        support: '支持作者',
+        support_sheet_title: '支持作者',
+        official_sites: '官方網站',
+        no_results: '找不到結果...',
+        count_suffix: '項',
+      },
+      'zh-Hans': {
+        search_placeholder: '搜索工具...',
+        clear_input: '清除输入',
+        all: '全部',
+        filter: '筛选',
+        to_top: '返回顶部',
+        filter_by_tag: '按标签筛选',
+        filter_any: '任一',
+        filter_all: '全部',
+        filter_clear: '清除',
+        share: '分享',
+        close: '关闭',
+        site_desc: '汇整乃木坂46／樱坂46／日向坂46 相关工具与网站。',
+        contact: '联系我们',
+        open_link: '打开链接',
+        language: '语言',
+        appearance: '外观',
+        appearance_options: '外观选项',
+        light_mode: '浅色模式',
+        dark_mode: '深色模式',
+        support: '支持作者',
+        support_sheet_title: '支持作者',
+        official_sites: '官方网站',
+        no_results: '找不到结果...',
+        count_suffix: '项',
+      },
+      'en': {
+        search_placeholder: 'Search tools...',
+        clear_input: 'Clear input',
+        all: 'All',
+        filter: 'Filter',
+        to_top: 'Back to top',
+        filter_by_tag: 'Filter by tag',
+        filter_any: 'Any',
+        filter_all: 'All',
+        filter_clear: 'Clear',
+        share: 'Share',
+        close: 'Close',
+        site_desc: 'A curated collection of tools and websites related to Nogizaka46 / Sakurazaka46 / Hinatazaka46.',
+        contact: 'Contact',
+        open_link: 'Open link',
+        language: 'Language',
+        appearance: 'Appearance',
+        appearance_options: 'Appearance options',
+        light_mode: 'Light mode',
+        dark_mode: 'Dark mode',
+        support: 'Support',
+        support_sheet_title: 'Support the author',
+        official_sites: 'Official Sites',
+        no_results: 'No results found...',
+        count_suffix: ' results',
+      },
+    };
+
+    function applyI18n(lang) {
+      const s = UI_STRINGS[lang] || UI_STRINGS['ja'];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (s[key] !== undefined) el.textContent = s[key];
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.dataset.i18nPlaceholder;
+        if (s[key] !== undefined) el.placeholder = s[key];
+      });
+      document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        const key = el.dataset.i18nTitle;
+        if (s[key] !== undefined) el.title = s[key];
+      });
+      document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+        const key = el.dataset.i18nAriaLabel;
+        if (s[key] !== undefined) el.setAttribute('aria-label', s[key]);
+      });
+    }
     let supportDragging = false;
     let supportDragStartY = 0;
     let supportDragDelta = 0;
@@ -1749,11 +1957,37 @@
     function setLanguagePreference(value) {
       document.documentElement.lang = value;
       updateLanguageUI(value);
+      applyI18n(value);
       try {
         localStorage.setItem(LANGUAGE_STORAGE_KEY, value);
       } catch (err) {
         /* ignore private mode */
       }
+    }
+
+    const LANG_CONFIG_MAP = {
+      'ja': 'config.js',
+      'zh-Hant': 'config_zh-Hant.js',
+      'zh-Hans': 'config_zh-Hans.js',
+      'en': 'config_en.js'
+    };
+
+    function loadLanguageConfig(lang) {
+      return new Promise((resolve) => {
+        const file = LANG_CONFIG_MAP[lang] || 'config.js';
+        // 移除舊的 config script（避免 const 重複宣告）
+        const old = document.getElementById('__lang_config__');
+        if (old) old.remove();
+        const s = document.createElement('script');
+        s.id = '__lang_config__';
+        s.src = file + '?v=' + Date.now(); // 避免快取
+        s.onload = resolve;
+        s.onerror = () => {
+          console.warn('loadLanguageConfig failed:', file);
+          resolve();
+        };
+        document.head.appendChild(s);
+      });
     }
 
     (function initLanguagePreference() {
@@ -1783,7 +2017,13 @@
       languageOptions.forEach(option => {
         option.addEventListener('click', (event) => {
           const value = option.dataset.lang;
-          if (value) setLanguagePreference(value);
+          if (value) {
+            setLanguagePreference(value);
+            loadLanguageConfig(value).then(() => {
+              _reinitUI();
+              applyFilters();
+            });
+          }
           closeLanguageMenus();
         });
       });
@@ -2045,9 +2285,12 @@
 
       let visibleGroups = [];
 
-      // 檢查是否應該隱藏（標籤過濾但未包含 '公式'）
+      // 檢查是否應該隱藏（標籤過濾但未包含 '公式'，或全符合模式下還有其他標籤）
       const selected = selectedTags();
-      const hideBecauseTag = selected.length > 0 && !selected.includes('公式');
+      const hideBecauseTag = selected.length > 0 && (
+        !selected.includes('公式') ||
+        (filterMode === 'all' && selected.some(t => t !== '公式'))
+      );
 
       if (hideBecauseTag) {
         panel.style.display = 'none';
@@ -2127,15 +2370,22 @@
       }
     }
 
-    initCards();
-    initFilters();
-    renderOfficial();
+    let cards = [];
+
+    function _reinitUI() {
+      allTagsSet = new Set(['公式']);
+      initCards();
+      initFilters();
+      renderOfficial();
+      cards = [...document.querySelectorAll('.tool-card')];
+      const el = document.getElementById('updateDate');
+      if (el && typeof lastUpdated !== 'undefined') el.textContent = lastUpdated;
+    }
+
     window.addEventListener('resize', () => {
       updateOfficialVisibility();
       updateSiteTitleVisibility();
     });
-
-    const cards = [...document.querySelectorAll('.tool-card')];
 
     // 卡片點擊邏輯
     document.addEventListener('click', (e) => {
@@ -2164,6 +2414,22 @@
     const dockBtns = [...document.querySelectorAll('.sidebar .dock-btn[data-site]')];
     const filterToggle = document.getElementById('filterToggle');
     const filterPanel = document.getElementById('filterPanel');
+    const filterModeAnyBtn = document.getElementById('filterModeAny');
+    const filterModeAllBtn = document.getElementById('filterModeAll');
+    let filterMode = 'any';
+
+    filterModeAnyBtn.addEventListener('click', () => {
+      filterMode = 'any';
+      filterModeAnyBtn.classList.add('active');
+      filterModeAllBtn.classList.remove('active');
+      applyFilters();
+    });
+    filterModeAllBtn.addEventListener('click', () => {
+      filterMode = 'all';
+      filterModeAllBtn.classList.add('active');
+      filterModeAnyBtn.classList.remove('active');
+      applyFilters();
+    });
 
     function selectedTags() {
       return [...document.querySelectorAll('.filter-tag.active')].map(c => c.dataset.value);
@@ -2180,7 +2446,9 @@
       const tags = (card.dataset.tags || '').split(/\s+/).filter(Boolean);
       const bySite = activeSite === 'all' ? true : sites.includes(activeSite);
       const selected = selectedTags();
-      const byTag = selected.length ? tags.some(t => selected.includes(t)) : true;
+      const byTag = selected.length
+        ? (filterMode === 'all' ? selected.every(t => tags.includes(t)) : tags.some(t => selected.includes(t)))
+        : true;
       return bySite && byTag;
     }
 
@@ -2207,7 +2475,8 @@
       } else {
         countEl.style.display = 'block';
         const total = (matches?.length || 0) + (officialMatchesCount || 0);
-        countEl.textContent = `${total}件`;
+        const suffix = (UI_STRINGS[document.documentElement.lang] || UI_STRINGS['ja']).count_suffix;
+        countEl.textContent = `${total}${suffix}`;
       }
     }
 
@@ -2343,6 +2612,8 @@
       } else {
         toTopBtn.classList.remove('visible');
       }
+      const updatePill = document.getElementById('updatePill');
+      if (updatePill) updatePill.classList.toggle('hidden', window.scrollY > 30);
     });
 
     searchPill.addEventListener('click', (e) => {
@@ -2389,6 +2660,29 @@
     closeInfoBtn.addEventListener('click', () => {
       infoModalDrop.classList.remove('open');
     });
+
+    document.getElementById('shareInfoBtn').addEventListener('click', () => {
+      const text = '【坂道TOOLKIT】坂道グループに関連するツールやウェブサイトをまとめたサイトです。\n' + window.location.href;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('shareInfoBtn');
+        const icon = btn.querySelector('.material-icons');
+        btn.classList.add('copied');
+        icon.textContent = 'check';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          icon.textContent = 'share';
+        }, 2000);
+      }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      });
+    });
     
     infoModalDrop.addEventListener('click', (e) => {
       if (e.target === infoModalDrop) {
@@ -2426,8 +2720,14 @@
       }).render('#paypal-container-2PE77EL5SYHCS');
     }
 
-    updateSiteTitleVisibility();
-    applyFilters();
+    (async function init() {
+      let initialLang = 'zh-Hant';
+      try { initialLang = localStorage.getItem(LANGUAGE_STORAGE_KEY) || 'zh-Hant'; } catch (e) {}
+      await loadLanguageConfig(initialLang);
+      _reinitUI();
+      updateSiteTitleVisibility();
+      applyFilters();
+    })();
   </script>
 </body>
 </html>
