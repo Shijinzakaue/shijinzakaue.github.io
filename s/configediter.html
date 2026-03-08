@@ -475,7 +475,10 @@
             const file     = document.getElementById('fileName').value;
             const statusEl = document.getElementById('saveStatus');
             statusEl.textContent = '\u5132\u5b58\u4e2d...'; statusEl.className = '';
-            const newContent = `var lastUpdated = "${new Date().toISOString().slice(0,16).replace('T',' ')}";\n\nvar officialConfig = ${JSON.stringify(dataStore.officialConfig, null, 2)};\n\nvar toolConfig = ${JSON.stringify(dataStore.toolConfig, null, 2)};\n\nvar tagLabels = ${JSON.stringify(tagLabels, null, 2)};`;
+            const _now = new Date();
+            const _p = n => String(n).padStart(2,'0');
+            const _ts = `${_now.getFullYear()}.${_p(_now.getMonth()+1)}.${_p(_now.getDate())} ${_p(_now.getHours())}:${_p(_now.getMinutes())}`;
+            const newContent = `var lastUpdated = "${_ts}";\n\nvar officialConfig = ${JSON.stringify(dataStore.officialConfig, null, 2)};\n\nvar toolConfig = ${JSON.stringify(dataStore.toolConfig, null, 2)};\n\nvar tagLabels = ${JSON.stringify(tagLabels, null, 2)};`;
             const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${BASE_PATH}/${file}`;
             try {
                 const res = await fetch(url, {
