@@ -2,97 +2,277 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>坂道專案後台編輯器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>?? Config Editor</title>
     <style>
-        body { font-family: sans-serif; background: #f4f7f6; padding: 20px; max-width: 900px; margin: auto; }
-        .section { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .card { border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 5px; position: relative; background: #fafafa; }
-        .card:hover { border-color: #666; }
-        .controls { display: flex; gap: 10px; margin-bottom: 20px; align-items: center; }
-        input, select, textarea { padding: 8px; margin: 5px 0; border: 1px solid #ccc; border-radius: 4px; }
-        input[type="text"], textarea { width: 95%; }
-        button { cursor: pointer; padding: 8px 15px; border: none; border-radius: 4px; background: #007bff; color: white; }
-        button:hover { background: #0056b3; }
-        button.delete { background: #dc3545; }
-        button.move { background: #6c757d; padding: 4px 8px; font-size: 12px; }
-        .tag-group { display: flex; flex-wrap: wrap; gap: 5px; }
-        .status { font-weight: bold; color: green; }
+        :root {
+            --bg: #0f1117;
+            --surface: #1a1d27;
+            --surface2: #22263a;
+            --border: rgba(255,255,255,.08);
+            --border-hover: rgba(255,255,255,.18);
+            --text: #e8eaf6;
+            --muted: #7b82a0;
+            --accent: #933afd;
+            --accent-dim: rgba(147,58,253,.15);
+            --green: #22c55e;
+            --red: #ef4444;
+            --yellow: #f59e0b;
+            --radius: 12px;
+            --radius-sm: 8px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { -webkit-tap-highlight-color: transparent; }
+        body { background: var(--bg); color: var(--text); font-family: -apple-system, 'Noto Sans TC', sans-serif; min-height: 100vh; padding-bottom: 100px; }
+
+        /* ?? Header ?? */
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(15,17,23,.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 16px;
+            display: flex; align-items: center; gap: 12px;
+        }
+        .header h1 { font-size: 17px; font-weight: 700; letter-spacing: .5px; flex: 1; }
+        .header h1 span { color: var(--accent); }
+
+        /* ?? Load Panel ?? */
+        .load-panel {
+            margin: 16px; padding: 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+        .load-panel h2 { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+        .load-row { display: flex; flex-direction: column; gap: 10px; }
+        @media (min-width: 600px) { .load-row { flex-direction: row; flex-wrap: wrap; } }
+        .field { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 200px; }
+        .field label { font-size: 12px; color: var(--muted); font-weight: 500; }
+        .field input, .field select {
+            background: var(--surface2); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); color: var(--text);
+            padding: 10px 12px; font-size: 14px; outline: none;
+            transition: border-color .2s;
+            -webkit-appearance: none; appearance: none;
+        }
+        .field input:focus, .field select:focus { border-color: var(--accent); }
+        .load-status { font-size: 13px; margin-top: 8px; min-height: 18px; color: var(--green); }
+        .load-status.err { color: var(--red); }
+
+        /* ?? Buttons ?? */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+            padding: 10px 18px; border: none; border-radius: var(--radius-sm);
+            font-size: 14px; font-weight: 600; cursor: pointer;
+            transition: opacity .15s, transform .1s;
+            white-space: nowrap;
+        }
+        .btn:active { transform: scale(.97); opacity: .85; }
+        .btn-primary { background: var(--accent); color: #fff; }
+        .btn-success { background: var(--green); color: #000; }
+        .btn-danger  { background: var(--red);   color: #fff; padding: 6px 10px; font-size: 12px; }
+        .btn-ghost   { background: var(--surface2); color: var(--text); border: 1px solid var(--border); padding: 6px 10px; font-size: 12px; }
+        .btn-add     { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(147,58,253,.3); font-size: 13px; padding: 7px 14px; }
+
+        /* ?? Section ?? */
+        .section {
+            margin: 0 16px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        .section-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .section-header h2 { font-size: 14px; font-weight: 700; }
+        .section-header h2 .badge {
+            display: inline-block; background: var(--accent-dim); color: var(--accent);
+            font-size: 11px; padding: 2px 7px; border-radius: 99px; margin-left: 8px; font-weight: 600;
+        }
+
+        /* ?? Card ?? */
+        .card {
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+        }
+        .card:last-child { border-bottom: none; }
+        .card-head {
+            display: flex; align-items: center; gap: 10px;
+            padding: 12px 16px; cursor: pointer;
+            transition: background .15s;
+            user-select: none;
+        }
+        .card-head:hover { background: rgba(255,255,255,.03); }
+        .card-head:active { background: rgba(255,255,255,.05); }
+        .card-title { flex: 1; min-width: 0; }
+        .card-title .name { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card-title .sub  { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
+        .card-head .chevron { color: var(--muted); font-size: 18px; transition: transform .2s; flex-shrink: 0; }
+        .card.open .card-head .chevron { transform: rotate(180deg); }
+        .card-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border); }
+        .card.open .card-body { display: block; }
+        .card-move { display: flex; flex-direction: column; gap: 3px; flex-shrink: 0; }
+
+        /* ?? Form inside card ?? */
+        .form-group { margin-top: 12px; }
+        .form-group label { display: block; font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 4px; }
+        .form-group input[type="text"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%; background: var(--surface2);
+            border: 1px solid var(--border); border-radius: var(--radius-sm);
+            color: var(--text); padding: 9px 12px; font-size: 14px;
+            outline: none; transition: border-color .2s; font-family: inherit;
+            -webkit-appearance: none; appearance: none;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--accent);
+        }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+
+        /* ?? Checkboxes ?? */
+        .check-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+        .check-item {
+            display: flex; align-items: center; gap: 5px;
+            background: var(--surface2); border: 1px solid var(--border);
+            border-radius: 6px; padding: 5px 9px; cursor: pointer;
+            font-size: 12px; transition: background .15s, border-color .15s;
+            user-select: none;
+        }
+        .check-item:has(input:checked) {
+            background: var(--accent-dim); border-color: rgba(147,58,253,.4); color: #c4a8ff;
+        }
+        .check-item input { display: none; }
+
+        /* ?? Card actions ?? */
+        .card-actions { display: flex; gap: 8px; align-items: center; margin-top: 14px; flex-wrap: wrap; }
+
+        /* ?? Sticky save bar ?? */
+        .save-bar {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+            background: rgba(15,17,23,.95); backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border);
+            padding: 12px 16px; display: flex; align-items: center; gap: 12px;
+        }
+        .save-bar .btn-success { flex: 1; max-width: 320px; padding: 13px; font-size: 15px; }
+        #saveStatus { font-size: 13px; flex: 1; }
+        #saveStatus.ok  { color: var(--green); }
+        #saveStatus.err { color: var(--red); }
+
+        /* ?? Move buttons ?? */
+        .btn-move {
+            background: var(--surface2); border: 1px solid var(--border);
+            color: var(--muted); border-radius: 6px;
+            width: 28px; height: 28px; font-size: 14px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: background .15s;
+        }
+        .btn-move:hover { background: var(--border); color: var(--text); }
     </style>
 </head>
 <body>
 
-    <h2>坂道專案後台編輯器</h2>
+    <div class="header">
+        <h1>?? <span>Config</span> Editor</h1>
+    </div>
 
-    <div class="section">
-        <div class="controls">
-            <label>1. 輸入 Token:</label>
-            <input type="password" id="token" placeholder="github_pat_...">
-            <label>2. 選擇檔案:</label>
-            <select id="fileName">
-                <option value="config.js">config.js (日語/預設)</option>
-                <option value="config_en.js">config_en.js (英語)</option>
-                <option value="config_zh-Hans.js">config_zh-Hans.js (簡體)</option>
-                <option value="config_zh-Hant.js">config_zh-Hant.js (繁體)</option>
-            </select>
-            <button onclick="fetchFile()">讀取內容</button>
+    <!-- 頛閮剖? -->
+    <div class="load-panel" id="loadPanel">
+        <h2>???閮剖?</h2>
+        <div class="load-row">
+            <div class="field">
+                <label>GitHub Token</label>
+                <input type="password" id="token" placeholder="github_pat_...">
+            </div>
+            <div class="field">
+                <label>瑼?</label>
+                <select id="fileName">
+                    <option value="config.js">config.js嚗隤??身嚗?/option>
+                    <option value="config_en.js">config_en.js嚗隤?</option>
+                    <option value="config_zh-Hans.js">config_zh-Hans.js嚗陛擃?</option>
+                    <option value="config_zh-Hant.js">config_zh-Hant.js嚗?擃?</option>
+                </select>
+            </div>
+            <div class="field" style="justify-content: flex-end; flex-direction: row; align-items: flex-end; min-width: unset; flex: 0;">
+                <button class="btn btn-primary" onclick="fetchFile()">霈??/button>
+            </div>
         </div>
-        <p id="loadStatus"></p>
+        <div class="load-status" id="loadStatus"></div>
     </div>
 
     <div id="editorArea" style="display:none;">
+        <!-- Official -->
         <div class="section">
-            <h3>Official Config (官方網站) <button onclick="addItem('official')">+ 新增</button></h3>
+            <div class="section-header">
+                <h2>摰蝬脩? <span class="badge" id="offCount">0</span></h2>
+                <button class="btn btn-add" onclick="addItem('official')">嚗??啣?</button>
+            </div>
             <div id="officialList"></div>
         </div>
 
+        <!-- Tool -->
         <div class="section">
-            <h3>Tool Config (相關工具) <button onclick="addItem('tool')">+ 新增</button></h3>
+            <div class="section-header">
+                <h2>?賊?撌亙 <span class="badge" id="toolCount">0</span></h2>
+                <button class="btn btn-add" onclick="addItem('tool')">嚗??啣?</button>
+            </div>
             <div id="toolList"></div>
-        </div>
-
-        <div class="section" style="text-align: center;">
-            <button style="font-size: 1.2em; background: #28a745;" onclick="saveToFile()">確認儲存並推送到 GitHub</button>
-            <p id="saveStatus"></p>
         </div>
     </div>
 
-    <script>
-        const OWNER = 'shijinzakaue'; // GitHub 帳號
-        const REPO = 'shijinzakaue.github.io'; // Repository 名稱
-        const BASE_PATH = 's'; // config 檔所在子資料夾
-        
-        // 你的標籤定義 
-        const tagLabels = {
-            "item": "アイテム・愛用品", "clothes": "私服・衣装・制服", "place": "場所・聖地巡禮", "sns": "SNS",
-            "blog": "ブログ", "meet": "握手・ミーグリ", "information": "個人・グループ情報", "song": "楽曲資料",
-            "sale": "売上", "game": "ゲーム", "streaming": "ストリーミング・配信", "photo": "写真",
-            "message": "メッセージ", "create": "作成ツール", "oshi": "推し活", "ranking": "ランキング",
-            "forum": "まとめ・RSS", "live": "ライブ・セトリ", "tool": "関連ツール"
-        };
+    <!-- ?箏??脣???-->
+    <div class="save-bar" id="saveBar" style="display:none;">
+        <button class="btn btn-success" onclick="saveToFile()">???脣?銝行??GitHub</button>
+        <span id="saveStatus"></span>
+    </div>
 
-        const groups = { "nogi": "乃木坂46", "saku": "櫻坂46", "hina": "日向坂46" };
+    <script>
+        const OWNER = 'shijinzakaue';
+        const REPO = 'shijinzakaue.github.io';
+        const BASE_PATH = 's';
+
+        const tagLabels = {
+            "?砍?": "?砍?",
+            "item": "?Ｕ???餅??典?", "clothes": "蝘??餉﹝鋆?嗆?", "place": "?湔??餉??啣楚蝳?, "sns": "SNS",
+            "blog": "???, "meet": "?⊥??颯??潦??, "information": "?犖?颯?怒????, "song": "璆賣鞈?",
+            "sale": "憯脖?", "game": "?脯??, "streaming": "?嫘??芥??啜?縑", "photo": "??",
+            "message": "?～??颯??, "create": "雿????, "oshi": "?具?瘣?, "ranking": "?押?准??,
+            "forum": "?整?RSS", "live": "?押??颯???, "tool": "?ａ???潦"
+        };
+        const groups = { "nogi": "銋??6", "saku": "瑹餃?46", "hina": "?亙???6" };
+
         let currentSha = '';
         let dataStore = { officialConfig: [], toolConfig: [] };
 
         async function fetchFile() {
-            const token = document.getElementById('token').value;
-            const file = document.getElementById('fileName').value;
-            if(!token) return alert("請先輸入 Token");
-
+            const token = document.getElementById('token').value.trim();
+            const file  = document.getElementById('fileName').value;
+            const statusEl = document.getElementById('loadStatus');
+            if (!token) { statusEl.textContent = '隢?頛詨 Token'; statusEl.className = 'load-status err'; return; }
+            statusEl.textContent = '頛銝?..'; statusEl.className = 'load-status';
             const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${BASE_PATH}/${file}`;
             try {
-                const res = await fetch(url, { headers: { 'Authorization': `token ${token}` } });
+                const res  = await fetch(url, { headers: { Authorization: `token ${token}` } });
                 const json = await res.json();
+                if (!json.sha) throw new Error(json.message || 'Not found');
                 currentSha = json.sha;
-                const content = decodeURIComponent(escape(atob(json.content)));
+                const content = decodeURIComponent(escape(atob(json.content.replace(/\n/g,''))));
                 parseJS(content);
                 renderUI();
                 document.getElementById('editorArea').style.display = 'block';
-                document.getElementById('loadStatus').innerText = "載入成功！";
-            } catch (e) { alert("載入失敗，請檢查帳號、專案名或 Token"); }
+                document.getElementById('saveBar').style.display = 'flex';
+                statusEl.textContent = '??頛??';
+                statusEl.className = 'load-status';
+            } catch (e) {
+                statusEl.textContent = '??頛憭望?嚗? + e.message;
+                statusEl.className = 'load-status err';
+            }
         }
 
-        // 解析 JS 內容：用 Function 在沙盒執行，避免 regex 非貪婪截斷問題
         function parseJS(str) {
             try {
                 const fn = new Function(`
@@ -100,141 +280,210 @@
                     ${str}
                     return { officialConfig, toolConfig };
                 `);
-                const result = fn();
-                dataStore.officialConfig = Array.isArray(result.officialConfig) ? result.officialConfig : [];
-                dataStore.toolConfig = Array.isArray(result.toolConfig) ? result.toolConfig : [];
-            } catch (e) { alert("解析 JS 失敗，請確保檔案格式正確：" + e.message); }
+                const r = fn();
+                dataStore.officialConfig = Array.isArray(r.officialConfig) ? r.officialConfig : [];
+                dataStore.toolConfig     = Array.isArray(r.toolConfig)     ? r.toolConfig     : [];
+            } catch (e) { alert('閫??憭望?嚗? + e.message); }
         }
 
-        function esc(str) {
-            return String(str ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        function esc(s) {
+            return String(s ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        }
+
+        function updateBadges() {
+            document.getElementById('offCount').textContent  = dataStore.officialConfig.length;
+            document.getElementById('toolCount').textContent = dataStore.toolConfig.length;
         }
 
         function renderUI() {
-            const offList = document.getElementById('officialList');
-            const toolList = document.getElementById('toolList');
-            offList.innerHTML = ''; toolList.innerHTML = '';
+            document.getElementById('officialList').innerHTML = '';
+            document.getElementById('toolList').innerHTML = '';
+            dataStore.officialConfig.forEach((item, i) => document.getElementById('officialList').appendChild(createOfficialCard(item, i)));
+            dataStore.toolConfig    .forEach((item, i) => document.getElementById('toolList')    .appendChild(createToolCard(item, i)));
+            updateBadges();
+        }
 
-            dataStore.officialConfig.forEach((item, i) => {
-                offList.appendChild(createOfficialCard(item, i));
+        function makeCard(headHTML, bodyEl) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            const head = document.createElement('div');
+            head.className = 'card-head';
+            head.innerHTML = headHTML;
+            head.addEventListener('click', (e) => {
+                if (e.target.closest('.btn-move,.btn-danger')) return;
+                card.classList.toggle('open');
             });
-            dataStore.toolConfig.forEach((item, i) => {
-                toolList.appendChild(createToolCard(item, i));
+            card.appendChild(head);
+            const body = document.createElement('div');
+            body.className = 'card-body';
+            body.appendChild(bodyEl);
+            card.appendChild(body);
+            return card;
+        }
+
+        function moveBtns(type, index) {
+            const wrap = document.createElement('div');
+            wrap.className = 'card-move';
+            ['??,'??].forEach((t, d) => {
+                const b = document.createElement('button');
+                b.className = 'btn-move'; b.textContent = t;
+                b.addEventListener('click', () => moveItem(type, index, d === 0 ? -1 : 1));
+                wrap.appendChild(b);
             });
+            return wrap;
         }
 
         function createOfficialCard(item, index) {
-            const div = document.createElement('div');
-            div.className = 'card';
-            div.innerHTML = `
-                <button class="move" onclick="moveItem('official',${index},-1)">↑</button>
-                <button class="move" onclick="moveItem('official',${index},1)">↓</button>
-                <input type="text" value="${esc(item.name)}" onchange="updateValue('official',${index},'name',this.value)" placeholder="名稱">
-                <input type="text" value="${esc(item.link)}" onchange="updateValue('official',${index},'link',this.value)" placeholder="連結">
-                <select onchange="updateValue('official',${index},'group',this.value)">
-                    ${Object.entries(groups).map(([k,v]) => `<option value="${k}"${item.group===k?' selected':''}>${v}</option>`).join('')}
-                </select>
-                <button class="delete" onclick="removeItem('official',${index})">刪除</button>`;
-            return div;
+            const headHTML = `
+                <div style="flex:1;min-width:0;">
+                    <div class="name">${esc(item.name) || '<span style="color:var(--muted)">嚗?賢?嚗?/span>'}</div>
+                    <div class="sub">${esc(item.link)}</div>
+                </div>
+                <span style="font-size:11px;color:var(--muted);flex-shrink:0;">${groups[item.group]||item.group}</span>
+                <span class="chevron">??/span>`;
+
+            const body = document.createElement('div');
+            body.innerHTML = `
+                <div class="form-group"><label>?迂</label>
+                    <input type="text" value="${esc(item.name)}" placeholder="?迂"></div>
+                <div class="form-group"><label>???</label>
+                    <input type="text" value="${esc(item.link)}" placeholder="https://..."></div>
+                <div class="form-group"><label>?撅?/label>
+                    <select>${Object.entries(groups).map(([k,v])=>`<option value="${k}"${item.group===k?' selected':''}>${v}</option>`).join('')}</select></div>`;
+            body.querySelector('input[placeholder="?迂"]').addEventListener('input', e => { updateValue('official',index,'name',e.target.value); syncHead(card); });
+            body.querySelector('input[placeholder="https://..."]').addEventListener('input', e => updateValue('official',index,'link',e.target.value));
+            body.querySelector('select').addEventListener('change', e => { updateValue('official',index,'group',e.target.value); syncHead(card); });
+
+            const actions = document.createElement('div');
+            actions.className = 'card-actions';
+            const del = document.createElement('button');
+            del.className = 'btn btn-danger'; del.textContent = '?芷';
+            del.addEventListener('click', () => { removeItem('official', index); });
+            actions.appendChild(del);
+            body.appendChild(actions);
+
+            const card = makeCard(headHTML, body);
+            card.querySelector('.card-head').prepend(moveBtns('official', index));
+            return card;
         }
 
         function createToolCard(item, index) {
-            const div = document.createElement('div');
-            div.className = 'card';
+            const headHTML = `
+                <div style="flex:1;min-width:0;">
+                    <div class="name">${esc(item.name) || '<span style="color:var(--muted)">嚗?賢?嚗?/span>'}</div>
+                    <div class="sub">${esc(item.desc)}</div>
+                </div>
+                <span class="chevron">??/span>`;
 
-            const tagsHtml = Object.entries(tagLabels).map(([k, v]) => {
-                const checked = item.tags?.includes(k) ? ' checked' : '';
-                return `<label style="font-size:12px"><input type="checkbox" data-tag="${k}"${checked}> ${v.split('・').pop()}</label>`;
-            }).join('');
+            const body = document.createElement('div');
 
-            const groupsHtml = Object.entries(groups).map(([k, v]) => {
-                const checked = item.groups?.includes(k) ? ' checked' : '';
-                return `<label style="font-size:12px"><input type="checkbox" data-group="${k}"${checked}> ${v}</label>`;
-            }).join('');
+            // ?箸甈?
+            [['name','璅?',item.name,''],['desc','?舀?憿?蝬脣??膩',item.desc,''],['link','???嚗憛恬?',item.link,'https://...']].forEach(([key,lbl,val,ph]) => {
+                const g = document.createElement('div'); g.className = 'form-group';
+                g.innerHTML = `<label>${lbl}</label><input type="text" value="${esc(val)}" placeholder="${ph||lbl}">`;
+                g.querySelector('input').addEventListener('input', e => { updateValue('tool',index,key,e.target.value); if(key==='name'||key==='desc') syncHead(card); });
+                body.appendChild(g);
+            });
 
-            div.innerHTML = `
-                <button class="move" onclick="moveItem('tool',${index},-1)">↑</button>
-                <button class="move" onclick="moveItem('tool',${index},1)">↓</button>
-                <input type="text" value="${esc(item.name)}" onchange="updateValue('tool',${index},'name',this.value)" placeholder="標題">
-                <input type="text" value="${esc(item.desc)}" onchange="updateValue('tool',${index},'desc',this.value)" placeholder="副標題">
-                <input type="text" value="${esc(item.link)}" onchange="updateValue('tool',${index},'link',this.value)" placeholder="連結 (選填)">
-                <textarea onchange="updateValue('tool',${index},'detail',this.value)" placeholder="詳細內容">${esc(item.detail)}</textarea>
-                <div style="margin-top:6px"><strong>所屬組合：</strong> <span class="tag-group">${groupsHtml}</span></div>
-                <div style="margin-top:6px"><strong>標籤：</strong> <span class="tag-group">${tagsHtml}</span></div>
-                <button class="delete" onclick="removeItem('tool',${index})">刪除</button>`;
+            // detail
+            const dg = document.createElement('div'); dg.className = 'form-group';
+            dg.innerHTML = `<label>閰喟敦?批捆</label><textarea placeholder="?舀 Markdown ??? [??](url)">${esc(item.detail)}</textarea>`;
+            dg.querySelector('textarea').addEventListener('input', e => updateValue('tool',index,'detail',e.target.value));
+            body.appendChild(dg);
 
-            // 綁定 groups checkbox
-            div.querySelectorAll('[data-group]').forEach(cb => {
+            // groups
+            const gg = document.createElement('div'); gg.className = 'form-group';
+            gg.innerHTML = `<label>?撅祉???/label><div class="check-grid"></div>`;
+            Object.entries(groups).forEach(([k,v]) => {
+                const lbl = document.createElement('label'); lbl.className = 'check-item';
+                const cb  = document.createElement('input'); cb.type = 'checkbox'; cb.dataset.group = k;
+                if (item.groups?.includes(k)) cb.checked = true;
+                lbl.appendChild(cb); lbl.appendChild(document.createTextNode(v));
                 cb.addEventListener('change', () => {
                     let grps = dataStore.toolConfig[index].groups || [];
-                    const g = cb.dataset.group;
-                    if (cb.checked) { if (!grps.includes(g)) grps.push(g); }
-                    else grps = grps.filter(x => x !== g);
+                    grps = cb.checked ? [...new Set([...grps,k])] : grps.filter(x=>x!==k);
                     dataStore.toolConfig[index].groups = grps;
                 });
+                gg.querySelector('.check-grid').appendChild(lbl);
             });
+            body.appendChild(gg);
 
-            // 綁定 tags checkbox
-            div.querySelectorAll('[data-tag]').forEach(cb => {
+            // tags
+            const tg = document.createElement('div'); tg.className = 'form-group';
+            tg.innerHTML = `<label>璅惜</label><div class="check-grid"></div>`;
+            Object.entries(tagLabels).forEach(([k,v]) => {
+                const lbl = document.createElement('label'); lbl.className = 'check-item';
+                const cb  = document.createElement('input'); cb.type = 'checkbox'; cb.dataset.tag = k;
+                if (item.tags?.includes(k)) cb.checked = true;
+                lbl.appendChild(cb); lbl.appendChild(document.createTextNode(v.split('??).pop()));
                 cb.addEventListener('change', () => {
                     let tags = dataStore.toolConfig[index].tags || [];
-                    const t = cb.dataset.tag;
-                    if (cb.checked) { if (!tags.includes(t)) tags.push(t); }
-                    else tags = tags.filter(x => x !== t);
+                    tags = cb.checked ? [...new Set([...tags,k])] : tags.filter(x=>x!==k);
                     dataStore.toolConfig[index].tags = tags;
                 });
+                tg.querySelector('.check-grid').appendChild(lbl);
             });
+            body.appendChild(tg);
 
-            return div;
+            const actions = document.createElement('div'); actions.className = 'card-actions';
+            const del = document.createElement('button'); del.className = 'btn btn-danger'; del.textContent = '?芷';
+            del.addEventListener('click', () => removeItem('tool', index));
+            actions.appendChild(del);
+            body.appendChild(actions);
+
+            const card = makeCard(headHTML, body);
+            card.querySelector('.card-head').prepend(moveBtns('tool', index));
+            return card;
         }
 
-        function addItem(type) {
-            if(type === 'official') dataStore.officialConfig.push({name:"", link:"", group:"nogi"});
-            else dataStore.toolConfig.push({name:"", desc:"", link:"", detail:"", tags:[], groups:["nogi"]});
-            renderUI();
+        function syncHead(card) {
+            const nameEl = card.querySelector('.card-head .name');
+            const subEl  = card.querySelector('.card-head .sub');
+            if (!nameEl) return;
+            const nameInput = card.querySelector('.card-body input[placeholder], .card-body input');
+            if (nameInput) nameEl.textContent = nameInput.value || '嚗?賢?嚗?;
         }
 
         function updateValue(type, i, key, val) { dataStore[`${type}Config`][i][key] = val; }
-
-        function removeItem(type, i) { dataStore[`${type}Config`].splice(i, 1); renderUI(); }
-
+        function removeItem(type, i) { dataStore[`${type}Config`].splice(i,1); renderUI(); }
         function moveItem(type, i, dir) {
             const arr = dataStore[`${type}Config`];
-            const target = i + dir;
-            if(target >= 0 && target < arr.length) {
-                [arr[i], arr[target]] = [arr[target], arr[i]];
-                renderUI();
-            }
+            const t = i + dir;
+            if (t >= 0 && t < arr.length) { [arr[i],arr[t]]=[arr[t],arr[i]]; renderUI(); }
+        }
+        function addItem(type) {
+            if (type==='official') dataStore.officialConfig.push({name:'',link:'',group:'nogi'});
+            else dataStore.toolConfig.push({name:'',desc:'',link:'',detail:'',tags:[],groups:['nogi']});
+            renderUI();
+            // 撅??敺?撘?
+            const list = document.getElementById(type==='official'?'officialList':'toolList');
+            const last = list.lastElementChild;
+            if (last) { last.classList.add('open'); last.scrollIntoView({behavior:'smooth',block:'center'}); }
         }
 
         async function saveToFile() {
-            const token = document.getElementById('token').value;
-            const file = document.getElementById('fileName').value;
-            const status = document.getElementById('saveStatus');
-            status.innerText = "儲存中...";
-
+            const token    = document.getElementById('token').value.trim();
+            const file     = document.getElementById('fileName').value;
+            const statusEl = document.getElementById('saveStatus');
+            statusEl.textContent = '?脣?銝?..'; statusEl.className = '';
             const newContent = `var lastUpdated = "${new Date().toISOString().slice(0,16).replace('T',' ')}";\n\nvar officialConfig = ${JSON.stringify(dataStore.officialConfig, null, 2)};\n\nvar toolConfig = ${JSON.stringify(dataStore.toolConfig, null, 2)};\n\nvar tagLabels = ${JSON.stringify(tagLabels, null, 2)};`;
-
             const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${BASE_PATH}/${file}`;
-            const res = await fetch(url, {
-                method: 'PUT',
-                headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    message: `Update ${file} via Admin UI`,
-                    content: btoa(unescape(encodeURIComponent(newContent))),
-                    sha: currentSha
-                })
-            });
-
-            if(res.ok) {
-                const json = await res.json();
-                currentSha = json.content.sha;
-                status.innerText = "✅ 儲存成功！網頁約 1 分鐘後更新。";
-            } else {
-                status.innerText = "❌ 儲存失敗：" + (await res.json()).message;
+            try {
+                const res = await fetch(url, {
+                    method: 'PUT',
+                    headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: `Update ${file} via Editor`, content: btoa(unescape(encodeURIComponent(newContent))), sha: currentSha })
+                });
+                if (res.ok) {
+                    const j = await res.json(); currentSha = j.content.sha;
+                    statusEl.textContent = '???脣???嚗? 1 ??敺???; statusEl.className = 'ok';
+                } else {
+                    const j = await res.json(); throw new Error(j.message);
+                }
+            } catch (e) {
+                statusEl.textContent = '??憭望?嚗? + e.message; statusEl.className = 'err';
             }
         }
     </script>
 </body>
 </html>
-
