@@ -353,46 +353,62 @@
 
         function moveBtns(type, index) { /* replaced by drag */ }
 
-        let dragState = null;
-
         function makeDragHandle() {
             const h = document.createElement('div');
             h.className = 'drag-handle';
-            h.draggable = true;
             h.textContent = '\u22ee\u22ee';
             h.title = '拖曳排序';
             return h;
         }
 
+        function getCardIndex(card, type) {
+            const list = document.getElementById(type === 'official' ? 'officialList' : 'toolList');
+            return Array.from(list.children).indexOf(card);
+        }
+
         function setupDrag(card, type, index) {
             const handle = card.querySelector('.drag-handle');
-            handle.addEventListener('dragstart', (e) => {
-                dragState = { type, index };
-                e.dataTransfer.setData('text/plain', String(index));
-                e.dataTransfer.effectAllowed = 'move';
-                setTimeout(() => card.classList.add('dragging'), 0);
-            });
-            handle.addEventListener('dragend', () => {
-                card.classList.remove('dragging');
-                document.querySelectorAll('.card.drag-over').forEach(c => c.classList.remove('drag-over'));
-                dragState = null;
-            });
-            card.addEventListener('dragover', (e) => {
+            handle.addEventListener('pointerdown', (e) => {
+                if (e.button !== 0) return;
                 e.preventDefault();
-                if (!dragState || dragState.type !== type || dragState.index === index) return;
-                card.classList.add('drag-over');
-            });
-            card.addEventListener('dragleave', (e) => {
-                if (!card.contains(e.relatedTarget)) card.classList.remove('drag-over');
-            });
-            card.addEventListener('drop', (e) => {
-                e.preventDefault();
-                card.classList.remove('drag-over');
-                if (!dragState || dragState.type !== type || dragState.index === index) return;
-                const arr = dataStore[`${type}Config`];
-                const [removed] = arr.splice(dragState.index, 1);
-                arr.splice(index, 0, removed);
-                renderUI();
+                handle.setPointerCapture(e.pointerId);
+                card.classList.add('dragging');
+                let overCard = null;
+
+                const onMove = (ev) => {
+                    card.style.pointerEvents = 'none';
+                    const el = document.elementFromPoint(ev.clientX, ev.clientY);
+                    card.style.pointerEvents = '';
+                    const target = el && el.closest('.card');
+                    if (overCard && overCard !== target) overCard.classList.remove('drag-over');
+                    if (target && target !== card && target.closest('#' + type + 'List')) {
+                        target.classList.add('drag-over');
+                        overCard = target;
+                    } else {
+                        overCard = null;
+                    }
+                };
+
+                const onUp = () => {
+                    handle.removeEventListener('pointermove', onMove);
+                    handle.removeEventListener('pointerup', onUp);
+                    card.classList.remove('dragging');
+                    card.style.pointerEvents = '';
+                    if (overCard) {
+                        overCard.classList.remove('drag-over');
+                        const toIndex = getCardIndex(overCard, type);
+                        if (toIndex !== -1 && toIndex !== index) {
+                            const arr = dataStore[`${type}Config`];
+                            const [removed] = arr.splice(index, 1);
+                            arr.splice(toIndex, 0, removed);
+                            renderUI();
+                        }
+                    }
+                    overCard = null;
+                };
+
+                handle.addEventListener('pointermove', onMove);
+                handle.addEventListener('pointerup', onUp);
             });
         }
 
