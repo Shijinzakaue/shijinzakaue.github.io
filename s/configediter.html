@@ -170,16 +170,10 @@
         /* Card actions */
         .card-actions { display: flex; gap: 8px; align-items: center; margin-top: 14px; flex-wrap: wrap; }
 
-        /* Save bar - right-side floating */
-        .save-bar {
-            position: fixed; bottom: 16px; right: 16px; z-index: 200;
-            background: rgba(15,17,23,.95); backdrop-filter: blur(12px);
-            border: 1px solid var(--border); border-radius: var(--radius);
-            padding: 8px 12px; display: flex; align-items: center; gap: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,.5);
-        }
-        .save-bar .btn-success { padding: 8px 16px; font-size: 14px; }
-        #saveStatus { font-size: 12px; max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        /* Save bar - in header */
+        .save-bar { display: contents; }
+        .save-bar .btn-success { padding: 7px 14px; font-size: 13px; }
+        #saveStatus { font-size: 12px; max-width: 160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         #saveStatus.ok  { color: var(--green); }
         #saveStatus.err { color: var(--red); }
 
@@ -190,6 +184,10 @@
 
     <div class="header">
         <h1>坂道 <span>Config</span> Editor</h1>
+        <div class="save-bar" id="saveBar" style="display:contents;visibility:hidden;">
+            <button class="btn btn-success" onclick="saveToFile()">✓ 儲存並推送</button>
+            <span id="saveStatus"></span>
+        </div>
     </div>
 
     <!-- 載入設定 -->
@@ -242,11 +240,7 @@
         </div>
     </div>
 
-    <!-- 固定儲存列 -->
-    <div class="save-bar" id="saveBar" style="display:none;">
-        <button class="btn btn-success" onclick="saveToFile()">✓ 儲存並推送 GitHub</button>
-        <span id="saveStatus"></span>
-    </div>
+    <!-- 固定儲存列已移至頂欄 -->
 
     <script>
         const OWNER = 'shijinzakaue';
@@ -300,7 +294,7 @@
                 parseJS(content);
                 renderUI();
                 document.getElementById('editorArea').style.display = 'block';
-                document.getElementById('saveBar').style.display = 'flex';
+                document.getElementById('saveBar').style.visibility = 'visible';
                 statusEl.textContent = '\u2713 \u8f09\u5165\u6210\u529f';
                 statusEl.className = 'load-status';
             } catch (e) {
