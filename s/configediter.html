@@ -23,7 +23,7 @@
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { -webkit-tap-highlight-color: transparent; }
-        body { background: var(--bg); color: var(--text); font-family: -apple-system, 'Noto Sans TC', sans-serif; min-height: 100vh; padding-bottom: 100px; }
+        body { background: var(--bg); color: var(--text); font-family: -apple-system, 'Noto Sans TC', sans-serif; min-height: 100vh; padding-bottom: 20px; }
 
         /* Header */
         .header {
@@ -84,11 +84,21 @@
             overflow: hidden;
         }
         .section-header {
-            display: flex; align-items: center; justify-content: space-between;
+            display: flex; align-items: center; gap: 8px;
             padding: 14px 16px;
             border-bottom: 1px solid var(--border);
+            cursor: pointer; user-select: none;
         }
-        .section-header h2 { font-size: 14px; font-weight: 700; }
+        .section-header h2 { font-size: 14px; font-weight: 700; flex: 1; }
+        .section-toggle {
+            background: none; border: none; color: var(--muted);
+            cursor: pointer; font-size: 18px; padding: 2px 4px;
+            transition: transform .2s; display: flex; align-items: center;
+            border-radius: 4px; flex-shrink: 0;
+        }
+        .section-toggle:hover { color: var(--text); }
+        .section.collapsed .section-toggle { transform: rotate(-90deg); }
+        .section.collapsed .section-body { display: none; }
         .section-header h2 .badge {
             display: inline-block; background: var(--accent-dim); color: var(--accent);
             font-size: 11px; padding: 2px 7px; border-radius: 99px; margin-left: 8px; font-weight: 600;
@@ -115,7 +125,16 @@
         .card.open .card-head .chevron { transform: rotate(180deg); }
         .card-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border); }
         .card.open .card-body { display: block; }
-        .card-move { display: flex; flex-direction: column; gap: 3px; flex-shrink: 0; }
+        .drag-handle {
+            color: var(--muted); cursor: grab; user-select: none;
+            padding: 4px 6px; font-size: 18px; line-height: 1; flex-shrink: 0;
+            display: flex; align-items: center; border-radius: 4px;
+            transition: color .15s, background .15s; letter-spacing: -1px;
+        }
+        .drag-handle:hover { color: var(--text); background: var(--surface2); }
+        .drag-handle:active { cursor: grabbing; }
+        .card.dragging { opacity: .35; }
+        .card.drag-over { outline: 2px solid var(--accent); outline-offset: -2px; }
 
         /* Form inside card */
         .form-group { margin-top: 12px; }
@@ -151,27 +170,20 @@
         /* Card actions */
         .card-actions { display: flex; gap: 8px; align-items: center; margin-top: 14px; flex-wrap: wrap; }
 
-        /* Sticky save bar */
+        /* Save bar - right-side floating */
         .save-bar {
-            position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+            position: fixed; bottom: 16px; right: 16px; z-index: 200;
             background: rgba(15,17,23,.95); backdrop-filter: blur(12px);
-            border-top: 1px solid var(--border);
-            padding: 12px 16px; display: flex; align-items: center; gap: 12px;
+            border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 8px 12px; display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,.5);
         }
-        .save-bar .btn-success { flex: 1; max-width: 320px; padding: 13px; font-size: 15px; }
-        #saveStatus { font-size: 13px; flex: 1; }
+        .save-bar .btn-success { padding: 8px 16px; font-size: 14px; }
+        #saveStatus { font-size: 12px; max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         #saveStatus.ok  { color: var(--green); }
         #saveStatus.err { color: var(--red); }
 
-        /* Move buttons */
-        .btn-move {
-            background: var(--surface2); border: 1px solid var(--border);
-            color: var(--muted); border-radius: 6px;
-            width: 28px; height: 28px; font-size: 14px;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; transition: background .15s;
-        }
-        .btn-move:hover { background: var(--border); color: var(--text); }
+        /* Move buttons - removed, replaced by drag handle */
     </style>
 </head>
 <body>
@@ -206,21 +218,27 @@
 
     <div id="editorArea" style="display:none;">
         <!-- Official -->
-        <div class="section">
-            <div class="section-header">
+        <div class="section" id="officialSection">
+            <div class="section-header" onclick="toggleSection('officialSection')">
+                <button class="section-toggle" title="折疊">▾</button>
                 <h2>官方網站 <span class="badge" id="offCount">0</span></h2>
-                <button class="btn btn-add" onclick="addItem('official')">＋ 新增</button>
+                <button class="btn btn-add" onclick="event.stopPropagation();addItem('official')">＋ 新增</button>
             </div>
-            <div id="officialList"></div>
+            <div class="section-body">
+                <div id="officialList"></div>
+            </div>
         </div>
 
         <!-- Tool -->
-        <div class="section">
-            <div class="section-header">
+        <div class="section" id="toolSection">
+            <div class="section-header" onclick="toggleSection('toolSection')">
+                <button class="section-toggle" title="折疊">▾</button>
                 <h2>相關工具 <span class="badge" id="toolCount">0</span></h2>
-                <button class="btn btn-add" onclick="addItem('tool')">＋ 新增</button>
+                <button class="btn btn-add" onclick="event.stopPropagation();addItem('tool')">＋ 新增</button>
             </div>
-            <div id="toolList"></div>
+            <div class="section-body">
+                <div id="toolList"></div>
+            </div>
         </div>
     </div>
 
@@ -328,7 +346,7 @@
             head.className = 'card-head';
             head.innerHTML = headHTML;
             head.addEventListener('click', (e) => {
-                if (e.target.closest('.btn-move,.btn-danger')) return;
+                if (e.target.closest('.drag-handle,.btn-danger')) return;
                 card.classList.toggle('open');
             });
             card.appendChild(head);
@@ -339,16 +357,52 @@
             return card;
         }
 
-        function moveBtns(type, index) {
-            const wrap = document.createElement('div');
-            wrap.className = 'card-move';
-            ['\u2191','\u2193'].forEach((t, d) => {
-                const b = document.createElement('button');
-                b.className = 'btn-move'; b.textContent = t;
-                b.addEventListener('click', () => moveItem(type, index, d === 0 ? -1 : 1));
-                wrap.appendChild(b);
+        function moveBtns(type, index) { /* replaced by drag */ }
+
+        let dragState = null;
+
+        function makeDragHandle() {
+            const h = document.createElement('div');
+            h.className = 'drag-handle';
+            h.draggable = true;
+            h.textContent = '\u22ee\u22ee';
+            h.title = '拖曳排序';
+            return h;
+        }
+
+        function setupDrag(card, type, index) {
+            const handle = card.querySelector('.drag-handle');
+            handle.addEventListener('dragstart', (e) => {
+                dragState = { type, index };
+                setTimeout(() => card.classList.add('dragging'), 0);
+                e.dataTransfer.effectAllowed = 'move';
             });
-            return wrap;
+            handle.addEventListener('dragend', () => {
+                card.classList.remove('dragging');
+                document.querySelectorAll('.card.drag-over').forEach(c => c.classList.remove('drag-over'));
+                dragState = null;
+            });
+            card.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                if (!dragState || dragState.type !== type || dragState.index === index) return;
+                card.classList.add('drag-over');
+            });
+            card.addEventListener('dragleave', (e) => {
+                if (!card.contains(e.relatedTarget)) card.classList.remove('drag-over');
+            });
+            card.addEventListener('drop', (e) => {
+                e.preventDefault();
+                card.classList.remove('drag-over');
+                if (!dragState || dragState.type !== type || dragState.index === index) return;
+                const arr = dataStore[`${type}Config`];
+                const [removed] = arr.splice(dragState.index, 1);
+                arr.splice(index, 0, removed);
+                renderUI();
+            });
+        }
+
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('collapsed');
         }
 
         function createOfficialCard(item, index) {
@@ -381,7 +435,9 @@
             body.appendChild(actions);
 
             const card = makeCard(headHTML, body);
-            card.querySelector('.card-head').prepend(moveBtns('official', index));
+            const handle = makeDragHandle();
+            card.querySelector('.card-head').prepend(handle);
+            setupDrag(card, 'official', index);
             return card;
         }
 
@@ -450,7 +506,9 @@
             body.appendChild(actions);
 
             const card = makeCard(headHTML, body);
-            card.querySelector('.card-head').prepend(moveBtns('tool', index));
+            const handle = makeDragHandle();
+            card.querySelector('.card-head').prepend(handle);
+            setupDrag(card, 'tool', index);
             return card;
         }
 
