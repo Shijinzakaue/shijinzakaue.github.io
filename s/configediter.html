@@ -368,8 +368,9 @@
             const handle = card.querySelector('.drag-handle');
             handle.addEventListener('dragstart', (e) => {
                 dragState = { type, index };
-                setTimeout(() => card.classList.add('dragging'), 0);
+                e.dataTransfer.setData('text/plain', String(index));
                 e.dataTransfer.effectAllowed = 'move';
+                setTimeout(() => card.classList.add('dragging'), 0);
             });
             handle.addEventListener('dragend', () => {
                 card.classList.remove('dragging');
