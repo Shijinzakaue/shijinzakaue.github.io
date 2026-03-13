@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-13 23:20";
+var lastUpdated = "2026-03-13 23:22";
 
 var officialConfig = [
   {
@@ -623,11 +623,7 @@ var toolConfig = [
       "公式",
       "photo"
     ],
-    "groups": [
-      "nogi",
-      "saku",
-      "hina"
-    ]
+    "groups": []
   },
   {
     "name": "雑誌表紙情報（アイドル）",
