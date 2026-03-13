@@ -178,7 +178,7 @@ var officialConfig = [
   },
   {
     "name": "日向坂で会いましょう",
-    "link": "日向坂で会いましょう",
+    "link": "https://www.tv-tokyo.co.jp/hinatazaka/",
     "group": "hina"
   }
 ];
