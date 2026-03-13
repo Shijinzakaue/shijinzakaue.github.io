@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-13 18:45";
+var lastUpdated = "2026-03-13 23:20";
 
 var officialConfig = [
   {
@@ -613,6 +613,21 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://aknog.github.io/srdata/"
+  },
+  {
+    "name": "⭐アイドル雑誌情報Z",
+    "desc": "idolz.hubxhub.com",
+    "link": "https://idolz.hubxhub.com/",
+    "detail": "女性アイドル・グラビアアイドル・女優が登場している雑誌、及び関連する写真集の情報をまとめてます。\n\n・[アイドル雑誌情報Z / X](https://x.com/idolzj)",
+    "tags": [
+      "公式",
+      "photo"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
   },
   {
     "name": "雑誌表紙情報（アイドル）",
