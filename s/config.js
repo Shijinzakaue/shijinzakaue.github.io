@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-12 11:40";
+var lastUpdated = "2026-03-13 18:25";
 
 var officialConfig = [
   { name: "乃木坂46 公式サイト", link: "https://www.nogizaka46.com", group: "nogi" },
@@ -44,31 +44,31 @@ var officialConfig = [
 
 var toolConfig = [
 {
-  name: "乃木坂46 SNS",
-  desc: "t.me/nogizaka46_SNS",
+  name: "⭐乃木坂46 SNS",
+  desc: "Telegram チャンネル",
   detail: "・[乃木坂46 OFFICIAL YouTube CHANNEL](https://www.youtube.com/@nogizaka46SMEJ)\n・[乃木坂配信中](https://www.youtube.com/@nogizakahaishinchu)\n・[X（旧Twitter）](https://x.com/nogizaka46)\n・[Instagram](https://www.instagram.com/nogizaka46_official/)\n・[Facebook](https://www.facebook.com/nogizaka46)\n・[TikTok](https://www.tiktok.com/@nogizaka46_official)\n・[Line](https://lin.ee/EwCV3ub)\n・[Weibo](https://weibo.com/u/6372196907)\n・[Bilibili](https://space.bilibili.com/603028270)",
-  tags: ["公式","sns","blog","photo"],
+  tags: ["公式","sns","blog","information","photo"],
   groups: ["nogi"],
   link: "https://t.me/s/nogizaka46_SNS/"
 },
 {
-  name: "櫻坂46 SNS",
-  desc: "t.me/sakurazaka46_sns",
+  name: "⭐櫻坂46 SNS",
+  desc: "Telegram チャンネル",
   detail: "・[櫻坂46 OFFICIAL YouTube CHANNEL](https://www.youtube.com/@sakurazaka46SMEJ)\n・[櫻坂チャンネル](https://www.youtube.com/@sakurazakachannel/)\n・[X（旧Twitter）](https://x.com/sakurazaka46)\n・[Instagram @sakurazaka46jp](https://www.instagram.com/sakurazaka46jp)\n・[Instagram @sakurazaka46_info_official](https://www.instagram.com/sakurazaka46_info_official/)\n・[TikTok](https://www.tiktok.com/@sakurazaka46.officialtk)",
-  tags: ["公式","sns","blog","photo"],
+  tags: ["公式","sns","blog","information","photo"],
   groups: ["saku"],
   link: "https://t.me/s/sakurazaka46_sns/"
 },
 {
-  name: "日向坂46 SNS",
-  desc: "t.me/hinatazaka46_sns",
+  name: "⭐日向坂46 SNS",
+  desc: "Telegram チャンネル",
   detail: "・[日向坂46 OFFICIAL YouTube CHANNEL](https://www.youtube.com/@46officialyoutubechannel99)\n・[日向坂ちゃんねる](https://www.youtube.com/@hinatazakachannel)\n・[X（旧Twitter）](https://x.com/hinatazaka46)\n・[Instagram](https://www.instagram.com/hinatazaka46)\n・[TikTok](https://www.tiktok.com/@hinatazakanews)",
-  tags: ["公式","sns","blog","photo"],
+  tags: ["公式","sns","blog","information","photo"],
   groups: ["hina"],
   link: "https://t.me/s/hinatazaka46_sns/"
 },
 {
-  name: "坂道46LOVER",
+  name: "⭐坂道46LOVER",
   desc: "nogi46p.com",
   detail: "坂道46LOVERは、アイドルグループ 乃木坂46、欅坂46、日向坂46の最新情報を発信するニュースサイトです。\n・登場・出演情報\n・ネット・公式ニュース\n\n・[坂道46LOVER ◢⁴⁶ / X](https://x.com/nogi46press)\n・RSSLink：[https://nogi46p.com/feed/rdf](https://nogi46p.com/feed)",
   tags: ["公式","information","forum"],
@@ -76,7 +76,7 @@ var toolConfig = [
   link: "https://nogi46p.com/"
 },
 {
-  name: "坂道ちゃんねる",
+  name: "⭐坂道ちゃんねる",
   desc: "sakamichi.f-frontier.com",
   detail: "乃木坂46・櫻坂46・日向坂46の坂道グループに関するニュースをいち早くお届けします。\n・公式ブログ\n・今日のスケジュール\n・ネット・公式ニュース\n\n・[◢ 坂道推し / X](https://x.com/sakamichi__oshi)\n・RSSLink：[https://sakamichi.f-frontier.com/feed/rdf](https://sakamichi.f-frontier.com/feed)",
   tags: ["公式","information","forum"],
@@ -84,7 +84,7 @@ var toolConfig = [
   link: "https://sakamichi.f-frontier.com/"
 },
   {
-    name: "乃木坂46データベース",
+    name: "⭐乃木坂46データベース",
     desc: "n46db.com",
     detail: "坂道グループのメンバーのプロフォールや参加曲、フォーメーション、楽曲の作曲者・編曲者、MVや個人PVの監督などの情報のデータベースです。\n\n・[About this website](https://n46db.com/about.php)",
     tags: ["information", "song", "photo", "create"],
@@ -100,9 +100,9 @@ var toolConfig = [
   link: "https://meaning-of-goodbye.com/"
 },
 {
-  name: "坂道シリーズ 統合データベース検索",
+  name: "⭐坂道 統合データベース検索",
   desc: "[坂道雑文帳] Sakamichi Universe",
-  detail: "「坂道雑文帳」が運営する、坂道シリーズの情報を集約した検索サイトです。\nメンバー、楽曲、ライブ、フォーメーション、データなど、最新の公演やリリース情報のほか、過去の特定日を再現する「タイムマシンモード」やネタバレ配慮機能を搭載。\n\n・[サイト紹介記事](https://note.com/nogikeyaksh/n/n95f652f7d114)",
+  detail: "「坂道雑文帳」が運営する、坂道シリーズの情報を集約した検索サイトです。\nメンバー、楽曲、ライブ、フォーメーション、データなど、最新の公演やリリース情報のほか、過去の特定日を再現する「タイムマシンモード」やネタバレ配慮機能を搭載。\n\n・[乃・ライブパフォーマンスデータベース](https://docs.google.com/spreadsheets/d/1Kxr5ScgjxmGPlP-UohWkQ47sCKxAM5rm-z_aAA4Uerk/edit?gid=0#gid=0)\n・[サイト紹介記事](https://note.com/nogikeyaksh/n/n95f652f7d114)",
   tags: ["information","song","live"],
   groups: ["nogi","saku","hina"],
   link: "https://meaning-of-goodbye.com/sakamichi-search/"
@@ -116,7 +116,7 @@ var toolConfig = [
   link: "https://sakamichidatabase.penguinelegy.com/"
 },
 {
-  name: "あの坂道を登れ",
+  name: "⭐あの坂道を登れ",
   desc: "anosaka.com",
   detail: "・ライブなど、様々なイベントへの参加レポート\n・出演メディア（テレビ・ラジオ・本・曲）の感想\n・人気ランキング\n・関連ゲーム攻略\n\n・[あのさか / X](https://x.com/anosaka_46)：データ収集・分析・コーディング\n・RSSLink：[https://anosaka.com/feed](https://anosaka.com/feed)\n・[ABOUT](https://anosaka.com/about-us)",
   tags: ["meet","information","song","sale","create","forum","live","game","ranking","sns","oshi"],
@@ -132,7 +132,7 @@ var toolConfig = [
   link: "https://sakamichidb.anosaka.com/"
 },
 {
-  name: "坂道シリーズ楽曲DB",
+  name: "⭐坂道シリーズ楽曲DB",
   desc: "saka46.fun",
   detail: "アイドルグループ・坂道シリーズの楽曲ファンです。坂道シリーズの楽曲やクリエイター（作曲家、MV監督、パフォーマーなど）についての情報を発信しています。",
   tags: ["song","streaming","live","ranking"],
@@ -170,6 +170,30 @@ var toolConfig = [
   tags: ["sns","information","song"],
   groups: ["nogi","saku","hina"],
   link: "https://zaka46db.com/"
+},
+{
+  name: "新時代レポ",
+  desc: "report-newage.com",
+  detail: "・[乃木坂46 セトリ](https://report-newage.com/?s=%E4%B9%83%E6%9C%A8%E5%9D%8246)\n・[櫻坂46 セトリ](https://report-newage.com/?s=%E6%AB%BB%E5%9D%8246)\n・[日向坂46 セトリ](https://report-newage.com/?s=%E6%97%A5%E5%90%91%E5%9D%8246)",
+  tags: ["live"],
+  groups: ["nogi","saku","hina"],
+  link: "https://report-newage.com/"
+},
+{
+  name: "SAKURA DATA 46",
+  desc: "sakurazaka46.live",
+  detail: "櫻坂46データベース「SAKURA DATA 46」では、メンバーのプロフィールやあだ名、生年月日、血液型、身長などの詳細情報に加え、\n楽曲データ（シングル・アルバム・参加メンバー・センター回数・作詞作曲者）をわかりやすく整理しています。\n最新のシングル情報や卒業メンバーのデータも日々更新中です。",
+  tags: ["information","song"],
+  groups: ["saku"],
+  link: "https://sakurazaka46.live/"
+},
+{
+  name: "HINABASE",
+  desc: "kasumizaka46.com",
+  detail: "日向坂46データベース「HINABASE」では、メンバーのプロフィールやあだ名、生年月日、血液型、身長などの詳細情報に加え、\n楽曲データ（シングル・アルバム・参加メンバー・センター回数・作詞作曲者）をわかりやすく整理しています。\n最新のシングル情報や卒業メンバーのデータも日々更新中です。",
+  tags: ["information","song"],
+  groups: ["hina"],
+  link: "https://kasumizaka46.com/"
 },
 {
   name: "坂道グループ配信まとめサイト",
@@ -212,15 +236,23 @@ var toolConfig = [
   link: "https://www.nogizaka.info/index.html"
 },
 {
-  name: "46 NEWS !",
+  name: "ZERO スケジュールまとめ",
+  desc: "x.com/zero00zero46",
+  detail: "乃木坂46に関するあれやこれやを投稿します。情報・集計データ・出演番組実況etc たまたま目にした時にお役立てください！",
+  tags: ["公式","information","oshi"],
+  groups: ["nogi"],
+  link: "https://x.com/zero00zero46"
+},
+{
+  name: "⭐ 46 NEWS !",
   desc: "46news.net",
-  detail: "乃木坂46、櫻坂46（旧欅坂46）、日向坂46のまとめブログやニュースサイトの最新情報を紹介するアンテナサイトです。最新人気記事をグループ別やメンバー別で表示できます。\n\nRSSLink\n・乃木坂46 [https://politepol.com/fd/wDNr0GJnT4W6.xml](https://politepol.com/fd/wDNr0GJnT4W6.xml)\n・櫻坂46 [https://politepol.com/fd/tQUjLrmQlSYk.xml](https://politepol.com/fd/tQUjLrmQlSYk.xml)\n・日向坂46 [https://politepol.com/fd/1ROHnysso4vs.xml](https://politepol.com/fd/1ROHnysso4vs.xml)",
+  detail: "乃木坂46、櫻坂46（旧欅坂46）、日向坂46のまとめブログやニュースサイトの最新情報を紹介するアンテナサイトです。最新人気記事をグループ別やメンバー別で表示できます。\n\nRSSLink politepol.com\n・乃木坂46 [/fd/wDNr0GJnT4W6.xml](https://politepol.com/fd/wDNr0GJnT4W6.xml)\n・櫻坂46　 [/fd/tQUjLrmQlSYk.xml](https://politepol.com/fd/tQUjLrmQlSYk.xml)\n・日向坂46 [/fd/1ROHnysso4vs.xml](https://politepol.com/fd/1ROHnysso4vs.xml)",
   tags: ["forum"],
   groups: ["nogi","saku","hina"],
   link: "https://46news.net/"
 },
 {
-  name: "SHOWROOMデータ",
+  name: "⭐SHOWROOMデータ",
   desc: "aknog.github.io/srdata",
   detail: "SHOWROOMでの乃木坂46・櫻坂46(欅坂46)・日向坂46の配信データをまとめたものです。\n\n・[SHOWROOMデータ / X](https://x.com/srdxsa)\n・Smartnews動画データ（放課後トークなど）",
   tags: ["streaming","ranking"],
@@ -228,7 +260,15 @@ var toolConfig = [
   link: "https://aknog.github.io/srdata/"
 },
 {
-  name: "坂道 store",
+  name: "雑誌表紙情報（アイドル）",
+  desc: "x.com/otdmqivibpkq3so",
+  detail: "",
+  tags: ["公式","photo"],
+  groups: [],
+  link: "https://x.com/otdmqivibpkq3so"
+},
+{
+  name: "⭐坂道 store",
   desc: "sakamichi-store.net",
   detail: "坂道グループの私服・衣装・スニーカー・カメラ・コスメ等を紹介しています。blog/Youtube /TV/TikTok等で得た情報を参考にまとめています🌷たまに推し活レポや聖地巡礼も...！！ ※個人での特定になりますので間違っていたらすみません。\n\n・[坂道store / X](https://x.com/sakamichi_store)",
   tags: ["item","clothes","oshi"],
@@ -236,12 +276,28 @@ var toolConfig = [
   link: "https://sakamichi-store.net/"
 },
 {
-  name: "N46 fashion│乃木坂46×私服･衣装",
+  name: "⭐N46 fashion│私服･衣装",
   desc: "instagram.com/ngz46.fashionsnap",
   detail: "・私服\n・衣装\n・私物\n・アイテム\n・愛用品",
   tags: ["item","clothes","oshi"],
   groups: ["nogi"],
   link: "https://www.instagram.com/ngz46.fashionsnap/"
+},
+{
+  name: "⭐pyon アイドル私服衣装特定",
+  desc: "x.com/hntzk_46pyo",
+  detail: "アイドルちゃんの私服 / 衣装 / コスメ / お店 etc 特定したものをポストしてます🐻❣️",
+  tags: ["item","clothes"],
+  groups: ["nogi","saku","hina"],
+  link: "https://x.com/hntzk_46pyo"
+},
+{
+  name: "⭐ひまり│坂道コスメ",
+  desc: "x.com/himari_cosme_46",
+  detail: "坂道アイドル(乃木坂多め)の愛用コスメ、スキンケア、ヘアケアまとめ ˗ˋˏ ♡ ˎˊ˗ たまに48、イコノイ、ハロプロ、iLiFE!など 古い情報を含みます 誤りがあったらすみません",
+  tags: ["item","oshi"],
+  groups: ["nogi","saku","hina"],
+  link: "https://x.com/himari_cosme_46"
 },
 {
   name: "アイドルバケット",
@@ -308,7 +364,7 @@ var toolConfig = [
   link: "https://nekokosyan.com/"
 },
 {
-  name: "乃木地圖 | Nogimap",
+  name: "⭐乃木地圖 | Nogimap",
   desc: "nogimap.com",
   detail: "Nogimap は、聖地巡礼をより便利にすることを目的とした、コミュニティが管理する地図プロジェクトです。",
   tags: ["place","oshi"],
@@ -340,7 +396,7 @@ var toolConfig = [
   link: "https://nogitabi.blog.jp/"
 },
 {
-  name: "日向坂46　聖地一覧",
+  name: "⭐日向坂46　聖地一覧",
   desc: "[清水ひなた] google.com/maps",
   detail: "日向坂46の聖地一覧です",
   tags: ["place","oshi"],
@@ -364,10 +420,10 @@ var toolConfig = [
   link: "https://tools.yotujoho.com/"
 },
 {
-  name: "Sakamichi Blog Archive",
+  name: "⭐Sakamichi Blog Archive",
   desc: "sakamichi.co",
   detail: "・坂道ブログ画像保存サイト\n・乃木坂46以外、メンバーの宣材写真を高画質で保管しています。\n　・乃木坂46：2017年7月 -\n　・欅坂46：開設（2015年11月）- 改名（2020年10月）\n　・日向坂46：けやき坂46として開設（2016年8月）-\n　・櫻坂46：改名（2020年10月）-\n\n・[坂道ブログ画像BOT / X](https://x.com/foxtrotal)",
-  tags: ["blog","photo"],
+  tags: ["blog","photo","公式"],
   groups: ["nogi","saku","hina"],
   link: "https://www.sakamichi.co/"
 },
@@ -404,7 +460,15 @@ var toolConfig = [
   link: "https://hinatadic.blog.jp/"
 },
 {
-  name: "ngzkHandshakeTable",
+  name: "ぽむた/乃木坂ランキング",
+  desc: "x.com/pao_paobon",
+  detail: "もろもろランキング",
+  tags: ["sns","blog","streaming","ranking"],
+  groups: ["nogi"],
+  link: "https://x.com/pao_paobon"
+},
+{
+  name: "⭐ngzkHandshakeTable",
   desc: "universallyleo.github.io/ngzkHandshakeTable",
   detail: "乃木坂46のみ\n・完売表（個別・全国）\n・完売推移・比較\n・売上データ\n・個人資料\n・モバメ・メッセージ集計",
   tags: ["meet","information","sale","message","create","tool"],
@@ -412,7 +476,7 @@ var toolConfig = [
   link: "https://universallyleo.github.io/ngzkHandshakeTable/"
 },
 {
-  name: "坂道完売表 Senu Blog",
+  name: "⭐坂道完売表 Senu Blog",
   desc: "senublog.com",
   detail: "[せぬ / X](https://x.com/Senu_Blog)",
   tags: ["meet"],
@@ -420,7 +484,7 @@ var toolConfig = [
   link: "https://senublog.com/"
 },
 {
-  name: "ミリアンペア(milli ampere)",
+  name: "⭐ミリアンペア(milli ampere)",
   desc: "x.com/1milliampere",
   detail: "坂道グループMV再生数データ",
   tags: ["song","streaming","ranking"],
@@ -436,7 +500,7 @@ var toolConfig = [
   link: "https://x.com/unjustified1005"
 },
 {
-  name: "たたん",
+  name: "⭐たたん",
   desc: "x.com/itsunogi46",
   detail: "・完売表・応募・抽選結果",
   tags: ["meet"],
@@ -444,7 +508,7 @@ var toolConfig = [
   link: "https://x.com/itsunogi46"
 },
 {
-  name: "坂道の完売表",
+  name: "⭐坂道の完売表",
   desc: "x.com/nogi_kanbai",
   detail: "・完売表・応募・抽選結果",
   tags: ["meet"],
@@ -468,7 +532,15 @@ var toolConfig = [
   link: "https://nogizaka46data.blogspot.com/"
 },
 {
-  name: "乃木坂方丈記",
+  name: "日向坂46･櫻坂46 Billboard",
+  desc: "x.com/h_s_46Billboard",
+  detail: "日向坂46･櫻坂46のBillboardチャートに関する情報やYoutubeチャート、オリコンチャートに関する情報を呟きます。",
+  tags: ["streaming","ranking"],
+  groups: ["saku","hina"],
+  link: "https://x.com/h_s_46Billboard"
+},
+{
+  name: "⭐乃木坂方丈記",
   desc: "nekojitachamo.livedoor.blog",
   detail: "乃木坂46備忘録",
   tags: ["information","forum"],
@@ -484,7 +556,7 @@ var toolConfig = [
   link: "https://x.com/makoto46_CYC"
 },
 {
-  name: "メッセージ統計分析",
+  name: "⭐メッセージ統計分析",
   desc: "msg.nogi46.me",
   detail: "中国語のみ",
   tags: ["message","ranking"],
@@ -508,7 +580,23 @@ var toolConfig = [
   link: "https://x.com/sakuratotalling"
 },
 {
-  name: "田代光輝",
+  name: "Sakurazaka Daily Data",
+  desc: "x.com/yamanteJr",
+  detail: "櫻坂46 のデータをツイートしています 前日比は毎日朝に投稿。",
+  tags: ["sns","ranking"],
+  groups: ["saku"],
+  link: "https://x.com/yamanteJr"
+},
+{
+  name: "データで見る櫻坂46",
+  desc: "x.com/sakurazakastats",
+  detail: "*更新頻度低い\n\n📊 櫻坂46に関するデータ/チャートなどをグラフにして遊んでいる数字とデータ好きのアカウント。\n出演情報や公式番組などのRPが多めなので気になる方はオフにすることを推奨します。",
+  tags: ["sns","ranking"],
+  groups: ["saku"],
+  link: "https://x.com/sakurazakastats"
+},
+{
+  name: "⭐田代光輝",
   desc: "x.com/mitsu0227",
   detail: "写真集データ・売上推移",
   tags: ["sale","photo","ranking"],
@@ -522,6 +610,14 @@ var toolConfig = [
   tags: ["blog","photo","ranking"],
   groups: ["nogi","saku","hina"],
   link: "https://blog.sakamichi-tools.cn/#all"
+},
+{
+  name: "Instagram Archive",
+  desc: "ins.sakamichi-tools.cn",
+  detail: "メンバーのInstagram內容アーカイブ。メンバーのストーリーや投稿を閲覧・検索・ダウンロードでき、アカウントや時間でフィルタリングできます。",
+  tags: ["sns","公式"],
+  groups: ["nogi","saku","hina"],
+  link: "https://ins.sakamichi-tools.cn/"
 },
 {
   name: "🪦アレチボルト",
@@ -540,6 +636,14 @@ var toolConfig = [
   link: "https://x.com/WAJty8A2vuHn0Nn"
 },
 {
+  name: "UOA SSR+まとめ",
+  desc: "[沈黙した村人よ] docs.google.com",
+  detail: "",
+  tags: ["game"],
+  groups: ["saku","hina"],
+  link: "https://docs.google.com/spreadsheets/d/1RR2ixjmSL5sDPG7MA-Dk44GZrbaP7zbnMbP4qkjB7xs/edit?gid=0#gid=0"
+},
+{
   name: "🪦握手会情報まとめ",
   desc: "ameblo.jp/seto-kasumi",
   detail: "・過去の握手会完売情報やブログコメント数等の人気指標データをひたすら集計していきます。\n・最後更新 2019.12.26",
@@ -556,10 +660,18 @@ var toolConfig = [
   link: "https://nogilib.vercel.app/"
 },
 {
-  name: "SBA Archive",
+  name: "🪦欅坂パフォーマンスデータベース",
+  desc: "docs.google.com",
+  detail: "~2020-01-26",
+  tags: ["song","live","ranking"],
+  groups: ["saku","hina"],
+  link: "https://docs.google.com/spreadsheets/d/1Qgkqi3t5ZX9cyOyBV7wXfnwNYR3fk40E1zj0O8il7RY/edit?gid=0#gid=0"
+},
+{
+  name: "⭐SBA Archive",
   desc: "archive.sakamichi.co",
   detail: "坂道グループ卒業生のブログを保管しています。",
-  tags: ["blog","photo"],
+  tags: ["blog","photo","公式"],
   groups: ["nogi","saku","hina"],
   link: "https://archive.sakamichi.co/members"
 },
@@ -567,12 +679,12 @@ var toolConfig = [
   name: "🪦卒業生ブログサイト",
   desc: "サイトの追加を歓迎します",
   detail: "・[橋本奈々未～山下美月](https://janelin612.github.io/n46-crawler/)\n・[岩瀬佑美子～寺田蘭世](https://re-fort.net/NgzkBlogArchive/#/)\n・[今泉佑唯～渡辺梨加](https://re-fort.net/KykzkBlogArchive/#/)\n・[柿崎芽実・井口眞緒](https://re-fort.net/HntzkBlogArchive/#/)\n・個人\n　・[橋本奈々未](https://nondanee.github.io/onemoretime/nanami.hashimoto/)\n　・[久保史緒里](https://washioshihokubo.github.io/kubo-archive/)",
-  tags: ["blog","photo"],
+  tags: ["blog","photo","公式"],
   groups: ["nogi","saku","hina"],
   link: ""
 },
 {
-  name: "46◢ Online Meet Waiting Room",
+  name: "⭐46◢ Online Meet Waiting Room",
   desc: "status.meet.oshi-katsu.app",
   detail: "ミーグリリアルタイム待機人数",
   tags: ["公式","meet"],
@@ -580,31 +692,23 @@ var toolConfig = [
   link: "https://status.meet.oshi-katsu.app/"
 },
 {
-  name: "乃木坂46 My選抜シミュレータ",
+  name: "⭐定点カメラお知らせbot",
+  desc: "x.com",
+  detail: "オンラインミート＆グリート（ミーグリ）の定点カメラにメンバーが登場すると、自動検知してお知らせします📢\n\n・[乃木坂46](https://x.com/n46_teiten)\n・[櫻坂46](https://x.com/s46_teiten)\n・[日向坂46](https://x.com/h46_teiten)",
+  tags: ["streaming","tool"],
+  groups: ["nogi","saku","hina"],
+  link: "##"
+},
+{
+  name: "⭐My選抜シミュレータ",
   desc: "n46sim.com",
-  detail: "この「乃木坂46 My選抜シミュレータ」では、アイドルグループ 「乃木坂46」 の選抜フォーメーション図を、全メンバー（研究生、元メンバー含む）から選択して簡単に作成することができます。",
+  detail: "この「My選抜シミュレータ」では、選抜フォーメーション図を、全メンバー（研究生、元メンバー含む）から選択して簡単に作成することができます。\n\n・[乃木坂46](https://n46sim.com/)\n・[櫻坂46](https://sakura.n46sim.com/)\n・[日向坂46](https://hinata.n46sim.com/)",
   tags: ["create","oshi"],
-  groups: ["nogi"],
+  groups: ["nogi","saku","hina"],
   link: "https://n46sim.com/"
 },
 {
-  name: "櫻坂46 My選抜シミュレータ",
-  desc: "sakura.n46sim.com",
-  detail: "この「櫻坂46 My選抜シミュレータ」では、アイドルグループ 「櫻坂46」 の選抜フォーメーション図を、全メンバー（研究生、元メンバー含む）から選択して簡単に作成することができます。",
-  tags: ["create","oshi"],
-  groups: ["saku"],
-  link: "https://sakura.n46sim.com/"
-},
-{
-  name: "日向坂46 My選抜シミュレータ",
-  desc: "hinata.n46sim.com",
-  detail: "この「日向坂46 My選抜シミュレータ」では、アイドルグループ 「日向坂46」 の選抜フォーメーション図を、全メンバー（研究生、元メンバー含む）から選択して簡単に作成することができます。",
-  tags: ["create","oshi"],
-  groups: ["hina"],
-  link: "https://hinata.n46sim.com/"
-},
-{
-  name: "坂道ソート",
+  name: "⭐坂道ソート",
   desc: "sakamichi-sort.com",
   detail: "乃木坂46、櫻坂46、日向坂46メンバーをソートできます。１期生だけ、選抜メンバーだけ、音楽番組やライブで気になっているメンバーだけ等のようにソートしたいメンバーを自分で自由に選ぶことが出来ます！",
   tags: ["create","oshi"],
@@ -612,7 +716,7 @@ var toolConfig = [
   link: "https://sakamichi-sort.com/"
 },
 {
-  name: "N46Sorter",
+  name: "⭐N46Sorter",
   desc: "n46sorter.com",
   detail: "乃木坂46現役・卒業メンバー対応。2択を選ぶだけで推し順位を作成し、選抜フォーメーションも再現。結果は高画質のシェア画像として保存可能。乃木坂ファンのための推しメンソートツール。",
   tags: ["create","oshi"],
@@ -620,7 +724,7 @@ var toolConfig = [
   link: "https://n46sorter.com/ja"
 },
 {
-  name: "Repo手帳",
+  name: "⭐Repo手帳",
   desc: "repo.zakazaka.top",
   detail: "ミーグリレポ作成サイト\n・無料\n・中国語のみ",
   tags: ["create","oshi"],
@@ -636,7 +740,7 @@ var toolConfig = [
   link: "https://msg.sakamichi-tools.cn/"
 },
 {
-  name: "坂道シリーズ 生写真ジェネレーター",
+  name: "⭐坂道シリーズ 生写真作成",
   desc: "photocard.sakamichi-tools.cn",
   detail: "無料の坂道シリーズ生写真オンラインジェネレーター。\n簡単にカスタマイズし、ワンクリックであなたの生写真を自作・ダウンロードできます。",
   tags: ["photo","create","oshi"],
@@ -644,7 +748,39 @@ var toolConfig = [
   link: "https://photocard.sakamichi-tools.cn/"
 },
 {
-  name: "坂道ツールBOX",
+  name: "⭐アプリ「坂道ハウス」",
+  desc: "hinata-house-prod.web.app",
+  detail: "プッシュ通知で公式サイトの最新ブログ、ニュースをお知らせするスマートフォンアプリです。\n\n【iOS】\n・[乃木ハウス](https://apps.apple.com/jp/app/%E4%B9%83%E6%9C%A8%E3%83%8F%E3%82%A6%E3%82%B9-for-%E4%B9%83%E6%9C%A8%E5%9D%8246/id776867932)\n・[櫻ハウス](https://apps.apple.com/jp/app/%E6%AB%BB%E3%83%8F%E3%82%A6%E3%82%B9-for-%E6%AB%BB%E5%9D%8246/id1097369736)\n・[ひなたハウス](https://apps.apple.com/jp/app/%E3%81%B2%E3%81%AA%E3%81%9F%E3%83%8F%E3%82%A6%E3%82%B9-for-%E6%97%A5%E5%90%91%E5%9D%8246/id1457577580)",
+  tags: ["blog","information","photo","forum","tool","oshi"],
+  groups: ["nogi","saku","hina"],
+  link: "https://hinata-house-prod.web.app/"
+},
+{
+  name: "⭐アプリ「Otaac」",
+  desc: "otaac.me",
+  detail: "Otaacは、アイドルファンのための“推し事・スケジュール管理アプリ”です。",
+  tags: ["tool","oshi"],
+  groups: ["nogi","saku","hina"],
+  link: "https://www.otaac.me/service/app"
+},
+{
+  name: "⭐坂道46まとめ",
+  desc: "ブログ関連ツール",
+  detail: "「坂道46まとめ」は最新ニュースとブログ更新をまとめたアプリです。新聞ページとブログページがあり、更新時にはプッシュ通知が送信され、最新の情報をすぐに知ることができます。\n\n・[iOS](https://apps.apple.com/jp/app/%E5%9D%82%E9%81%9346%E3%81%BE%E3%81%A8%E3%82%81/id1508350322)・[Android](https://play.google.com/store/apps/details?id=stephennn.blogdownload)\n・[Telegram Bot](https://t.me/NogiBlog_bot)：Showroom配信通知m3u8リンク付き\n・Telegram チャンネル\n　・[乃木坂46ブログ](https://t.me/s/nogizaka_blog) 2022-03-02~\n　・[櫻坂46ブログ](https://t.me/s/keyakizaka46blog) 2020-07-08~\n　・[日向坂46ブログ](https://t.me/s/hinatazakablog) 2021-02-23~",
+  tags: ["公式","sns","blog","streaming","photo","tool","oshi"],
+  groups: ["nogi","saku","hina"],
+  link: "https://x.com/stephen64860726/status/1679410636902785024"
+},
+{
+  name: "ブログ通知／内容アーカイブ",
+  desc: "Telegram チャンネル",
+  detail: "・[乃木坂46 ブログ](https://t.me/s/Nogizaka46_blog) 2024-12-27~\n・[櫻坂46 ブログ](https://t.me/s/Sakurazaka46_Blog) 2025-10-10~\n・[日向坂46 ブログ](https://t.me/s/Hinatazaka46_Blog) 2025-10-09~",
+  tags: ["公式","blog","photo"],
+  groups: ["nogi","saku","hina"],
+  link: ""
+},
+{
+  name: "⭐坂道ツールBOX",
   desc: "[拡張機能] greasyfork.org",
   detail: "・公式サイトのリソースダウンロード**\n・櫻坂46・日向坂46公式サイトの「トップへ戻る」機能\n・日向坂46公式サイトのヘッダーロゴ表示の最適化\n・公式サイトの制限解除**\n・画像の遅延読み込み",
   tags: ["tool"],
@@ -652,9 +788,9 @@ var toolConfig = [
   link: "https://greasyfork.org/zh-TW/scripts/565367-%E5%9D%82%E9%81%93%E5%B7%A5%E5%85%B7%E7%AE%B1"
 },
 {
-  name: "ネットニュース写真DL 米醬圖片一鍵下載",
+  name: "⭐ミッチャン画像ダウンローダ",
   desc: "[拡張機能] chromewebstore.google.com",
-  detail: "ネットニュースウェブページから画像を一括ダウンロードします (最大解像度)。",
+  detail: "ニュースページに表示されているすべての画像をワンクリックでダウンロードする事が出来るようになります(最大解像度)。",
   tags: ["tool"],
   groups: [],
   link: "https://chromewebstore.google.com/detail/modelpress-image-download/nepeemhbchedjbebdekhpkhknljppmif"
@@ -692,7 +828,7 @@ var toolConfig = [
   link: "https://www.tv-ranking.com/"
 },
 {
-  name: "ラジオ",
+  name: "⭐ラジオ",
   desc: "radio.nogi46.me",
   detail: "・リアルタイム\n・タイムフリー機能",
   tags: ["公式","tool"],
@@ -708,12 +844,36 @@ var toolConfig = [
   link: "https://insta.refetter.com/"
 },
 {
+  name: "乃木坂46 卒業メンバー SNS",
+  desc: "Telegram チャンネル",
+  detail: "元·乃木坂46関連のニュースボット",
+  tags: ["公式","sns","information","photo"],
+  groups: [],
+  link: "https://t.me/nogizaka46_grad_SNS"
+},
+{
   name: "COSTUME | 櫻坂46公式サイト",
   desc: "sakurazaka46.com",
   detail: "櫻坂46公式衣裝",
   tags: ["clothes","公式"],
   groups: ["saku"],
   link: "https://sakurazaka46.com/s/s46/page/costume?ima=0000"
+},
+{
+  name: "東京パソコンクラブ",
+  desc: "unityroom.com",
+  detail: "番組内で作ったゲーム",
+  tags: ["公式","game"],
+  groups: ["nogi"],
+  link: "https://unityroom.com/users/cnt54a3dio78skjxv9fe"
+},
+{
+  name: "FM-FUJI \"STUDIO ViViD\"",
+  desc: "twitcasting.tv",
+  detail: "FM FUJI の公式ツイキャスラジオ配信ルーム",
+  tags: ["公式","streaming"],
+  groups: ["nogi"],
+  link: "https://twitcasting.tv/c:fmfuji_twitcasting/"
 },
 {
   name: "字幕処理ツール",
