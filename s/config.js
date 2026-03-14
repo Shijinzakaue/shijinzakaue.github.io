@@ -235,7 +235,7 @@ var toolConfig = [
   {
     "name": "⭐坂道46LOVER",
     "desc": "nogi46p.com",
-    "detail": "坂道46LOVERは、アイドルグループ 乃木坂46、欅坂46、日向坂46の最新情報を発信するニュースサイトです。\n・登場・出演情報\n・ネット・公式ニュース\n\n・[坂道46LOVER ◢⁴⁶ / X](https://x.com/nogi46press)\n・RSSLink：[https://nogi46p.com/feed/rdf](https://nogi46p.com/feed)",
+    "detail": "坂道46LOVERは、アイドルグループ 乃木坂46、櫻坂46、日向坂46の最新情報を発信するニュースサイトです。\n・登場・出演情報\n・ネット・公式ニュース\n\n・[坂道46LOVER ◢⁴⁶ / X](https://x.com/nogi46press)\n・RSSLink：[https://nogi46p.com/feed/rdf](https://nogi46p.com/feed)",
     "tags": [
       "公式",
       "information",
@@ -267,7 +267,7 @@ var toolConfig = [
   {
     "name": "⭐乃木坂46データベース",
     "desc": "n46db.com",
-    "detail": "坂道グループのメンバーのプロフォールや参加曲、フォーメーション、楽曲の作曲者・編曲者、MVや個人PVの監督などの情報のデータベースです。\n\n・[About this website](https://n46db.com/about.php)",
+    "detail": "坂道グループのメンバーのプロフィールや参加曲、フォーメーション、楽曲の作曲者・編曲者、MVや個人PVの監督などの情報のデータベースです。\n\n・[About this website](https://n46db.com/about.php)",
     "tags": [
       "information",
       "song",
