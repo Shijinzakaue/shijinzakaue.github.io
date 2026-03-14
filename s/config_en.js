@@ -1,28 +1,28 @@
-var lastUpdated = "2026-03-14 23:25";
+var lastUpdated = "2026-03-14 23:35";
 
 var officialConfig = [
   {
-    "name": "乃木坂46 公式サイト",
+    "name": "Nogizaka46 Official Site",
     "link": "https://www.nogizaka46.com",
     "group": "nogi"
   },
   {
-    "name": "乃木坂46 ニュース",
+    "name": "Nogizaka46 News",
     "link": "https://www.nogizaka46.com/s/n46/news/list",
     "group": "nogi"
   },
   {
-    "name": "乃木坂46 スケジュール",
+    "name": "Nogizaka46 Schedule",
     "link": "https://www.nogizaka46.com/s/n46/media/list",
     "group": "nogi"
   },
   {
-    "name": "乃木坂46 メンバー",
+    "name": "Nogizaka46 Members",
     "link": "https://www.nogizaka46.com/s/n46/search/artist",
     "group": "nogi"
   },
   {
-    "name": "乃木坂46 ブログ",
+    "name": "Nogizaka46 Blog",
     "link": "https://www.nogizaka46.com/s/n46/diary/MEMBER",
     "group": "nogi"
   },
@@ -32,12 +32,12 @@ var officialConfig = [
     "group": "nogi"
   },
   {
-    "name": "乃木坂46 Mobile",
+    "name": "Nogizaka46 Mobile",
     "link": "https://sp.nogizaka46.com",
     "group": "nogi"
   },
   {
-    "name": "のぎ動画",
+    "name": "NogiDoga",
     "link": "https://nogidoga.com/",
     "group": "nogi"
   },
@@ -47,42 +47,42 @@ var officialConfig = [
     "group": "nogi"
   },
   {
-    "name": "ミーグリ/CD購入イベント",
+    "name": "Meet & Greet / CD Purchase Event",
     "link": "https://www.nogizaka46.com/s/n46/live?ima=0000&ct=HANDSHAKE",
     "group": "nogi"
   },
   {
-    "name": "乃木坂46 メッセージ",
+    "name": "Nogizaka46 Message",
     "link": "https://message.nogizaka46.com/",
     "group": "nogi"
   },
   {
-    "name": "乃木坂工事中",
+    "name": "Nogizaka Kojichu",
     "link": "https://tv-aichi.co.jp/nogi-kou/",
     "group": "nogi"
   },
   {
-    "name": "櫻坂46 公式サイト",
+    "name": "Sakurazaka46 Official Site",
     "link": "https://sakurazaka46.com/s/s46/",
     "group": "saku"
   },
   {
-    "name": "櫻坂46 ニュース",
+    "name": "Sakurazaka46 News",
     "link": "https://sakurazaka46.com/s/s46/news/list",
     "group": "saku"
   },
   {
-    "name": "櫻坂46 スケジュール",
+    "name": "Sakurazaka46 Schedule",
     "link": "https://sakurazaka46.com/s/s46/media/list",
     "group": "saku"
   },
   {
-    "name": "櫻坂46 メンバー",
+    "name": "Sakurazaka46 Members",
     "link": "https://sakurazaka46.com/s/s46/search/artist",
     "group": "saku"
   },
   {
-    "name": "櫻坂46 ブログ",
+    "name": "Sakurazaka46 Blog",
     "link": "https://sakurazaka46.com/s/s46/diary/blog/list",
     "group": "saku"
   },
@@ -97,52 +97,52 @@ var officialConfig = [
     "group": "saku"
   },
   {
-    "name": "マネージャー日記",
+    "name": "Manager's Diary",
     "link": "https://sakurazaka46.com/s/s46/diary/managers_diary/list",
     "group": "saku"
   },
   {
-    "name": "さくみみ",
+    "name": "SAKUMIMI",
     "link": "https://sakurazaka46.com/s/s46/diary/radio",
     "group": "saku"
   },
   {
-    "name": "ミーグリ",
+    "name": "Meet & Greet",
     "link": "https://sakurazaka46.com/s/s46/diary/event_page/list?ima=0000",
     "group": "saku"
   },
   {
-    "name": "櫻坂46 メッセージ",
+    "name": "Sakurazaka46 Message",
     "link": "https://message.sakurazaka46.com/",
     "group": "saku"
   },
   {
-    "name": "そこ曲がったら、櫻坂？",
+    "name": "Soko Magattara, Sakurazaka?",
     "link": "https://www.tv-tokyo.co.jp/keyaki/",
     "group": "saku"
   },
   {
-    "name": "日向坂46 公式サイト",
+    "name": "Hinatazaka46 Official Site",
     "link": "https://www.hinatazaka46.com/s/official/",
     "group": "hina"
   },
   {
-    "name": "日向坂46 ニュース",
+    "name": "Hinatazaka46 News",
     "link": "https://www.hinatazaka46.com/s/official/news/list",
     "group": "hina"
   },
   {
-    "name": "日向坂46 スケジュール",
+    "name": "Hinatazaka46 Schedule",
     "link": "https://www.hinatazaka46.com/s/official/media/list",
     "group": "hina"
   },
   {
-    "name": "日向坂46 メンバー",
+    "name": "Hinatazaka46 Members",
     "link": "https://www.hinatazaka46.com/s/official/search/artist",
     "group": "hina"
   },
   {
-    "name": "日向坂46 ブログ",
+    "name": "Hinatazaka46 Blog",
     "link": "https://www.hinatazaka46.com/s/official/diary/member",
     "group": "hina"
   },
@@ -152,32 +152,32 @@ var officialConfig = [
     "group": "hina"
   },
   {
-    "name": "マイページ",
+    "name": "My Page",
     "link": "https://www.hinatazaka46.com/s/official/mypage",
     "group": "hina"
   },
   {
-    "name": "ひなたぼっこ日記",
+    "name": "Hinatabokko Diary",
     "link": "https://www.hinatazaka46.com/s/official/diary/manager/list",
     "group": "hina"
   },
   {
-    "name": "日向坂46 ファンクラブ",
+    "name": "Hinatazaka46 Fan Club",
     "link": "https://www.hinatazaka46.com/s/official/page/about_fanclub",
     "group": "hina"
   },
   {
-    "name": "ミーグリ",
+    "name": "Meet & Greet",
     "link": "https://www.hinatazaka46.com/s/official/diary/event/list?ima=0000",
     "group": "hina"
   },
   {
-    "name": "日向坂46 メッセージ",
+    "name": "Hinatazaka46 Message",
     "link": "https://message.hinatazaka46.com/",
     "group": "hina"
   },
   {
-    "name": "日向坂で会いましょう",
+    "name": "Hinatazaka de Aimashou",
     "link": "https://www.tv-tokyo.co.jp/hinatazaka/",
     "group": "hina"
   }
@@ -1768,24 +1768,24 @@ var toolConfig = [
 ];
 
 var tagLabels = {
-  "公式": "公式",
-  "item": "アイテム・愛用品",
-  "clothes": "私服・衣装・制服",
-  "place": "場所・聖地巡禮",
+  "公式": "Official",
+  "item": "Favorite Items / Cosmetics",
+  "clothes": "Casual Wear / Costumes / Uniforms",
+  "place": "Places / Pilgrimage Spots",
   "sns": "SNS",
-  "blog": "ブログ",
-  "meet": "握手・ミーグリ",
-  "information": "個人・グループ情報",
-  "song": "楽曲資料",
-  "sale": "売上",
-  "game": "ゲーム",
-  "streaming": "ストリーミング・配信",
-  "photo": "写真",
-  "message": "メッセージ",
-  "create": "作成ツール",
-  "oshi": "推し活",
-  "ranking": "ランキング",
-  "forum": "まとめ・RSS",
-  "live": "ライブ・セトリ",
-  "tool": "関連ツール"
+  "blog": "Blog",
+  "meet": "Handshake / Meet & Greet",
+  "information": "Member / Group Info",
+  "song": "Song Data",
+  "sale": "Sales",
+  "game": "Games",
+  "streaming": "Streaming / Live",
+  "photo": "Photos",
+  "message": "Messages",
+  "create": "Creation Tools",
+  "oshi": "Oshi Activities",
+  "ranking": "Rankings",
+  "forum": "Roundups / RSS",
+  "live": "Live / Setlists",
+  "tool": "Related Tools"
 };
