@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-15 02:13";
+var lastUpdated = "2026-03-15 22:10";
 
 var officialConfig = [
   {
@@ -1565,7 +1565,7 @@ var toolConfig = [
   {
     "name": "⭐坂道46まとめ",
     "desc": "部落格相關工具",
-    "detail": "App中包含最新新聞與部落格更新及まとめ統整。\n\n・[iOS](https://apps.apple.com/jp/app/%E5%9D%82%E9%81%9346%E3%81%BE%E3%81%A8%E3%82%81/id1508350322)・[Android](https://play.google.com/store/apps/details?id=stephennn.blogdownload)\n・[Telegram Bot](https://t.me/NogiBlog_bot)：Showroom開播通知會付m3u8連結\n・Telegram 個別頻道\n　・[乃木坂46ブログ](https://t.me/s/nogizaka_blog) 2022-03-02~\n　・[櫻坂46ブログ](https://t.me/s/keyakizaka46blog) 2020-07-08~\n　・[日向坂46ブログ](https://t.me/s/hinatazakablog) 2021-02-23~",
+    "detail": "App中包含最新新聞與部落格更新及まとめ統整。\n\n・[iOS](https://apps.apple.com/jp/app/%E5%9D%82%E9%81%9346%E3%81%BE%E3%81%A8%E3%82%81/id1508350322)・[Android](https://play.google.com/store/apps/details?id=stephennn.blogdownload)\n・[Telegram Bot](https://t.me/NogiBlog_bot)：另有Showroom開播通知\n・Telegram 個別頻道\n　・[乃木坂46ブログ](https://t.me/s/nogizaka_blog) 2022-03-02~\n　・[櫻坂46ブログ](https://t.me/s/keyakizaka46blog) 2020-07-08~\n　・[日向坂46ブログ](https://t.me/s/hinatazakablog) 2021-02-23~",
     "tags": [
       "公式",
       "sns",
@@ -1772,19 +1772,19 @@ var tagLabels = {
   "clothes": "私服・衣服・制服",
   "place": "地點・聖地巡禮",
   "sns": "SNS",
- "blog": "Blog",
+  "blog": "Blog",
   "meet": "握手・線握",
   "information": "個人・團體資料",
   "song": "歌曲資料",
   "sale": "銷量",
- "game": "遊戲", 
+  "game": "遊戲",
   "streaming": "直播・串流",
   "photo": "照片・生寫",
   "message": "Message",
   "create": "生成工具",
-  "oshi": "推活相關", 
-  "ranking": "排行", 
+  "oshi": "推活相關",
+  "ranking": "排行",
   "forum": "論壇・RSS・彙總",
   "live": "演唱會・歌單",
-  "tool": "相關工具",
+  "tool": "相關工具"
 };
