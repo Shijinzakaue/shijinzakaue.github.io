@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-14 23:35";
+var lastUpdated = "2026-03-15 22:08";
 
 var officialConfig = [
   {
@@ -1565,7 +1565,7 @@ var toolConfig = [
   {
     "name": "⭐坂道46まとめ",
     "desc": "ブログ関連ツール",
-    "detail": "\"Sakamichi 46 Summary\" is an app that summarizes the latest news and blog updates. There is a newspaper page and a blog page, and push notifications are sent when updates are made, so you can know the latest information immediately.\n\n・[iOS](https://apps.apple.com/jp/app/%E5%9D%82%E9%81%9346%E3%81%BE%E3%81%A8%E3%82%81/id1508350322)・[Android](https://play.google.com/store/apps/details?id=stephennn.blogdownload)\n・[Telegram Bot](https://t.me/NogiBlog_bot): Showroom delivery notification m3u8 link included\n・Telegram channel\n・[Nogizaka46 Blog](https://t.me/s/nogizaka_blog) 2022-03-02~\n・[Sakurazaka46 Blog](https://t.me/s/keyakizaka46blog) 2020-07-08~\n・[Hinatazaka46 Blog](https://t.me/s/hinatazakablog) 2021-02-23~",
+    "detail": "\"Sakamichi 46 Summary\" is an app that summarizes the latest news and blog updates. There is a newspaper page and a blog page, and push notifications are sent when updates are made, so you can know the latest information immediately.\n\n・[iOS](https://apps.apple.com/jp/app/%E5%9D%82%E9%81%9346%E3%81%BE%E3%81%A8%E3%82%81/id1508350322)・[Android](https://play.google.com/store/apps/details?id=stephennn.blogdownload)\n・[Telegram Bot](https://t.me/NogiBlog_bot): Showroom push notifications\n・Telegram channel\n・[Nogizaka46 Blog](https://t.me/s/nogizaka_blog) 2022-03-02~\n・[Sakurazaka46 Blog](https://t.me/s/keyakizaka46blog) 2020-07-08~\n・[Hinatazaka46 Blog](https://t.me/s/hinatazakablog) 2021-02-23~",
     "tags": [
       "公式",
       "sns",
