@@ -256,7 +256,7 @@
         const REPO = 'shijinzakaue.github.io';
         const BASE_PATH = 's';
 
-        const tagLabels = {
+        const defaultTagLabels = {
             "\u516c\u5f0f": "\u516c\u5f0f",
             "item": "\u30a2\u30a4\u30c6\u30e0\u30fb\u611b\u7528\u54c1",
             "clothes": "\u79c1\u670d\u30fb\u8863\u88c5\u30fb\u5236\u670d",
@@ -285,6 +285,7 @@
         };
 
         let currentSha = '';
+        let currentTagLabels = { ...defaultTagLabels };
         let dataStore = { officialConfig: [], toolConfig: [] };
 
         async function fetchFile() {
@@ -317,11 +318,14 @@
                 const fn = new Function(`
                     var officialConfig, toolConfig, tagLabels, lastUpdated;
                     ${str}
-                    return { officialConfig, toolConfig };
+                    return { officialConfig, toolConfig, tagLabels };
                 `);
                 const r = fn();
                 dataStore.officialConfig = Array.isArray(r.officialConfig) ? r.officialConfig : [];
                 dataStore.toolConfig     = Array.isArray(r.toolConfig)     ? r.toolConfig     : [];
+                currentTagLabels = (r.tagLabels && typeof r.tagLabels === 'object')
+                    ? r.tagLabels
+                    : { ...defaultTagLabels };
             } catch (e) { alert('\u89e3\u6790\u5931\u6557\uff1a' + e.message); }
         }
 
@@ -518,7 +522,7 @@
             // tags
             const tg = document.createElement('div'); tg.className = 'form-group';
             tg.innerHTML = `<label>\u6a19\u7c64</label><div class="check-grid"></div>`;
-            Object.entries(tagLabels).forEach(([k,v]) => {
+            Object.entries(currentTagLabels).forEach(([k,v]) => {
                 const lbl = document.createElement('label'); lbl.className = 'check-item';
                 const cb  = document.createElement('input'); cb.type = 'checkbox';
                 if (item.tags?.includes(k)) cb.checked = true;
@@ -569,7 +573,7 @@
             const _p = n => String(n).padStart(2,'0');
             const _jst = new Date(Date.now() + 9 * 60 * 60 * 1000);
             const _ts = `${_jst.getUTCFullYear()}-${_p(_jst.getUTCMonth()+1)}-${_p(_jst.getUTCDate())} ${_p(_jst.getUTCHours())}:${_p(_jst.getUTCMinutes())}`;
-            const newContent = `var lastUpdated = "${_ts}";\n\nvar officialConfig = ${JSON.stringify(dataStore.officialConfig, null, 2)};\n\nvar toolConfig = ${JSON.stringify(dataStore.toolConfig, null, 2)};\n\nvar tagLabels = ${JSON.stringify(tagLabels, null, 2)};`;
+            const newContent = `var lastUpdated = "${_ts}";\n\nvar officialConfig = ${JSON.stringify(dataStore.officialConfig, null, 2)};\n\nvar toolConfig = ${JSON.stringify(dataStore.toolConfig, null, 2)};\n\nvar tagLabels = ${JSON.stringify(currentTagLabels, null, 2)};`;
             const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${BASE_PATH}/${file}`;
             try {
                 const res = await fetch(url, {
