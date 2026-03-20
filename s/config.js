@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-20 16:22";
+var lastUpdated = "2026-03-20 16:44";
 
 var officialConfig = [
   {
@@ -1770,6 +1770,23 @@ var toolConfig = [
       "nogi"
     ],
     "link": "https://twitcasting.tv/c:fmfuji_twitcasting/"
+  },
+  {
+    "name": "Aidoru Online",
+    "desc": "aidoru-online.me",
+    "link": "https://aidoru-online.me/index.php",
+    "detail": "シードリソースサイト、互助の原則を厳守して使用してください。",
+    "tags": [
+      "公式",
+      "streaming",
+      "photo",
+      "song"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
   },
   {
     "name": "字幕処理ツール",
