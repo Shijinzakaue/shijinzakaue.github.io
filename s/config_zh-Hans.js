@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-20 16:56";
+var lastUpdated = "2026-03-20 19:06";
 
 var officialConfig = [
   {
@@ -1430,7 +1430,8 @@ var toolConfig = [
     "detail": "线上见面会实时等待人数",
     "tags": [
       "公式",
-      "meet"
+      "meet",
+      "ranking"
     ],
     "groups": [
       "nogi",
