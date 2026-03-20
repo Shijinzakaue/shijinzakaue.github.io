@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-20 16:26";
+var lastUpdated = "2026-03-20 16:50";
 
 var officialConfig = [
   {
@@ -1770,6 +1770,44 @@ var toolConfig = [
       "nogi"
     ],
     "link": "https://twitcasting.tv/c:fmfuji_twitcasting/"
+  },
+  {
+    "name": "乃木坂46 Archive SITE",
+    "desc": "files.nogizaka46.cc",
+    "link": "https://files.nogizaka46.cc/",
+    "detail": "乃木坂46 資源存檔站",
+    "tags": [
+      "streaming",
+      "photo",
+      "song"
+    ],
+    "groups": [
+      "nogi"
+    ]
+  },
+  {
+    "name": "上行之坂字幕組",
+    "desc": "ngzketm.top",
+    "link": "https://ngzketm.top/",
+    "detail": "",
+    "tags": [
+      "streaming"
+    ],
+    "groups": [
+      "nogi"
+    ]
+  },
+  {
+    "name": "真的晒字幕組",
+    "desc": "h46sub.cc",
+    "link": "https://h46sub.cc/",
+    "detail": "",
+    "tags": [
+      "streaming"
+    ],
+    "groups": [
+      "hina"
+    ]
   },
   {
     "name": "字幕匯出工具",
