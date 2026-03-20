@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-20 15:57";
+var lastUpdated = "2026-03-20 16:22";
 
 var officialConfig = [
   {
@@ -1612,6 +1612,17 @@ var toolConfig = [
       "hina"
     ],
     "link": ""
+  },
+  {
+    "name": "Rakuten Ticket 自動入力",
+    "desc": "rtkt.shouko.tw",
+    "link": "https://rtkt.shouko.tw/",
+    "detail": "",
+    "tags": [
+      "tool",
+      "oshi"
+    ],
+    "groups": []
   },
   {
     "name": "⭐坂道ツールBOX",
