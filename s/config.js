@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-20 16:44";
+var lastUpdated = "2026-03-20 19:01";
 
 var officialConfig = [
   {
@@ -1277,22 +1277,6 @@ var toolConfig = [
     "link": "https://x.com/mitsu0227"
   },
   {
-    "name": "坂道ブログ翻訳",
-    "desc": "blog.sakamichi-tools.cn",
-    "detail": "・ブログ中国語翻訳\n・[ブログ統計分析](https://blog.sakamichi-tools.cn/stats)\n・ブログ写真ダウンロード\n\n更新は通常、公式サイトより30分遅れです。",
-    "tags": [
-      "blog",
-      "photo",
-      "ranking"
-    ],
-    "groups": [
-      "nogi",
-      "saku",
-      "hina"
-    ],
-    "link": "https://blog.sakamichi-tools.cn/#all"
-  },
-  {
     "name": "Instagram Archive",
     "desc": "ins.sakamichi-tools.cn",
     "detail": "メンバーのInstagram內容アーカイブ。メンバーのストーリーや投稿を閲覧・検索・ダウンロードでき、アカウントや時間でフィルタリングできます。",
@@ -1430,7 +1414,8 @@ var toolConfig = [
     "detail": "ミーグリリアルタイム待機人数",
     "tags": [
       "公式",
-      "meet"
+      "meet",
+      "ranking"
     ],
     "groups": [
       "nogi",
