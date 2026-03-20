@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-20 16:50";
+var lastUpdated = "2026-03-20 19:06";
 
 var officialConfig = [
   {
@@ -1430,7 +1430,8 @@ var toolConfig = [
     "detail": "線上見面會實時等待人數",
     "tags": [
       "公式",
-      "meet"
+      "meet",
+      "ranking"
     ],
     "groups": [
       "nogi",
