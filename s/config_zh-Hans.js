@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-20 16:55";
+var lastUpdated = "2026-03-20 16:56";
 
 var officialConfig = [
   {
@@ -1781,6 +1781,30 @@ var toolConfig = [
     ],
     "groups": [
       "nogi"
+    ]
+  },
+  {
+    "name": "上行之坂字幕组",
+    "desc": "ngzketm.top",
+    "link": "https://ngzketm.top/",
+    "detail": "",
+    "tags": [
+      "streaming"
+    ],
+    "groups": [
+      "nogi"
+    ]
+  },
+  {
+    "name": "真的晒字幕组",
+    "desc": "h46sub.cc",
+    "link": "https://h46sub.cc/",
+    "detail": "",
+    "tags": [
+      "streaming"
+    ],
+    "groups": [
+      "hina"
     ]
   },
   {
