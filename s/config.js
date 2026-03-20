@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-15 22:08";
+var lastUpdated = "2026-03-20 15:57";
 
 var officialConfig = [
   {
@@ -1192,6 +1192,21 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://msg.nogi46.me/stats"
+  },
+  {
+    "name": "メッセージクローラ",
+    "desc": "github.com",
+    "link": "",
+    "detail": "・[proshunsuke/colmsg](https://github.com/proshunsuke/colmsg)\n　・[ann-nogk/NogkSaver](https://github.com/ann-nogk/NogkSaver)：colmsgGUI\n・[limangox/sakamsg](https://github.com/limangox/sakamsg)\n・[easonyen16/b4nd-crawler](https://github.com/easonyen16/b4nd-crawler)",
+    "tags": [
+      "tool",
+      "message"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
   },
   {
     "name": "こけし",
