@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-20 16:25";
+var lastUpdated = "2026-03-20 16:55";
 
 var officialConfig = [
   {
@@ -1770,6 +1770,18 @@ var toolConfig = [
       "nogi"
     ],
     "link": "https://twitcasting.tv/c:fmfuji_twitcasting/"
+  },
+  {
+    "name": "乃木坂46 Achieve SITE",
+    "desc": "files.nogizaka46.cc",
+    "link": "https://files.nogizaka46.cc/",
+    "detail": "",
+    "tags": [
+      "streaming"
+    ],
+    "groups": [
+      "nogi"
+    ]
   },
   {
     "name": "字幕汇出工具",
