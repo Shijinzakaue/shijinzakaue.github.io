@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-20 19:01";
+var lastUpdated = "2026-03-21 22:25";
 
 var officialConfig = [
   {
@@ -1622,6 +1622,17 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://greasyfork.org/zh-TW/scripts/565367-%E5%9D%82%E9%81%93%E5%B7%A5%E5%85%B7%E7%AE%B1"
+  },
+  {
+    "name": "SHOWROOM player",
+    "desc": "[拡張機能] greasyfork.org",
+    "link": "https://greasyfork.org/zh-TW/scripts/570529-showroom-player",
+    "detail": "・SHOWROOM ポップアップ\n・PotPlayer 遷移\n・m3u8 リンクコピー",
+    "tags": [
+      "tool",
+      "streaming"
+    ],
+    "groups": []
   },
   {
     "name": "⭐ミッチャン画像ダウンローダ",
