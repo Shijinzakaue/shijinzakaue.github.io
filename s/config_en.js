@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-20 19:05";
+var lastUpdated = "2026-03-21 22:30";
 
 var officialConfig = [
   {
@@ -1611,7 +1611,7 @@ var toolConfig = [
   },
   {
     "name": "⭐坂道ツールBOX",
-    "desc": "[拡張機能] greasyfork.org",
+    "desc": "[extension] greasyfork.org",
     "detail": "・Download resources from official website**\n・“Return to top” function of Sakurazaka46/Hinatazaka46 official website\n・Optimization of the header logo display of Hinatazaka46 official website\n・Removal of restrictions on official website**\n・Lazy loading of images",
     "tags": [
       "tool"
@@ -1624,8 +1624,21 @@ var toolConfig = [
     "link": "https://greasyfork.org/zh-TW/scripts/565367-%E5%9D%82%E9%81%93%E5%B7%A5%E5%85%B7%E7%AE%B1"
   },
   {
+    "name": "SHOWROOM player",
+    "desc": "[extension] greasyfork.org",
+    "link": "https://greasyfork.org/zh-TW/scripts/570529-showroom-player",
+    "detail": "・Floating window within SHOWROOM live rooms\n・PotPlayer shortcut jump\n・Quick copy m3u8 links",
+    "tags": [
+      "streaming",
+      "tool"
+    ],
+    "groups": [
+      "nogi"
+    ]
+  },
+  {
     "name": "⭐ミッチャン画像ダウンローダ",
-    "desc": "[拡張機能] chromewebstore.google.com",
+    "desc": "[extension] chromewebstore.google.com",
     "detail": "You will be able to download all images displayed on the news page with one click (maximum resolution).",
     "tags": [
       "tool"
@@ -1635,7 +1648,7 @@ var toolConfig = [
   },
   {
     "name": "Rajiko",
-    "desc": "[拡張機能] chromewebstore.google.com",
+    "desc": "[extension] chromewebstore.google.com",
     "detail": "Rajiko is a tool to remove geolocation restrictions on radiko.jp! Enjoy radio from Osaka, Nagasaki, and overseas such as Tokyo and Aomori!\nUnlock radiko.jp and listen to radio from all over Japan, both domestically and internationally.",
     "tags": [
       "tool"
