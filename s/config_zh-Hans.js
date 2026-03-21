@@ -1831,6 +1831,7 @@ var toolConfig = [
 ];
 
 var tagLabels = {
+  "公式": "公式",
   "item": "单品・爱用品",
   "clothes": "私服・衣服・制服",
   "place": "地点・圣地巡礼",
