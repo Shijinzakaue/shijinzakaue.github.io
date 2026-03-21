@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-20 19:06";
+var lastUpdated = "2026-03-21 22:48";
 
 var officialConfig = [
   {
@@ -1640,6 +1640,17 @@ var toolConfig = [
     "link": "https://greasyfork.org/zh-TW/scripts/565367-%E5%9D%82%E9%81%93%E5%B7%A5%E5%85%B7%E7%AE%B1"
   },
   {
+    "name": "SHOWROOM player",
+    "desc": "[扩充功能] greasyfork.org",
+    "link": "https://greasyfork.org/zh-TW/scripts/570529-showroom-player",
+    "detail": "・SHOWROOM 直播间内浮窗\n・Potplayer快捷跳转\n・快速复制m3u8连结",
+    "tags": [
+      "streaming",
+      "tool"
+    ],
+    "groups": []
+  },
+  {
     "name": "⭐米酱图片一键下载",
     "desc": "[扩充功能] chromewebstore.google.com",
     "detail": "一键批量下载当前新闻网页的相关图片（最大解析度）。 ",
@@ -1805,6 +1816,23 @@ var toolConfig = [
       "streaming"
     ],
     "groups": [
+      "hina"
+    ]
+  },
+  {
+    "name": "Aidoru Online",
+    "desc": "aidoru-online.me",
+    "link": "https://aidoru-online.me/index.php",
+    "detail": "日本偶像种子资源网，请遵守互利原则使用。",
+    "tags": [
+      "公式",
+      "streaming",
+      "photo",
+      "song"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
       "hina"
     ]
   },
