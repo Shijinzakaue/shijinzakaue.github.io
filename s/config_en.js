@@ -1792,7 +1792,7 @@ var toolConfig = [
 ];
 
 var tagLabels = {
-  "公式": "Official",
+  "公式": "公式",
   "item": "Favorite Items / Cosmetics",
   "clothes": "Casual Wear / Costumes / Uniforms",
   "place": "Places / Pilgrimage Spots",
