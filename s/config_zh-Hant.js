@@ -1833,6 +1833,7 @@ var toolConfig = [
 ];
 
 var tagLabels = {
+  "公式": "公式", 
   "item": "單品・愛用品",
   "clothes": "私服・衣服・制服",
   "place": "地點・聖地巡禮",
