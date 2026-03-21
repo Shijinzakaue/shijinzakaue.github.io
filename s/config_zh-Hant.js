@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-20 19:06";
+var lastUpdated = "2026-03-21 22:50";
 
 var officialConfig = [
   {
@@ -1640,6 +1640,17 @@ var toolConfig = [
     "link": "https://greasyfork.org/zh-TW/scripts/565367-%E5%9D%82%E9%81%93%E5%B7%A5%E5%85%B7%E7%AE%B1"
   },
   {
+    "name": "SHOWROOM player",
+    "desc": "[擴充功能] greasyfork.org",
+    "link": "https://greasyfork.org/zh-TW/scripts/570529-showroom-player",
+    "detail": "・SHOWROOM 直播間內浮窗\n・Potplayer快捷跳轉\n・快速複製m3u8連結",
+    "tags": [
+      "tool",
+      "streaming"
+    ],
+    "groups": []
+  },
+  {
     "name": "⭐米醬圖片一鍵下載",
     "desc": "[擴充功能] chromewebstore.google.com",
     "detail": "一鍵批量下載當前新聞網頁的相關圖片（最大解析度）。",
@@ -1811,6 +1822,23 @@ var toolConfig = [
     ]
   },
   {
+    "name": "Aidoru Online",
+    "desc": "aidoru-online.me",
+    "link": "https://aidoru-online.me/index.php",
+    "detail": "日本偶像種子資源網，請遵守互利原則使用。",
+    "tags": [
+      "公式",
+      "streaming",
+      "photo",
+      "song"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
+  },
+  {
     "name": "字幕匯出工具",
     "desc": "photocard.sakamichi-tools.cn",
     "detail": "・格式轉換: 支援 JSON (CapCut/Whisper), SRT, ASS, TXT 多種格式的轉換。\n・字幕合併: 智慧合併時間軸相近的短句，優化斷句，尤其針對日語語氣詞和短句進行了優化。\n・文本處理: 提供大量刪除日語語氣詞、文字替換等功能。\n・[SRT/ASS 時間軸修復工具](https://photocard.sakamichi-tools.cn/srt_fixer.html)\n・[字幕FAD特效工具](https://photocard.sakamichi-tools.cn/fad_tool.html)",
@@ -1833,7 +1861,7 @@ var toolConfig = [
 ];
 
 var tagLabels = {
-  "公式": "公式", 
+  "公式": "公式",
   "item": "單品・愛用品",
   "clothes": "私服・衣服・制服",
   "place": "地點・聖地巡禮",
