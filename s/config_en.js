@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-21 22:32";
+var lastUpdated = "2026-03-21 22:45";
 
 var officialConfig = [
   {
@@ -1768,6 +1768,23 @@ var toolConfig = [
       "nogi"
     ],
     "link": "https://twitcasting.tv/c:fmfuji_twitcasting/"
+  },
+  {
+    "name": "Aidoru Online",
+    "desc": "aidoru-online.me",
+    "link": "https://aidoru-online.me/index.php",
+    "detail": "Japan Idol Seed Resource Site—please follow the principle of mutual benefit when using.",
+    "tags": [
+      "公式",
+      "song",
+      "streaming",
+      "photo"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
   },
   {
     "name": "字幕処理ツール",
