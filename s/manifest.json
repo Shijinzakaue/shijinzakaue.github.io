@@ -1,6 +1,7 @@
 {
   "name": "坂道TOOLKIT",
   "short_name": "46KT",
+  "version": "1.3.0",
   "start_url": "https://shijinzakaue.github.io/s/46toolkit.html",
   "display": "standalone",
   "background_color": "#ffffff",
