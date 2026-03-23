@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-21 22:45";
+var lastUpdated = "2026-03-23 23:13";
 
 var officialConfig = [
   {
@@ -1165,6 +1165,23 @@ var toolConfig = [
       "nogi"
     ],
     "link": "https://nekojitachamo.livedoor.blog/"
+  },
+  {
+    "name": "ヨヨりんご46",
+    "desc": "x.com/yoyokaki46",
+    "link": "https://x.com/yoyokaki46",
+    "detail": "・Nogizaka46 SNS retweet\n・Sakamichi Magazine",
+    "tags": [
+      "公式",
+      "blog",
+      "sns",
+      "photo"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
   },
   {
     "name": "沈黙した村人よ🍣",
