@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-23 23:13";
+var lastUpdated = "2026-03-26 21:14";
 
 var officialConfig = [
   {
@@ -832,6 +832,22 @@ var toolConfig = [
     "link": "https://the0ries.com/category/nogizaka/"
   },
   {
+    "name": "⭐Sakamichi Blog Archive",
+    "desc": "sakamichi.co",
+    "detail": "・Sakamichi blog image storage site\n・We store promotional photos of members other than Nogizaka46 in high quality.\n・Nogizaka46: July 2017 -\n・Keyakizaka46: Opened (November 2015) - Name changed (October 2020)\n・Hinatazaka 46: Opened as Keyakizaka 46 (August 2016) -\n・Sakurazaka46: Name change (October 2020) -\n\n・[坂道ブログ画像BOT / X](https://x.com/foxtrotal)",
+    "tags": [
+      "blog",
+      "photo",
+      "公式"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ],
+    "link": "https://www.sakamichi.co/"
+  },
+  {
     "name": "⭐乃木地圖 | Nogimap",
     "desc": "nogimap.com",
     "detail": "Nogimap is a community-maintained mapping project that aims to make pilgrimages to holy sites more convenient.",
@@ -933,22 +949,6 @@ var toolConfig = [
     "link": "https://tools.yotujoho.com/"
   },
   {
-    "name": "⭐Sakamichi Blog Archive",
-    "desc": "sakamichi.co",
-    "detail": "・Sakamichi blog image storage site\n・We store promotional photos of members other than Nogizaka46 in high quality.\n・Nogizaka46: July 2017 -\n・Keyakizaka46: Opened (November 2015) - Name changed (October 2020)\n・Hinatazaka 46: Opened as Keyakizaka 46 (August 2016) -\n・Sakurazaka46: Name change (October 2020) -\n\n・[坂道ブログ画像BOT / X](https://x.com/foxtrotal)",
-    "tags": [
-      "blog",
-      "photo",
-      "公式"
-    ],
-    "groups": [
-      "nogi",
-      "saku",
-      "hina"
-    ],
-    "link": "https://www.sakamichi.co/"
-  },
-  {
     "name": "fumi Diary 2号店: ロケ地ノート",
     "desc": "blog.livedoor.jp/fumichen2",
     "detail": "Sakurazaka46 filming location",
@@ -999,6 +999,21 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://hinatadic.blog.jp/"
+  },
+  {
+    "name": "UNI'S ON AIR Strategy Wiki",
+    "desc": "gamerch.com/unis-on-air",
+    "link": "https://gamerch.com/unis-on-air/",
+    "detail": "",
+    "tags": [
+      "公式",
+      "game",
+      "oshi"
+    ],
+    "groups": [
+      "saku",
+      "hina"
+    ]
   },
   {
     "name": "⭐ngzkHandshakeTable",
