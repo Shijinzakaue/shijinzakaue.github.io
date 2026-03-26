@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-26 21:10";
+var lastUpdated = "2026-03-26 21:15";
 
 var officialConfig = [
   {
@@ -1016,7 +1016,7 @@ var toolConfig = [
     "link": "https://x.com/pao_paobon"
   },
   {
-    "name": "UNI's ON AIR 攻略Wiki",
+    "name": "UNI'S ON AIR 攻略Wiki",
     "desc": "gamerch.com/unis-on-air",
     "link": "https://gamerch.com/unis-on-air/",
     "detail": "",
