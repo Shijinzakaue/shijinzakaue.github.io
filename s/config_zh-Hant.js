@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-23 23:11";
+var lastUpdated = "2026-03-26 21:10";
 
 var officialConfig = [
   {
@@ -832,6 +832,22 @@ var toolConfig = [
     "link": "https://nekokosyan.com/"
   },
   {
+    "name": "⭐Sakamichi Blog Archive",
+    "desc": "sakamichi.co",
+    "detail": "・坂道成員部落格圖片保存網站\n・除乃木坂46外，存有成員個人歷來的高畫質公式照。\n　・乃木坂46：2017年7月 -\n　・欅坂46：開設（2015年11月）- 改名（2020年10月）\n　・日向坂46：けやき坂46として開設（2016年8月）-\n　・櫻坂46：改名（2020年10月）-\n\n・[坂道ブログ画像BOT / X](https://x.com/foxtrotal)",
+    "tags": [
+      "blog",
+      "photo",
+      "公式"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ],
+    "link": "https://www.sakamichi.co/"
+  },
+  {
     "name": "⭐乃木地圖 | Nogimap",
     "desc": "nogimap.com",
     "detail": "Nogimap 是由社群共同維護的地圖專案，希望讓聖巡變得更方便。",
@@ -933,22 +949,6 @@ var toolConfig = [
     "link": "https://tools.yotujoho.com/"
   },
   {
-    "name": "⭐Sakamichi Blog Archive",
-    "desc": "sakamichi.co",
-    "detail": "・坂道成員部落格圖片保存網站\n・除乃木坂46外，存有成員個人歷來的高畫質公式照。\n　・乃木坂46：2017年7月 -\n　・欅坂46：開設（2015年11月）- 改名（2020年10月）\n　・日向坂46：けやき坂46として開設（2016年8月）-\n　・櫻坂46：改名（2020年10月）-\n\n・[坂道ブログ画像BOT / X](https://x.com/foxtrotal)",
-    "tags": [
-      "blog",
-      "photo",
-      "公式"
-    ],
-    "groups": [
-      "nogi",
-      "saku",
-      "hina"
-    ],
-    "link": "https://www.sakamichi.co/"
-  },
-  {
     "name": "fumi Diary 2号店: ロケ地ノート",
     "desc": "blog.livedoor.jp/fumichen2",
     "detail": "櫻坂46 外景地",
@@ -1014,6 +1014,21 @@ var toolConfig = [
       "nogi"
     ],
     "link": "https://x.com/pao_paobon"
+  },
+  {
+    "name": "UNI's ON AIR 攻略Wiki",
+    "desc": "gamerch.com/unis-on-air",
+    "link": "https://gamerch.com/unis-on-air/",
+    "detail": "",
+    "tags": [
+      "公式",
+      "oshi",
+      "game"
+    ],
+    "groups": [
+      "saku",
+      "hina"
+    ]
   },
   {
     "name": "⭐ngzkHandshakeTable",
