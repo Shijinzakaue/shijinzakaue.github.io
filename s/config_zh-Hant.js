@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-27 22:39";
+var lastUpdated = "2026-03-27 23:57";
 
 var officialConfig = [
   {
@@ -1546,7 +1546,7 @@ var toolConfig = [
     "link": "https://www.repo.zakazaka.top/"
   },
   {
-    "name": "MSG生成器",
+    "name": "🪦MSG生成器",
     "desc": "msg.sakamichi-tools.cn",
     "detail": "成員MSG樣式產生器，一鍵產生官方訊息格式圖片",
     "tags": [
@@ -1561,7 +1561,7 @@ var toolConfig = [
     "link": "https://msg.sakamichi-tools.cn/"
   },
   {
-    "name": "⭐生寫生成器",
+    "name": "🪦生寫生成器",
     "desc": "photocard.sakamichi-tools.cn",
     "detail": "可製作生寫樣式的圖片。",
     "tags": [
@@ -1764,6 +1764,22 @@ var toolConfig = [
     "link": "https://radio.nogi46.me/"
   },
   {
+    "name": "坂道廣播站",
+    "desc": "46log.com",
+    "link": "https://46log.com/radio/",
+    "detail": "・實時廣播\n・回放功能\n・櫻耳串流\n・坂道廣播排程",
+    "tags": [
+      "公式",
+      "tool",
+      "streaming"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
+  },
+  {
     "name": "有名人Instagram排行網",
     "desc": "insta.refetter.com",
     "detail": "可檢索並顯示Instagram帳號過往追蹤人數推移",
@@ -1883,14 +1899,14 @@ var toolConfig = [
     ]
   },
   {
-    "name": "字幕匯出工具",
-    "desc": "photocard.sakamichi-tools.cn",
-    "detail": "・格式轉換: 支援 JSON (CapCut/Whisper), SRT, ASS, TXT 多種格式的轉換。\n・字幕合併: 智慧合併時間軸相近的短句，優化斷句，尤其針對日語語氣詞和短句進行了優化。\n・文本處理: 提供大量刪除日語語氣詞、文字替換等功能。\n・[SRT/ASS 時間軸修復工具](https://photocard.sakamichi-tools.cn/srt_fixer.html)\n・[字幕FAD特效工具](https://photocard.sakamichi-tools.cn/fad_tool.html)",
+    "name": "字幕工具",
+    "desc": "46log.com",
+    "detail": "・格式轉換: 支援 JSON (CapCut/Whisper), SRT, ASS, TXT 多種格式的轉換。\n・字幕合併: 智慧合併時間軸相近的短句，優化斷句，尤其針對日語語氣詞和短句進行了優化。\n・文本處理: 提供大量刪除日語語氣詞、文字替換等功能。\n・[SRT/ASS 時間軸修復工具](https://photocard.sakamichi-tools.cn/srt_fixer.html)\n・[字幕FAD特效工具](https://photocard.sakamichi-tools.cn/fad_tool.html)\n等等功能陸續添加中",
     "tags": [
       "tool"
     ],
     "groups": [],
-    "link": "https://photocard.sakamichi-tools.cn/subtitle.html"
+    "link": "https://46log.com/tools/subtitle-merge/"
   },
   {
     "name": "歌曲檢定",
