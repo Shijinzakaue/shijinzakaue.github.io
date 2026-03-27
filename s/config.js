@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-27 21:06";
+var lastUpdated = "2026-03-27 23:46";
 
 var officialConfig = [
   {
@@ -1310,7 +1310,7 @@ var toolConfig = [
   },
   {
     "name": "Instagram Archive",
-    "desc": "ins.sakamichi-tools.cn",
+    "desc": "46log.com",
     "detail": "メンバーのInstagram內容アーカイブ。メンバーのストーリーや投稿を閲覧・検索・ダウンロードでき、アカウントや時間でフィルタリングできます。",
     "tags": [
       "sns",
@@ -1321,7 +1321,7 @@ var toolConfig = [
       "saku",
       "hina"
     ],
-    "link": "https://ins.sakamichi-tools.cn/"
+    "link": "https://46log.com/instagram/"
   },
   {
     "name": "🪦アレチボルト",
@@ -1530,7 +1530,7 @@ var toolConfig = [
     "link": "https://www.repo.zakazaka.top/"
   },
   {
-    "name": "メッセージ作成",
+    "name": "🪦メッセージ作成",
     "desc": "msg.sakamichi-tools.cn",
     "detail": "公式メッセージ形式の画像を生成するツール",
     "tags": [
@@ -1545,7 +1545,7 @@ var toolConfig = [
     "link": "https://msg.sakamichi-tools.cn/"
   },
   {
-    "name": "坂道シリーズ 生写真作成",
+    "name": "🪦坂道シリーズ 生写真作成",
     "desc": "photocard.sakamichi-tools.cn",
     "detail": "無料の坂道シリーズ生写真オンラインジェネレーター。\n簡単にカスタマイズし、ワンクリックであなたの生写真を自作・ダウンロードできます。",
     "tags": [
@@ -1714,6 +1714,22 @@ var toolConfig = [
     "link": "https://radio.nogi46.me/"
   },
   {
+    "name": "坂道ラジオ",
+    "desc": "46log.com",
+    "link": "https://46log.com/radio/",
+    "detail": "・リアルタイム\n・フリータイム\n・さくみみ\n・坂道ラジオスケジュール",
+    "tags": [
+      "公式",
+      "streaming",
+      "tool"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
+  },
+  {
     "name": "TVAL now",
     "desc": "tval-now.switch-m.com",
     "detail": "テレビ番組リアルタイム視聴率",
@@ -1830,13 +1846,13 @@ var toolConfig = [
   },
   {
     "name": "字幕処理ツール",
-    "desc": "photocard.sakamichi-tools.cn",
-    "detail": "・形式変換：JSON（CapCut/Whisper）、SRT、ASS、TXTなど、複数の形式への変換に対応しています。\n・字幕結合：タイムラインが類似した短い文章を結合し、感嘆詞や短いフレーズの文節を最適化します。\n・テキスト処理：感嘆詞の一括削除とテキスト置換機能。\n・[SRT/ASS タイムライン修復ツール](https://photocard.sakamichi-tools.cn/srt_fixer.html)\n・[字幕FAD効果ツール](https://photocard.sakamichi-tools.cn/fad_tool.html)",
+    "desc": "46log.com",
+    "detail": "・形式変換：JSON（CapCut/Whisper）、SRT、ASS、TXTなど、複数の形式への変換に対応しています。\n・字幕結合：タイムラインが類似した短い文章を結合し、感嘆詞や短いフレーズの文節を最適化します。\n・テキスト処理：感嘆詞の一括削除とテキスト置換機能。\n・[SRT/ASS タイムライン修復ツール](https://photocard.sakamichi-tools.cn/srt_fixer.html)\n・[字幕FAD効果ツール](https://photocard.sakamichi-tools.cn/fad_tool.html)\n等々",
     "tags": [
       "tool"
     ],
     "groups": [],
-    "link": "https://photocard.sakamichi-tools.cn/subtitle.html"
+    "link": "https://46log.com/tools/subtitle-merge/"
   },
   {
     "name": "楽曲検定",
