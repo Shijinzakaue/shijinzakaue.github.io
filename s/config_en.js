@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-27 21:08";
+var lastUpdated = "2026-03-28 00:13";
 
 var officialConfig = [
   {
@@ -1310,7 +1310,7 @@ var toolConfig = [
   },
   {
     "name": "Instagram Archive",
-    "desc": "ins.sakamichi-tools.cn",
+    "desc": "46log.com",
     "detail": "Members' Instagram content archive. You can view, search, and download members' stories and posts, and filter by account and time.",
     "tags": [
       "sns",
@@ -1321,7 +1321,7 @@ var toolConfig = [
       "saku",
       "hina"
     ],
-    "link": "https://ins.sakamichi-tools.cn/"
+    "link": "https://46log.com/instagram/"
   },
   {
     "name": "🪦アレチボルト",
@@ -1425,8 +1425,8 @@ var toolConfig = [
     "link": "https://archive.sakamichi.co/members"
   },
   {
-    "name": "🪦卒業生ブログサイト",
-    "desc": "サイトの追加を歓迎します",
+    "name": "🪦OG Blog SITE",
+    "desc": "welcome to recommend sites",
     "detail": "・[Nogizaka46 Blog](https://t.me/s/Nogizaka46_blog) 2024-12-27~\n・[Sakurazaka46 Blog](https://t.me/s/Sakurazaka46_Blog) 2025-10-10~\n・[Hinatazaka46 Blog](https://t.me/s/Hinatazaka46_Blog) 2025-10-09~",
     "tags": [
       "blog",
@@ -1530,7 +1530,7 @@ var toolConfig = [
     "link": "https://www.repo.zakazaka.top/"
   },
   {
-    "name": "メッセージ作成",
+    "name": "🪦メッセージ作成",
     "desc": "msg.sakamichi-tools.cn",
     "detail": "Tool to generate official message format images",
     "tags": [
@@ -1545,7 +1545,7 @@ var toolConfig = [
     "link": "https://msg.sakamichi-tools.cn/"
   },
   {
-    "name": "坂道シリーズ 生写真作成",
+    "name": "🪦Creating Sakamichi raw photo",
     "desc": "photocard.sakamichi-tools.cn",
     "detail": "Free Sakamichi series Nama Jashin online generator.\n簡単にカスタマイズし、ワンクリックであなたの生写真を自作・ダウンロードできます。",
     "tags": [
@@ -1596,7 +1596,7 @@ var toolConfig = [
   },
   {
     "name": "⭐坂道46まとめ",
-    "desc": "ブログ関連ツール",
+    "desc": "Blog-related tools",
     "detail": "\"Sakamichi 46 Summary\" is an app that summarizes the latest news and blog updates. There is a newspaper page and a blog page, and push notifications are sent when updates are made, so you can know the latest information immediately.\n\n・[iOS](https://apps.apple.com/jp/app/%E5%9D%82%E9%81%9346%E3%81%BE%E3%81%A8%E3%82%81/id1508350322)・[Android](https://play.google.com/store/apps/details?id=stephennn.blogdownload)\n・[Telegram Bot](https://t.me/NogiBlog_bot): Showroom push notifications\n・Telegram channel\n・[Nogizaka46 Blog](https://t.me/s/nogizaka_blog) 2022-03-02~\n・[Sakurazaka46 Blog](https://t.me/s/keyakizaka46blog) 2020-07-08~\n・[Hinatazaka46 Blog](https://t.me/s/hinatazakablog) 2021-02-23~",
     "tags": [
       "公式",
@@ -1615,8 +1615,8 @@ var toolConfig = [
     "link": "https://x.com/stephen64860726/status/1679410636902785024"
   },
   {
-    "name": "ブログ通知／内容アーカイブ",
-    "desc": "Telegram チャンネル",
+    "name": "Blog notifications / Content archive",
+    "desc": "Telegram channel",
     "detail": "・[Nogizaka46 Blog](https://t.me/s/Nogizaka46_blog) 2024-12-27~\n・[Sakurazaka46 Blog](https://t.me/s/Sakurazaka46_Blog) 2025-10-10~\n・[Hinatazaka46 Blog](https://t.me/s/Hinatazaka46_Blog) 2025-10-09~",
     "tags": [
       "公式",
@@ -1654,7 +1654,7 @@ var toolConfig = [
     "groups": []
   },
   {
-    "name": "⭐坂道ツールBOX",
+    "name": "⭐Sakamichi TOOLBOX",
     "desc": "[extension] greasyfork.org",
     "detail": "・Download resources from official website**\n・“Return to top” function of Sakurazaka46/Hinatazaka46 official website\n・Optimization of the header logo display of Hinatazaka46 official website\n・Removal of restrictions on official website**\n・Lazy loading of images",
     "tags": [
@@ -1681,7 +1681,7 @@ var toolConfig = [
     ]
   },
   {
-    "name": "⭐ミッチャン画像ダウンローダ",
+    "name": "⭐Miichan image DL",
     "desc": "[extension] chromewebstore.google.com",
     "detail": "You will be able to download all images displayed on the news page with one click (maximum resolution).",
     "tags": [
@@ -1716,6 +1716,22 @@ var toolConfig = [
     "link": "https://radio.nogi46.me/"
   },
   {
+    "name": "Sakamichi Radio",
+    "desc": "46log.com",
+    "link": "https://46log.com/radio/",
+    "detail": "• Realtime\n• Replay Function\n• SAKUMIMI Streaming\n• Sakamichi Radio Scheduling",
+    "tags": [
+      "公式",
+      "tool",
+      "streaming"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
+  },
+  {
     "name": "TVAL now",
     "desc": "tval-now.switch-m.com",
     "detail": "TV program real-time audience rating",
@@ -1739,7 +1755,7 @@ var toolConfig = [
     "link": "https://bangumi.org/"
   },
   {
-    "name": "テレビ出演ランキング",
+    "name": "TV appearance ranking",
     "desc": "tv-ranking.com",
     "detail": "This site publishes rankings of appearance times and number of programs for each person based on performer data listed in the TV program guide.\n\nSince the data is calculated based on the program schedule, we do not know the relationship with the program's popularity (viewer rating). Even if you appear on a program, if it is not listed in the program guide, it will not be counted as appearing. Also, even if he appears, it is not known how long he appeared on the program. On this site, ``performers listed in the program guide'' = ``performers who have value in promoting the program.'' We hope that you will think of this as a way to estimate the value of performers in the opinion of the program provider.",
     "tags": [
@@ -1762,7 +1778,7 @@ var toolConfig = [
     "link": "https://insta.refetter.com/"
   },
   {
-    "name": "乃木坂46 卒業メンバー SNS",
+    "name": "Nogizaka46 OG SNS",
     "desc": "Telegram チャンネル",
     "detail": "Former Nogizaka46 related news bot",
     "tags": [
@@ -1788,7 +1804,7 @@ var toolConfig = [
     "link": "https://sakurazaka46.com/s/s46/page/costume?ima=0000"
   },
   {
-    "name": "東京パソコンクラブ",
+    "name": "Tokyo PC CLUB",
     "desc": "unityroom.com",
     "detail": "Games made during the program",
     "tags": [
@@ -1831,17 +1847,17 @@ var toolConfig = [
     ]
   },
   {
-    "name": "字幕処理ツール",
-    "desc": "photocard.sakamichi-tools.cn",
-    "detail": "・Format conversion: Supports conversion to multiple formats such as JSON (CapCut/Whisper), SRT, ASS, and TXT.\n・Subtitle merging: Combines short sentences with similar timelines and optimizes interjections and short phrases.\n・Text processing: Batch deletion of exclamations and text replacement function.\n・[SRT/ASS Timeline Repair Tool](https://photocard.sakamichi-tools.cn/srt_fixer.html)\n・[Subtitle FAD effect tool](https://photocard.sakamichi-tools.cn/fad_tool.html)",
+    "name": "Subtitle processing tool",
+    "desc": "46log.com",
+    "detail": "・Format conversion: Supports conversion to multiple formats such as JSON (CapCut/Whisper), SRT, ASS, and TXT.\n・Subtitle merging: Combines short sentences with similar timelines and optimizes interjections and short phrases.\n・Text processing: Batch deletion of exclamations and text replacement function.\n・[SRT/ASS Timeline Repair Tool](https://photocard.sakamichi-tools.cn/srt_fixer.html)\n・[Subtitle FAD effect tool](https://photocard.sakamichi-tools.cn/fad_tool.html)\nand more",
     "tags": [
       "tool"
     ],
     "groups": [],
-    "link": "https://photocard.sakamichi-tools.cn/subtitle.html"
+    "link": "https://46log.com/tools/subtitle-merge/"
   },
   {
-    "name": "楽曲検定",
+    "name": "J-pop Examination",
     "desc": "music-kentei.net",
     "detail": "In the song test, you can take the intro quiz for each artist for free.",
     "tags": [
