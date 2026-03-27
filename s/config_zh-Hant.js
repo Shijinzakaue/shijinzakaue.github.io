@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-27 21:12";
+var lastUpdated = "2026-03-27 22:39";
 
 var officialConfig = [
   {
@@ -1310,8 +1310,8 @@ var toolConfig = [
   },
   {
     "name": "坂道部落格翻譯",
-    "desc": "blog.sakamichi-tools.cn",
-    "detail": "・AI自動翻譯部落格網站\n・[部落格統計分析](https://blog.sakamichi-tools.cn/stats)\n・部落格照片批量下載\n\n*通常情況下會比官方網站晚30分更新。",
+    "desc": "46log.com",
+    "detail": "・AI自動翻譯部落格網站\n・[部落格統計分析](https://blog.sakamichi-tools.cn/stats)（維護中）\n・部落格照片批量下載\n\n*通常情況下會比官方網站晚30分更新。",
     "tags": [
       "blog",
       "photo",
@@ -1322,11 +1322,11 @@ var toolConfig = [
       "saku",
       "hina"
     ],
-    "link": "https://blog.sakamichi-tools.cn/#all"
+    "link": "https://46log.com/blog/"
   },
   {
-    "name": "Instagram Archive",
-    "desc": "ins.sakamichi-tools.cn",
+    "name": "Instagram 歸檔",
+    "desc": "46log.com",
     "detail": "成員Instagram內容存檔。包含投稿的story・圖片影片，並有批量下載功能，暫不包含投稿內文。",
     "tags": [
       "sns",
@@ -1337,7 +1337,7 @@ var toolConfig = [
       "saku",
       "hina"
     ],
-    "link": "https://ins.sakamichi-tools.cn/"
+    "link": "https://46log.com/instagram/"
   },
   {
     "name": "🪦アレチボルト",
