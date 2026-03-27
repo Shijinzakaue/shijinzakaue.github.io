@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-27 21:12";
+var lastUpdated = "2026-03-28 00:01";
 
 var officialConfig = [
   {
@@ -1310,8 +1310,8 @@ var toolConfig = [
   },
   {
     "name": "坂道博客翻译",
-    "desc": "blog.sakamichi-tools.cn",
-    "detail": "・AI自动翻译博客网站\n・[博客统计分析](https://blog.sakamichi-tools.cn/stats)\n・博客照片批量下载\n\n*通常情况下会比官方网站晚30分更新。 ",
+    "desc": "46log.com",
+    "detail": "・AI自动翻译博客网站\n・[博客统计分析](https://blog.sakamichi-tools.cn/stats)（暫時下線）\n・博客照片批量下载\n\n*通常情况下会比官方网站晚30分更新。 ",
     "tags": [
       "blog",
       "photo",
@@ -1322,11 +1322,11 @@ var toolConfig = [
       "saku",
       "hina"
     ],
-    "link": "https://blog.sakamichi-tools.cn/#all"
+    "link": "https://46log.com/blog/"
   },
   {
     "name": "Instagram Archive",
-    "desc": "ins.sakamichi-tools.cn",
+    "desc": "46log.com",
     "detail": "成员Instagram内容存档。包含投稿的story・图片影片，并有批量下载功能，暂不包含投稿内文。 ",
     "tags": [
       "sns",
@@ -1337,7 +1337,7 @@ var toolConfig = [
       "saku",
       "hina"
     ],
-    "link": "https://ins.sakamichi-tools.cn/"
+    "link": "https://46log.com/instagram/"
   },
   {
     "name": "🪦アレチボルト",
@@ -1546,7 +1546,7 @@ var toolConfig = [
     "link": "https://www.repo.zakazaka.top/"
   },
   {
-    "name": "MSG生成器",
+    "name": "🪦MSG生成器",
     "desc": "msg.sakamichi-tools.cn",
     "detail": "成员MSG样式产生器，一键产生官方讯息格式图片",
     "tags": [
@@ -1561,7 +1561,7 @@ var toolConfig = [
     "link": "https://msg.sakamichi-tools.cn/"
   },
   {
-    "name": "⭐生写生成器",
+    "name": "🪦生写生成器",
     "desc": "photocard.sakamichi-tools.cn",
     "detail": "可制作生写样式的图片。",
     "tags": [
@@ -1762,6 +1762,22 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://radio.nogi46.me/"
+  },
+  {
+    "name": "坂道广播站",
+    "desc": "46log.com",
+    "link": "https://46log.com/radio/",
+    "detail": "・实时广播\n・回放功能\n・樱耳串流\n・坂道广播排程",
+    "tags": [
+      "tool",
+      "streaming",
+      "公式"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
   },
   {
     "name": "有名人Instagram排行网",
