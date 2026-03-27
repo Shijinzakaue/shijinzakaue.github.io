@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-26 21:14";
+var lastUpdated = "2026-03-27 21:08";
 
 var officialConfig = [
   {
@@ -1638,6 +1638,18 @@ var toolConfig = [
     "tags": [
       "oshi",
       "tool"
+    ],
+    "groups": []
+  },
+  {
+    "name": "showroom-player",
+    "desc": "github.com",
+    "link": "https://github.com/vacabun/showroom-player",
+    "detail": "A desktop GUI player for watching SHOWROOM live streams.",
+    "tags": [
+      "公式",
+      "tool",
+      "streaming"
     ],
     "groups": []
   },
