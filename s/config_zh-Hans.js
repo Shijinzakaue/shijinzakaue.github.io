@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-26 21:15";
+var lastUpdated = "2026-03-27 21:12";
 
 var officialConfig = [
   {
@@ -1654,6 +1654,18 @@ var toolConfig = [
     "tags": [
       "tool",
       "oshi"
+    ],
+    "groups": []
+  },
+  {
+    "name": "showroom-player",
+    "desc": "github.com",
+    "link": "https://github.com/vacabun/showroom-player",
+    "detail": "桌面端SHOWROOM串流播放器。内置留言、录制功能。",
+    "tags": [
+      "公式",
+      "streaming",
+      "tool"
     ],
     "groups": []
   },
