@@ -1,4 +1,4 @@
-var lastUpdated = "2026-04-01 09:35";
+var lastUpdated = "2026-04-01 20:42";
 
 var officialConfig = [
   {
@@ -1125,7 +1125,7 @@ var toolConfig = [
   {
     "name": "坂道グループデータベース",
     "desc": "sakamichi-data.com",
-    "detail": "・Meaguri sold out list\n・Member profile",
+    "detail": "・Meaguri sold out list\n・Member profile\n・[KENT ◢|坂道データサイト運営 / X](https://x.com/kent_eeeee)",
     "tags": [
       "meet",
       "information",
