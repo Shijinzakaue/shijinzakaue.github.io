@@ -1,4 +1,4 @@
-var lastUpdated = "2026-04-01 09:34";
+var lastUpdated = "2026-04-01 20:42";
 
 var officialConfig = [
   {
@@ -1125,7 +1125,7 @@ var toolConfig = [
   {
     "name": "坂道グループデータベース",
     "desc": "sakamichi-data.com",
-    "detail": "・见面会完售表\n・成员个人资料",
+    "detail": "・见面会完售表\n・成员个人资料\n・[KENT ◢|坂道データサイト運営 / X](https://x.com/kent_eeeee)",
     "tags": [
       "meet",
       "information",
