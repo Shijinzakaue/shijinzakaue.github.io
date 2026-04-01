@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-27 23:57";
+var lastUpdated = "2026-04-01 09:32";
 
 var officialConfig = [
   {
@@ -1751,7 +1751,7 @@ var toolConfig = [
   {
     "name": "⭐日本廣播播放器",
     "desc": "radio.nogi46.me",
-    "detail": "・無限制實時廣播收聽\n・存檔回放功能",
+    "detail": "・無限制實時廣播收聽\n・[存檔回放功能](https://record.nogi46.me/table) record.nogi46.me",
     "tags": [
       "公式",
       "tool"
