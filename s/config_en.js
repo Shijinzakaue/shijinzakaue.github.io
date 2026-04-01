@@ -1,4 +1,4 @@
-var lastUpdated = "2026-03-28 00:13";
+var lastUpdated = "2026-04-01 09:30";
 
 var officialConfig = [
   {
@@ -1701,9 +1701,9 @@ var toolConfig = [
     "link": "https://chromewebstore.google.com/detail/rajiko/ejcfdikabeebbgbopoagpabbdokepnff"
   },
   {
-    "name": "⭐ラジオ",
+    "name": "⭐Radio",
     "desc": "radio.nogi46.me",
-    "detail": "・Real time\n・Time-free function",
+    "detail": "・Real time\n・[Time-free function](https://record.nogi46.me/table)",
     "tags": [
       "公式",
       "tool"
