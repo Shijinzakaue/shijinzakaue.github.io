@@ -1,4 +1,4 @@
-var lastUpdated = "2026-04-01 09:29";
+var lastUpdated = "2026-04-01 09:33";
 
 var officialConfig = [
   {
@@ -1701,7 +1701,7 @@ var toolConfig = [
   {
     "name": "⭐ラジオ",
     "desc": "radio.nogi46.me",
-    "detail": "・リアルタイム\n・[タイムフリー機能](https://record.nogi46.me/table)",
+    "detail": "・リアルタイム\n・[タイムフリー機能](https://record.nogi46.me/table) record.nogi46.me",
     "tags": [
       "公式",
       "tool"
