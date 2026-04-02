@@ -1,4 +1,4 @@
-var lastUpdated = "2026-04-01 20:42";
+var lastUpdated = "2026-04-02 23:07";
 
 var officialConfig = [
   {
@@ -1613,7 +1613,7 @@ var toolConfig = [
   {
     "name": "⭐坂道46まとめ",
     "desc": "博客相关工具",
-    "detail": "App中包含最新新闻与博客更新及まとめ统整。 \n\n・[iOS](https://apps.apple.com/jp/app/%E5%9D%82%E9%81%9346%E3%81%BE%E3%81%A8%E3%82%81/id1508350322)・[Android](https://play.google.com/store/apps/details?id=stephennn.blogdownload)\n・[Telegram Bot](https://t.me/NogiBlog_bot)：另有Showroom开播通知\n・Telegram 个别频道\n　・[乃木坂46ブログ](https://t.me/s/nogizaka_blog) 2022-03-02~\n　・[櫻坂46ブログ](https://t.me/s/keyakizaka46blog) 2020-07-08~\n　・[日向坂46ブログ](https://t.me/s/hinatazakablog) 2021-02-23~",
+    "detail": "App中包含最新新闻与博客更新及まとめ统整。 \n\n・[iOS](https://apps.apple.com/jp/app/%E5%9D%82%E9%81%9346%E3%81%BE%E3%81%A8%E3%82%81/id1508350322)・[Android](https://play.google.com/store/apps/details?id=stephennn.blogdownload)\n・[Telegram Bot](https://t.me/NogiBlog_bot)：另有Showroom开播通知(附m3u8鏈接)\n・Telegram 个别频道\n　・[乃木坂46ブログ](https://t.me/s/nogizaka_blog) 2022-03-02~\n　・[櫻坂46ブログ](https://t.me/s/keyakizaka46blog) 2020-07-08~\n　・[日向坂46ブログ](https://t.me/s/hinatazakablog) 2021-02-23~",
     "tags": [
       "公式",
       "sns",
