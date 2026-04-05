@@ -1,4 +1,4 @@
-var lastUpdated = "2026-04-02 23:07";
+var lastUpdated = "2026-04-05 22:38";
 
 var officialConfig = [
   {
@@ -1531,7 +1531,23 @@ var toolConfig = [
     "link": "https://n46sorter.com/ja"
   },
   {
-    "name": "⭐Repo手帳",
+    "name": "⭐握手Repo",
+    "desc": "46log.com",
+    "link": "https://46log.com/repo/create/",
+    "detail": "生成並共享握手、見面會REPO",
+    "tags": [
+      "create",
+      "oshi",
+      "meet"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
+  },
+  {
+    "name": "Repo手帳",
     "desc": "repo.zakazaka.top",
     "detail": "生成見面會REPO圖",
     "tags": [
