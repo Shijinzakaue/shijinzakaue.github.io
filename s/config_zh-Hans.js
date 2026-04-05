@@ -1,4 +1,4 @@
-var lastUpdated = "2026-04-05 22:37";
+var lastUpdated = "2026-04-05 22:46";
 
 var officialConfig = [
   {
@@ -1563,8 +1563,8 @@ var toolConfig = [
     "link": "https://www.repo.zakazaka.top/"
   },
   {
-    "name": "🪦MSG生成器",
-    "desc": "msg.sakamichi-tools.cn",
+    "name": "MSG生成器",
+    "desc": "46log.com",
     "detail": "成员MSG样式产生器，一键产生官方讯息格式图片",
     "tags": [
       "message",
@@ -1575,11 +1575,11 @@ var toolConfig = [
       "saku",
       "hina"
     ],
-    "link": "https://msg.sakamichi-tools.cn/"
+    "link": "https://46log.com/tools/msg-generator/"
   },
   {
-    "name": "🪦生写生成器",
-    "desc": "photocard.sakamichi-tools.cn",
+    "name": "生写生成器",
+    "desc": "46log.com",
     "detail": "可制作生写样式的图片。",
     "tags": [
       "photo",
@@ -1591,7 +1591,7 @@ var toolConfig = [
       "saku",
       "hina"
     ],
-    "link": "https://photocard.sakamichi-tools.cn/"
+    "link": "https://46log.com/photocard/create/"
   },
   {
     "name": "⭐App「坂道ハウス」",
