@@ -1,4 +1,4 @@
-var lastUpdated = "2026-04-05 22:35";
+var lastUpdated = "2026-04-05 22:45";
 
 var officialConfig = [
   {
@@ -1547,8 +1547,8 @@ var toolConfig = [
     "link": "https://www.repo.zakazaka.top/"
   },
   {
-    "name": "🪦メッセージ作成",
-    "desc": "msg.sakamichi-tools.cn",
+    "name": "MSG style img creator",
+    "desc": "46log.com",
     "detail": "Tool to generate official message format images",
     "tags": [
       "message",
@@ -1559,12 +1559,12 @@ var toolConfig = [
       "saku",
       "hina"
     ],
-    "link": "https://msg.sakamichi-tools.cn/"
+    "link": "https://46log.com/tools/msg-generator/"
   },
   {
-    "name": "🪦Creating Sakamichi raw photo",
-    "desc": "photocard.sakamichi-tools.cn",
-    "detail": "Free Sakamichi series Nama Jashin online generator.\n簡単にカスタマイズし、ワンクリックであなたの生写真を自作・ダウンロードできます。",
+    "name": "Creating Sakamichi raw photo",
+    "desc": "46log.com",
+    "detail": "Easily create and download your own sakamichi style rawphotos with just one click.",
     "tags": [
       "photo",
       "create",
@@ -1575,7 +1575,7 @@ var toolConfig = [
       "saku",
       "hina"
     ],
-    "link": "https://photocard.sakamichi-tools.cn/"
+    "link": "https://46log.com/photocard/create/"
   },
   {
     "name": "⭐アプリ「坂道ハウス」",
