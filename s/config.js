@@ -1,4 +1,4 @@
-var lastUpdated = "2026-04-05 22:32";
+var lastUpdated = "2026-04-05 22:41";
 
 var officialConfig = [
   {
@@ -1547,8 +1547,8 @@ var toolConfig = [
     "link": "https://www.repo.zakazaka.top/"
   },
   {
-    "name": "🪦メッセージ作成",
-    "desc": "msg.sakamichi-tools.cn",
+    "name": "メッセージ作成",
+    "desc": "46log.com",
     "detail": "公式メッセージ形式の画像を生成するツール",
     "tags": [
       "message",
@@ -1559,11 +1559,11 @@ var toolConfig = [
       "saku",
       "hina"
     ],
-    "link": "https://msg.sakamichi-tools.cn/"
+    "link": "https://46log.com/tools/msg-generator/"
   },
   {
-    "name": "🪦坂道シリーズ 生写真作成",
-    "desc": "photocard.sakamichi-tools.cn",
+    "name": "坂道シリーズ 生写真作成",
+    "desc": "46log.com",
     "detail": "無料の坂道シリーズ生写真オンラインジェネレーター。\n簡単にカスタマイズし、ワンクリックであなたの生写真を自作・ダウンロードできます。",
     "tags": [
       "photo",
@@ -1575,7 +1575,7 @@ var toolConfig = [
       "saku",
       "hina"
     ],
-    "link": "https://photocard.sakamichi-tools.cn/"
+    "link": "https://46log.com/photocard/create/"
   },
   {
     "name": "⭐アプリ「坂道ハウス」",
