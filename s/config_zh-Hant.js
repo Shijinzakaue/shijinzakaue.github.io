@@ -1,4 +1,4 @@
-var lastUpdated = "2026-04-05 22:46";
+var lastUpdated = "2026-04-06 19:11";
 
 var officialConfig = [
   {
@@ -1680,6 +1680,17 @@ var toolConfig = [
     "detail": "桌面端SHOWROOM串流播放器。內置留言、錄製功能。",
     "tags": [
       "公式",
+      "tool",
+      "streaming"
+    ],
+    "groups": []
+  },
+  {
+    "name": "SRDL",
+    "desc": "github.com",
+    "link": "https://github.com/Shijinzakaue/SRDL",
+    "detail": "SHOWROOM 下載腳本",
+    "tags": [
       "tool",
       "streaming"
     ],
