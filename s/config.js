@@ -1,4 +1,4 @@
-var lastUpdated = "2026-04-05 22:41";
+var lastUpdated = "2026-04-06 19:08";
 
 var officialConfig = [
   {
@@ -1667,6 +1667,17 @@ var toolConfig = [
       "tool",
       "streaming",
       "公式"
+    ],
+    "groups": []
+  },
+  {
+    "name": "SRDL",
+    "desc": "github.com",
+    "link": "https://github.com/Shijinzakaue/SRDL",
+    "detail": "Showroom ダウンロードツール",
+    "tags": [
+      "tool",
+      "streaming"
     ],
     "groups": []
   },
