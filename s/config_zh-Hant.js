@@ -1,4 +1,4 @@
-var lastUpdated = "2026-04-06 19:11";
+var lastUpdated = "2026-05-02 15:20";
 
 var officialConfig = [
   {
@@ -1443,7 +1443,7 @@ var toolConfig = [
   {
     "name": "🪦畢業生部落格存檔（個人）",
     "desc": "歡迎提供其他網站",
-    "detail": "・[橋本奈々未～山下美月](https://janelin612.github.io/n46-crawler/)\n・[岩瀬佑美子～寺田蘭世](https://re-fort.net/NgzkBlogArchive/#/)\n・[今泉佑唯～渡辺梨加](https://re-fort.net/KykzkBlogArchive/#/)\n・[柿崎芽実・井口眞緒](https://re-fort.net/HntzkBlogArchive/#/)\n・個人\n　・[橋本奈々未](https://nondanee.github.io/onemoretime/nanami.hashimoto/)\n　・[久保史緒里](https://washioshihokubo.github.io/kubo-archive/)",
+    "detail": "・[橋本奈々未～山下美月](https://janelin612.github.io/n46-crawler/)\n・[岩瀬佑美子～寺田蘭世](https://re-fort.net/NgzkBlogArchive/#/)\n・[今泉佑唯～渡辺梨加](https://re-fort.net/KykzkBlogArchive/#/)\n・[柿崎芽実・井口眞緒](https://re-fort.net/HntzkBlogArchive/#/)\n・個人\n　・[橋本奈々未](https://nondanee.github.io/onemoretime/nanami.hashimoto/)\n　・[久保史緒里](https://washioshihokubo.github.io/kubo-archive/)\n　・[梅澤美波](https://washioshihokubo.github.io/umezawa-archive/)",
     "tags": [
       "blog",
       "photo",
