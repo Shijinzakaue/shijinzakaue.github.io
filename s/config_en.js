@@ -1,4 +1,4 @@
-var lastUpdated = "2026-04-06 19:09";
+var lastUpdated = "2026-05-02 15:27";
 
 var officialConfig = [
   {
@@ -1427,7 +1427,7 @@ var toolConfig = [
   {
     "name": "🪦OG Blog SITE",
     "desc": "welcome to recommend sites",
-    "detail": "・[Nogizaka46 Blog](https://t.me/s/Nogizaka46_blog) 2024-12-27~\n・[Sakurazaka46 Blog](https://t.me/s/Sakurazaka46_Blog) 2025-10-10~\n・[Hinatazaka46 Blog](https://t.me/s/Hinatazaka46_Blog) 2025-10-09~",
+    "detail": "・[Nanami Hashimoto～Mizuki Yamashita](https://janelin612.github.io/n46-crawler/)\n・[Yumiko Iwase～Ranze Terada](https://re-fort.net/NgzkBlogArchive/#/)\n・[Yui Imaizumi～Rika Watanabe](https://re-fort.net/KykzkBlogArchive/#/)\n・[Memi Kakizaki・Mao Ikuchi](https://re-fort.net/HntzkBlogArchive/#/)\n・Personal\n　・[Nanami Hashimoto](https://nondanee.github.io/onemoretime/nanami.hashimoto/)\n　・[Shiori Kubo](https://washioshihokubo.github.io/kubo-archive/)\n　・[Minami Umezuwa](https://washioshihokubo.github.io/umezawa-archive/)",
     "tags": [
       "blog",
       "photo",
