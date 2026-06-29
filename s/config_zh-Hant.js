@@ -1,4 +1,4 @@
-var lastUpdated = "2026-05-02 15:20";
+var lastUpdated = "2026-06-29 20:45";
 
 var officialConfig = [
   {
@@ -709,6 +709,20 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://x.com/himari_cosme_46"
+  },
+  {
+    "name": "ありんこ",
+    "desc": "x.com/Arinko__illust",
+    "link": "https://x.com/Arinko__illust",
+    "detail": "・服裝圖鑑\n・周邊圖鑑",
+    "tags": [
+      "clothes"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
   },
   {
     "name": "アイドルバケット",
