@@ -1,4 +1,4 @@
-var lastUpdated = "2026-05-02 15:27";
+var lastUpdated = "2026-06-29 20:47";
 
 var officialConfig = [
   {
@@ -709,6 +709,20 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://x.com/himari_cosme_46"
+  },
+  {
+    "name": "ありんこ",
+    "desc": "x.com/Arinko__illust",
+    "link": "https://x.com/Arinko__illust",
+    "detail": "• Costume catalog\n• Merchandise catalog",
+    "tags": [
+      "clothes"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
   },
   {
     "name": "坂道愛用品 坂道どっとこむ",
