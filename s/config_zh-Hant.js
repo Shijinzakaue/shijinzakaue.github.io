@@ -1885,20 +1885,6 @@ var toolConfig = [
     "link": "https://twitcasting.tv/c:fmfuji_twitcasting/"
   },
   {
-    "name": "乃木坂46 Archive SITE",
-    "desc": "files.nogizaka46.cc",
-    "link": "https://files.nogizaka46.cc/",
-    "detail": "乃木坂46 資源存檔站",
-    "tags": [
-      "streaming",
-      "photo",
-      "song"
-    ],
-    "groups": [
-      "nogi"
-    ]
-  },
-  {
     "name": "上行之坂字幕組",
     "desc": "ngzketm.top",
     "link": "https://ngzketm.top/",
