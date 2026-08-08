@@ -1,4 +1,4 @@
-var lastUpdated = "2026-08-08 12:53";
+var lastUpdated = "2026-08-08 12:55";
 
 var officialConfig = [
   {
@@ -1884,18 +1884,6 @@ var toolConfig = [
       "nogi"
     ],
     "link": "https://twitcasting.tv/c:fmfuji_twitcasting/"
-  },
-  {
-    "name": "乃木坂46 Achieve SITE",
-    "desc": "files.nogizaka46.cc",
-    "link": "https://files.nogizaka46.cc/",
-    "detail": "",
-    "tags": [
-      "streaming"
-    ],
-    "groups": [
-      "nogi"
-    ]
   },
   {
     "name": "上行之坂字幕组",
