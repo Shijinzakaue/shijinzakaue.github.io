@@ -1,4 +1,4 @@
-var lastUpdated = "2026-06-29 20:47";
+var lastUpdated = "2026-08-08 12:53";
 
 var officialConfig = [
   {
@@ -848,7 +848,7 @@ var toolConfig = [
   {
     "name": "⭐Sakamichi Blog Archive",
     "desc": "sakamichi.co",
-    "detail": "・Sakamichi blog image storage site\n・We store promotional photos of members other than Nogizaka46 in high quality.\n・Nogizaka46: July 2017 -\n・Keyakizaka46: Opened (November 2015) - Name changed (October 2020)\n・Hinatazaka 46: Opened as Keyakizaka 46 (August 2016) -\n・Sakurazaka46: Name change (October 2020) -\n\n・[坂道ブログ画像BOT / X](https://x.com/foxtrotal)",
+    "detail": "・Sakamichi blog image storage site\n・We store promotional photos of members other than Nogizaka46 in high quality.\n・Nogizaka46: July 2017 -\n・Keyakizaka46: Opened (November 2015) - Name changed (October 2020)\n・Hinatazaka 46: Opened as Keyakizaka 46 (August 2016) -\n・Sakurazaka46: Name change (October 2020) -\n\n・[坂道ブログ画像BOT / X](https://x.com/foxtrotal)\n・[Blog Monthly Statistics / Quick Jump](https://contributions.sakamichi.co/)",
     "tags": [
       "blog",
       "photo",
