@@ -1,4 +1,4 @@
-var lastUpdated = "2026-06-29 20:45";
+var lastUpdated = "2026-08-08 12:54";
 
 var officialConfig = [
   {
@@ -848,7 +848,7 @@ var toolConfig = [
   {
     "name": "⭐Sakamichi Blog Archive",
     "desc": "sakamichi.co",
-    "detail": "・坂道成員部落格圖片保存網站\n・除乃木坂46外，存有成員個人歷來的高畫質公式照。\n　・乃木坂46：2017年7月 -\n　・欅坂46：開設（2015年11月）- 改名（2020年10月）\n　・日向坂46：けやき坂46として開設（2016年8月）-\n　・櫻坂46：改名（2020年10月）-\n\n・[坂道ブログ画像BOT / X](https://x.com/foxtrotal)",
+    "detail": "・坂道成員部落格圖片保存網站\n・除乃木坂46外，存有成員個人歷來的高畫質公式照。\n　・乃木坂46：2017年7月 -\n　・欅坂46：開設（2015年11月）- 改名（2020年10月）\n　・日向坂46：けやき坂46として開設（2016年8月）-\n　・櫻坂46：改名（2020年10月）-\n\n・[坂道ブログ画像BOT / X](https://x.com/foxtrotal)\n・[公式部落格月發布量統計/跳轉](https://contributions.sakamichi.co/)",
     "tags": [
       "blog",
       "photo",
