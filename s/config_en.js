@@ -1,4 +1,4 @@
-var lastUpdated = "2026-08-08 12:53";
+var lastUpdated = "2026-08-22 17:48";
 
 var officialConfig = [
   {
@@ -890,7 +890,7 @@ var toolConfig = [
     "link": "https://www.google.com/maps/d/u/0/viewer?ll=38.00318233668623%2C139.5474794800408&z=6&mid=1uTzHlTnEyFZOgZVwoHkpe0ZhGzNlfT0"
   },
   {
-    "name": "⭐日向坂46　聖地一覧",
+    "name": "日向坂46　聖地一覧",
     "desc": "[清水ひなた] google.com/maps",
     "detail": "List of sacred places of Hinatazaka46",
     "tags": [
@@ -901,6 +901,19 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://www.google.com/maps/d/u/0/viewer?mid=14Otcijw10dc-Fyu1P-q-BygLgiLK2sQ&ll=35.33666676792876%2C139.69073570374468&z=9"
+  },
+  {
+    "name": "⭐Hinatamap",
+    "desc": "[Nullヾ] hinatamap.pages.dev",
+    "link": "https://hinatamap.pages.dev/",
+    "detail": "Built for Hinatazaka46 fans, optimizing the Google My Maps experience:\n\n・Real-time Dynamic Sync: Syncs data from Shimizu Hinata's map\n・Multi-source Map Data: Uses Geospatial Information Authority of Japan (GSI) map data\n・Google Maps Redirection: One-tap navigation via Google Maps\n・Tag Search: Easy keyword and tag filtering",
+    "tags": [
+      "oshi",
+      "place"
+    ],
+    "groups": [
+      "hina"
+    ]
   },
   {
     "name": "乃木坂46のロケ地まとめ",
