@@ -1,4 +1,4 @@
-var lastUpdated = "2026-08-08 12:52";
+var lastUpdated = "2026-08-22 17:46";
 
 var officialConfig = [
   {
@@ -890,7 +890,7 @@ var toolConfig = [
     "link": "https://www.google.com/maps/d/u/0/viewer?ll=38.00318233668623%2C139.5474794800408&z=6&mid=1uTzHlTnEyFZOgZVwoHkpe0ZhGzNlfT0"
   },
   {
-    "name": "⭐日向坂46　聖地一覧",
+    "name": "日向坂46　聖地一覧",
     "desc": "[清水ひなた] google.com/maps",
     "detail": "日向坂46の聖地一覧です",
     "tags": [
@@ -901,6 +901,19 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://www.google.com/maps/d/u/0/viewer?mid=14Otcijw10dc-Fyu1P-q-BygLgiLK2sQ&ll=35.33666676792876%2C139.69073570374468&z=9"
+  },
+  {
+    "name": "⭐Hinatamap 聖地巡礼地図",
+    "desc": "[Nullヾ] hinatamap.pages.dev",
+    "link": "https://hinatamap.pages.dev/",
+    "detail": "日向坂46ファンのために作られた、Google マイマップの体験を最適化するツール：\n\n・リアルタイム動的同期：【清水ひなた】のマップデータを同期\n・マルチ地図データ対応：国土地理院の地図データを採用\n・Google マップへジャンプ：ワンタップで Google マップのナビを起動\n・タグ検索：キーワードやタグによるスムーズな絞り込み",
+    "tags": [
+      "place",
+      "oshi"
+    ],
+    "groups": [
+      "hina"
+    ]
   },
   {
     "name": "乃木坂46のロケ地まとめ",
