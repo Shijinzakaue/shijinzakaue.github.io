@@ -1,4 +1,4 @@
-var lastUpdated = "2026-08-08 12:55";
+var lastUpdated = "2026-08-22 17:49";
 
 var officialConfig = [
   {
@@ -919,7 +919,7 @@ var toolConfig = [
     "link": "https://nogitabi.blog.jp/"
   },
   {
-    "name": "⭐日向坂46　聖地一覧",
+    "name": "日向坂46　聖地一覧",
     "desc": "[清水ひなた] google.com/maps",
     "detail": "日向坂46的圣地一覧",
     "tags": [
@@ -930,6 +930,19 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://www.google.com/maps/d/u/0/viewer?mid=14Otcijw10dc-Fyu1P-q-BygLgiLK2sQ&ll=35.33666676792876%2C139.69073570374468&z=9"
+  },
+  {
+    "name": "⭐Hinatamap 圣地巡礼地図",
+    "desc": "[Nullヾ] hinatamap.pages.dev",
+    "link": "https://hinatamap.pages.dev/",
+    "detail": "专为日向坂46粉丝打造，优化 Google My Maps 体验：\n\n・实时动态同步：同步【清水ひなた】地图数据\n・多图资料导航：采用日本国土地理院图资\n・跳转 Google 地图导航\n・标签搜索",
+    "tags": [
+      "place",
+      "oshi"
+    ],
+    "groups": [
+      "hina"
+    ]
   },
   {
     "name": "聖地巡礼したい",
