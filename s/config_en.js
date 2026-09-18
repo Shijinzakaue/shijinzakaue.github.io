@@ -1,4 +1,4 @@
-var lastUpdated = "2026-09-19 00:13";
+var lastUpdated = "2026-09-19 00:14";
 
 var officialConfig = [
   {
@@ -185,7 +185,7 @@ var officialConfig = [
 
 var toolConfig = [
   {
-    "name": "⭐乃木坂46 SNS",
+    "name": "⭐Nogizaka46 SNS",
     "desc": "Telegram channel",
     "detail": "・[Nogizaka46 OFFICIAL YouTube CHANNEL](https://www.youtube.com/@nogizaka46SMEJ)\n・[Nogizakahaishinchu](https://www.youtube.com/@nogizakahaishinchu)\n・[X (old Twitter)](https://x.com/nogizaka46)\n・[Instagram](https://www.instagram.com/nogizaka46_official/)\n・[Facebook](https://www.facebook.com/nogizaka46)\n・[TikTok](https://www.tiktok.com/@nogizaka46_official)\n・[Line](https://lin.ee/EwCV3ub)\n・[Weibo](https://weibo.com/u/6372196907)\n・[Bilibili](https://space.bilibili.com/603028270)",
     "tags": [
@@ -201,7 +201,7 @@ var toolConfig = [
     "link": "https://t.me/s/nogizaka46_SNS/"
   },
   {
-    "name": "⭐櫻坂46 SNS",
+    "name": "⭐Sakurazaka46 SNS",
     "desc": "Telegram channel",
     "detail": "・[Sakurazaka46 OFFICIAL YouTube CHANNEL](https://www.youtube.com/@sakurazaka46SMEJ)\n・[Sakurazaka Channel](https://www.youtube.com/@sakurazakachannel/)\n・[X (old Twitter)](https://x.com/sakurazaka46)\n・[Instagram @sakurazaka46jp](https://www.instagram.com/sakurazaka46jp)\n・[Instagram @sakurazaka46_info_official](https://www.instagram.com/sakurazaka46_info_official/)\n・[TikTok](https://www.tiktok.com/@sakurazaka46.officialtk)",
     "tags": [
@@ -217,7 +217,7 @@ var toolConfig = [
     "link": "https://t.me/s/sakurazaka46_sns/"
   },
   {
-    "name": "⭐日向坂46 SNS",
+    "name": "⭐Hinatazaka46 SNS",
     "desc": "Telegram channel",
     "detail": "・[Hinatazaka46 OFFICIAL YouTube CHANNEL](https://www.youtube.com/@46officialyoutubechannel99)\n・[Hinatazaka Channel](https://www.youtube.com/@hinatazakachannel)\n・[X (old Twitter)](https://x.com/hinatazaka46)\n・[Instagram](https://www.instagram.com/hinatazaka46)\n・[TikTok](https://www.tiktok.com/@hinatazakanews)",
     "tags": [
@@ -306,7 +306,7 @@ var toolConfig = [
     "link": "https://anosaka.com/"
   },
   {
-    "name": "坂道データベース",
+    "name": "⭐坂道データベース",
     "desc": "[あの坂道] sakamichidb.anosaka.com",
     "detail": "This is an unofficial fan site operated by \"Ano Sakamichi\" that summarizes the number of MV views and chart information for the Sakamichi group.\n\n・[About this site](https://sakamichidb.anosaka.com/other/about)",
     "tags": [
