@@ -1,4 +1,4 @@
-var lastUpdated = "2026-08-22 17:50";
+var lastUpdated = "2026-09-18 23:58";
 
 var officialConfig = [
   {
@@ -1043,6 +1043,37 @@ var toolConfig = [
     "link": "https://x.com/pao_paobon"
   },
   {
+    "name": "懐かしい",
+    "desc": "x.com/__n____i",
+    "link": "https://x.com/__n____i",
+    "detail": "坂道雜學、不定期比對資料",
+    "tags": [
+      "live",
+      "information",
+      "song",
+      "ranking"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
+  },
+  {
+    "name": "けんしゅん",
+    "desc": "x.com/kenshun46",
+    "link": "https://x.com/kenshun46",
+    "detail": "各種雜項統計、排行",
+    "tags": [
+      "ranking"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
+  },
+  {
     "name": "UNI'S ON AIR 攻略Wiki",
     "desc": "gamerch.com/unis-on-air",
     "link": "https://gamerch.com/unis-on-air/",
@@ -1350,6 +1381,19 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://46log.com/blog/"
+  },
+  {
+    "name": "乃木写（Nogisha）",
+    "desc": "[けんしゅん] nogisha.app",
+    "link": "https://nogisha.app/",
+    "detail": "乃木坂生寫真交換管理工具",
+    "tags": [
+      "oshi",
+      "photo"
+    ],
+    "groups": [
+      "nogi"
+    ]
   },
   {
     "name": "Instagram 歸檔",
