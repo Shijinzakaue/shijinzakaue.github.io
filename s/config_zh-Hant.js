@@ -1,4 +1,4 @@
-var lastUpdated = "2026-09-19 00:07";
+var lastUpdated = "2026-09-19 00:16";
 
 var officialConfig = [
   {
@@ -356,7 +356,7 @@ var toolConfig = [
     "link": "https://anosaka.com/"
   },
   {
-    "name": "坂道データベース",
+    "name": "⭐坂道データベース",
     "desc": "[あの坂道] sakamichidb.anosaka.com",
     "detail": "「あの坂道」運營的坂道系MV播放量統計非官方網站。\n\n・[關於此網站](https://sakamichidb.anosaka.com/other/about)",
     "tags": [
