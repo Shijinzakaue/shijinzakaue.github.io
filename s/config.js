@@ -1,4 +1,4 @@
-var lastUpdated = "2026-08-22 17:46";
+var lastUpdated = "2026-09-18 23:51";
 
 var officialConfig = [
   {
@@ -1133,6 +1133,37 @@ var toolConfig = [
     "link": "https://x.com/pao_paobon"
   },
   {
+    "name": "けんしゅん",
+    "desc": "x.com/kenshun46",
+    "link": "https://x.com/kenshun46",
+    "detail": "雑多なデータや統計",
+    "tags": [
+      "ranking"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
+  },
+  {
+    "name": "懐かしい",
+    "desc": "x.com/__n____i",
+    "link": "https://x.com/__n____i",
+    "detail": "坂道豆知識",
+    "tags": [
+      "information",
+      "song",
+      "sale",
+      "ranking"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
+  },
+  {
     "name": "Unjustified",
     "desc": "x.com/unjustified1005",
     "detail": "坂道グループの各種データ",
@@ -1603,6 +1634,19 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://46log.com/photocard/create/"
+  },
+  {
+    "name": "乃木写（Nogisha）",
+    "desc": "[けんしゅん] nogisha.app",
+    "link": "https://nogisha.app/",
+    "detail": "乃木坂生写真の所持・希望・トレード管理ツール",
+    "tags": [
+      "oshi",
+      "photo"
+    ],
+    "groups": [
+      "nogi"
+    ]
   },
   {
     "name": "⭐アプリ「坂道ハウス」",
