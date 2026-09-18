@@ -1,4 +1,4 @@
-var lastUpdated = "2026-08-22 17:49";
+var lastUpdated = "2026-09-19 00:06";
 
 var officialConfig = [
   {
@@ -1281,6 +1281,35 @@ var toolConfig = [
     "link": "https://x.com/kks_slope"
   },
   {
+    "name": "懐かしい",
+    "desc": "x.com/__n____i",
+    "link": "https://x.com/__n____i",
+    "detail": "坂道杂学、不定期比对资料",
+    "tags": [
+      "song",
+      "information",
+      "ranking",
+      "sale"
+    ],
+    "groups": [
+      "nogi"
+    ]
+  },
+  {
+    "name": "けんしゅん",
+    "desc": "x.com/kenshun46",
+    "link": "https://x.com/kenshun46",
+    "detail": "各种杂项统计、排行",
+    "tags": [
+      "ranking"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
+  },
+  {
     "name": "櫻坂46トーク集記",
     "desc": "x.com/sakuratotalling",
     "detail": "・[櫻坂46トーク集计 - YouTube](https://www.youtube.com/@sakuratotalling)",
@@ -1395,6 +1424,19 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://x.com/WAJty8A2vuHn0Nn"
+  },
+  {
+    "name": "乃木写（Nogisha）",
+    "desc": "[けんしゅん] nogisha.app",
+    "link": "https://nogisha.app/",
+    "detail": "乃木坂生写真交换管理工具",
+    "tags": [
+      "oshi",
+      "photo"
+    ],
+    "groups": [
+      "nogi"
+    ]
   },
   {
     "name": "UOA SSR+统整表",
