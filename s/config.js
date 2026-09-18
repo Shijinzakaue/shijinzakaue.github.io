@@ -1,4 +1,4 @@
-var lastUpdated = "2026-09-18 23:51";
+var lastUpdated = "2026-09-19 00:15";
 
 var officialConfig = [
   {
@@ -306,7 +306,7 @@ var toolConfig = [
     "link": "https://anosaka.com/"
   },
   {
-    "name": "坂道データベース",
+    "name": "⭐坂道データベース",
     "desc": "[あの坂道] sakamichidb.anosaka.com",
     "detail": "「あの坂道」が運営する坂道グループのMV再生回数やチャート情報まとめた非公式ファンサイトです。\n\n・[このサイトについて](https://sakamichidb.anosaka.com/other/about)",
     "tags": [
