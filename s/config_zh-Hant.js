@@ -1,4 +1,4 @@
-var lastUpdated = "2026-09-18 23:58";
+var lastUpdated = "2026-09-19 00:07";
 
 var officialConfig = [
   {
@@ -1048,10 +1048,10 @@ var toolConfig = [
     "link": "https://x.com/__n____i",
     "detail": "坂道雜學、不定期比對資料",
     "tags": [
-      "live",
       "information",
       "song",
-      "ranking"
+      "ranking",
+      "sale"
     ],
     "groups": [
       "nogi",
