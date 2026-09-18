@@ -1,4 +1,4 @@
-var lastUpdated = "2026-08-22 17:48";
+var lastUpdated = "2026-09-19 00:13";
 
 var officialConfig = [
   {
@@ -1004,6 +1004,19 @@ var toolConfig = [
     "link": "https://nogizakarate.com/"
   },
   {
+    "name": "乃木写（Nogisha）",
+    "desc": "[けんしゅん] nogisha.app",
+    "link": "https://nogisha.app/",
+    "detail": "Nogizaka photocard collection, wishlist, and trade management tool",
+    "tags": [
+      "photo",
+      "oshi"
+    ],
+    "groups": [
+      "nogi"
+    ]
+  },
+  {
     "name": "高画質壁紙iPhone工事中",
     "desc": "iphone46.blog.jp",
     "detail": "・Nama Jashin\n・High-quality wallpaper",
@@ -1207,6 +1220,37 @@ var toolConfig = [
       "nogi"
     ],
     "link": "https://nekojitachamo.livedoor.blog/"
+  },
+  {
+    "name": "懐かしい",
+    "desc": "x.com/__n____i",
+    "link": "https://x.com/__n____i",
+    "detail": "Sakamichi trivia",
+    "tags": [
+      "sale",
+      "information",
+      "song",
+      "ranking"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
+  },
+  {
+    "name": "けんしゅん",
+    "desc": "x.com/kenshun46",
+    "link": "https://x.com/kenshun46",
+    "detail": "Miscellaneous data and statistics",
+    "tags": [
+      "ranking"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ]
   },
   {
     "name": "ヨヨりんご46",
