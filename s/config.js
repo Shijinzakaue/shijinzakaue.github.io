@@ -1,4 +1,4 @@
-var lastUpdated = "2026-09-19 00:15";
+var lastUpdated = "2026-09-20 21:28";
 
 var officialConfig = [
   {
@@ -431,6 +431,21 @@ var toolConfig = [
     "link": "https://sakamichidatabase.penguinelegy.com/"
   },
   {
+    "name": "⭐sakulabo",
+    "desc": "[ひろまめ。] buddies46.stars.ne.jp",
+    "link": "https://buddies46.stars.ne.jp/satellite/sakulabo/",
+    "detail": "SakuLabo. は、メンバー、予定、ブログ、さくみみ、楽曲、セトリを横断して確認できる非公式ファンツールです。今日の予定から、気になる曲の披露履歴まで、必要な情報へすぐ移動できます。",
+    "tags": [
+      "information",
+      "blog",
+      "song",
+      "live"
+    ],
+    "groups": [
+      "saku"
+    ]
+  },
+  {
     "name": "まいにち日向坂",
     "desc": "hinatafan.com",
     "detail": "・ほぼセトリ専門\n・日向坂46聖地巡礼\n・メンバー資料まとめ",
@@ -846,22 +861,6 @@ var toolConfig = [
     "link": "https://the0ries.com/category/nogizaka/"
   },
   {
-    "name": "⭐Sakamichi Blog Archive",
-    "desc": "sakamichi.co",
-    "detail": "・坂道ブログ画像保存サイト\n・乃木坂46以外、メンバーの宣材写真を高画質で保管しています。\n　・乃木坂46：2017年7月 -\n　・欅坂46：開設（2015年11月）- 改名（2020年10月）\n　・日向坂46：けやき坂46として開設（2016年8月）-\n　・櫻坂46：改名（2020年10月）-\n\n・[坂道ブログ画像BOT / X](https://x.com/foxtrotal)\n・[公式ブログ月間ジャンプ/集計](https://contributions.sakamichi.co/)",
-    "tags": [
-      "blog",
-      "photo",
-      "公式"
-    ],
-    "groups": [
-      "nogi",
-      "saku",
-      "hina"
-    ],
-    "link": "https://www.sakamichi.co/"
-  },
-  {
     "name": "⭐乃木地圖 | Nogimap",
     "desc": "nogimap.com",
     "detail": "Nogimap は、聖地巡礼をより便利にすることを目的とした、コミュニティが管理する地図プロジェクトです。",
@@ -943,6 +942,19 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://nogitabi.blog.jp/"
+  },
+  {
+    "name": "⭐sakumap",
+    "desc": "[ひろまめ。] buddies46.stars.ne.jp",
+    "link": "https://buddies46.stars.ne.jp/satellite/sakumap/#map",
+    "detail": "櫻坂46のドラマ・MV撮影地やゆかりのスポットを地図上で共有・発見できるコミュニティサイト\n\n・[SakuMap 使い方](https://buddies46.stars.ne.jp/satellite/sakumap/readme.html)\n・作者：[ひろまめ。](https://buddies46.stars.ne.jp/satellite/)",
+    "tags": [
+      "place",
+      "oshi"
+    ],
+    "groups": [
+      "saku"
+    ]
   },
   {
     "name": "聖地巡礼したい",
@@ -1425,6 +1437,22 @@ var toolConfig = [
     "link": "https://docs.google.com/spreadsheets/d/1RR2ixjmSL5sDPG7MA-Dk44GZrbaP7zbnMbP4qkjB7xs/edit?gid=0#gid=0"
   },
   {
+    "name": "⭐Sakamichi Blog Archive",
+    "desc": "sakamichi.co",
+    "detail": "・坂道ブログ画像保存サイト\n・乃木坂46以外、メンバーの宣材写真を高画質で保管しています。\n　・乃木坂46：2017年7月 -\n　・欅坂46：開設（2015年11月）- 改名（2020年10月）\n　・日向坂46：けやき坂46として開設（2016年8月）-\n　・櫻坂46：改名（2020年10月）-\n\n・[坂道ブログ画像BOT / X](https://x.com/foxtrotal)\n・[公式ブログ月間ジャンプ/集計](https://contributions.sakamichi.co/)",
+    "tags": [
+      "blog",
+      "photo",
+      "公式"
+    ],
+    "groups": [
+      "nogi",
+      "saku",
+      "hina"
+    ],
+    "link": "https://www.sakamichi.co/"
+  },
+  {
     "name": "🪦握手会情報まとめ",
     "desc": "ameblo.jp/seto-kasumi",
     "detail": "・過去の握手会完売情報やブログコメント数等の人気指標データをひたすら集計していきます。\n・最後更新 2019.12.26",
@@ -1485,7 +1513,7 @@ var toolConfig = [
   {
     "name": "🪦卒業生ブログサイト",
     "desc": "サイトの追加を歓迎します",
-    "detail": "・[橋本奈々未～山下美月](https://janelin612.github.io/n46-crawler/)\n・[岩瀬佑美子～寺田蘭世](https://re-fort.net/NgzkBlogArchive/#/)\n・[今泉佑唯～渡辺梨加](https://re-fort.net/KykzkBlogArchive/#/)\n・[柿崎芽実・井口眞緒](https://re-fort.net/HntzkBlogArchive/#/)\n・個人\n　・[橋本奈々未](https://nondanee.github.io/onemoretime/nanami.hashimoto/)\n　・[久保史緒里](https://washioshihokubo.github.io/kubo-archive/)\n　・[梅澤美波](https://washioshihokubo.github.io/umezawa-archive/)",
+    "detail": "・[橋本奈々未～山下美月](https://janelin612.github.io/n46-crawler/)\n・[岩瀬佑美子～寺田蘭世](https://re-fort.net/NgzkBlogArchive/#/)\n・[今泉佑唯～渡辺梨加](https://re-fort.net/KykzkBlogArchive/#/)\n・[井上梨名～田村保乃 - SakuDays@ひろまめ。](https://buddies46.stars.ne.jp/satellite/sakudays/)\n・[柿崎芽実・井口眞緒](https://re-fort.net/HntzkBlogArchive/#/)\n・個人\n　・[橋本奈々未](https://nondanee.github.io/onemoretime/nanami.hashimoto/)\n　・[久保史緒里](https://washioshihokubo.github.io/kubo-archive/)\n　・[梅澤美波](https://washioshihokubo.github.io/umezawa-archive/)",
     "tags": [
       "blog",
       "photo",
@@ -1528,6 +1556,33 @@ var toolConfig = [
       "hina"
     ],
     "link": "##"
+  },
+  {
+    "name": "Bloomy",
+    "desc": "[ひろまめ。] buddies46.stars.ne.jp",
+    "link": "https://buddies46.stars.ne.jp/satellite/Bloomy/",
+    "detail": "MV・歌詞・歌唱メンバーを一つのページで同時に確認できる、櫻坂46ファンのための便利なサイトです。\nYouTube公式MVをそのまま再生するため、再生回数にもきちんと反映されます。\n楽曲の世界観を味わいながら、歌割りやメンバー情報をスムーズにチェックできます。\n\n・作者：[ひろまめ。](https://buddies46.stars.ne.jp/satellite/)",
+    "tags": [
+      "streaming",
+      "oshi",
+      "song"
+    ],
+    "groups": [
+      "saku"
+    ]
+  },
+  {
+    "name": "Buddies",
+    "desc": "[ひろまめ。] buddies46.stars.ne.jp",
+    "link": "https://buddies46.stars.ne.jp/satellite/buddies/",
+    "detail": "Buddies同士の交流をサポートするプロフィールサイトです。\n実際に会ってQRコードでプロフィールを交換したり、お気に入り登録したBuddiesとXでDMしたり、一期一会を大切にしてほしいという想いを込めて制作しました。\n\n・作者：[ひろまめ。](https://buddies46.stars.ne.jp/satellite/)",
+    "tags": [
+      "oshi",
+      "tool"
+    ],
+    "groups": [
+      "saku"
+    ]
   },
   {
     "name": "My選抜シミュレータ",
