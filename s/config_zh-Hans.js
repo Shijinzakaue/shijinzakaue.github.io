@@ -1,4 +1,4 @@
-var lastUpdated = "2026-09-19 00:15";
+var lastUpdated = "2026-09-20 21:58";
 
 var officialConfig = [
   {
@@ -429,6 +429,21 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://hinatazaka46.u-ff.com/"
+  },
+  {
+    "name": "⭐sakulabo",
+    "desc": "[ひろまめ。] buddies46.stars.ne.jp",
+    "link": "https://buddies46.stars.ne.jp/satellite/sakulabo/",
+    "detail": "SakuLabo. 为粉丝开的成员、日程、Blog、Sakumimi、歌曲、歌单资讯确认网站。\n\n・作者：[ひろまめ。](https://buddies46.stars.ne.jp/satellite/)",
+    "tags": [
+      "information",
+      "blog",
+      "song",
+      "live"
+    ],
+    "groups": [
+      "saku"
+    ]
   },
   {
     "name": "まいにち日向坂",
@@ -862,19 +877,6 @@ var toolConfig = [
     "link": "https://www.sakamichi.co/"
   },
   {
-    "name": "⭐乃木地图 | Nogimap",
-    "desc": "nogimap.com",
-    "detail": "Nogimap 是由社群共同维护的地图专案，希望让圣巡变得更方便。",
-    "tags": [
-      "place",
-      "oshi"
-    ],
-    "groups": [
-      "nogi"
-    ],
-    "link": "https://nogimap.com/"
-  },
-  {
     "name": "坂道系圣地巡礼地图",
     "desc": "[nekokosyan] google.com/maps",
     "detail": "・MV与写真集的外景地",
@@ -901,6 +903,19 @@ var toolConfig = [
       "nogi"
     ],
     "link": "https://tsuredure-nogi-blog.com/rokechi-matome/"
+  },
+  {
+    "name": "⭐乃木地图 | Nogimap",
+    "desc": "nogimap.com",
+    "detail": "Nogimap 是由社群共同维护的地图专案，希望让圣巡变得更方便。",
+    "tags": [
+      "place",
+      "oshi"
+    ],
+    "groups": [
+      "nogi"
+    ],
+    "link": "https://nogimap.com/"
   },
   {
     "name": "乃木旅",
@@ -974,6 +989,19 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://tools.yotujoho.com/"
+  },
+  {
+    "name": "⭐sakumap",
+    "desc": "[ひろまめ。] buddies46.stars.ne.jp",
+    "link": "https://buddies46.stars.ne.jp/satellite/sakumap/#map",
+    "detail": "樱坂46的影视・MV拍摄地与各种地点的圣地分享地图网站\n\n・[SakuMap 使用手册](https://buddies46.stars.ne.jp/satellite/sakumap/readme.html)\n・作者：[ひろまめ。](https://buddies46.stars.ne.jp/satellite/)",
+    "tags": [
+      "place",
+      "oshi"
+    ],
+    "groups": [
+      "saku"
+    ]
   },
   {
     "name": "fumi Diary 2号店: ロケ地ノート",
@@ -1323,6 +1351,33 @@ var toolConfig = [
     "link": "https://x.com/sakuratotalling"
   },
   {
+    "name": "Bloomy",
+    "desc": "[ひろまめ。] buddies46.stars.ne.jp",
+    "link": "https://buddies46.stars.ne.jp/satellite/Bloomy/",
+    "detail": "粉丝开发的樱坂46 歌曲歌词、成员歌词段落、乐曲资讯确认网页。\n\n・作者：[ひろまめ。](https://buddies46.stars.ne.jp/satellite/)",
+    "tags": [
+      "song",
+      "streaming",
+      "oshi"
+    ],
+    "groups": [
+      "saku"
+    ]
+  },
+  {
+    "name": "Buddies",
+    "desc": "[ひろまめ。] buddies46.stars.ne.jp",
+    "link": "https://buddies46.stars.ne.jp/satellite/buddies/",
+    "detail": "Buddies交流网站，可自建个人档案。\n\n・作者：[ひろまめ。](https://buddies46.stars.ne.jp/satellite/)",
+    "tags": [
+      "tool",
+      "oshi"
+    ],
+    "groups": [
+      "saku"
+    ]
+  },
+  {
     "name": "Sakurazaka Daily Data",
     "desc": "x.com/yamanteJr",
     "detail": "统计櫻坂46 推文 与前日比数据，毎天早上投稿。",
@@ -1512,7 +1567,7 @@ var toolConfig = [
   {
     "name": "🪦毕业生博客存档（个人）",
     "desc": "欢迎提供其他网站",
-    "detail": "・[桥本奈々未～山下美月](https://janelin612.github.io/n46-crawler/)\n・[岩瀬佑美子～寺田兰世](https://re-fort.net/NgzkBlogArchive/#/)\n・[今泉佑唯～渡辺梨加](https://re-fort.net/KykzkBlogArchive/#/)\n・[柿崎芽実・井口眞绪](https://re-fort.net/HntzkBlogArchive/#/)\n・个人\n　・[桥本奈々未](https://nondanee.github.io/onemoretime/nanami.hashimoto/)\n　・[久保史绪里](https://washioshihokubo.github.io/kubo-archive/)\n　・[梅澤美波](https://washioshihokubo.github.io/umezawa-archive/)",
+    "detail": "・[桥本奈々未～山下美月](https://janelin612.github.io/n46-crawler/)\n・[岩瀬佑美子～寺田兰世](https://re-fort.net/NgzkBlogArchive/#/)\n・[今泉佑唯～渡辺梨加](https://re-fort.net/KykzkBlogArchive/#/)\n・[井上梨名～田村保乃 - SakuDays@ひろまめ。](https://buddies46.stars.ne.jp/satellite/sakudays/)\n・[柿崎芽実・井口眞绪](https://re-fort.net/HntzkBlogArchive/#/)\n・个人\n　・[桥本奈々未](https://nondanee.github.io/onemoretime/nanami.hashimoto/)\n　・[久保史绪里](https://washioshihokubo.github.io/kubo-archive/)\n　・[梅澤美波](https://washioshihokubo.github.io/umezawa-archive/)",
     "tags": [
       "blog",
       "photo",
