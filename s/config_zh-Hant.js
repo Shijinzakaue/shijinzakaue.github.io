@@ -1,4 +1,4 @@
-var lastUpdated = "2026-09-19 00:16";
+var lastUpdated = "2026-09-20 21:51";
 
 var officialConfig = [
   {
@@ -429,6 +429,21 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://hinatazaka46.u-ff.com/"
+  },
+  {
+    "name": "⭐sakulabo",
+    "desc": "[ひろまめ。] buddies46.stars.ne.jp",
+    "link": "https://buddies46.stars.ne.jp/satellite/sakulabo/",
+    "detail": "SakuLabo. 為粉絲開的成員、日程、Blog、Sakumimi、歌曲、歌單資訊確認網站。\n\n・作者：[ひろまめ。](https://buddies46.stars.ne.jp/satellite/)",
+    "tags": [
+      "information",
+      "song",
+      "blog",
+      "live"
+    ],
+    "groups": [
+      "saku"
+    ]
   },
   {
     "name": "まいにち日向坂",
@@ -862,19 +877,6 @@ var toolConfig = [
     "link": "https://www.sakamichi.co/"
   },
   {
-    "name": "⭐乃木地圖 | Nogimap",
-    "desc": "nogimap.com",
-    "detail": "Nogimap 是由社群共同維護的地圖專案，希望讓聖巡變得更方便。",
-    "tags": [
-      "place",
-      "oshi"
-    ],
-    "groups": [
-      "nogi"
-    ],
-    "link": "https://nogimap.com/"
-  },
-  {
     "name": "坂道系聖地巡禮地圖",
     "desc": "[nekokosyan] google.com/maps",
     "detail": "・MV與寫真集的外景地",
@@ -901,6 +903,19 @@ var toolConfig = [
       "nogi"
     ],
     "link": "https://tsuredure-nogi-blog.com/rokechi-matome/"
+  },
+  {
+    "name": "⭐乃木地圖 | Nogimap",
+    "desc": "nogimap.com",
+    "detail": "Nogimap 是由社群共同維護的地圖專案，希望讓聖巡變得更方便。",
+    "tags": [
+      "place",
+      "oshi"
+    ],
+    "groups": [
+      "nogi"
+    ],
+    "link": "https://nogimap.com/"
   },
   {
     "name": "乃木旅",
@@ -974,6 +989,19 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://tools.yotujoho.com/"
+  },
+  {
+    "name": "⭐sakumap",
+    "desc": "[ひろまめ。] buddies46.stars.ne.jp",
+    "link": "https://buddies46.stars.ne.jp/satellite/sakumap/#map",
+    "detail": "櫻坂46的影視・MV拍攝地與各種地點的聖地分享地圖網站\n\n・[SakuMap 使用手冊](https://buddies46.stars.ne.jp/satellite/sakumap/readme.html)\n・作者：[ひろまめ。](https://buddies46.stars.ne.jp/satellite/)",
+    "tags": [
+      "oshi",
+      "place"
+    ],
+    "groups": [
+      "saku"
+    ]
   },
   {
     "name": "fumi Diary 2号店: ロケ地ノート",
@@ -1351,6 +1379,33 @@ var toolConfig = [
     "link": "https://x.com/sakurazakastats"
   },
   {
+    "name": "Bloomy",
+    "desc": "[ひろまめ。] buddies46.stars.ne.jp",
+    "link": "https://buddies46.stars.ne.jp/satellite/Bloomy/",
+    "detail": "粉絲開發的櫻坂46 歌曲歌詞、成員歌詞段落、樂曲資訊確認網頁。\n\n・作者：[ひろまめ。](https://buddies46.stars.ne.jp/satellite/)",
+    "tags": [
+      "song",
+      "oshi",
+      "streaming"
+    ],
+    "groups": [
+      "saku"
+    ]
+  },
+  {
+    "name": "Buddies",
+    "desc": "[ひろまめ。] buddies46.stars.ne.jp",
+    "link": "https://buddies46.stars.ne.jp/satellite/buddies/",
+    "detail": "Buddies交流網站，可自建個人檔案。\n\n・作者：[ひろまめ。](https://buddies46.stars.ne.jp/satellite/)",
+    "tags": [
+      "oshi",
+      "tool"
+    ],
+    "groups": [
+      "saku"
+    ]
+  },
+  {
     "name": "⭐田代光輝",
     "desc": "x.com/mitsu0227",
     "detail": "寫真集銷售數據・預測・推移",
@@ -1514,16 +1569,16 @@ var toolConfig = [
   {
     "name": "🪦畢業生部落格存檔（個人）",
     "desc": "歡迎提供其他網站",
-    "detail": "・[橋本奈々未～山下美月](https://janelin612.github.io/n46-crawler/)\n・[岩瀬佑美子～寺田蘭世](https://re-fort.net/NgzkBlogArchive/#/)\n・[今泉佑唯～渡辺梨加](https://re-fort.net/KykzkBlogArchive/#/)\n・[柿崎芽実・井口眞緒](https://re-fort.net/HntzkBlogArchive/#/)\n・個人\n　・[橋本奈々未](https://nondanee.github.io/onemoretime/nanami.hashimoto/)\n　・[久保史緒里](https://washioshihokubo.github.io/kubo-archive/)\n　・[梅澤美波](https://washioshihokubo.github.io/umezawa-archive/)",
+    "detail": "・[橋本奈々未～山下美月](https://janelin612.github.io/n46-crawler/)\n・[岩瀬佑美子～寺田蘭世](https://re-fort.net/NgzkBlogArchive/#/)\n・[今泉佑唯～渡辺梨加](https://re-fort.net/KykzkBlogArchive/#/)\n・[井上梨名～田村保乃 - SakuDays@ひろまめ。](https://buddies46.stars.ne.jp/satellite/sakudays/)\n・[柿崎芽実・井口眞緒](https://re-fort.net/HntzkBlogArchive/#/)\n・個人\n　・[橋本奈々未](https://nondanee.github.io/onemoretime/nanami.hashimoto/)\n　・[久保史緒里](https://washioshihokubo.github.io/kubo-archive/)\n　・[梅澤美波](https://washioshihokubo.github.io/umezawa-archive/)",
     "tags": [
       "blog",
       "photo",
       "公式"
     ],
     "groups": [
-      "nogi",
       "saku",
-      "hina"
+      "hina",
+      "nogi"
     ],
     "link": ""
   },
