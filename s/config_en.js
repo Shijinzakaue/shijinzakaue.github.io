@@ -1,4 +1,4 @@
-var lastUpdated = "2026-09-19 00:14";
+var lastUpdated = "2026-09-20 22:06";
 
 var officialConfig = [
   {
@@ -411,6 +411,21 @@ var toolConfig = [
       "hina"
     ],
     "link": "https://hinatazaka46.u-ff.com/"
+  },
+  {
+    "name": "⭐sakulabo",
+    "desc": "[ひろまめ。] buddies46.stars.ne.jp",
+    "link": "https://buddies46.stars.ne.jp/satellite/sakulabo/",
+    "detail": "SakuLabo is a site created for fans to check information on members, schedules, blogs, Sakumimi, songs, and playlists.\n\n・author：[ひろまめ。](https://buddies46.stars.ne.jp/satellite/)\n",
+    "tags": [
+      "information",
+      "blog",
+      "song",
+      "live"
+    ],
+    "groups": [
+      "saku"
+    ]
   },
   {
     "name": "坂道データベース",
@@ -945,6 +960,19 @@ var toolConfig = [
     "link": "https://nogitabi.blog.jp/"
   },
   {
+    "name": "⭐sakumap",
+    "desc": "[ひろまめ。] buddies46.stars.ne.jp",
+    "link": "https://buddies46.stars.ne.jp/satellite/sakumap/#map",
+    "detail": "A map-based website sharing filming locations (for videos and music videos) and various \"pilgrimage sites\" associated with Sakurazaka46.\n\n・[SakuMap manual](https://buddies46.stars.ne.jp/satellite/sakumap/readme.html)\n・author：[ひろまめ。](https://buddies46.stars.ne.jp/satellite/)",
+    "tags": [
+      "oshi",
+      "place"
+    ],
+    "groups": [
+      "saku"
+    ]
+  },
+  {
     "name": "聖地巡礼したい",
     "desc": "tsuredure-nogi-blog.com",
     "detail": "This site introduces the filming locations of the Sakamichi Group (Nogizaka46, Sakurazaka46, Hinatazaka46).\n・Mainly filming locations for music videos\n\n・[聖地巡礼したい / X](https://x.com/junrei_shitai)",
@@ -1364,6 +1392,33 @@ var toolConfig = [
     "link": "https://x.com/sakurazakastats"
   },
   {
+    "name": "Bloomy",
+    "desc": "[ひろまめ。] buddies46.stars.ne.jp",
+    "link": "https://buddies46.stars.ne.jp/satellite/Bloomy/",
+    "detail": "A fan-developed webpage for checking Sakurazaka46 song lyrics, member-specific lyric segments, and track information.\n\n・author：[ひろまめ。](https://buddies46.stars.ne.jp/satellite/)\n",
+    "tags": [
+      "streaming",
+      "oshi",
+      "song"
+    ],
+    "groups": [
+      "saku"
+    ]
+  },
+  {
+    "name": "Buddies",
+    "desc": "[ひろまめ。] buddies46.stars.ne.jp",
+    "link": "https://buddies46.stars.ne.jp/satellite/buddies/",
+    "detail": "Buddies community site where users can create personal profiles.\n\n・author：[ひろまめ。](https://buddies46.stars.ne.jp/satellite/)\n",
+    "tags": [
+      "oshi",
+      "tool"
+    ],
+    "groups": [
+      "saku"
+    ]
+  },
+  {
     "name": "田代光輝",
     "desc": "x.com/mitsu0227",
     "detail": "Photobook data/sales trends",
@@ -1498,7 +1553,7 @@ var toolConfig = [
   {
     "name": "🪦OG Blog SITE",
     "desc": "welcome to recommend sites",
-    "detail": "・[Nanami Hashimoto～Mizuki Yamashita](https://janelin612.github.io/n46-crawler/)\n・[Yumiko Iwase～Ranze Terada](https://re-fort.net/NgzkBlogArchive/#/)\n・[Yui Imaizumi～Rika Watanabe](https://re-fort.net/KykzkBlogArchive/#/)\n・[Memi Kakizaki・Mao Ikuchi](https://re-fort.net/HntzkBlogArchive/#/)\n・Personal\n　・[Nanami Hashimoto](https://nondanee.github.io/onemoretime/nanami.hashimoto/)\n　・[Shiori Kubo](https://washioshihokubo.github.io/kubo-archive/)\n　・[Minami Umezuwa](https://washioshihokubo.github.io/umezawa-archive/)",
+    "detail": "・[Nanami Hashimoto～Mizuki Yamashita](https://janelin612.github.io/n46-crawler/)\n・[Yumiko Iwase～Ranze Terada](https://re-fort.net/NgzkBlogArchive/#/)\n・[Yui Imaizumi～Rika Watanabe](https://re-fort.net/KykzkBlogArchive/#/)\n・[RINA INOUE～HONO TAMURA - SakuDays@ひろまめ。](https://buddies46.stars.ne.jp/satellite/sakudays/)\n・[Memi Kakizaki・Mao Ikuchi](https://re-fort.net/HntzkBlogArchive/#/)\n・Personal\n　・[Nanami Hashimoto](https://nondanee.github.io/onemoretime/nanami.hashimoto/)\n　・[Shiori Kubo](https://washioshihokubo.github.io/kubo-archive/)\n　・[Minami Umezuwa](https://washioshihokubo.github.io/umezawa-archive/)",
     "tags": [
       "blog",
       "photo",
