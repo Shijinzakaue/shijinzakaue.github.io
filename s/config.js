@@ -1,4 +1,4 @@
-var lastUpdated = "2026-09-20 21:28";
+var lastUpdated = "2026-10-04 15:21";
 
 var officialConfig = [
   {
@@ -1698,6 +1698,19 @@ var toolConfig = [
     "tags": [
       "oshi",
       "photo"
+    ],
+    "groups": [
+      "nogi"
+    ]
+  },
+  {
+    "name": "乃木坂的フラクタル データベース",
+    "desc": "captaine46.github.io",
+    "link": "https://captaine46.github.io/nogifura-data/",
+    "detail": "作者：[@Captaine_46（X）](https://x.com/Captaine_46)\n\n本サイトは「乃木坂的フラクタル」の非公式ファンサイトです。\n\n不具合や掲載情報の誤りにお気づきの際や、ご意見・アイデアなどがございましたら、 作者のXのDM でお知らせいただけますと幸いです。\n\n掲載情報・計算結果の正確性や最新性は保証していません。ゲーム内の情報を優先してください。掲載内容は参考情報として、ご自身の判断でご活用いただけますと幸いです。画像・名称等の権利は各権利者に帰属します。",
+    "tags": [
+      "game",
+      "tool"
     ],
     "groups": [
       "nogi"
