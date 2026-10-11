@@ -1,4 +1,4 @@
-var lastUpdated = "2026-10-04 15:25";
+var lastUpdated = "2026-10-11 22:26";
 
 var officialConfig = [
   {
@@ -1671,13 +1671,14 @@ var toolConfig = [
     ]
   },
   {
-    "name": "乃木坂的フラクタル Database",
+    "name": "乃木分形 Database",
     "desc": "captaine46.github.io",
     "link": "https://captaine46.github.io/nogifura-data/",
-    "detail": "作者：[@Captaine_46（X）](https://x.com/Captaine_46)\n\n本站是《乃木坂Fractal》（乃木坂的Fractal）的非官方粉丝网站。\n\n若发现任何故障或信息错误，或者有任何意见与建议，欢迎通过作者的X（原Twitter）私信（DM）联系告知。\n\n本站不保证所载信息及计算结果的准确性或时效性，请以游戏内信息为准。网站内容仅供参考，请您自行判断并使用。图片、名称等相关权利归各自权利所有者所有。",
+    "detail": "作者：[@Captaine_46（X）](https://x.com/Captaine_46)\n排行網站：[captaine46.github.io/nogifurarank](https://captaine46.github.io/nogifurarank/)\n\n本站是《乃木坂Fractal》（乃木坂的Fractal）的非官方粉丝网站。\n\n若发现任何故障或信息错误，或者有任何意见与建议，欢迎通过作者的X（原Twitter）私信（DM）联系告知。\n\n本站不保证所载信息及计算结果的准确性或时效性，请以游戏内信息为准。网站内容仅供参考，请您自行判断并使用。图片、名称等相关权利归各自权利所有者所有。",
     "tags": [
       "tool",
-      "game"
+      "game",
+      "ranking"
     ],
     "groups": [
       "nogi"
