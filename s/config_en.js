@@ -1,4 +1,4 @@
-var lastUpdated = "2026-10-11 22:24";
+var lastUpdated = "2026-10-11 22:25";
 
 var officialConfig = [
   {
@@ -1679,7 +1679,8 @@ var toolConfig = [
     "detail": "Creator: [@Captaine_46 (X)](https://x.com/Captaine_46)\nRanking Site：[captaine46.github.io/nogifurarank](https://captaine46.github.io/nogifurarank/)\n\nThis is an unofficial fan site for \"Nogizaka-teki Fractal.\"\n\nIf you notice any bugs or errors in the information provided, or if you have any feedback or ideas, please feel free to contact the creator via DM on X.\n\nWe do not guarantee the accuracy or currency of the information and calculation results presented here; please prioritize in-game information. Please use the content provided here as a reference and at your own discretion. Rights to images, names, and other materials belong to their respective owners.",
     "tags": [
       "game",
-      "tool"
+      "tool",
+      "ranking"
     ],
     "groups": [
       "nogi"
