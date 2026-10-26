@@ -1,5 +1,5 @@
 // sw.js
-const CACHE_NAME = 'v1.3.0'; 
+const CACHE_NAME = 'v1.4.0'; 
 
 self.addEventListener('install', (event) => {
     self.skipWaiting(); 
