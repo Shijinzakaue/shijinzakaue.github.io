@@ -45,6 +45,7 @@
       --dock-btn-size: 60px;
       --dock-rail-width: calc(var(--dock-btn-size) + 14px);
       --dock-gap: 8px;
+      --keep-switch-size-desktop: 70px;
       --fab-size: 66px;
       --safe-bottom: env(safe-area-inset-bottom, 0px);
       --overlay-light: rgba(255,255,255,.02);
@@ -403,10 +404,10 @@
 
     .keep-switch {
       position: fixed;
-      right: 16px;
-      top: 96px;
-      width: var(--dock-btn-size);
-      height: var(--dock-btn-size);
+      right: calc(16px + (var(--dock-rail-width) - var(--keep-switch-size-desktop)) / 2);
+      top: 10px;
+      width: var(--keep-switch-size-desktop);
+      height: var(--keep-switch-size-desktop);
       opacity: 0;
       visibility: hidden;
       z-index: 31;
@@ -667,11 +668,14 @@
       flex-shrink: 0;
     }
     .official-panel-toggle:hover { background: var(--overlay-light-active); color: var(--text); }
-    .official-panel-toggle .material-icons { font-size: 20px; transition: transform 0.3s; }
-    .official-panel.collapsed .official-panel-toggle .material-icons { transform: rotate(-90deg); }
+    .official-panel-toggle .material-icons { font-size: 20px; transition: transform 0.3s; transform: rotate(180deg); }
+    .official-panel.collapsed .official-panel-toggle .material-icons { transform: rotate(0deg); }
     .official-panel.collapsed .official-groups { display: none; }
     .official-panel.collapsed {
-      padding-bottom: 16px;
+      padding-bottom: 24px;
+    }
+    .official-panel.collapsed .official-panel-head {
+      margin-bottom: 0;
     }
     .official-group {
       display: flex;
@@ -983,8 +987,11 @@
 
       .keep-switch {
         top: auto;
-        right: calc(26px + var(--dock-btn-size) + 10px);
+        left: 26px;
+        right: auto;
         bottom: calc(32px + var(--dock-btn-size) + var(--safe-bottom) + var(--dock-gap) * 3);
+        width: var(--dock-btn-size);
+        height: var(--dock-btn-size);
       }
 
       .filter-panel {
@@ -1090,10 +1097,11 @@
     .dot.hina { background: var(--hina); }
     .card-keep-toggle {
       position: absolute;
-      right: 12px;
-      top: 10px;
-      width: 34px;
-      height: 34px;
+      right: 15px;
+      top: 0;
+      width: 32px;
+      height: 32px;
+      padding: 0;
       border: none;
       display: flex;
       align-items: center;
@@ -1109,10 +1117,11 @@
       background: var(--overlay-light-hover);
       color: var(--text);
     }
-    .card-keep-toggle .material-icons { font-size: 22px; }
+    .card-keep-toggle .material-icons { font-size: 20px; line-height: 1; }
     .card-keep-toggle.kept {
       color: var(--accent);
-      background: rgba(147,58,253,.12);
+      background: transparent;
+      box-shadow: none;
     }
     .featured-corner {
       position: absolute;
@@ -1141,6 +1150,63 @@
     .tool-detail-text { white-space: pre-line; }
     .tool-detail-text a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
     .tool-detail-text a:hover { opacity: .9; }
+    #changeLogContent h1,
+    #changeLogContent h2,
+    #changeLogContent h3 {
+      margin: 14px 0 10px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+    #changeLogContent h1 { font-size: 21px; }
+    #changeLogContent h2 { font-size: 19px; }
+    #changeLogContent h3 { font-size: 17px; }
+    #changeLogContent p {
+      margin: 0 0 12px;
+      line-height: 1.75;
+      font-size: 14px;
+      color: var(--text);
+    }
+    #changeLogContent ul,
+    #changeLogContent ol {
+      margin: 0 0 12px 20px;
+      padding: 0;
+      line-height: 1.7;
+      font-size: 14px;
+      color: var(--text);
+    }
+    #changeLogContent blockquote {
+      margin: 0 0 12px;
+      padding: 8px 12px;
+      border-left: 3px solid color-mix(in srgb, var(--accent) 60%, transparent);
+      background: rgba(147,58,253,.08);
+      border-radius: 8px;
+      color: var(--text);
+    }
+    #changeLogContent code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      background: rgba(255,255,255,.08);
+      border-radius: 6px;
+      padding: 2px 6px;
+    }
+    #changeLogContent pre {
+      margin: 0 0 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.08);
+      overflow-x: auto;
+    }
+    #changeLogContent pre code {
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      white-space: pre;
+      display: block;
+      line-height: 1.6;
+    }
+    #changeLogContent {
+      white-space: normal;
+    }
     .tool-card.expanded .tool-detail {
       display: block;
     }
@@ -1222,7 +1288,8 @@
     }
     html[data-theme="light"] .card-keep-toggle.kept {
       color: #7c3aed;
-      background: rgba(147,58,253,.14);
+      background: transparent;
+      box-shadow: none;
     }
 
     .tool-card.match .tool-header {
@@ -1757,23 +1824,23 @@
         <button class="filter-mode-btn active" id="filterModeAny" data-i18n="filter_any">いずれか</button>
         <button class="filter-mode-btn" id="filterModeAll" data-i18n="filter_all">すべて</button>
       </div>
-
-      <div class="info-modal-backdrop" id="changeLogModalDrop">
-        <div class="info-modal" id="changeLogModal">
-          <div class="info-modal-header">
-            <h3 class="info-modal-heading" data-i18n="recent_changes">最近の変更</h3>
-            <button class="close-info" id="closeChangeLogBtn" aria-label="閉じる" data-i18n-aria-label="close_changes"><span class="material-icons">close</span></button>
-          </div>
-          <div class="info-modal-body">
-            <p class="info-modal-desc" id="changeLogEmptyMsg" data-i18n="no_recent_changes">変更履歴はまだありません。</p>
-            <div id="changeLogContent" class="tool-detail-text" style="font-size:14px; line-height:1.7; color:var(--text);"></div>
-          </div>
-        </div>
-      </div>
       <button class="clear-filters-btn" id="clearFiltersBtn" data-i18n="filter_clear">クリア</button>
     </div>
     <div class="filter-tags" id="filterTags"></div>
   </section>
+
+  <div class="info-modal-backdrop" id="changeLogModalDrop">
+    <div class="info-modal" id="changeLogModal">
+      <div class="info-modal-header">
+        <h3 class="info-modal-heading" data-i18n="recent_changes">最近の変更</h3>
+        <button class="close-info" id="closeChangeLogBtn" aria-label="閉じる" data-i18n-aria-label="close_changes"><span class="material-icons">close</span></button>
+      </div>
+      <div class="info-modal-body">
+        <p class="info-modal-desc" id="changeLogEmptyMsg" data-i18n="no_recent_changes">変更履歴はまだありません。</p>
+        <div id="changeLogContent" class="tool-detail-text" style="font-size:14px; line-height:1.7; color:var(--text);"></div>
+      </div>
+    </div>
+  </div>
 
   <div class="info-modal-backdrop" id="infoModalDrop">
     <div class="info-modal" id="infoModal">
@@ -2154,9 +2221,6 @@
       } catch (err) {
         /* ignore private mode */
       }
-      updateKeepSwitchUI();
-      updateTopButtonState();
-      renderChangeLogContent();
     }
 
     const LANG_CONFIG_MAP = {
@@ -2284,6 +2348,19 @@
       return window.innerWidth <= 600;
     }
 
+    function updateKeepSwitchPosition() {
+      if (!keepSwitchBtn || !searchPill) return;
+      if (isBottomDockLayout()) {
+        keepSwitchBtn.style.top = '';
+        return;
+      }
+      const pillRect = searchPill.getBoundingClientRect();
+      const btnRect = keepSwitchBtn.getBoundingClientRect();
+      const btnSize = btnRect.height || parseFloat(getComputedStyle(keepSwitchBtn).height) || 60;
+      const nextTop = Math.round(pillRect.top + (pillRect.height / 2) - (btnSize / 2));
+      keepSwitchBtn.style.top = `${Math.max(10, nextTop)}px`;
+    }
+
     function loadPersistedState() {
       try {
         const storedKeep = JSON.parse(localStorage.getItem(KEEP_STORAGE_KEY) || '[]');
@@ -2383,13 +2460,13 @@
       const emptyMsg = document.getElementById('changeLogEmptyMsg');
       if (!content || !emptyMsg) return;
       const raw = String(typeof recentChanges !== 'undefined' ? recentChanges : '').trim();
-      content.textContent = '';
+      content.innerHTML = '';
       if (!raw) {
         emptyMsg.style.display = 'block';
         return;
       }
       emptyMsg.style.display = 'none';
-      renderTextWithLinks(content, raw);
+      renderMarkdown(content, raw);
     }
 
     function safeHref(rawHref) {
@@ -2447,6 +2524,152 @@
           containerEl.appendChild(document.createElement('br'));
         }
       });
+    }
+
+    function escapeHtml(raw) {
+      return String(raw ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function parseMarkdownInline(raw) {
+      let text = String(raw ?? '');
+      const links = [];
+      const codes = [];
+      const uTags = [];
+
+      text = text.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (full, label, hrefCandidate) => {
+        const href = safeHref(hrefCandidate);
+        if (!href) return full;
+        const token = `@@LINK${links.length}@@`;
+        links.push({ href, label: String(label ?? '') });
+        return token;
+      });
+
+      text = text.replace(/`([^`]+)`/g, (full, code) => {
+        const token = `@@CODE${codes.length}@@`;
+        codes.push(String(code ?? ''));
+        return token;
+      });
+
+      text = text.replace(/<\/?u>/gi, (tag) => {
+        const token = `@@U${uTags.length}@@`;
+        uTags.push(tag.toLowerCase());
+        return token;
+      });
+
+      text = escapeHtml(text);
+
+      text = text.replace(/@@U(\d+)@@/g, (full, idx) => uTags[Number(idx)] || '');
+      text = text.replace(/\*\*\*([^*\n]+)\*\*\*/g, '<strong><em>$1</em></strong>');
+      text = text.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>');
+      text = text.replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
+      text = text.replace(/@@CODE(\d+)@@/g, (full, idx) => `<code>${escapeHtml(codes[Number(idx)] || '')}</code>`);
+      text = text.replace(/@@LINK(\d+)@@/g, (full, idx) => {
+        const link = links[Number(idx)];
+        if (!link) return '';
+        return `<a href="${link.href}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.label)}</a>`;
+      });
+
+      return text;
+    }
+
+    function renderMarkdown(containerEl, rawText) {
+      if (!containerEl) return;
+      containerEl.innerHTML = '';
+      const lines = String(rawText ?? '').replace(/\r\n/g, '\n').split('\n');
+      let i = 0;
+
+      while (i < lines.length) {
+        const line = lines[i];
+        const trimmed = line.trim();
+
+        if (!trimmed) {
+          i++;
+          continue;
+        }
+
+        if (/^```/.test(trimmed)) {
+          const codeLines = [];
+          i++;
+          while (i < lines.length && !/^```/.test(lines[i].trim())) {
+            codeLines.push(lines[i]);
+            i++;
+          }
+          if (i < lines.length) i++;
+          const pre = document.createElement('pre');
+          const code = document.createElement('code');
+          code.textContent = codeLines.join('\n');
+          pre.appendChild(code);
+          containerEl.appendChild(pre);
+          continue;
+        }
+
+        const headingMatch = trimmed.match(/^(#{1,3})\s+(.+)$/);
+        if (headingMatch) {
+          const level = headingMatch[1].length;
+          const h = document.createElement(`h${level}`);
+          h.innerHTML = parseMarkdownInline(headingMatch[2]);
+          containerEl.appendChild(h);
+          i++;
+          continue;
+        }
+
+        if (/^>\s?/.test(trimmed)) {
+          const quoteLines = [];
+          while (i < lines.length && /^>\s?/.test(lines[i].trim())) {
+            quoteLines.push(lines[i].trim().replace(/^>\s?/, ''));
+            i++;
+          }
+          const blockquote = document.createElement('blockquote');
+          blockquote.innerHTML = parseMarkdownInline(quoteLines.join('\n')).replace(/\n/g, '<br>');
+          containerEl.appendChild(blockquote);
+          continue;
+        }
+
+        if (/^[-*+]\s+/.test(trimmed)) {
+          const ul = document.createElement('ul');
+          while (i < lines.length && /^[-*+]\s+/.test(lines[i].trim())) {
+            const li = document.createElement('li');
+            li.innerHTML = parseMarkdownInline(lines[i].trim().replace(/^[-*+]\s+/, ''));
+            ul.appendChild(li);
+            i++;
+          }
+          containerEl.appendChild(ul);
+          continue;
+        }
+
+        if (/^\d+\.\s+/.test(trimmed)) {
+          const ol = document.createElement('ol');
+          while (i < lines.length && /^\d+\.\s+/.test(lines[i].trim())) {
+            const li = document.createElement('li');
+            li.innerHTML = parseMarkdownInline(lines[i].trim().replace(/^\d+\.\s+/, ''));
+            ol.appendChild(li);
+            i++;
+          }
+          containerEl.appendChild(ol);
+          continue;
+        }
+
+        const paragraphLines = [];
+        while (i < lines.length) {
+          const currentTrimmed = lines[i].trim();
+          if (!currentTrimmed) break;
+          if (/^```/.test(currentTrimmed)) break;
+          if (/^(#{1,3})\s+/.test(currentTrimmed)) break;
+          if (/^>\s?/.test(currentTrimmed)) break;
+          if (/^[-*+]\s+/.test(currentTrimmed)) break;
+          if (/^\d+\.\s+/.test(currentTrimmed)) break;
+          paragraphLines.push(lines[i]);
+          i++;
+        }
+        const p = document.createElement('p');
+        p.innerHTML = parseMarkdownInline(paragraphLines.join('\n')).replace(/\n/g, '<br>');
+        containerEl.appendChild(p);
+      }
     }
     
     // 初始化卡片
@@ -2709,11 +2932,13 @@
       applyOfficialPanelCollapsedState();
       syncKeepStateToCards();
       updateKeepSwitchUI();
+      updateKeepSwitchPosition();
     }
 
     window.addEventListener('resize', () => {
       updateOfficialVisibility();
       updateSiteTitleVisibility();
+      updateKeepSwitchPosition();
       updateTopButtonState();
     });
 
@@ -2970,7 +3195,10 @@
       if (updatePill) updatePill.classList.toggle('hidden', scrollY > 30);
     }
 
-    window.addEventListener('scroll', updateTopButtonState);
+    window.addEventListener('scroll', () => {
+      updateKeepSwitchPosition();
+      updateTopButtonState();
+    });
 
     searchPill.addEventListener('click', (e) => {
       if (window.innerWidth <= 600 && !searchPill.classList.contains('expanded')) {
@@ -3133,6 +3361,7 @@
       _reinitUI();
       updateSiteTitleVisibility();
       applyFilters();
+      updateKeepSwitchPosition();
       updateTopButtonState();
     })();
   </script>
