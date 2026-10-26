@@ -224,6 +224,19 @@
     </div>
 
     <div id="editorArea" style="display:none;">
+        <div class="section" id="changesSection">
+            <div class="section-header" onclick="toggleSection('changesSection')">
+                <button class="section-toggle" title="折疊">▾</button>
+                <h2>最近變動（Markdown）</h2>
+            </div>
+            <div class="section-body" style="padding: 14px 16px 16px;">
+                <div class="form-group" style="margin-top: 0;">
+                    <label>內容（支援 [文字](url)）</label>
+                    <textarea id="recentChangesInput" placeholder="輸入最近變動內容..."></textarea>
+                </div>
+            </div>
+        </div>
+
         <!-- Official -->
         <div class="section" id="officialSection">
             <div class="section-header" onclick="toggleSection('officialSection')">
@@ -276,7 +289,8 @@
             "ranking": "\u30e9\u30f3\u30ad\u30f3\u30b0",
             "forum": "\u307e\u3068\u3081\u30fbRSS",
             "live": "\u30e9\u30a4\u30d6\u30fb\u30bb\u30c8\u30ea",
-            "tool": "\u95a2\u9023\u30c4\u30fc\u30eb"
+            "tool": "\u95a2\u9023\u30c4\u30fc\u30eb",
+            "featured": "\u7cbe\u9078"
         };
         const groups = {
             "nogi": "\u4e43\u6728\u574246",
@@ -286,7 +300,7 @@
 
         let currentSha = '';
         let currentTagLabels = { ...defaultTagLabels };
-        let dataStore = { officialConfig: [], toolConfig: [] };
+        let dataStore = { officialConfig: [], toolConfig: [], recentChanges: '' };
 
         async function fetchFile() {
             const token = document.getElementById('token').value.trim();
@@ -316,15 +330,16 @@
         function parseJS(str) {
             try {
                 const fn = new Function(`
-                    var officialConfig, toolConfig, tagLabels, lastUpdated;
+                    var officialConfig, toolConfig, tagLabels, recentChanges, lastUpdated;
                     ${str}
-                    return { officialConfig, toolConfig, tagLabels };
+                    return { officialConfig, toolConfig, tagLabels, recentChanges };
                 `);
                 const r = fn();
                 dataStore.officialConfig = Array.isArray(r.officialConfig) ? r.officialConfig : [];
                 dataStore.toolConfig     = Array.isArray(r.toolConfig)     ? r.toolConfig     : [];
+                dataStore.recentChanges  = String(r.recentChanges || '');
                 currentTagLabels = (r.tagLabels && typeof r.tagLabels === 'object')
-                    ? r.tagLabels
+                    ? { ...defaultTagLabels, ...r.tagLabels }
                     : { ...defaultTagLabels };
             } catch (e) { alert('\u89e3\u6790\u5931\u6557\uff1a' + e.message); }
         }
@@ -341,6 +356,8 @@
         function renderUI() {
             document.getElementById('officialList').innerHTML = '';
             document.getElementById('toolList').innerHTML = '';
+            const changesInput = document.getElementById('recentChangesInput');
+            if (changesInput) changesInput.value = dataStore.recentChanges || '';
             dataStore.officialConfig.forEach((item, i) => document.getElementById('officialList').appendChild(createOfficialCard(item, i)));
             dataStore.toolConfig    .forEach((item, i) => document.getElementById('toolList')    .appendChild(createToolCard(item, i)));
             updateBadges();
@@ -536,6 +553,15 @@
             });
             body.appendChild(tg);
 
+            const hg = document.createElement('div'); hg.className = 'form-group';
+            const hiddenChecked = item.hidden ? ' checked' : '';
+            hg.innerHTML = `<label>\u72c0\u614b</label><label class="check-item"><input type="checkbox"${hiddenChecked}>\u9690\u85cf\u6b64\u5361\u7247\uff08\u524d\u53f0\u4e0d\u986f\u793a\uff09</label>`;
+            const hiddenCheckbox = hg.querySelector('input');
+            hiddenCheckbox.addEventListener('change', () => {
+                dataStore.toolConfig[index].hidden = hiddenCheckbox.checked;
+            });
+            body.appendChild(hg);
+
             const actions = document.createElement('div'); actions.className = 'card-actions';
             const del = document.createElement('button'); del.className = 'btn btn-danger'; del.textContent = '\u522a\u9664';
             del.addEventListener('click', () => removeItem('tool', index));
@@ -558,11 +584,18 @@
         }
         function addItem(type) {
             if (type==='official') dataStore.officialConfig.push({name:'',link:'',group:'nogi'});
-            else dataStore.toolConfig.push({name:'',desc:'',link:'',detail:'',tags:[],groups:['nogi']});
+            else dataStore.toolConfig.push({name:'',desc:'',link:'',detail:'',tags:[],groups:['nogi'],hidden:false});
             renderUI();
             const list = document.getElementById(type==='official'?'officialList':'toolList');
             const last = list.lastElementChild;
             if (last) { last.classList.add('open'); last.scrollIntoView({behavior:'smooth',block:'center'}); }
+        }
+
+        const recentChangesInput = document.getElementById('recentChangesInput');
+        if (recentChangesInput) {
+            recentChangesInput.addEventListener('input', (e) => {
+                dataStore.recentChanges = e.target.value;
+            });
         }
 
         async function saveToFile() {
@@ -573,7 +606,7 @@
             const _p = n => String(n).padStart(2,'0');
             const _jst = new Date(Date.now() + 9 * 60 * 60 * 1000);
             const _ts = `${_jst.getUTCFullYear()}-${_p(_jst.getUTCMonth()+1)}-${_p(_jst.getUTCDate())} ${_p(_jst.getUTCHours())}:${_p(_jst.getUTCMinutes())}`;
-            const newContent = `var lastUpdated = "${_ts}";\n\nvar officialConfig = ${JSON.stringify(dataStore.officialConfig, null, 2)};\n\nvar toolConfig = ${JSON.stringify(dataStore.toolConfig, null, 2)};\n\nvar tagLabels = ${JSON.stringify(currentTagLabels, null, 2)};`;
+            const newContent = `var lastUpdated = "${_ts}";\n\nvar recentChanges = ${JSON.stringify(dataStore.recentChanges || '', null, 2)};\n\nvar officialConfig = ${JSON.stringify(dataStore.officialConfig, null, 2)};\n\nvar toolConfig = ${JSON.stringify(dataStore.toolConfig, null, 2)};\n\nvar tagLabels = ${JSON.stringify(currentTagLabels, null, 2)};`;
             const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${BASE_PATH}/${file}`;
             try {
                 const res = await fetch(url, {
