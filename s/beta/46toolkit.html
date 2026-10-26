@@ -1,0 +1,3140 @@
+<!doctype html>
+<html lang="ja" translate="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>坂道TOOLKIT</title>
+  <link rel="icon" href="https://lh3.googleusercontent.com/a/ACg8ocJh4JJN9tISRXkrSSIL9jHAgT3GVjPJpl0CLKHtMsRg2B7TckzG=s333-c-no" type="image/png" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rampart+One&display=swap" rel="stylesheet">
+
+  <link rel="manifest" href="./manifest.json">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="46KT">
+
+<link rel="apple-touch-icon" href="https://lh3.googleusercontent.com/a/ACg8ocJh4JJN9tISRXkrSSIL9jHAgT3GVjPJpl0CLKHtMsRg2B7TckzG=s333-c-no">
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js');
+    });
+  }
+</script>
+  
+  <style>
+    :root {
+      --bg: #111216;
+      --panel: #1a1b21;
+      --panel-2: #20222b;
+      --text: #eceef7;
+      --muted: #9ca3af;
+      --accent: #933AFD;
+      --nogi: #9E3EB2;
+      --saku: #F19DB5;
+      --hina: #5BBEE5;
+      --card-width: 360px;
+      --grid-gap: 16px;
+      --content-max: calc(var(--card-width) * 3 + var(--grid-gap) * 2);
+      --logo-safe: 64px;
+      --dock-btn-size: 60px;
+      --dock-rail-width: calc(var(--dock-btn-size) + 14px);
+      --dock-gap: 8px;
+      --fab-size: 66px;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --overlay-light: rgba(255,255,255,.02);
+      --overlay-light-hover: rgba(255,255,255,.05);
+      --overlay-light-active: rgba(255,255,255,.08);
+      --overlay-light-strong: rgba(255,255,255,.1);
+      --overlay-dark: rgba(30,28,40,.6);
+      --official-card: rgba(36,32,50,.85);
+      --lang-menu-bg: rgba(20,21,31,.95);
+    }
+    html[data-theme="light"] {
+      --bg: #f0e5f5;
+      --panel: #e9e4fc;
+      --panel-2: #f0e5f5;
+      --text: #1a1a1a;
+      --muted: #666666;
+      --overlay-light: rgba(0,0,0,.02);
+      --overlay-light-hover: rgba(0,0,0,.05);
+      --overlay-light-active: rgba(0,0,0,.08);
+      --overlay-light-strong: rgba(0,0,0,.1);
+      --overlay-dark: rgba(242,238,255,.8);
+      --official-card: rgba(237,231,246,.95);
+      --lang-menu-bg: #e9e4fc;
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-tap-highlight-color: transparent; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: 'Noto Sans TC', sans-serif; }
+    body.sheet-open { overflow: hidden; }
+
+    /* Prevent mobile blue tap highlight / text selection on controls */
+    .dock-btn,
+    .fab,
+    .main-logo,
+    .expand,
+    .official-expand,
+    .clear-filters-btn,
+    .language-trigger,
+    .language-option {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .top-zone {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      width: 100%;
+      background: linear-gradient(to bottom, rgba(147, 58, 253, 0.4) 0%, transparent 100%);
+      padding: 16px 0 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+    }
+    .top-zone-inner {
+      position: relative;
+      width: 100%;
+      max-width: var(--content-max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      pointer-events: auto;
+      padding: 0 12px;
+      box-sizing: border-box;
+      flex-wrap: nowrap;
+    }
+
+    .main-logo {
+      position: fixed;
+      top: 16px;
+      left: 24px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 90;
+      overflow: hidden;
+      box-shadow: 0 0 5px rgba(176, 92, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .main-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .site-title {
+      position: fixed;
+      top: 40px;
+      left: calc(24px + 48px + 16px);
+      transform: translateY(-50%);
+      font-family: 'Rampart One', 'Noto Sans TC', cursive;
+      font-size: 30px;
+      letter-spacing: 0.5px;
+      color: var(--text);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+      z-index: 35;
+      pointer-events: none;
+      line-height: 1;
+      transition: opacity .2s ease;
+    }
+    .site-title.hidden { opacity: 0; pointer-events: none; }
+
+    @media (max-width: 1200px) {
+      .site-title {
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 30px;
+        width: calc(100% - 120px);
+        text-align: center;
+      }
+    }
+    @media (max-width: 600px) {
+      .site-title {
+        font-size: 30px;
+      }
+    }
+
+    .search-wrap {
+      flex: 0 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-width: 280px;
+      margin: 0 auto;
+      z-index: 2;
+    }
+    .search-pill {
+      width: min(48vw, 440px);
+      max-width: 440px;
+      height: 48px;
+      border-radius: 999px;
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.08);
+      display: flex;
+      align-items: center;
+      padding: 0 48px 0 24px;
+      transition: border-color .2s, box-shadow .2s;
+      position: relative;
+    }
+    .search-pill:focus-within {
+      border-color: color-mix(in oklab, var(--accent) 75%, white 25%);
+      box-shadow: 0 0 0 3px rgba(147,58,253,.25);
+    }
+
+    #searchInput {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 500;
+      min-width: 0;
+    }
+    #searchInput::placeholder {
+      color: var(--muted);
+    }
+
+    .search-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: absolute;
+      right: 44px; /* Move search count inside */
+    }
+    #searchCount { 
+      font-size: 13px; 
+      color: var(--muted); 
+      min-width: 38px; 
+      text-align: right; 
+      display: none;
+    }
+
+    #clearBtn {
+      position: absolute;
+      right: 8px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      padding: 0;
+      display: none;
+      place-items: center;
+      transition: background .15s ease, color .15s ease;
+      font-size: 0;
+    }
+    #clearBtn.visible { display: grid; }
+    #clearBtn:hover { background: var(--overlay-light-hover); color: var(--text); }
+    #clearBtn .material-icons { font-size: 18px; line-height: 1; }
+
+    .search-icon {
+      display: none;
+      color: var(--muted);
+      font-size: 24px;
+    }
+
+    .language-control {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      height: 42px;
+      min-width: 112px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+      padding: 0;
+      transition: border-color .2s, background .2s, box-shadow .2s;
+    }
+    .language-control:not(.open):hover {
+      border-color: rgba(255,255,255,.3);
+      background: rgba(255,255,255,.05);
+      box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 25%, transparent);
+    }
+    .language-control[data-role="top"] {
+      flex-shrink: 0;
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .language-control.language-control--modal {
+      min-width: 112px;
+      width: auto;
+      padding: 0;
+      flex: 0 0 auto;
+    }
+    .language-trigger {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      font-family: 'Noto Sans TC', sans-serif;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+    }
+    .language-control.open {
+      border-color: rgba(255,255,255,.25);
+      box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 35%, transparent);
+    }
+    .language-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      width: 100%;
+      min-width: 100%;
+      padding: 6px 8px;
+      border-radius:14px;
+      background: var(--lang-menu-bg);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 12px 30px rgba(0,0,0,.45);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      opacity: 0;
+      pointer-events: none;
+      transform: none;
+      transition: opacity .2s ease;
+      z-index: 60;
+    }
+    .language-control.open .language-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+    }
+    .language-option {
+      border: none;
+      background: transparent;
+      border-radius: 12px;
+      padding:9px 14px;
+      text-align: center;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease;
+    }
+    .language-option:hover { background: rgba(255,255,255,.08); }
+    .language-option.active {
+      background: rgba(147,58,253,.2);
+      color: var(--text);
+    }
+
+    .sidebar {
+      position: fixed;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: var(--dock-rail-width);
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.05);
+      border-radius: var(--dock-rail-width);
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px 0;
+      gap: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.3);
+    }
+
+    #reportBtnContainer {
+      position: fixed;
+      right: 16px;
+      bottom: 24px;
+      width: var(--dock-rail-width);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      z-index: 30;
+    }
+
+    #toTop { 
+      position: relative;
+      width: var(--dock-btn-size);
+      height: var(--dock-btn-size);
+      right: auto; 
+      bottom: auto;
+      opacity: 0;
+      visibility: hidden;
+      transform: none;
+      transition: none;
+      z-index: 1;
+    }
+    #toTop.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+    }
+
+    #toTop.fab:hover {
+      transform: none;
+    }
+
+    .keep-switch {
+      position: fixed;
+      right: 16px;
+      top: 96px;
+      width: var(--dock-btn-size);
+      height: var(--dock-btn-size);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 31;
+    }
+    .keep-switch.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .keep-switch.fab:hover {
+      transform: scale(1.06);
+    }
+    .keep-switch.active {
+      border-color: rgba(147,58,253,.5);
+      background: rgba(147,58,253,.2);
+      color: var(--accent);
+    }
+
+    .dock-btn {
+      width: var(--dock-btn-size);
+      height: var(--dock-btn-size);
+      border-radius: 50%;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease, color .15s ease;
+      font-size: 28px;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    .dock-btn:hover { color: var(--text); background: var(--overlay-light-hover); }
+    .dock-btn.active, .dock-btn.has-filters { background: rgba(147,58,253,.15); color: var(--accent); }
+    .dock-btn .material-icons { font-size: 34px; line-height: 1; }
+    .dock-btn img { width: 65%; height: 65%; object-fit: contain; filter: drop-shadow(0 1px 1px rgba(0,0,0,.35)); opacity: 0.8; }
+    .dock-btn.active img { opacity: 1; }
+    .dock-divider {
+      width: calc(var(--dock-btn-size) - 20px);
+      height: 1px;
+      background: rgba(255,255,255,.08);
+      margin: 4px 0;
+      flex-shrink: 0;
+    }
+    
+    .filter-panel {
+      position: fixed;
+      right: clamp(100px, 5vw, 140px);
+      top: 60%;
+      transform: translateY(-50%) translateX(20px);
+      opacity: 0;
+      pointer-events: none;
+      width: clamp(300px, 40vw, 400px);
+      max-height: 60vh;
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px;
+      padding: 14px;
+      z-index: 121;
+      box-shadow: 0 10px 28px rgba(0,0,0,.34);
+      transition: opacity .2s ease, transform .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .filter-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 8px; }
+    .filter-title { font-size: 14px; color: var(--text); font-weight: 700; flex-shrink: 0; }
+    .filter-mode-toggle {
+      display: flex;
+      background: rgba(255,255,255,.05);
+      border-radius: 999px;
+      padding: 2px;
+      gap: 2px;
+      margin-left: auto;
+    }
+    .filter-mode-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all .15s;
+      white-space: nowrap;
+    }
+    .filter-mode-btn.active {
+      background: rgba(147,58,253,.25);
+      color: var(--accent);
+    }
+    html[data-theme="light"] .filter-mode-toggle {
+      background: rgba(0,0,0,.06);
+    }
+    html[data-theme="light"] .filter-mode-btn {
+      color: #888;
+    }
+    html[data-theme="light"] .filter-mode-btn.active {
+      background: rgba(147,58,253,.2);
+      color: #7c3aed;
+    }
+    .clear-filters-btn {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .clear-filters-btn:hover { background: rgba(255,255,255,.1); color: var(--text); }
+    
+    .container { 
+      padding: 26px 102px 120px 20px;
+      transition: padding-right .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .filter-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      opacity: 0;
+      pointer-events: none;
+      background: transparent;
+    }
+
+    body.filter-open .filter-panel {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(-50%) translateX(0);
+    }
+
+    body.filter-open .filter-backdrop {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .filter-tags {
+      flex: 1;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      align-content: flex-start;
+      justify-content: flex-end;
+      gap: 8px 10px;
+      padding: 0 6px 0 10px;
+      margin-left: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .filter-tags::-webkit-scrollbar {
+      width: 4px;
+    }
+    .filter-tags::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .filter-tags::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,.15);
+      border-radius: 999px;
+    }
+    .filter-tag {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,.08);
+      color: var(--muted);
+      background: rgba(255,255,255,.03);
+      transition: all .2s;
+      user-select: none;
+      white-space: nowrap;
+      direction: ltr;
+    }
+    .filter-tag.active {
+      color: var(--t-color, #fff);
+      background: color-mix(in srgb, var(--t-color) 15%, transparent);
+      border-color: color-mix(in srgb, var(--t-color) 50%, transparent);
+    }
+    .filter-tag:hover:not(.active) {
+      background: rgba(255,255,255,.08);
+    }
+
+    .update-pill {
+      position: fixed;
+      top: 78px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px 6px 12px;
+      width: fit-content;
+      white-space: nowrap;
+      background: rgba(255,255,255,.05);
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      font-size: 13px;
+      color: var(--muted);
+      pointer-events: auto;
+      user-select: none;
+      z-index: 25;
+      opacity: 1;
+      transition: opacity .1s ease;
+      cursor: pointer;
+    }
+    .update-pill.hidden {
+      opacity: 0;
+    }
+    .update-pill .material-icons { font-size: 16px; opacity: .7; }
+    html[data-theme="light"] .update-pill {
+      background: rgba(0,0,0,.05);
+      border-color: rgba(0,0,0,.08);
+    }
+    @media (max-width: 600px) {
+      .update-pill {
+        top: 68px;
+        transform: translateX(-50%) scale(0.85);
+      }
+    }
+
+    .official-panel {
+      margin: 0 auto 32px;
+      width: 100%;
+      max-width: var(--content-max);
+      background: var(--panel-2);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+    .official-header {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0;
+    }
+    .official-panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 12px;
+    }
+    .official-panel-toggle {
+      width: 40px;
+      height: 40px;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      background: var(--overlay-light-hover);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .official-panel-toggle:hover { background: var(--overlay-light-active); color: var(--text); }
+    .official-panel-toggle .material-icons { font-size: 20px; transition: transform 0.3s; }
+    .official-panel.collapsed .official-panel-toggle .material-icons { transform: rotate(-90deg); }
+    .official-panel.collapsed .official-groups { display: none; }
+    .official-panel.collapsed {
+      padding-bottom: 16px;
+    }
+    .official-group {
+      display: flex;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .official-group.hide-border {
+      border-bottom: none !important;
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    .official-group:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .official-group-logo {
+      width: 40px;
+      height: 40px;
+      margin-right: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .official-group-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,.4));
+    }
+    .official-group-content {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-rows: 40px;
+      gap: 12px 16px;
+      overflow: visible;
+    }
+    /* 當 group 尚未展開時，最多只顯示前面的項目，多餘的隱藏 */
+    .official-group:not(.expanded) .official-group-content .official-item.hide-when-collapsed {
+      display: none !important;
+    }
+    .official-item {
+      height: 40px;
+      background: rgba(100,100,130,.25);
+      border: none;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: border-color .2s, box-shadow .2s, color .2s;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .official-item:hover {
+      transform: none;
+      outline: 1px solid rgba(132, 0, 255, 0.6);
+      box-shadow: 0 0px 12px rgba(132, 0, 255,.3), 0 0 10px color-mix(in oklab, var(--accent) 25%, transparent);
+      color: var(--text);
+    }
+    .official-expand-container {
+      display: flex;
+      flex-direction: column;
+      margin-left: 16px;
+      flex-shrink: 0;
+    }
+    /* 在第一行推一個與 expand 高度相同的空白 */
+    .official-expand-spacer {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 12px;
+      flex-shrink: 0;
+    }
+    .official-expand {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      background: var(--overlay-light-hover);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .official-expand:hover { background: var(--overlay-light-active); color: var(--text); }
+    .official-expand .material-icons { font-size: 20px; transition: transform 0.3s; }
+    .official-group.expanded .official-expand .material-icons { transform: rotate(180deg); }
+    .official-group.expanded .official-expand { color: var(--accent); background: rgba(147,58,253,.15); }
+    
+    @media (max-width: 1200px) {
+      :root { --content-max: calc(var(--card-width) * 2 + var(--grid-gap)); }
+      .official-group-content { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .top-zone-inner { flex-wrap: wrap; }
+      .language-control[data-role="top"] { display: none; }
+    }
+    @media (max-width: 800px) {
+      :root { --content-max: var(--card-width); }
+      .official-panel { padding: 20px; }
+      .official-group-content { grid-template-columns: minmax(0, 1fr); }
+      
+      /* 單欄模式下縮小置頂區的 logo 與展開按鈕 */
+      .official-group-logo {
+        width: 32px;
+        height: 32px;
+        margin-right: 12px;
+      }
+      .official-expand-spacer {
+        width: 32px;
+        /* 在單欄下，上方墊高 40px 的 .official-item 高度再加上 17px 的 gap */
+        height: 57px; 
+        margin-bottom: 0; 
+      }
+      .official-expand {
+        width: 32px;
+        height: 32px;
+      }
+      .official-expand-container {
+        margin-left: 12px;
+        justify-content: flex-start;
+      }
+    }
+
+    .cards {
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, var(--card-width)));
+      justify-content: center;
+      gap: var(--grid-gap);
+      width: 100%;
+      max-width: var(--content-max);
+    }
+    @media (max-width: 1200px) {
+      .cards { grid-template-columns: repeat(2, minmax(0, var(--card-width))); }
+    }
+    @media (max-width: 800px) {
+      .cards { grid-template-columns: minmax(0, var(--card-width)); }
+      .container { padding-right: 102px; padding-left: 20px; }
+      .filter-panel { right: 100px; }
+    }
+
+    @media (max-width: 600px) {
+      :root {
+        --content-max: 100%;
+        --dock-btn-size: clamp(40px, 11.5vw, 58px);
+        --logo-safe: clamp(48px, 10vw, 56px);
+        --dock-gap: clamp(4px, 2vw, 10px);
+        --fab-size: var(--dock-btn-size);
+      }
+      .language-control[data-role="top"] { display: none; }
+      .main-logo {
+        left: 16px;
+        top: 16px;
+        width: 48px;
+        height: 48px;
+        z-index: 90;
+      }
+
+      .top-zone {
+        padding: 16px 8px 18px;
+      }
+
+      .top-zone-inner {
+        max-width: none;
+        width: 100%;
+        padding: 0 8px;
+        margin: 0;
+      }
+
+      .search-wrap {
+        width: 100%;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0 0 0 calc(var(--logo-safe) / 2);
+      }
+
+      .search-pill {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        padding: 0;
+        justify-content: center;
+        cursor: pointer;
+        background: var(--panel-2);
+        max-width: none;
+      }
+
+      .search-pill:not(.expanded) #searchInput,
+      .search-pill:not(.expanded) .search-meta,
+      .search-pill:not(.expanded) #clearBtn {
+        display: none !important;
+      }
+
+      .search-icon {
+        display: block;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        pointer-events: none;
+        transition: opacity 0.2s, transform 0.3s;
+      }
+
+      .search-pill.expanded {
+        width: clamp(240px, calc(100% - var(--logo-safe) - 12px), 100%);
+        height: 48px;
+        border-radius: 999px;
+        padding: 0 48px 0 44px;
+        max-width: none;
+      }
+
+      .search-pill.expanded .search-icon {
+        left: 16px;
+        transform: none;
+      }
+
+      .search-pill.expanded #searchInput {
+        display: block !important;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .search-pill.expanded .search-meta {
+        display: flex !important;
+        position: absolute;
+        right: 44px;
+      }
+
+      .sidebar {
+        left: 16px;
+        right: 16px;
+        bottom: calc(16px + var(--safe-bottom));
+        top: auto;
+        transform: none;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: var(--dock-gap);
+        width: auto;
+        max-width: calc(100% - 32px);
+        padding: 6px 10px;
+        min-height: calc(var(--dock-btn-size) + 16px);
+        border-radius: 999px;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .dock-btn[data-site="all"] .material-icons,
+      .dock-btn[data-site="other"] .material-icons,
+      #filterToggle .material-icons {
+        font-size: clamp(30px, 4.8vw, 32px);
+      }
+
+      .dock-btn {
+        width: var(--dock-btn-size);
+        height: var(--dock-btn-size);
+        font-size: clamp(18px, 4vw, 26px);
+        flex: 0 1 auto;
+        min-width: calc(var(--dock-btn-size) * 0.75);
+      }
+
+      .dock-btn .material-icons { font-size: clamp(20px, 4.2vw, 28px); }
+
+      .dock-btn img { width: 62%; height: 62%; }
+
+      .dock-divider {
+        width: 1px;
+        height: calc(var(--dock-btn-size) * 0.75);
+        margin: 0 2px;
+      }
+
+      #reportBtnContainer {
+        left: 16px;
+        right: 16px;
+        bottom: calc(16px + var(--dock-btn-size) + 10px + var(--safe-bottom));
+        width: auto;
+        transform: none;
+        align-items: flex-end;
+        gap: var(--dock-gap);
+      }
+
+      #toTop {
+        position: fixed;
+        right: 26px;
+        bottom: calc(32px + var(--dock-btn-size) + var(--safe-bottom) + var(--dock-gap) * 3);
+        left: auto;
+        top: auto;
+        width: var(--dock-btn-size);
+        height: var(--dock-btn-size);
+        margin: 0;
+        z-index: 31;
+        transform: none;
+      }
+
+      #toTop.visible {
+        transform: none;
+      }
+
+      #toTop.visible:hover {
+        transform: scale(1.08);
+      }
+
+      .keep-switch {
+        top: auto;
+        right: calc(26px + var(--dock-btn-size) + 10px);
+        bottom: calc(32px + var(--dock-btn-size) + var(--safe-bottom) + var(--dock-gap) * 3);
+      }
+
+      .filter-panel {
+        left: 16px;
+        right: 16px;
+        bottom: calc(var(--dock-btn-size) + 26px + 18px + var(--safe-bottom));
+        top: auto;
+        transform: translateY(24px);
+        width: auto;
+        max-width: none;
+        min-width: 0;
+        border-radius: 20px;
+      }
+
+      body.filter-open .filter-panel {
+        transform: translateY(0);
+      }
+
+      .container {
+        padding: 20px 16px 200px 16px;
+      }
+
+      .cards {
+        grid-template-columns: minmax(0, 1fr);
+        max-width: none;
+        width: 100%;
+      }
+    }
+
+    .tool-card {
+      position: relative;
+      width: 100%;
+      background: transparent;
+      color: var(--text);
+      display: block;
+      transition: none;
+      cursor: pointer;
+    }
+    .tool-card:hover { transform: none; }
+
+    .tool-header {
+      position: relative;
+      height: 90px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.06);
+      background: var(--official-card);
+      display: flex;
+      align-items: center;
+      padding: 0 10px 0 0;
+      box-shadow: 0 0px 5px rgba(0, 0, 0, 0.1);
+      transition: border-color .3s, box-shadow .3s;
+      z-index: 2;
+    }
+    .tool-card:hover .tool-header { border-color: rgba(132, 0, 255, 0.6); box-shadow: 0 0px 24px rgba(132, 0, 255,.3), 0 0 10px color-mix(in oklab, var(--accent) 25%, transparent); }
+
+    .tool-info {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 72px 0 38px;
+    }
+
+    .name { 
+      font-size: 15px; 
+      font-weight: 700; 
+      letter-spacing: .2px; 
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .name a { 
+      color: var(--text); 
+      text-decoration: none; 
+      transition: color 0.2s; 
+    }
+    .name a:hover { 
+      color: rgba(179,157,219,.95); 
+    }
+
+    .desc { 
+      font-size: 13px; 
+      color: var(--muted); 
+      font-weight: 400;
+      line-height: 1.3;
+    }
+
+    .group-dots {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      justify-content: center;
+      align-items: center;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot.nogi { background: var(--nogi); }
+    .dot.saku { background: var(--saku); }
+    .dot.hina { background: var(--hina); }
+    .card-keep-toggle {
+      position: absolute;
+      right: 12px;
+      top: 10px;
+      width: 34px;
+      height: 34px;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: #666b78;
+      background: transparent;
+      cursor: pointer;
+      z-index: 12;
+      transition: color .2s ease, background .2s ease;
+    }
+    .card-keep-toggle:hover {
+      background: var(--overlay-light-hover);
+      color: var(--text);
+    }
+    .card-keep-toggle .material-icons { font-size: 22px; }
+    .card-keep-toggle.kept {
+      color: var(--accent);
+      background: rgba(147,58,253,.12);
+    }
+    .featured-corner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-top: 26px solid #d4a017;
+      border-right: 26px solid transparent;
+      border-top-left-radius: 14px;
+      z-index: 9;
+      pointer-events: none;
+    }
+
+    .tool-detail {
+      display: none;
+      padding: 12px 16px;
+      margin-top: 4px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      background: var(--overlay-dark);
+      border: 1px solid rgba(255,255,255,.04);
+      border-radius: 16px;
+    }
+    .tool-detail-text { white-space: pre-line; }
+    .tool-detail-text a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+    .tool-detail-text a:hover { opacity: .9; }
+    .tool-card.expanded .tool-detail {
+      display: block;
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .card-tag {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .expand {
+      position: absolute;
+      right: 16px;
+      top: 42px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      background: var(--overlay-light-hover);
+      border-radius: 50%;
+      transition: color 0.2s, background 0.2s;
+      z-index: 10;
+      cursor: pointer;
+    }
+    .expand::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+    }
+    .expand .material-icons { font-size: 20px; position: relative; z-index: 1; }
+    .expand:hover { color: var(--text); background: var(--overlay-light-active); }
+    .tool-card.expanded .expand { color: var(--accent); background: rgba(147,58,253,.15); }
+
+    html[data-theme="light"] .tool-header {
+      background: var(--official-card);
+      border-color: rgba(0,0,0,.06);
+    }
+    html[data-theme="light"] .name {
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .desc {
+      color: #666666;
+    }
+    html[data-theme="light"] .expand {
+      background: rgba(0,0,0,.05);
+      color: #666666;
+    }
+    html[data-theme="light"] .expand:hover {
+      background: rgba(0,0,0,.1);
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .tool-card.expanded .expand {
+      background: rgba(147,58,253,.15);
+      color: #7c3aed;
+    }
+    html[data-theme="light"] .card-keep-toggle {
+      color: #9aa1af;
+    }
+    html[data-theme="light"] .card-keep-toggle:hover {
+      color: #1a1a1a;
+      background: rgba(0,0,0,.08);
+    }
+    html[data-theme="light"] .card-keep-toggle.kept {
+      color: #7c3aed;
+      background: rgba(147,58,253,.14);
+    }
+
+    .tool-card.match .tool-header {
+      border-color: color-mix(in oklab, var(--accent) 75%, white 25%);
+      box-shadow: 0 4px 12px rgba(0,0,0,.2), 0 0 10px color-mix(in oklab, var(--accent) 30%, transparent);
+    }
+    .tool-card.current .tool-header {
+      border-color: color-mix(in oklab, var(--accent) 75%, white 25%);
+      box-shadow: 0 4px 12px rgba(0,0,0,.2), 0 0 10px color-mix(in oklab, var(--accent) 45%, transparent);
+    }
+
+    .fab {
+      position: fixed;
+      width: var(--fab-size);
+      height: var(--fab-size);
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.14);
+      background: var(--panel-2);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      z-index: 28;
+      box-shadow: 0 4px 12px rgba(0,0,0,.3);
+      text-decoration: none;
+      transition: transform .2s ease, background .2s ease, opacity .2s ease, visibility .2s;
+    }
+    .fab:hover { transform: scale(1.1); background: rgba(147,58,253,.15); }
+    .fab .material-icons { font-size: 30px; line-height: 1; }
+
+    .info-modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 200; display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity .2s ease; backdrop-filter: blur(4px);
+    }
+    .info-modal-backdrop.open { opacity: 1; pointer-events: auto; }
+    .info-modal {
+      position: relative;
+      width: 90%; max-width: 400px; background: var(--panel); border: 1px solid rgba(255,255,255,.08); border-radius: 16px;
+      padding: 24px; transform: translateY(20px); transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 40px rgba(0,0,0,.5);
+    }
+    .info-modal-backdrop.open .info-modal { transform: translateY(0); }
+    .info-modal-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      min-height: 56px;
+      border-bottom: none;
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .info-modal-heading {
+      font-family: 'Rampart One', 'Noto Sans TC', sans-serif;
+      font-size: 28px;
+      color: var(--text);
+      margin: 0;
+      line-height: 1;
+      text-align: center;
+    }
+    .close-info { background: transparent; border: none; color: var(--muted); cursor: pointer; display: grid; place-items: center; padding: 6px; border-radius: 50%; font-size: 0; height: 44px; width: 44px; position: absolute; right: -6px; top: -6px; }
+    .close-info:hover { color: var(--text); background: var(--overlay-light-hover); }
+    .close-info .material-icons { font-size: 20px; }
+    .share-info { background: transparent; border: none; color: var(--muted); cursor: pointer; display: grid; place-items: center; padding: 6px; border-radius: 50%; font-size: 0; height: 44px; width: 44px; position: absolute; left: -6px; top: -6px; transition: color .2s, background .2s; }
+    .share-info:hover { color: var(--text); background: var(--overlay-light-hover); }
+    .share-info.copied { color: var(--accent); }
+    .share-info .material-icons { font-size: 20px; }
+    .info-modal-body { display: flex; flex-direction: column; gap: 16px; }
+    .info-modal-body p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .info-modal-desc { text-align: center; font-size: 15px; color: var(--muted); }
+    .info-author-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 0;
+      border-top: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .info-author-label { font-size: 14px; color: var(--muted); font-weight: 600; }
+    .info-author-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-width: 0; }
+    .info-author-name { text-align: center; font-size: 15px; color: var(--text); font-weight: 700; }
+    .info-modal-version { text-align: center; font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.2px; }
+    .info-author-avatar { width: 48px; height: 48px; border-radius: 50%; overflow: hidden; border: 1px solid #923afdd1;box-shadow: 0 0 10px rgba(113, 70, 255, .45); flex-shrink: 0; display: inline-flex; }
+    .info-author-avatar img { width: 100%; height: 100%; object-fit: cover; transition: transform .2s ease; }
+    .info-author-avatar:hover img { transform: scale(1.05); }
+    .info-feedback-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4px;
+    }
+    .info-feedback-label {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .info-icon-btn { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--text); transition: border-color .2s, background .2s, box-shadow .2s; }
+    .info-icon-btn .material-icons { font-size: 24px; }
+    .info-icon-btn:hover { transform: none; border-color: rgba(255,255,255,.3); background: rgba(255,255,255,.05); box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 25%, transparent); }
+    .info-language-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .info-language-heading {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .info-support-label { font-size: 14px; font-weight: 600; color: var(--text); }
+    .info-appearance {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+    .info-support { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      margin-top: 8px; 
+    }
+    .appearance-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: var(--overlay-light);
+      padding: 4px;
+    }
+    .appearance-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background .2s, color .2s;
+      font-size: 0;
+    }
+    .appearance-btn .material-icons { font-size: 16px; }
+    .appearance-btn:hover { background: var(--overlay-light-active); color: var(--text); }
+    .appearance-btn[aria-pressed="true"] {
+      background: rgba(147,58,253,.2);
+      color: var(--accent);
+    }
+    html[data-theme="light"] .appearance-container {
+      border-color: rgba(0,0,0,.12);
+      background: rgba(0,0,0,.04);
+    }
+    html[data-theme="light"] .appearance-btn {
+      color: #888888;
+    }
+    html[data-theme="light"] .appearance-btn:hover {
+      background: rgba(0,0,0,.08);
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .appearance-btn[aria-pressed="true"] {
+      background: rgba(147,58,253,.15);
+      color: #7c3aed;
+    }
+    html[data-theme="light"] .language-control {
+      border-color: rgba(0,0,0,.1);
+      background: rgba(0,0,0,.02);
+    }
+    html[data-theme="light"] .language-control:not(.open):hover {
+      border-color: rgba(0,0,0,.3);
+      background: rgba(0,0,0,.05);
+    }
+    html[data-theme="light"] .language-menu {
+      background: var(--lang-menu-bg);
+      border-color: rgba(0,0,0,.08);
+    }
+    html[data-theme="light"] .language-option {
+      color: #1a1a1a;
+      background: transparent;
+    }
+    html[data-theme="light"] .language-option:hover {
+      background: rgba(0,0,0,.05);
+    }
+    html[data-theme="light"] .language-option.active {
+      background: rgba(147,58,253,.15);
+      color: #7c3aed;
+    }
+    html[data-theme="light"] #searchInput {
+      background: transparent;
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] #searchInput::placeholder {
+      color: #888888;
+    }
+    html[data-theme="light"] .search-pill {
+      background: #e9e4fc;
+    }
+    html[data-theme="light"] .search-pill.expanded {
+      background: #e9e4fc;
+    }
+    html[data-theme="light"] .filter-panel {
+      background: #e9e4fc;
+      border-color: rgba(0,0,0,.08);
+    }
+    html[data-theme="light"] .dock-btn {
+      color: #666666;
+    }
+    html[data-theme="light"] .dock-btn:hover {
+      color: #1a1a1a;
+      background: rgba(0,0,0,.05);
+    }
+    html[data-theme="light"] .dock-btn.active, 
+    html[data-theme="light"] .dock-btn.has-filters {
+      background: rgba(147,58,253,.15);
+      color: #7c3aed;
+    }
+    html[data-theme="light"] .filter-tag {
+      color: #555555;
+      background: rgba(0,0,0,.03);
+      border-color: rgba(0,0,0,.08);
+    }
+    html[data-theme="light"] .filter-tag.active {
+      color: var(--t-color, #7c3aed);
+      background: color-mix(in srgb, var(--t-color, #933AFD) 15%, transparent);
+      border-color: color-mix(in srgb, var(--t-color, #933AFD) 50%, transparent);
+    }
+    html[data-theme="light"] .filter-tag:hover:not(.active) {
+      background: rgba(0,0,0,.08);
+      color: #333333;
+    }
+    html[data-theme="light"] .tool-detail {
+      background: rgba(237,231,246,.6);
+      border-color: rgba(0,0,0,.12);
+      color: #666666;
+    }
+    html[data-theme="light"] .card-tags {
+      border-top-color: rgba(0,0,0,.12);
+    }
+    html[data-theme="light"] .official-item {
+      background: rgba(180, 170, 190, 0.15);
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .official-item:hover {
+      outline: 1px solid rgba(132, 0, 255, 0.6);
+      box-shadow: 0 0px 12px rgba(132, 0, 255,.3), 0 0 10px color-mix(in oklab, var(--accent) 25%, transparent);
+      color: #000000;
+    }
+    html[data-theme="light"] .clear-filters-btn {
+      background: rgba(0,0,0,.05);
+      border-color: rgba(0,0,0,.08);
+      color: #888888;
+    }
+    html[data-theme="light"] .clear-filters-btn:hover {
+      background: rgba(0,0,0,.1);
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .paypal-btn {
+      background: rgba(0,0,0,.04);
+      border-color: rgba(0,0,0,.12);
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .paypal-btn:hover {
+      background: rgba(0,0,0,.08);
+      border-color: rgba(0,0,0,.25);
+    }
+    html[data-theme="light"] .info-icon-btn {
+      border-color: rgba(0,0,0,.1);
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .info-icon-btn:hover {
+      border-color: rgba(0,0,0,.3);
+      background: rgba(0,0,0,.05);
+    }
+    html[data-theme="light"] .official-expand {
+      background: rgba(0,0,0,.05);
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .official-panel-toggle {
+      background: rgba(0,0,0,.05);
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .official-panel-toggle:hover {
+      background: rgba(0,0,0,.1);
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .official-expand:hover {
+      background: rgba(0,0,0,.1);
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .official-group.expanded .official-expand {
+      background: rgba(147,58,253,.15);
+      color: #7c3aed;
+    }
+    html[data-theme="light"] .card-tag {
+      background: color-mix(in srgb, var(--t-color, #933AFD) 10%, transparent);
+      border-color: color-mix(in srgb, var(--t-color, #933AFD) 40%, transparent);
+      color: var(--t-color, #7c3aed);
+    }
+    .tool-card.match .tool-header {
+      border-color: color-mix(in oklab, var(--accent) 75%, white 25%);
+      box-shadow: 0 0px 5px rgba(60, 47, 68, 0.2), 0 0 5px color-mix(in oklab, var(--accent) 30%, transparent);
+    }
+    html[data-theme="light"] .tool-card.match .tool-header {
+      background: #EDE7F5;
+      border-color: rgba(0,0,0,.08);
+    }
+    html[data-theme="light"] .official-panel {
+      background: #ede7f6;
+      border-color: rgba(147,58,253,.15);
+    }
+    html[data-theme="light"] .official-group {
+      border-bottom: 1px solid rgba(147,58,253,.15);
+    }
+    html[data-theme="light"] .filter-title {
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .official-header {
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] #clearBtn {
+      color: #666666;
+    }
+    html[data-theme="light"] #clearBtn:hover {
+      background: rgba(0,0,0,.08);
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .close-info {
+      color: #666666;
+    }
+    html[data-theme="light"] .close-info:hover {
+      color: #1a1a1a;
+      background: rgba(0,0,0,.08);
+    }
+    html[data-theme="light"] .info-modal-heading {
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .info-modal-body p {
+      color: #666666;
+    }
+    html[data-theme="light"] .info-modal-desc {
+      color: #666666;
+    }
+    html[data-theme="light"] .info-author-label {
+      color: #666666;
+    }
+    html[data-theme="light"] .info-author-name {
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .info-feedback-label {
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .info-language-heading {
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .info-support-label {
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .appearance-btn {
+      color: #666666;
+    }
+    html[data-theme="light"] .appearance-btn:hover {
+      background: rgba(0,0,0,.08);
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .appearance-btn[aria-pressed="true"] {
+      background: rgba(147,58,253,.15);
+      color: #7c3aed;
+    }
+    html[data-theme="light"] .fab {
+      background: var(--panel);
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .paypal-btn {
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .support-sheet__title {
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .info-icon-btn {
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .language-option.active {
+      background: rgba(147,58,253,.15);
+      color: #7c3aed;
+    }
+    html[data-theme="light"] .dock-btn.active, 
+    html[data-theme="light"] .dock-btn.has-filters {
+      color: #7c3aed;
+    }
+    html[data-theme="light"] .official-group.expanded .official-expand {
+      color: #7c3aed;
+    }
+    html[data-theme="light"] .tool-card.expanded .expand {
+      color: #7c3aed;
+    }
+    html[data-theme="light"] .dock-divider {
+      background: rgba(0,0,0,.08);
+    }
+    html[data-theme="light"] .filter-tags::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,.15);
+    }
+    html[data-theme="light"] .support-sheet__handle {
+      background: rgba(0,0,0,.15);
+    }
+    html[data-theme="light"] .info-modal-body p a {
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .info-author-row {
+      border-top: 1px solid rgba(0,0,0,.1);
+      border-bottom: 1px solid rgba(0,0,0,.1);
+    }
+    .paypal-btn { display: flex; align-items: center; gap: 8px; border-radius: 999px; border: 1px solid rgba(255,255,255,.12); padding: 8px 16px; background: rgba(255,255,255,.04); color: var(--text); font-size: 14px; cursor: pointer; transition: background .2s, border-color .2s; }
+    .paypal-btn:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.25); }
+    .paypal-btn img { width: 24px; height: 24px; }
+    .support-sheet {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+      z-index: 300;
+    }
+    .support-sheet.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .support-sheet__panel {
+      position: relative;
+      width: min(420px, calc(100% - 24px));
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.08);
+      border-bottom: none;
+      border-radius: 24px 24px 0 0;
+      padding: 24px 24px 32px;
+      box-shadow: 0 -10px 30px rgba(0,0,0,.4);
+      transform: translateY(32px);
+      transition: transform .35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      touch-action: none;
+    }
+    .support-sheet.open .support-sheet__panel { transform: translateY(0); }
+    .support-sheet__handle {
+      width: 54px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.15);
+      margin: 0 auto 18px;
+      cursor: grab;
+    }
+    .support-sheet__title {
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+  </style>
+</head>
+
+
+<script 
+  src="https://www.paypal.com/sdk/js?client-id=BAAPkNGvh0u77sSwzctkeynATXc0g6X6d5FkoOhhOVGjaJQasCWnkg5iagN2Vbb_zs1vV6FFxjS9tAOXpY&components=hosted-buttons&disable-funding=venmo&currency=USD">
+</script>
+
+
+<body>
+  <div class="main-logo" id="mainLogo" title="MENU">
+    <img src="https://lh3.googleusercontent.com/a/ACg8ocJh4JJN9tISRXkrSSIL9jHAgT3GVjPJpl0CLKHtMsRg2B7TckzG=s333-c-no" alt="坂道TOOLKIT Logo">
+  </div>
+
+  <div class="site-title" id="siteTitle">坂道TOOLKIT</div>
+
+  <div class="top-zone">
+    <div class="top-zone-inner">
+      <div class="search-wrap" id="searchWrap">
+        <div class="search-pill" id="searchPill">
+          <span class="material-icons search-icon" id="searchIcon">search</span>
+          <input id="searchInput" type="text" placeholder="ツールを検索..." data-i18n-placeholder="search_placeholder" />
+          <div class="search-meta">
+            <span id="searchCount">0件</span>
+          </div>
+          <button id="clearBtn" aria-label="入力をクリア" data-i18n-aria-label="clear_input"><span class="material-icons">close</span></button>
+        </div>
+      </div>
+      <div class="language-control" data-role="top">
+        <button type="button" class="language-trigger" aria-haspopup="true" aria-expanded="false">日本語</button>
+        <div class="language-menu" role="menu">
+          <button class="language-option" data-lang="ja" role="menuitem">日本語</button>
+          <button class="language-option" data-lang="zh-Hant" role="menuitem">繁體中文</button>
+          <button class="language-option" data-lang="zh-Hans" role="menuitem">简体中文</button>
+          <button class="language-option" data-lang="en" role="menuitem">English</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="sidebar" id="dock">
+    <button class="dock-btn active" data-site="all" title="すべて" data-i18n-title="all"><span class="material-icons">dashboard</span></button>
+    <button class="dock-btn" data-site="nogi" title="乃木坂46"><img alt="乃木坂46" src="https://www.nogizaka46.com/files/46/page/31thSG_ul_xF2c/images/logo.svg" /></button>
+    <button class="dock-btn" data-site="saku" title="櫻坂46"><img alt="櫻坂46" src="https://sakurazaka46.com/files/14/s46/img/com-logo-no-framed.svg" /></button>
+    <button class="dock-btn" data-site="hina" title="日向坂46"><img alt="日向坂46" src="https://cdn.hinatazaka46.com/files/14/hinata/pages/4th_anniv/images/logo_hinata.svg" /></button>
+    <button class="dock-btn" data-site="other" title="その他"><span class="material-icons">more_horiz</span></button>
+    
+    <div class="dock-divider"></div>
+    
+    <button class="dock-btn" id="filterToggle" title="フィルター" data-i18n-title="filter"><span class="material-icons">tune</span></button>
+  </aside>
+
+  <div id="reportBtnContainer">
+    <a id="toTop" class="fab" href="#" title="トップへ" data-i18n-title="to_top"><span class="material-icons">arrow_upward</span></a>
+  </div>
+  <button id="keepSwitch" class="fab keep-switch" type="button" title="Keep">
+    <span class="material-icons">bookmarks</span>
+  </button>
+
+  <div class="filter-backdrop" id="filterBackdrop" aria-hidden="true"></div>
+
+  <section class="filter-panel" id="filterPanel">
+    <div class="filter-header">
+      <div class="filter-title" data-i18n="filter_by_tag">タグで絞り込み</div>
+      <div class="filter-mode-toggle">
+        <button class="filter-mode-btn active" id="filterModeAny" data-i18n="filter_any">いずれか</button>
+        <button class="filter-mode-btn" id="filterModeAll" data-i18n="filter_all">すべて</button>
+      </div>
+
+      <div class="info-modal-backdrop" id="changeLogModalDrop">
+        <div class="info-modal" id="changeLogModal">
+          <div class="info-modal-header">
+            <h3 class="info-modal-heading" data-i18n="recent_changes">最近の変更</h3>
+            <button class="close-info" id="closeChangeLogBtn" aria-label="閉じる" data-i18n-aria-label="close_changes"><span class="material-icons">close</span></button>
+          </div>
+          <div class="info-modal-body">
+            <p class="info-modal-desc" id="changeLogEmptyMsg" data-i18n="no_recent_changes">変更履歴はまだありません。</p>
+            <div id="changeLogContent" class="tool-detail-text" style="font-size:14px; line-height:1.7; color:var(--text);"></div>
+          </div>
+        </div>
+      </div>
+      <button class="clear-filters-btn" id="clearFiltersBtn" data-i18n="filter_clear">クリア</button>
+    </div>
+    <div class="filter-tags" id="filterTags"></div>
+  </section>
+
+  <div class="info-modal-backdrop" id="infoModalDrop">
+    <div class="info-modal" id="infoModal">
+      <div class="info-modal-header">
+        <h3 class="info-modal-heading">坂道TOOLKIT</h3>
+        <button class="share-info" id="shareInfoBtn" aria-label="シェア" data-i18n-aria-label="share"><span class="material-icons">share</span></button>
+        <button class="close-info" id="closeInfoBtn" aria-label="閉じる" data-i18n-aria-label="close"><span class="material-icons">close</span></button>
+      </div>
+      <div class="info-modal-body">
+        <p class="info-modal-desc" data-i18n="site_desc">乃木坂46／櫻坂46／日向坂46に関連するツールやウェブサイトをまとめたサイトです。</p>
+
+        <div class="info-author-row">
+          <span class="info-author-label">author</span>
+          <div class="info-author-center">
+            <span class="info-author-name">坂上の棘人</span>
+          </div>
+          <a class="info-author-avatar" href="https://linktr.ee/shijinzakaue" target="_blank" rel="noopener noreferrer">
+            <img src="https://ugc.production.linktr.ee/e89e5c3c-bbf8-48ec-83dd-f7aff19b1f65_PicsArt-09-22-02.44.50.jpeg" alt="author avatar" />
+          </a>
+        </div>
+
+        <div class="info-feedback-row">
+          <span class="info-feedback-label" data-i18n="contact">お問い合わせ</span>
+          <a class="info-icon-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSc7s-9W5JGve8KtvR0CAe0vZtv0GxDtSG_Fu2DG4fhcAFYCrQ/viewform?usp=header" target="_blank" rel="noopener noreferrer" title="リンクを開く" data-i18n-title="open_link">
+            <span class="material-icons">open_in_new</span>
+          </a>
+        </div>
+
+        <div class="info-language-row">
+          <span class="info-language-heading" data-i18n="language">言語</span>
+          <div class="language-control language-control--modal" data-role="modal">
+            <button type="button" class="language-trigger" aria-haspopup="true" aria-expanded="false">日本語</button>
+            <div class="language-menu" role="menu">
+              <button class="language-option" data-lang="ja" role="menuitem">日本語</button>
+              <button class="language-option" data-lang="zh-Hant" role="menuitem">繁體中文</button>
+              <button class="language-option" data-lang="zh-Hans" role="menuitem">简体中文</button>
+              <button class="language-option" data-lang="en" role="menuitem">English</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-appearance">
+          <span class="info-support-label" data-i18n="appearance">デサント</span>
+          <div class="appearance-container" role="group" aria-label="デサントオプション" data-i18n-aria-label="appearance_options">
+            <button type="button" class="appearance-btn appearance-btn--light" data-theme="light" title="ライトモード" aria-pressed="false" data-i18n-title="light_mode">
+              <span class="material-icons">light_mode</span>
+            </button>
+            <button type="button" class="appearance-btn appearance-btn--dark" data-theme="dark" title="ダークモード" aria-pressed="true" data-i18n-title="dark_mode">
+              <span class="material-icons">dark_mode</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="info-support">
+          <span class="info-support-label" data-i18n="support">支援する</span>
+          <button class="paypal-btn" id="supportToggle" type="button">
+            <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal" />
+            PayPal
+          </button>
+        </div>
+
+        <div class="info-modal-version" id="appVersion" aria-label="version"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="support-sheet" id="supportSheet" aria-hidden="true">
+    <div class="support-sheet__panel" id="supportPanel">
+      <div class="support-sheet__handle" id="supportHandle"></div>
+      <div class="support-sheet__title" data-i18n="support_sheet_title">作者を支援</div>
+      <div id="paypal-container-2PE77EL5SYHCS"></div>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="update-pill" id="updatePill" role="button" tabindex="0" title="最近の変更" data-i18n-title="recent_changes">
+      <span class="material-icons">update</span>
+      <span id="updateDate"></span>
+    </div>
+    <section class="official-panel" id="officialPanel" style="display: none;">
+      <div class="official-panel-head">
+        <div class="official-header" data-i18n="official_sites">公式サイト</div>
+        <button class="official-panel-toggle" id="officialPanelToggle" type="button" title="展開 / 収合">
+          <span class="material-icons">expand_more</span>
+        </button>
+      </div>
+      <div class="official-groups" id="officialGroups"></div>
+    </section>
+
+    <div id="noResultsMsg" style="display: none; text-align: center; color: var(--muted); font-size: 16px; margin-top: 40px;" data-i18n="no_results">見つかりません...</div>
+    <section class="cards" id="cards">
+      <!-- 卡片內容將由 JavaScript 動態生成 -->
+    </section>
+  </main>
+
+  <script>
+    const searchWrap = document.getElementById('searchWrap');
+    const input = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearBtn');
+    const countEl = document.getElementById('searchCount');
+    const cardsContainer = document.getElementById('cards');
+    const siteTitle = document.getElementById('siteTitle');
+    const searchPill = document.getElementById('searchPill');
+    const languageControls = [...document.querySelectorAll('.language-control')];
+    const languageTriggers = [...document.querySelectorAll('.language-trigger')];
+    const languageOptions = [...document.querySelectorAll('.language-option')];
+    const supportToggle = document.getElementById('supportToggle');
+    const supportSheet = document.getElementById('supportSheet');
+    const supportPanel = document.getElementById('supportPanel');
+    const supportHandle = document.getElementById('supportHandle');
+    const keepSwitchBtn = document.getElementById('keepSwitch');
+    const APP_VERSION = 'v1.3.0';
+    const appVersionEl = document.getElementById('appVersion');
+    if (appVersionEl) appVersionEl.textContent = APP_VERSION;
+    const LANGUAGE_STORAGE_KEY = 'toolkit:lang';
+    const KEEP_STORAGE_KEY = 'toolkit:keep-links';
+    const KEEP_MODE_STORAGE_KEY = 'toolkit:keep-mode';
+    const OFFICIAL_COLLAPSE_STORAGE_KEY = 'toolkit:official-collapsed';
+    const LANGUAGE_LABELS = {
+      'ja': '日本語',
+      'zh-Hant': '繁體中文',
+      'zh-Hans': '简体中文',
+      'en': 'English'
+    };
+
+    const UI_STRINGS = {
+      'ja': {
+        search_placeholder: 'ツールを検索...',
+        clear_input: '入力をクリア',
+        all: 'すべて',
+        filter: 'フィルター',
+        to_top: 'トップへ',
+        filter_by_tag: 'タグで絞り込み',
+        filter_any: 'いずれか',
+        filter_all: 'すべて',
+        filter_clear: 'クリア',
+        share: 'シェア',
+        close: '閉じる',
+        site_desc: '乃木坂46／櫻坂46／日向坂46に関連するツールやウェブサイトをまとめたサイトです。',
+        contact: 'お問い合わせ',
+        open_link: 'リンクを開く',
+        language: '言語',
+        appearance: 'デザイン',
+        appearance_options: 'デザインオプション',
+        light_mode: 'ライトモード',
+        dark_mode: 'ダークモード',
+        support: '支援する',
+        support_sheet_title: '作者を支援',
+        official_sites: '公式サイト',
+        no_results: '見つかりません...',
+        count_suffix: '件',
+        refresh_page: '再読み込み',
+        recent_changes: '最近の変更',
+        no_recent_changes: '変更履歴はまだありません。',
+        close_changes: '変更履歴を閉じる',
+        show_keep_cards: 'Keepのみ表示',
+        show_all_cards: '全カード表示',
+      },
+      'zh-Hant': {
+        search_placeholder: '搜尋工具...',
+        clear_input: '清除輸入',
+        all: '全部',
+        filter: '篩選',
+        to_top: '返回頂部',
+        filter_by_tag: '依標籤篩選',
+        filter_any: '任一',
+        filter_all: '全部',
+        filter_clear: '清除',
+        share: '分享',
+        close: '關閉',
+        site_desc: '彙整乃木坂46／櫻坂46／日向坂46 相關工具與網站。',
+        contact: '聯絡我們',
+        open_link: '開啟連結',
+        language: '語言',
+        appearance: '外觀',
+        appearance_options: '外觀選項',
+        light_mode: '淺色模式',
+        dark_mode: '深色模式',
+        support: '支持作者',
+        support_sheet_title: '支持作者',
+        official_sites: '官方網站',
+        no_results: '找不到結果...',
+        count_suffix: '項',
+        refresh_page: '重新整理',
+        recent_changes: '最近變動',
+        no_recent_changes: '目前沒有最近變動。',
+        close_changes: '關閉最近變動',
+        show_keep_cards: '只顯示 Keep',
+        show_all_cards: '顯示全部卡片',
+      },
+      'zh-Hans': {
+        search_placeholder: '搜索工具...',
+        clear_input: '清除输入',
+        all: '全部',
+        filter: '筛选',
+        to_top: '返回顶部',
+        filter_by_tag: '按标签筛选',
+        filter_any: '任一',
+        filter_all: '全部',
+        filter_clear: '清除',
+        share: '分享',
+        close: '关闭',
+        site_desc: '汇整乃木坂46／樱坂46／日向坂46 相关工具与网站。',
+        contact: '联系我们',
+        open_link: '打开链接',
+        language: '语言',
+        appearance: '外观',
+        appearance_options: '外观选项',
+        light_mode: '浅色模式',
+        dark_mode: '深色模式',
+        support: '支持作者',
+        support_sheet_title: '支持作者',
+        official_sites: '官方网站',
+        no_results: '找不到结果...',
+        count_suffix: '项',
+        refresh_page: '刷新页面',
+        recent_changes: '最近变动',
+        no_recent_changes: '目前没有最近变动。',
+        close_changes: '关闭最近变动',
+        show_keep_cards: '只显示 Keep',
+        show_all_cards: '显示全部卡片',
+      },
+      'en': {
+        search_placeholder: 'Search tools...',
+        clear_input: 'Clear input',
+        all: 'All',
+        filter: 'Filter',
+        to_top: 'Back to top',
+        filter_by_tag: 'Filter by tag',
+        filter_any: 'Any',
+        filter_all: 'All',
+        filter_clear: 'Clear',
+        share: 'Share',
+        close: 'Close',
+        site_desc: 'A curated collection of tools and websites related to Nogizaka46 / Sakurazaka46 / Hinatazaka46.',
+        contact: 'Contact',
+        open_link: 'Open link',
+        language: 'Language',
+        appearance: 'Appearance',
+        appearance_options: 'Appearance options',
+        light_mode: 'Light mode',
+        dark_mode: 'Dark mode',
+        support: 'Support',
+        support_sheet_title: 'Support the author',
+        official_sites: 'Official Sites',
+        no_results: 'No results found...',
+        count_suffix: ' results',
+        refresh_page: 'Refresh page',
+        recent_changes: 'Recent changes',
+        no_recent_changes: 'No recent changes yet.',
+        close_changes: 'Close recent changes',
+        show_keep_cards: 'Show Keep only',
+        show_all_cards: 'Show all cards',
+      },
+    };
+
+    function applyI18n(lang) {
+      const s = UI_STRINGS[lang] || UI_STRINGS['ja'];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (s[key] !== undefined) el.textContent = s[key];
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.dataset.i18nPlaceholder;
+        if (s[key] !== undefined) el.placeholder = s[key];
+      });
+      document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        const key = el.dataset.i18nTitle;
+        if (s[key] !== undefined) el.title = s[key];
+      });
+      document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+        const key = el.dataset.i18nAriaLabel;
+        if (s[key] !== undefined) el.setAttribute('aria-label', s[key]);
+      });
+    }
+
+    function getUiString(key) {
+      const lang = document.documentElement.lang || 'ja';
+      return (UI_STRINGS[lang] && UI_STRINGS[lang][key]) || UI_STRINGS.ja[key] || key;
+    }
+    let supportDragging = false;
+    let supportDragStartY = 0;
+    let supportDragDelta = 0;
+
+    function resetSupportPanelTransform() {
+      if (supportPanel) {
+        supportPanel.style.transition = '';
+        supportPanel.style.transform = '';
+      }
+      if (supportSheet) supportSheet.style.opacity = '';
+      supportDragging = false;
+      supportDragDelta = 0;
+      supportSheet?.classList.remove('dragging');
+    }
+
+    function toggleSupportSheet(forceState) {
+      if (!supportSheet) return;
+      const isOpen = supportSheet.classList.contains('open');
+      const shouldOpen = typeof forceState === 'boolean' ? forceState : !isOpen;
+      supportSheet.classList.toggle('open', shouldOpen);
+      document.body.classList.toggle('sheet-open', shouldOpen);
+      supportSheet.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+      if (!shouldOpen) {
+        resetSupportPanelTransform();
+      }
+    }
+
+    function handleSupportPointerDown(event) {
+      if (!supportSheet || !supportPanel) return;
+      supportDragging = true;
+      supportDragStartY = event.clientY;
+      supportPanel.style.transition = 'none';
+      supportSheet.classList.add('dragging');
+      window.addEventListener('pointermove', handleSupportPointerMove);
+      window.addEventListener('pointerup', handleSupportPointerUp);
+      window.addEventListener('pointercancel', handleSupportPointerUp);
+    }
+
+    function handleSupportPointerMove(event) {
+      if (!supportDragging || !supportPanel || !supportSheet) return;
+      const currentY = event.clientY;
+      supportDragDelta = Math.max(0, currentY - supportDragStartY);
+      const translateY = Math.min(supportDragDelta, 200);
+      supportPanel.style.transform = `translateY(${translateY}px)`;
+      const opacityFactor = Math.max(0, Math.min(1, 1 - translateY / 260));
+      supportSheet.style.opacity = opacityFactor;
+    }
+
+    function handleSupportPointerUp() {
+      if (!supportDragging || !supportPanel || !supportSheet) return;
+      const shouldClose = supportDragDelta > 80;
+      supportPanel.style.transition = '';
+      supportSheet.style.opacity = '';
+      if (shouldClose) {
+        toggleSupportSheet(false);
+      } else {
+        supportPanel.style.transform = '';
+      }
+      supportDragging = false;
+      supportDragDelta = 0;
+      supportSheet.classList.remove('dragging');
+      window.removeEventListener('pointermove', handleSupportPointerMove);
+      window.removeEventListener('pointerup', handleSupportPointerUp);
+      window.removeEventListener('pointercancel', handleSupportPointerUp);
+    }
+
+    // 動態生成顏色
+    function stringToColor(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) hash = str.charCodeAt(i) + ((hash << 5) - hash);
+      return `hsl(${Math.abs(hash) % 360}, 75%, 65%)`;
+    }
+
+    function closeLanguageMenus() {
+      languageControls.forEach(control => {
+        control.classList.remove('open');
+        const trigger = control.querySelector('.language-trigger');
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    function updateLanguageUI(value) {
+      const label = LANGUAGE_LABELS[value] || value;
+      languageTriggers.forEach(trigger => {
+        trigger.textContent = label;
+      });
+      languageOptions.forEach(option => {
+        option.classList.toggle('active', option.dataset.lang === value);
+      });
+    }
+
+    function setLanguagePreference(value) {
+      document.documentElement.lang = value;
+      updateLanguageUI(value);
+      applyI18n(value);
+      try {
+        localStorage.setItem(LANGUAGE_STORAGE_KEY, value);
+      } catch (err) {
+        /* ignore private mode */
+      }
+      updateKeepSwitchUI();
+      updateTopButtonState();
+      renderChangeLogContent();
+    }
+
+    const LANG_CONFIG_MAP = {
+      'ja': 'config.js',
+      'zh-Hant': 'config_zh-Hant.js',
+      'zh-Hans': 'config_zh-Hans.js',
+      'en': 'config_en.js'
+    };
+
+    function loadLanguageConfig(lang) {
+      return new Promise((resolve) => {
+        const file = LANG_CONFIG_MAP[lang] || 'config.js';
+        // 移除舊的 config script（避免 const 重複宣告）
+        const old = document.getElementById('__lang_config__');
+        if (old) old.remove();
+        const s = document.createElement('script');
+        s.id = '__lang_config__';
+        s.src = file + '?v=' + Date.now(); // 避免快取
+        s.onload = resolve;
+        s.onerror = () => {
+          console.warn('loadLanguageConfig failed:', file);
+          resolve();
+        };
+        document.head.appendChild(s);
+      });
+    }
+
+    (function initLanguagePreference() {
+      if (!languageTriggers.length) return;
+      let initial = 'zh-Hant';
+      try {
+        initial = localStorage.getItem(LANGUAGE_STORAGE_KEY) || document.documentElement.lang || 'zh-Hant';
+      } catch (err) {
+        initial = document.documentElement.lang || 'zh-Hant';
+      }
+      setLanguagePreference(initial);
+
+      languageTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (event) => {
+          event.stopPropagation();
+          const control = trigger.closest('.language-control');
+          if (!control) return;
+          const willOpen = !control.classList.contains('open');
+          closeLanguageMenus();
+          if (willOpen) {
+            control.classList.add('open');
+            trigger.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+
+      languageOptions.forEach(option => {
+        option.addEventListener('click', (event) => {
+          const value = option.dataset.lang;
+          if (value) {
+            setLanguagePreference(value);
+            loadLanguageConfig(value).then(() => {
+              _reinitUI();
+              applyFilters();
+            });
+          }
+          closeLanguageMenus();
+        });
+      });
+    })();
+
+    (function initAppearancePreference() {
+      const appearanceButtons = [...document.querySelectorAll('.appearance-container .appearance-btn')];
+      if (!appearanceButtons.length) return;
+      
+      const APPEARANCE_STORAGE_KEY = 'app_appearance_theme';
+      let currentTheme = 'dark';
+      
+      try {
+        currentTheme = localStorage.getItem(APPEARANCE_STORAGE_KEY) || 'dark';
+      } catch (err) {
+        currentTheme = 'dark';
+      }
+      
+      function setAppearance(theme) {
+        currentTheme = theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        appearanceButtons.forEach(btn => {
+          const isActive = btn.dataset.theme === theme;
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        
+        try {
+          localStorage.setItem(APPEARANCE_STORAGE_KEY, theme);
+        } catch (err) {
+        }
+      }
+      
+      setAppearance(currentTheme);
+      
+      appearanceButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const theme = btn.dataset.theme;
+          setAppearance(theme);
+        });
+      });
+    })();
+
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.language-control')) {
+        closeLanguageMenus();
+      }
+    });
+
+    let allTagsSet = new Set(['公式']);
+    let activeSite = 'all';
+    let matches = [];
+    let currentIndex = 0;
+    let officialMatchesCount = 0;
+    let keptLinks = new Set();
+    let keepOnlyMode = false;
+    let officialCollapsed = false;
+    let toTopMode = 'top';
+
+    function normalizeLinkKey(raw) {
+      return String(raw || '').trim();
+    }
+
+    function isBottomDockLayout() {
+      return window.innerWidth <= 600;
+    }
+
+    function loadPersistedState() {
+      try {
+        const storedKeep = JSON.parse(localStorage.getItem(KEEP_STORAGE_KEY) || '[]');
+        if (Array.isArray(storedKeep)) {
+          keptLinks = new Set(storedKeep.map(normalizeLinkKey).filter(Boolean));
+        }
+      } catch (err) {
+        keptLinks = new Set();
+      }
+
+      try {
+        keepOnlyMode = localStorage.getItem(KEEP_MODE_STORAGE_KEY) === '1';
+      } catch (err) {
+        keepOnlyMode = false;
+      }
+
+      try {
+        officialCollapsed = localStorage.getItem(OFFICIAL_COLLAPSE_STORAGE_KEY) === '1';
+      } catch (err) {
+        officialCollapsed = false;
+      }
+    }
+
+    function persistKeepState() {
+      try {
+        localStorage.setItem(KEEP_STORAGE_KEY, JSON.stringify([...keptLinks]));
+        localStorage.setItem(KEEP_MODE_STORAGE_KEY, keepOnlyMode ? '1' : '0');
+      } catch (err) {
+      }
+    }
+
+    function persistOfficialCollapsedState() {
+      try {
+        localStorage.setItem(OFFICIAL_COLLAPSE_STORAGE_KEY, officialCollapsed ? '1' : '0');
+      } catch (err) {
+      }
+    }
+
+    function applyOfficialPanelCollapsedState() {
+      const panel = document.getElementById('officialPanel');
+      if (!panel) return;
+      panel.classList.toggle('collapsed', officialCollapsed);
+    }
+
+    function setOfficialPanelCollapsed(next) {
+      officialCollapsed = !!next;
+      applyOfficialPanelCollapsedState();
+      persistOfficialCollapsedState();
+    }
+
+    function isCardKept(card) {
+      if (!card) return false;
+      const key = normalizeLinkKey(card.dataset.keepKey || card.dataset.href);
+      return key ? keptLinks.has(key) : false;
+    }
+
+    function setCardKeptState(card, kept) {
+      if (!card) return;
+      const btn = card.querySelector('.card-keep-toggle');
+      if (!btn) return;
+      btn.classList.toggle('kept', kept);
+      const icon = btn.querySelector('.material-icons');
+      if (icon) icon.textContent = kept ? 'bookmark' : 'bookmark_border';
+    }
+
+    function syncKeepStateToCards() {
+      cards.forEach(card => setCardKeptState(card, isCardKept(card)));
+    }
+
+    function updateKeepSwitchUI() {
+      if (!keepSwitchBtn) return;
+      const shouldShow = keptLinks.size > 0 || keepOnlyMode;
+      keepSwitchBtn.classList.toggle('visible', shouldShow);
+      keepSwitchBtn.classList.toggle('active', keepOnlyMode);
+      keepSwitchBtn.title = keepOnlyMode ? getUiString('show_all_cards') : getUiString('show_keep_cards');
+    }
+
+    function toggleCardKeep(card) {
+      if (!card) return;
+      const key = normalizeLinkKey(card.dataset.keepKey || card.dataset.href);
+      if (!key) return;
+      if (keptLinks.has(key)) keptLinks.delete(key);
+      else keptLinks.add(key);
+
+      if (keepOnlyMode && keptLinks.size === 0) {
+        keepOnlyMode = false;
+      }
+
+      setCardKeptState(card, keptLinks.has(key));
+      persistKeepState();
+      updateKeepSwitchUI();
+      runSearch(false);
+    }
+
+    function renderChangeLogContent() {
+      const content = document.getElementById('changeLogContent');
+      const emptyMsg = document.getElementById('changeLogEmptyMsg');
+      if (!content || !emptyMsg) return;
+      const raw = String(typeof recentChanges !== 'undefined' ? recentChanges : '').trim();
+      content.textContent = '';
+      if (!raw) {
+        emptyMsg.style.display = 'block';
+        return;
+      }
+      emptyMsg.style.display = 'none';
+      renderTextWithLinks(content, raw);
+    }
+
+    function safeHref(rawHref) {
+      if (!rawHref) return null;
+      try {
+        const url = new URL(String(rawHref).trim(), window.location.href);
+        if (url.protocol === 'http:' || url.protocol === 'https:' || url.protocol === 'mailto:') return url.href;
+      } catch {
+        return null;
+      }
+      return null;
+    }
+
+    function renderTextWithLinks(containerEl, text) {
+      if (!containerEl) return;
+      containerEl.textContent = '';
+
+      const str = String(text ?? '');
+      const lines = str.split('\n');
+      const linkRe = /\[([^\]]+?)\]\(([^\s)]+)\)/g;
+
+      lines.forEach((line, lineIndex) => {
+        let lastIndex = 0;
+        let match;
+
+        while ((match = linkRe.exec(line)) !== null) {
+          const [full, label, hrefCandidate] = match;
+          const start = match.index;
+          const end = start + full.length;
+
+          if (start > lastIndex) {
+            containerEl.appendChild(document.createTextNode(line.slice(lastIndex, start)));
+          }
+
+          const href = safeHref(hrefCandidate);
+          if (href) {
+            const a = document.createElement('a');
+            a.textContent = label;
+            a.href = href;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            containerEl.appendChild(a);
+          } else {
+            containerEl.appendChild(document.createTextNode(full));
+          }
+
+          lastIndex = end;
+        }
+
+        if (lastIndex < line.length) {
+          containerEl.appendChild(document.createTextNode(line.slice(lastIndex)));
+        }
+
+        if (lineIndex < lines.length - 1) {
+          containerEl.appendChild(document.createElement('br'));
+        }
+      });
+    }
+    
+    // 初始化卡片
+    function initCards() {
+      cardsContainer.innerHTML = '';
+      toolConfig.forEach(tool => {
+        if (tool && tool.hidden) return;
+        const tags = Array.isArray(tool.tags) ? tool.tags : [];
+        const groups = Array.isArray(tool.groups) ? tool.groups : [];
+        tags.forEach(t => allTagsSet.add(t));
+        
+        const dotsHtml = groups.map(g => `<span class="dot ${g}"></span>`).join('');
+        const tagsHtml = tags.filter(t => t !== '公式').map(t => {
+          const color = stringToColor(t);
+          const label = (typeof tagLabels !== 'undefined' && tagLabels[t]) ? tagLabels[t] : t;
+          return `<span class="card-tag" style="color: ${color}; background: color-mix(in srgb, ${color} 15%, transparent); border: 1px solid color-mix(in srgb, ${color} 30%, transparent);">${label}</span>`;
+        }).join('');
+        const isFeatured = tags.includes('featured');
+
+        const el = document.createElement('div');
+        el.className = 'tool-card';
+        el.dataset.site = groups.join(' ');
+        el.dataset.tags = tags.join(' ');
+        el.dataset.href = tool.link;
+        el.dataset.keepKey = tool.link || '';
+
+        el.innerHTML = `
+          <div class="tool-header">
+            ${isFeatured ? '<div class="featured-corner" aria-hidden="true"></div>' : ''}
+            <button class="card-keep-toggle" type="button" title="Keep"><span class="material-icons">bookmark_border</span></button>
+            <div class="group-dots">${dotsHtml}</div>
+            <div class="tool-info">
+              <div class="name">${tool.name}</div>
+              <div class="desc">${tool.desc}</div>
+            </div>
+          </div>
+          <div class="expand"><span class="material-icons">expand_more</span></div>
+          <div class="tool-detail">
+            <div class="tool-detail-text"></div>
+            <div class="card-tags">${tagsHtml}</div>
+          </div>
+        `;
+
+        const detailEl = el.querySelector('.tool-detail-text');
+        renderTextWithLinks(detailEl, tool.detail);
+        cardsContainer.appendChild(el);
+      });
+    }
+
+    // 初始化篩選器
+    function initFilters() {
+      const filterTagsContainer = document.getElementById('filterTags');
+      if (!filterTagsContainer) return;
+      filterTagsContainer.innerHTML = '';
+      
+      allTagsSet.forEach(t => {
+        const color = stringToColor(t);
+        const label = (typeof tagLabels !== 'undefined' && tagLabels[t]) ? tagLabels[t] : t;
+        const btn = document.createElement('div');
+        btn.className = 'filter-tag'; // 預設不常亮
+        btn.dataset.value = t;
+        btn.textContent = label;
+        btn.style.setProperty('--t-color', color);
+        
+        btn.addEventListener('click', () => {
+          btn.classList.toggle('active');
+          applyFilters();
+        });
+        
+        filterTagsContainer.appendChild(btn);
+      });
+    }
+
+    function renderOfficial() {
+      const panel = document.getElementById('officialPanel');
+      const container = document.getElementById('officialGroups');
+      if (!panel || !container) return;
+      const oData = typeof officialConfig !== 'undefined' ? officialConfig : [];
+      
+      if (!oData.length) {
+        panel.style.display = 'none';
+        return;
+      }
+      
+      container.innerHTML = '';
+      
+      const groupsToOrder = [
+        { id: 'nogi', logo: 'https://www.nogizaka46.com/files/46/page/31thSG_ul_xF2c/images/logo.svg' },
+        { id: 'saku', logo: 'https://sakurazaka46.com/files/14/s46/img/com-logo-no-framed.svg' },
+        { id: 'hina', logo: 'https://cdn.hinatazaka46.com/files/14/hinata/pages/4th_anniv/images/logo_hinata.svg' }
+      ];
+      
+      groupsToOrder.forEach(g => {
+        const items = oData.filter(i => i.group === g.id);
+        if (!items.length) return;
+        
+        // 這裡隱性標記它們都含有公式類別，以防之後要用到
+        
+        const groupEl = document.createElement('div');
+        groupEl.className = 'official-group';
+        groupEl.dataset.group = g.id;
+        
+        // 建立左側團體 Logo 區塊
+        const logoEl = document.createElement('div');
+        logoEl.className = 'official-group-logo';
+        logoEl.innerHTML = `<img src="${g.logo}" alt="${g.id}">`;
+        
+        const contentEl = document.createElement('div');
+        contentEl.className = 'official-group-content';
+        
+        items.forEach(item => {
+          const a = document.createElement('a');
+          a.className = 'official-item';
+          a.href = item.link;
+          a.target = '_blank';
+          a.textContent = item.name;
+          a.dataset.name = item.name;
+          contentEl.appendChild(a);
+        });
+        
+        // 建立右邊展開按鈕的區塊（上方放一個空位，佔據第一行的空間，把按鈕推到第二行）
+        const expandContainer = document.createElement('div');
+        expandContainer.className = 'official-expand-container';
+        
+        const expandSpacer = document.createElement('div');
+        expandSpacer.className = 'official-expand-spacer';
+        
+        const expandBtn = document.createElement('div');
+        expandBtn.className = 'official-expand';
+        expandBtn.innerHTML = '<span class="material-icons">expand_more</span>';
+        expandBtn.addEventListener('click', () => {
+          groupEl.classList.toggle('expanded');
+          updateOfficialVisibility();
+        });
+        
+        expandContainer.appendChild(expandSpacer);
+        expandContainer.appendChild(expandBtn);
+        
+        groupEl.appendChild(logoEl);
+        groupEl.appendChild(contentEl);
+        groupEl.appendChild(expandContainer);
+        container.appendChild(groupEl);
+      });
+      
+      updateOfficialVisibility();
+    }
+
+    function updateOfficialVisibility() {
+      const panel = document.getElementById('officialPanel');
+      if (!panel) return;
+      if (keepOnlyMode) {
+        panel.style.display = 'none';
+        officialMatchesCount = 0;
+        return;
+      }
+      let panelVisible = false;
+      const q = input.value.trim().toLowerCase();
+      officialMatchesCount = 0;
+      
+      const cols = window.innerWidth > 1200 ? 3 : (window.innerWidth > 800 ? 2 : 1);
+      const maxItems = cols * 2;
+
+      let visibleGroups = [];
+
+      // 檢查是否應該隱藏（標籤過濾但未包含 '公式'，或全符合模式下還有其他標籤）
+      const selected = selectedTags();
+      const hideBecauseTag = selected.length > 0 && (
+        !selected.includes('公式') ||
+        (filterMode === 'all' && selected.some(t => t !== '公式'))
+      );
+
+      if (hideBecauseTag) {
+        panel.style.display = 'none';
+        officialMatchesCount = 0;
+        return;
+      }
+
+      document.querySelectorAll('.official-group').forEach(groupEl => {
+        const groupId = groupEl.dataset.group;
+        const matchFilter = activeSite === 'all' || activeSite === groupId;
+        
+        let visibleCount = 0;
+        const items = groupEl.querySelectorAll('.official-item');
+        
+        let totalMatchCount = 0;
+        items.forEach(a => {
+          const name = (a.dataset.name || '').toLowerCase();
+          const href = (a.href || '').toLowerCase();
+          const matchSearch = !q || name.includes(q) || href.includes(q);
+          const isMatch = matchFilter && matchSearch;
+          
+          if (isMatch) {
+             totalMatchCount++;
+             a.style.display = 'flex';
+             if (q) {
+               a.style.borderColor = 'color-mix(in oklab, var(--accent) 75%, white 25%)';
+               a.style.boxShadow = '0 0 0 3px rgba(147,58,253,.25)';
+             } else {
+               a.style.borderColor = '';
+               a.style.boxShadow = '';
+             }
+             
+             visibleCount++;
+             if (!groupEl.classList.contains('expanded') && visibleCount > maxItems) {
+               a.classList.add('hide-when-collapsed');
+             } else {
+               a.classList.remove('hide-when-collapsed');
+             }
+          } else {
+             a.style.display = 'none';
+             a.classList.remove('hide-when-collapsed');
+          }
+        });
+        
+        const expandContainer = groupEl.querySelector('.official-expand-container');
+        
+        if (totalMatchCount > maxItems) {
+          expandContainer.style.display = 'flex';
+        } else {
+          expandContainer.style.display = 'none';
+          groupEl.classList.remove('expanded');
+        }
+
+        officialMatchesCount += totalMatchCount;
+        
+        if (totalMatchCount > 0) {
+          groupEl.style.display = 'flex';
+          groupEl.classList.remove('hide-border');
+          visibleGroups.push(groupEl);
+          panelVisible = true;
+        } else {
+          groupEl.style.display = 'none';
+        }
+      });
+      
+      // 最後一個可見的 group 隱藏底線
+      if (visibleGroups.length > 0) {
+        visibleGroups[visibleGroups.length - 1].classList.add('hide-border');
+      }
+      
+      const oDataExists = typeof officialConfig !== 'undefined' && officialConfig.length > 0;
+      if (!oDataExists) panelVisible = false;
+      
+      const realPanel = document.getElementById('officialPanel');
+      if (realPanel) {
+        realPanel.style.display = panelVisible ? 'block' : 'none';
+      }
+    }
+
+    let cards = [];
+
+    function _reinitUI() {
+      allTagsSet = new Set(['公式']);
+      initCards();
+      initFilters();
+      renderOfficial();
+      cards = [...document.querySelectorAll('.tool-card')];
+      const el = document.getElementById('updateDate');
+      if (el && typeof lastUpdated !== 'undefined') el.textContent = lastUpdated;
+      applyOfficialPanelCollapsedState();
+      syncKeepStateToCards();
+      updateKeepSwitchUI();
+    }
+
+    window.addEventListener('resize', () => {
+      updateOfficialVisibility();
+      updateSiteTitleVisibility();
+      updateTopButtonState();
+    });
+
+    // 卡片點擊邏輯
+    document.addEventListener('click', (e) => {
+      const card = e.target.closest('.tool-card');
+      if (!card) return;
+
+      const expandBtn = e.target.closest('.expand');
+      const keepBtn = e.target.closest('.card-keep-toggle');
+      const toolDetail = e.target.closest('.tool-detail');
+      const toolHeader = e.target.closest('.tool-header');
+      
+      if (keepBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleCardKeep(card);
+      } else if (expandBtn) {
+        // 點擊展開按鈕：切換展開狀態
+        card.classList.toggle('expanded');
+        const icon = expandBtn.querySelector('.material-icons');
+        icon.textContent = card.classList.contains('expanded') ? 'expand_less' : 'expand_more';
+      } else if (toolDetail) {
+        // 點擊展開的詳細內容：不要連去網頁，也不要收合（讓使用者可以複製文字）
+        return;
+      } else if (toolHeader) {
+        // 點擊卡片頭部：打開連結
+        const href = card.dataset.href;
+        if (href) window.open(href, '_blank');
+      }
+    });
+
+    const dockBtns = [...document.querySelectorAll('.sidebar .dock-btn[data-site]')];
+    const filterToggle = document.getElementById('filterToggle');
+    const filterPanel = document.getElementById('filterPanel');
+    const filterModeAnyBtn = document.getElementById('filterModeAny');
+    const filterModeAllBtn = document.getElementById('filterModeAll');
+    let filterMode = 'any';
+
+    filterModeAnyBtn.addEventListener('click', () => {
+      filterMode = 'any';
+      filterModeAnyBtn.classList.add('active');
+      filterModeAllBtn.classList.remove('active');
+      applyFilters();
+    });
+    filterModeAllBtn.addEventListener('click', () => {
+      filterMode = 'all';
+      filterModeAllBtn.classList.add('active');
+      filterModeAnyBtn.classList.remove('active');
+      applyFilters();
+    });
+
+    function selectedTags() {
+      return [...document.querySelectorAll('.filter-tag.active')].map(c => c.dataset.value);
+    }
+
+    function updateSiteTitleVisibility() {
+      if (!siteTitle) return;
+      const searchExpanded = searchPill?.classList.contains('expanded');
+      siteTitle.classList.toggle('hidden', searchExpanded);
+    }
+
+    function cardVisible(card) {
+      const sites = (card.dataset.site || 'other').split(/\s+/).filter(Boolean);
+      const tags = (card.dataset.tags || '').split(/\s+/).filter(Boolean);
+      const bySite = activeSite === 'all' ? true : sites.includes(activeSite);
+      const selected = selectedTags();
+      const byTag = selected.length
+        ? (filterMode === 'all' ? selected.every(t => tags.includes(t)) : tags.some(t => selected.includes(t)))
+        : true;
+      const byKeep = keepOnlyMode ? isCardKept(card) : true;
+      return bySite && byTag && byKeep;
+    }
+
+    function applyFilters() {
+      // 根據選中的標籤數決定 filterToggle 是否高亮
+      if (selectedTags().length > 0) {
+        filterToggle.classList.add('has-filters');
+      } else {
+        filterToggle.classList.remove('has-filters');
+      }
+
+      runSearch(false);
+    }
+
+    function clearHighlights() {
+      cards.forEach(c => c.classList.remove('match', 'current'));
+    }
+
+    function updateCount() {
+      const q = input.value.trim();
+      clearBtn.classList.toggle('visible', q.length > 0);
+      if (!q) {
+        countEl.style.display = 'none';
+      } else {
+        countEl.style.display = 'block';
+        const total = (matches?.length || 0) + (officialMatchesCount || 0);
+        const suffix = (UI_STRINGS[document.documentElement.lang] || UI_STRINGS['ja']).count_suffix;
+        countEl.textContent = `${total}${suffix}`;
+      }
+    }
+
+    function runSearch(advance = false) {
+      clearHighlights();
+      const q = input.value.trim().toLowerCase();
+      let hasVisibleCard = false;
+
+      updateOfficialVisibility();
+      let hasOfficial = false;
+      const officialPanel = document.getElementById('officialPanel');
+      if (officialPanel && window.getComputedStyle(officialPanel).display !== 'none') {
+        hasOfficial = true;
+      }
+
+      const selected = selectedTags();
+      
+      if (!q) {
+        matches = [];
+        currentIndex = 0;
+        cards.forEach(card => {
+          const isVisible = cardVisible(card);
+          card.style.display = isVisible ? 'block' : 'none';
+          if (isVisible) hasVisibleCard = true;
+        });
+        updateCount();
+        document.getElementById('noResultsMsg').style.display = (hasVisibleCard || hasOfficial) ? 'none' : 'block';
+        return;
+      }
+
+      const visibleCards = cards.filter(c => cardVisible(c));
+      
+      matches = visibleCards.filter(card => {
+        const nameText = card.querySelector('.name')?.textContent || '';
+        const descText = card.querySelector('.desc')?.textContent || '';
+        const detailText = card.querySelector('.tool-detail-text')?.textContent || '';
+        const tagTokens = card.dataset.tags || '';
+        const tagLabelsText = card.querySelector('.card-tags')?.textContent || '';
+        const hrefText = card.dataset.href || '';
+        const text = `${nameText} ${descText} ${detailText} ${tagTokens} ${tagLabelsText} ${hrefText}`.toLowerCase();
+        return text.includes(q);
+      });
+
+      cards.forEach(card => {
+        if (matches.includes(card)) {
+          // 若同時在官網區塊中有結果被搜尋到時，下方的網頁卡片搜尋結果可考慮不顯示（依照要求：搜尋結果排除置頂結果，因此我們在這裡隱藏重複出現的）
+          // 但是我們這裡其實很難精準對應置頂的內容，通常所謂的置頂卡片指的是：如果他在上面找到了，下面就不要顯示相同的東西。
+          // 我們這裡先只負責依您的要求：將一般卡片獨立顯示即可。若他有 公式 標籤且面板已經因為搜尋而有結果，下方就不顯示。
+          
+          let skipBecauseOfOfficial = false;
+          if (hasOfficial) {
+             const isMatchThisOfficialItem = Array.from(document.querySelectorAll('.official-item')).some(oi => {
+               return oi.style.display !== 'none' && oi.dataset.name.toLowerCase() === card.querySelector('.name').textContent.toLowerCase();
+             });
+             // 若上方有了，下方這個就藏起來
+             if (isMatchThisOfficialItem) {
+               skipBecauseOfOfficial = true;
+             }
+          }
+          
+          if (!skipBecauseOfOfficial) {
+            card.style.display = 'block';
+            card.classList.add('match');
+            hasVisibleCard = true;
+          } else {
+            card.style.display = 'none';
+          }
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      // 更新有效 matches
+      matches = matches.filter(card => card.style.display === 'block');
+
+      if (!matches.length) {
+        currentIndex = 0;
+        updateCount();
+        document.getElementById('noResultsMsg').style.display = hasOfficial ? 'none' : 'block';
+        return;
+      }
+
+      document.getElementById('noResultsMsg').style.display = 'none';
+
+      if (advance) currentIndex = (currentIndex + 1) % matches.length;
+      else if (currentIndex >= matches.length) currentIndex = 0;
+      if (matches[currentIndex]) {
+        const current = matches[currentIndex];
+        current.classList.add('current');
+        current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      updateCount();
+    }
+
+    input.addEventListener('focus', () => searchWrap.classList.add('focused'));
+    input.addEventListener('blur', () => {
+      if (!input.value.trim()) searchWrap.classList.remove('focused');
+    });
+
+    input.addEventListener('input', () => {
+      currentIndex = 0;
+      runSearch(false);
+    });
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        runSearch(true);
+      }
+    });
+
+    clearBtn.addEventListener('click', () => {
+      input.value = '';
+      searchWrap.classList.remove('focused');
+      runSearch(false);
+      input.focus();
+    });
+
+    dockBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        dockBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeSite = btn.dataset.site || 'all';
+        applyFilters();
+      });
+    });
+
+    const toTopBtn = document.getElementById('toTop');
+    const toTopIcon = toTopBtn ? toTopBtn.querySelector('.material-icons') : null;
+
+    function updateTopButtonState() {
+      if (!toTopBtn || !toTopIcon) return;
+      const scrollY = window.scrollY;
+      const bottomDock = isBottomDockLayout();
+      const showingTop = scrollY > 150;
+
+      if (bottomDock) {
+        toTopMode = 'top';
+        toTopIcon.textContent = 'arrow_upward';
+        toTopBtn.classList.toggle('visible', showingTop);
+      } else if (scrollY <= 10) {
+        toTopMode = 'refresh';
+        toTopIcon.textContent = 'refresh';
+        toTopBtn.classList.add('visible');
+      } else {
+        toTopMode = 'top';
+        toTopIcon.textContent = 'arrow_upward';
+        toTopBtn.classList.add('visible');
+      }
+
+      const titleKey = toTopMode === 'refresh' ? 'refresh_page' : 'to_top';
+      toTopBtn.title = getUiString(titleKey);
+
+      const updatePill = document.getElementById('updatePill');
+      if (updatePill) updatePill.classList.toggle('hidden', scrollY > 30);
+    }
+
+    window.addEventListener('scroll', updateTopButtonState);
+
+    searchPill.addEventListener('click', (e) => {
+      if (window.innerWidth <= 600 && !searchPill.classList.contains('expanded')) {
+        searchPill.classList.add('expanded');
+        setTimeout(() => input.focus(), 100);
+      }
+      updateSiteTitleVisibility();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 600) {
+        if (!searchPill.contains(e.target) && input.value.trim() === '') {
+          searchPill.classList.remove('expanded');
+          updateSiteTitleVisibility();
+        }
+      }
+    });
+
+    filterToggle.addEventListener('click', () => {
+      document.body.classList.toggle('filter-open');
+      filterToggle.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!filterPanel.contains(e.target) && e.target !== filterToggle && !filterToggle.contains(e.target)) {
+        document.body.classList.remove('filter-open');
+        filterToggle.classList.remove('active');
+      }
+    });
+
+    document.getElementById('clearFiltersBtn').addEventListener('click', () => {
+      document.querySelectorAll('.filter-tag.active').forEach(tag => tag.classList.remove('active'));
+      applyFilters();
+    });
+
+    if (keepSwitchBtn) {
+      keepSwitchBtn.addEventListener('click', () => {
+        keepOnlyMode = !keepOnlyMode;
+        persistKeepState();
+        updateKeepSwitchUI();
+        runSearch(false);
+      });
+    }
+
+    const officialPanelToggle = document.getElementById('officialPanelToggle');
+    if (officialPanelToggle) {
+      officialPanelToggle.addEventListener('click', () => {
+        setOfficialPanelCollapsed(!officialCollapsed);
+      });
+    }
+
+    const infoModalDrop = document.getElementById('infoModalDrop');
+    const closeInfoBtn = document.getElementById('closeInfoBtn');
+    const changeLogModalDrop = document.getElementById('changeLogModalDrop');
+    const closeChangeLogBtn = document.getElementById('closeChangeLogBtn');
+    const updatePill = document.getElementById('updatePill');
+
+    function openChangeLogModal() {
+      renderChangeLogContent();
+      changeLogModalDrop?.classList.add('open');
+    }
+
+    function closeChangeLogModal() {
+      changeLogModalDrop?.classList.remove('open');
+    }
+
+    if (updatePill) {
+      updatePill.addEventListener('click', openChangeLogModal);
+      updatePill.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openChangeLogModal();
+        }
+      });
+    }
+
+    closeChangeLogBtn?.addEventListener('click', closeChangeLogModal);
+    changeLogModalDrop?.addEventListener('click', (event) => {
+      if (event.target === changeLogModalDrop) {
+        closeChangeLogModal();
+      }
+    });
+
+    document.getElementById('mainLogo').addEventListener('click', () => {
+      infoModalDrop.classList.add('open');
+    });
+
+    closeInfoBtn.addEventListener('click', () => {
+      infoModalDrop.classList.remove('open');
+    });
+
+    document.getElementById('shareInfoBtn').addEventListener('click', () => {
+      const text = '【坂道TOOLKIT】坂道グループに関連するツールやウェブサイトをまとめたサイトです。\n' + window.location.href;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('shareInfoBtn');
+        const icon = btn.querySelector('.material-icons');
+        btn.classList.add('copied');
+        icon.textContent = 'check';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          icon.textContent = 'share';
+        }, 2000);
+      }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      });
+    });
+    
+    infoModalDrop.addEventListener('click', (e) => {
+      if (e.target === infoModalDrop) {
+        infoModalDrop.classList.remove('open');
+      }
+    });
+
+    toTopBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!isBottomDockLayout() && toTopMode === 'refresh') {
+        window.location.reload();
+        return;
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    if (supportToggle && supportSheet) {
+      supportToggle.addEventListener('click', () => toggleSupportSheet(true));
+    }
+
+    if (supportHandle) {
+      supportHandle.addEventListener('pointerdown', handleSupportPointerDown);
+    }
+
+    if (supportSheet) {
+      supportSheet.addEventListener('click', (event) => {
+        if (event.target === supportSheet) toggleSupportSheet(false);
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && supportSheet.classList.contains('open')) {
+          toggleSupportSheet(false);
+        }
+      });
+    }
+
+    if (typeof paypal !== 'undefined' && document.getElementById('paypal-container-2PE77EL5SYHCS')) {
+      paypal.HostedButtons({
+        hostedButtonId: '2PE77EL5SYHCS',
+      }).render('#paypal-container-2PE77EL5SYHCS');
+    }
+
+    (async function init() {
+      let initialLang = 'zh-Hant';
+      try { initialLang = localStorage.getItem(LANGUAGE_STORAGE_KEY) || 'zh-Hant'; } catch (e) {}
+      loadPersistedState();
+      await loadLanguageConfig(initialLang);
+      _reinitUI();
+      updateSiteTitleVisibility();
+      applyFilters();
+      updateTopButtonState();
+    })();
+  </script>
+</body>
+</html>
