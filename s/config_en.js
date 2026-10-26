@@ -1,5 +1,7 @@
 var lastUpdated = "2026-10-11 22:25";
 
+var recentChanges = "";
+
 var officialConfig = [
   {
     "name": "Nogizaka46 Official Site",
@@ -2037,7 +2039,7 @@ var toolConfig = [
 ];
 
 var tagLabels = {
-  "公式": "公式",
+  "公式": "Official",
   "item": "Favorite Items / Cosmetics",
   "clothes": "Casual Wear / Costumes / Uniforms",
   "place": "Places / Pilgrimage Spots",
@@ -2056,5 +2058,6 @@ var tagLabels = {
   "ranking": "Rankings",
   "forum": "Roundups / RSS",
   "live": "Live / Setlists",
-  "tool": "Related Tools"
+  "tool": "Related Tools",
+  "featured": "Featured"
 };
