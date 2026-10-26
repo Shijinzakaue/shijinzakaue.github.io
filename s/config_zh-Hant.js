@@ -1,5 +1,7 @@
 var lastUpdated = "2026-10-11 22:26";
 
+var recentChanges = "";
+
 var officialConfig = [
   {
     "name": "乃木坂46 官方網站",
@@ -2093,5 +2095,6 @@ var tagLabels = {
   "ranking": "排行",
   "forum": "論壇・RSS・彙總",
   "live": "演唱會・歌單",
-  "tool": "相關工具"
+  "tool": "相關工具",
+  "featured": "精選"
 };
