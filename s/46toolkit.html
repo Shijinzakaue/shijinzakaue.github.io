@@ -45,6 +45,7 @@
       --dock-btn-size: 60px;
       --dock-rail-width: calc(var(--dock-btn-size) + 14px);
       --dock-gap: 8px;
+      --keep-switch-size-desktop: 70px;
       --fab-size: 66px;
       --safe-bottom: env(safe-area-inset-bottom, 0px);
       --overlay-light: rgba(255,255,255,.02);
@@ -401,6 +402,29 @@
       transform: none;
     }
 
+    .keep-switch {
+      position: fixed;
+      right: calc(16px + (var(--dock-rail-width) - var(--keep-switch-size-desktop)) / 2);
+      top: 10px;
+      width: var(--keep-switch-size-desktop);
+      height: var(--keep-switch-size-desktop);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 31;
+    }
+    .keep-switch.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .keep-switch.fab:hover {
+      transform: scale(1.06);
+    }
+    .keep-switch.active {
+      border-color: rgba(147,58,253,.5);
+      background: rgba(147,58,253,.2);
+      color: var(--accent);
+    }
+
     .dock-btn {
       width: var(--dock-btn-size);
       height: var(--dock-btn-size);
@@ -581,20 +605,24 @@
       white-space: nowrap;
       background: rgba(255,255,255,.05);
       border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
       font-size: 13px;
       color: var(--muted);
-      pointer-events: none;
+      pointer-events: auto;
       user-select: none;
       z-index: 25;
       opacity: 1;
       transition: opacity .1s ease;
+      cursor: pointer;
     }
     .update-pill.hidden {
       opacity: 0;
+      pointer-events: none;
     }
     .update-pill .material-icons { font-size: 16px; opacity: .7; }
     html[data-theme="light"] .update-pill {
       background: rgba(0,0,0,.05);
+      border-color: rgba(0,0,0,.08);
     }
     @media (max-width: 600px) {
       .update-pill {
@@ -617,7 +645,38 @@
       font-size: 16px;
       font-weight: 700;
       color: var(--text);
+      margin-bottom: 0;
+    }
+    .official-panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 20px;
+      gap: 12px;
+    }
+    .official-panel-toggle {
+      width: 40px;
+      height: 40px;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      background: var(--overlay-light-hover);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .official-panel-toggle:hover { background: var(--overlay-light-active); color: var(--text); }
+    .official-panel-toggle .material-icons { font-size: 20px; transition: transform 0.3s; transform: rotate(180deg); }
+    .official-panel.collapsed .official-panel-toggle .material-icons { transform: rotate(0deg); }
+    .official-panel.collapsed .official-groups { display: none; }
+    .official-panel.collapsed {
+      padding-bottom: 24px;
+    }
+    .official-panel.collapsed .official-panel-head {
+      margin-bottom: 0;
     }
     .official-group {
       display: flex;
@@ -927,6 +986,15 @@
         transform: scale(1.08);
       }
 
+      .keep-switch {
+        top: auto;
+        left: 26px;
+        right: auto;
+        bottom: calc(32px + var(--dock-btn-size) + var(--safe-bottom) + var(--dock-gap) * 3);
+        width: var(--dock-btn-size);
+        height: var(--dock-btn-size);
+      }
+
       .filter-panel {
         left: 16px;
         right: 16px;
@@ -973,7 +1041,7 @@
       background: var(--official-card);
       display: flex;
       align-items: center;
-      padding: 0;
+      padding: 0 10px 0 0;
       box-shadow: 0 0px 5px rgba(0, 0, 0, 0.1);
       transition: border-color .3s, box-shadow .3s;
       z-index: 2;
@@ -986,7 +1054,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 0 70px 0 20px;
+      padding: 0 72px 0 38px;
     }
 
     .name { 
@@ -1012,19 +1080,62 @@
       line-height: 1.3;
     }
 
-    .dots {
+    .group-dots {
       position: absolute;
-      right: 0;
-      top: 18px;
-      width: 64px;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
       display: flex;
+      flex-direction: column;
       gap: 5px;
       justify-content: center;
+      align-items: center;
     }
     .dot { width: 8px; height: 8px; border-radius: 50%; }
     .dot.nogi { background: var(--nogi); }
     .dot.saku { background: var(--saku); }
     .dot.hina { background: var(--hina); }
+    .card-keep-toggle {
+      position: absolute;
+      right: 15px;
+      top: 0;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: #666b78;
+      background: transparent;
+      cursor: pointer;
+      z-index: 12;
+      transition: color .2s ease, background .2s ease;
+    }
+    .card-keep-toggle:hover {
+      background: var(--overlay-light-hover);
+      color: var(--text);
+    }
+    .card-keep-toggle .material-icons { font-size: 20px; line-height: 1; }
+    .card-keep-toggle.kept {
+      color: var(--accent);
+      background: transparent;
+      box-shadow: none;
+    }
+    .featured-corner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-top: 26px solid #d4a017;
+      border-right: 26px solid transparent;
+      border-top-left-radius: 14px;
+      z-index: 9;
+      pointer-events: none;
+    }
 
     .tool-detail {
       display: none;
@@ -1040,6 +1151,63 @@
     .tool-detail-text { white-space: pre-line; }
     .tool-detail-text a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
     .tool-detail-text a:hover { opacity: .9; }
+    #changeLogContent h1,
+    #changeLogContent h2,
+    #changeLogContent h3 {
+      margin: 14px 0 10px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+    #changeLogContent h1 { font-size: 21px; }
+    #changeLogContent h2 { font-size: 19px; }
+    #changeLogContent h3 { font-size: 17px; }
+    #changeLogContent p {
+      margin: 0 0 12px;
+      line-height: 1.75;
+      font-size: 14px;
+      color: var(--text);
+    }
+    #changeLogContent ul,
+    #changeLogContent ol {
+      margin: 0 0 12px 20px;
+      padding: 0;
+      line-height: 1.7;
+      font-size: 14px;
+      color: var(--text);
+    }
+    #changeLogContent blockquote {
+      margin: 0 0 12px;
+      padding: 8px 12px;
+      border-left: 3px solid color-mix(in srgb, var(--accent) 60%, transparent);
+      background: rgba(147,58,253,.08);
+      border-radius: 8px;
+      color: var(--text);
+    }
+    #changeLogContent code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      background: rgba(255,255,255,.08);
+      border-radius: 6px;
+      padding: 2px 6px;
+    }
+    #changeLogContent pre {
+      margin: 0 0 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.08);
+      overflow-x: auto;
+    }
+    #changeLogContent pre code {
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      white-space: pre;
+      display: block;
+      line-height: 1.6;
+    }
+    #changeLogContent {
+      white-space: normal;
+    }
     .tool-card.expanded .tool-detail {
       display: block;
     }
@@ -1111,6 +1279,18 @@
     html[data-theme="light"] .tool-card.expanded .expand {
       background: rgba(147,58,253,.15);
       color: #7c3aed;
+    }
+    html[data-theme="light"] .card-keep-toggle {
+      color: #9aa1af;
+    }
+    html[data-theme="light"] .card-keep-toggle:hover {
+      color: #1a1a1a;
+      background: rgba(0,0,0,.08);
+    }
+    html[data-theme="light"] .card-keep-toggle.kept {
+      color: #7c3aed;
+      background: transparent;
+      box-shadow: none;
     }
 
     .tool-card.match .tool-header {
@@ -1393,6 +1573,14 @@
       background: rgba(0,0,0,.05);
       color: #1a1a1a;
     }
+    html[data-theme="light"] .official-panel-toggle {
+      background: rgba(0,0,0,.05);
+      color: #1a1a1a;
+    }
+    html[data-theme="light"] .official-panel-toggle:hover {
+      background: rgba(0,0,0,.1);
+      color: #1a1a1a;
+    }
     html[data-theme="light"] .official-expand:hover {
       background: rgba(0,0,0,.1);
       color: #1a1a1a;
@@ -1624,6 +1812,9 @@
   <div id="reportBtnContainer">
     <a id="toTop" class="fab" href="#" title="トップへ" data-i18n-title="to_top"><span class="material-icons">arrow_upward</span></a>
   </div>
+  <button id="keepSwitch" class="fab keep-switch" type="button" title="Keep">
+    <span class="material-icons">bookmarks</span>
+  </button>
 
   <div class="filter-backdrop" id="filterBackdrop" aria-hidden="true"></div>
 
@@ -1638,6 +1829,19 @@
     </div>
     <div class="filter-tags" id="filterTags"></div>
   </section>
+
+  <div class="info-modal-backdrop" id="changeLogModalDrop">
+    <div class="info-modal" id="changeLogModal">
+      <div class="info-modal-header">
+        <h3 class="info-modal-heading" data-i18n="recent_changes">最近の変更</h3>
+        <button class="close-info" id="closeChangeLogBtn" aria-label="閉じる" data-i18n-aria-label="close_changes"><span class="material-icons">close</span></button>
+      </div>
+      <div class="info-modal-body">
+        <p class="info-modal-desc" id="changeLogEmptyMsg" data-i18n="no_recent_changes">変更履歴はまだありません。</p>
+        <div id="changeLogContent" class="tool-detail-text" style="font-size:14px; line-height:1.7; color:var(--text);"></div>
+      </div>
+    </div>
+  </div>
 
   <div class="info-modal-backdrop" id="infoModalDrop">
     <div class="info-modal" id="infoModal">
@@ -1713,12 +1917,17 @@
   </div>
 
   <main class="container">
-    <div class="update-pill" id="updatePill">
+    <div class="update-pill" id="updatePill" role="button" tabindex="0" title="最近の変更" data-i18n-title="recent_changes">
       <span class="material-icons">update</span>
       <span id="updateDate"></span>
     </div>
     <section class="official-panel" id="officialPanel" style="display: none;">
-      <div class="official-header" data-i18n="official_sites">公式サイト</div>
+      <div class="official-panel-head">
+        <div class="official-header" data-i18n="official_sites">公式サイト</div>
+        <button class="official-panel-toggle" id="officialPanelToggle" type="button" title="展開 / 収合">
+          <span class="material-icons">expand_more</span>
+        </button>
+      </div>
       <div class="official-groups" id="officialGroups"></div>
     </section>
 
@@ -1743,10 +1952,14 @@
     const supportSheet = document.getElementById('supportSheet');
     const supportPanel = document.getElementById('supportPanel');
     const supportHandle = document.getElementById('supportHandle');
-    const APP_VERSION = 'v1.3.0';
+    const keepSwitchBtn = document.getElementById('keepSwitch');
+    const APP_VERSION = 'v1.4.0';
     const appVersionEl = document.getElementById('appVersion');
     if (appVersionEl) appVersionEl.textContent = APP_VERSION;
     const LANGUAGE_STORAGE_KEY = 'toolkit:lang';
+    const KEEP_STORAGE_KEY = 'toolkit:keep-links';
+    const KEEP_MODE_STORAGE_KEY = 'toolkit:keep-mode';
+    const OFFICIAL_COLLAPSE_STORAGE_KEY = 'toolkit:official-collapsed';
     const LANGUAGE_LABELS = {
       'ja': '日本語',
       'zh-Hant': '繁體中文',
@@ -1780,6 +1993,12 @@
         official_sites: '公式サイト',
         no_results: '見つかりません...',
         count_suffix: '件',
+        refresh_page: '再読み込み',
+        recent_changes: '最近の変更',
+        no_recent_changes: '変更履歴はまだありません。',
+        close_changes: '変更履歴を閉じる',
+        show_keep_cards: 'Keepのみ表示',
+        show_all_cards: '全カード表示',
       },
       'zh-Hant': {
         search_placeholder: '搜尋工具...',
@@ -1806,6 +2025,12 @@
         official_sites: '官方網站',
         no_results: '找不到結果...',
         count_suffix: '項',
+        refresh_page: '重新整理',
+        recent_changes: '最近變動',
+        no_recent_changes: '目前沒有最近變動。',
+        close_changes: '關閉最近變動',
+        show_keep_cards: '只顯示 Keep',
+        show_all_cards: '顯示全部卡片',
       },
       'zh-Hans': {
         search_placeholder: '搜索工具...',
@@ -1832,6 +2057,12 @@
         official_sites: '官方网站',
         no_results: '找不到结果...',
         count_suffix: '项',
+        refresh_page: '刷新页面',
+        recent_changes: '最近变动',
+        no_recent_changes: '目前没有最近变动。',
+        close_changes: '关闭最近变动',
+        show_keep_cards: '只显示 Keep',
+        show_all_cards: '显示全部卡片',
       },
       'en': {
         search_placeholder: 'Search tools...',
@@ -1858,6 +2089,12 @@
         official_sites: 'Official Sites',
         no_results: 'No results found...',
         count_suffix: ' results',
+        refresh_page: 'Refresh page',
+        recent_changes: 'Recent changes',
+        no_recent_changes: 'No recent changes yet.',
+        close_changes: 'Close recent changes',
+        show_keep_cards: 'Show Keep only',
+        show_all_cards: 'Show all cards',
       },
     };
 
@@ -1879,6 +2116,11 @@
         const key = el.dataset.i18nAriaLabel;
         if (s[key] !== undefined) el.setAttribute('aria-label', s[key]);
       });
+    }
+
+    function getUiString(key) {
+      const lang = document.documentElement.lang || 'ja';
+      return (UI_STRINGS[lang] && UI_STRINGS[lang][key]) || UI_STRINGS.ja[key] || key;
     }
     let supportDragging = false;
     let supportDragStartY = 0;
@@ -2094,6 +2336,139 @@
     let matches = [];
     let currentIndex = 0;
     let officialMatchesCount = 0;
+    let keptLinks = new Set();
+    let keepOnlyMode = false;
+    let officialCollapsed = false;
+    let toTopMode = 'top';
+
+    function normalizeLinkKey(raw) {
+      return String(raw || '').trim();
+    }
+
+    function isBottomDockLayout() {
+      return window.innerWidth <= 600;
+    }
+
+    function updateKeepSwitchPosition() {
+      if (!keepSwitchBtn || !searchPill) return;
+      if (isBottomDockLayout()) {
+        keepSwitchBtn.style.top = '';
+        return;
+      }
+      const pillRect = searchPill.getBoundingClientRect();
+      const btnRect = keepSwitchBtn.getBoundingClientRect();
+      const btnSize = btnRect.height || parseFloat(getComputedStyle(keepSwitchBtn).height) || 60;
+      const nextTop = Math.round(pillRect.top + (pillRect.height / 2) - (btnSize / 2));
+      keepSwitchBtn.style.top = `${Math.max(10, nextTop)}px`;
+    }
+
+    function loadPersistedState() {
+      try {
+        const storedKeep = JSON.parse(localStorage.getItem(KEEP_STORAGE_KEY) || '[]');
+        if (Array.isArray(storedKeep)) {
+          keptLinks = new Set(storedKeep.map(normalizeLinkKey).filter(Boolean));
+        }
+      } catch (err) {
+        keptLinks = new Set();
+      }
+
+      try {
+        keepOnlyMode = localStorage.getItem(KEEP_MODE_STORAGE_KEY) === '1';
+      } catch (err) {
+        keepOnlyMode = false;
+      }
+
+      try {
+        officialCollapsed = localStorage.getItem(OFFICIAL_COLLAPSE_STORAGE_KEY) === '1';
+      } catch (err) {
+        officialCollapsed = false;
+      }
+    }
+
+    function persistKeepState() {
+      try {
+        localStorage.setItem(KEEP_STORAGE_KEY, JSON.stringify([...keptLinks]));
+        localStorage.setItem(KEEP_MODE_STORAGE_KEY, keepOnlyMode ? '1' : '0');
+      } catch (err) {
+      }
+    }
+
+    function persistOfficialCollapsedState() {
+      try {
+        localStorage.setItem(OFFICIAL_COLLAPSE_STORAGE_KEY, officialCollapsed ? '1' : '0');
+      } catch (err) {
+      }
+    }
+
+    function applyOfficialPanelCollapsedState() {
+      const panel = document.getElementById('officialPanel');
+      if (!panel) return;
+      panel.classList.toggle('collapsed', officialCollapsed);
+    }
+
+    function setOfficialPanelCollapsed(next) {
+      officialCollapsed = !!next;
+      applyOfficialPanelCollapsedState();
+      persistOfficialCollapsedState();
+    }
+
+    function isCardKept(card) {
+      if (!card) return false;
+      const key = normalizeLinkKey(card.dataset.keepKey || card.dataset.href);
+      return key ? keptLinks.has(key) : false;
+    }
+
+    function setCardKeptState(card, kept) {
+      if (!card) return;
+      const btn = card.querySelector('.card-keep-toggle');
+      if (!btn) return;
+      btn.classList.toggle('kept', kept);
+      const icon = btn.querySelector('.material-icons');
+      if (icon) icon.textContent = kept ? 'bookmark' : 'bookmark_border';
+    }
+
+    function syncKeepStateToCards() {
+      cards.forEach(card => setCardKeptState(card, isCardKept(card)));
+    }
+
+    function updateKeepSwitchUI() {
+      if (!keepSwitchBtn) return;
+      const shouldShow = keptLinks.size > 0 || keepOnlyMode;
+      keepSwitchBtn.classList.toggle('visible', shouldShow);
+      keepSwitchBtn.classList.toggle('active', keepOnlyMode);
+      keepSwitchBtn.title = keepOnlyMode ? getUiString('show_all_cards') : getUiString('show_keep_cards');
+    }
+
+    function toggleCardKeep(card) {
+      if (!card) return;
+      const key = normalizeLinkKey(card.dataset.keepKey || card.dataset.href);
+      if (!key) return;
+      if (keptLinks.has(key)) keptLinks.delete(key);
+      else keptLinks.add(key);
+
+      if (keepOnlyMode && keptLinks.size === 0) {
+        keepOnlyMode = false;
+      }
+
+      setCardKeptState(card, keptLinks.has(key));
+      persistKeepState();
+      updateKeepSwitchUI();
+      runSearch(false);
+    }
+
+    function renderChangeLogContent() {
+      const content = document.getElementById('changeLogContent');
+      const emptyMsg = document.getElementById('changeLogEmptyMsg');
+      if (!content || !emptyMsg) return;
+      const raw = String(typeof recentChanges !== 'undefined' ? recentChanges : '').trim();
+      content.innerHTML = '';
+      if (!raw) {
+        emptyMsg.style.display = 'block';
+        return;
+      }
+      emptyMsg.style.display = 'none';
+      renderMarkdown(content, raw);
+    }
 
     function safeHref(rawHref) {
       if (!rawHref) return null;
@@ -2151,33 +2526,186 @@
         }
       });
     }
+
+    function escapeHtml(raw) {
+      return String(raw ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function parseMarkdownInline(raw) {
+      let text = String(raw ?? '');
+      const links = [];
+      const codes = [];
+      const uTags = [];
+
+      text = text.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (full, label, hrefCandidate) => {
+        const href = safeHref(hrefCandidate);
+        if (!href) return full;
+        const token = `@@LINK${links.length}@@`;
+        links.push({ href, label: String(label ?? '') });
+        return token;
+      });
+
+      text = text.replace(/`([^`]+)`/g, (full, code) => {
+        const token = `@@CODE${codes.length}@@`;
+        codes.push(String(code ?? ''));
+        return token;
+      });
+
+      text = text.replace(/<\/?u>/gi, (tag) => {
+        const token = `@@U${uTags.length}@@`;
+        uTags.push(tag.toLowerCase());
+        return token;
+      });
+
+      text = escapeHtml(text);
+
+      text = text.replace(/@@U(\d+)@@/g, (full, idx) => uTags[Number(idx)] || '');
+      text = text.replace(/\*\*\*([^*\n]+)\*\*\*/g, '<strong><em>$1</em></strong>');
+      text = text.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>');
+      text = text.replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
+      text = text.replace(/@@CODE(\d+)@@/g, (full, idx) => `<code>${escapeHtml(codes[Number(idx)] || '')}</code>`);
+      text = text.replace(/@@LINK(\d+)@@/g, (full, idx) => {
+        const link = links[Number(idx)];
+        if (!link) return '';
+        return `<a href="${link.href}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.label)}</a>`;
+      });
+
+      return text;
+    }
+
+    function renderMarkdown(containerEl, rawText) {
+      if (!containerEl) return;
+      containerEl.innerHTML = '';
+      const lines = String(rawText ?? '').replace(/\r\n/g, '\n').split('\n');
+      let i = 0;
+
+      while (i < lines.length) {
+        const line = lines[i];
+        const trimmed = line.trim();
+
+        if (!trimmed) {
+          i++;
+          continue;
+        }
+
+        if (/^```/.test(trimmed)) {
+          const codeLines = [];
+          i++;
+          while (i < lines.length && !/^```/.test(lines[i].trim())) {
+            codeLines.push(lines[i]);
+            i++;
+          }
+          if (i < lines.length) i++;
+          const pre = document.createElement('pre');
+          const code = document.createElement('code');
+          code.textContent = codeLines.join('\n');
+          pre.appendChild(code);
+          containerEl.appendChild(pre);
+          continue;
+        }
+
+        const headingMatch = trimmed.match(/^(#{1,3})\s+(.+)$/);
+        if (headingMatch) {
+          const level = headingMatch[1].length;
+          const h = document.createElement(`h${level}`);
+          h.innerHTML = parseMarkdownInline(headingMatch[2]);
+          containerEl.appendChild(h);
+          i++;
+          continue;
+        }
+
+        if (/^>\s?/.test(trimmed)) {
+          const quoteLines = [];
+          while (i < lines.length && /^>\s?/.test(lines[i].trim())) {
+            quoteLines.push(lines[i].trim().replace(/^>\s?/, ''));
+            i++;
+          }
+          const blockquote = document.createElement('blockquote');
+          blockquote.innerHTML = parseMarkdownInline(quoteLines.join('\n')).replace(/\n/g, '<br>');
+          containerEl.appendChild(blockquote);
+          continue;
+        }
+
+        if (/^[-*+]\s+/.test(trimmed)) {
+          const ul = document.createElement('ul');
+          while (i < lines.length && /^[-*+]\s+/.test(lines[i].trim())) {
+            const li = document.createElement('li');
+            li.innerHTML = parseMarkdownInline(lines[i].trim().replace(/^[-*+]\s+/, ''));
+            ul.appendChild(li);
+            i++;
+          }
+          containerEl.appendChild(ul);
+          continue;
+        }
+
+        if (/^\d+\.\s+/.test(trimmed)) {
+          const ol = document.createElement('ol');
+          while (i < lines.length && /^\d+\.\s+/.test(lines[i].trim())) {
+            const li = document.createElement('li');
+            li.innerHTML = parseMarkdownInline(lines[i].trim().replace(/^\d+\.\s+/, ''));
+            ol.appendChild(li);
+            i++;
+          }
+          containerEl.appendChild(ol);
+          continue;
+        }
+
+        const paragraphLines = [];
+        while (i < lines.length) {
+          const currentTrimmed = lines[i].trim();
+          if (!currentTrimmed) break;
+          if (/^```/.test(currentTrimmed)) break;
+          if (/^(#{1,3})\s+/.test(currentTrimmed)) break;
+          if (/^>\s?/.test(currentTrimmed)) break;
+          if (/^[-*+]\s+/.test(currentTrimmed)) break;
+          if (/^\d+\.\s+/.test(currentTrimmed)) break;
+          paragraphLines.push(lines[i]);
+          i++;
+        }
+        const p = document.createElement('p');
+        p.innerHTML = parseMarkdownInline(paragraphLines.join('\n')).replace(/\n/g, '<br>');
+        containerEl.appendChild(p);
+      }
+    }
     
     // 初始化卡片
     function initCards() {
       cardsContainer.innerHTML = '';
       toolConfig.forEach(tool => {
-        tool.tags.forEach(t => allTagsSet.add(t));
+        if (tool && tool.hidden) return;
+        const tags = Array.isArray(tool.tags) ? tool.tags : [];
+        const groups = Array.isArray(tool.groups) ? tool.groups : [];
+        tags.forEach(t => allTagsSet.add(t));
         
-        const dotsHtml = tool.groups.map(g => `<span class="dot ${g}"></span>`).join('');
-        const tagsHtml = tool.tags.filter(t => t !== '公式').map(t => {
+        const dotsHtml = groups.map(g => `<span class="dot ${g}"></span>`).join('');
+        const tagsHtml = tags.filter(t => t !== '公式').map(t => {
           const color = stringToColor(t);
           const label = (typeof tagLabels !== 'undefined' && tagLabels[t]) ? tagLabels[t] : t;
           return `<span class="card-tag" style="color: ${color}; background: color-mix(in srgb, ${color} 15%, transparent); border: 1px solid color-mix(in srgb, ${color} 30%, transparent);">${label}</span>`;
         }).join('');
+        const isFeatured = tags.includes('featured');
 
         const el = document.createElement('div');
         el.className = 'tool-card';
-        el.dataset.site = tool.groups.join(' ');
-        el.dataset.tags = tool.tags.join(' ');
+        el.dataset.site = groups.join(' ');
+        el.dataset.tags = tags.join(' ');
         el.dataset.href = tool.link;
+        el.dataset.keepKey = tool.link || '';
 
         el.innerHTML = `
           <div class="tool-header">
+            ${isFeatured ? '<div class="featured-corner" aria-hidden="true"></div>' : ''}
+            <button class="card-keep-toggle" type="button" title="Keep"><span class="material-icons">bookmark_border</span></button>
+            <div class="group-dots">${dotsHtml}</div>
             <div class="tool-info">
               <div class="name">${tool.name}</div>
               <div class="desc">${tool.desc}</div>
             </div>
-            <div class="dots">${dotsHtml}</div>
           </div>
           <div class="expand"><span class="material-icons">expand_more</span></div>
           <div class="tool-detail">
@@ -2293,6 +2821,11 @@
     function updateOfficialVisibility() {
       const panel = document.getElementById('officialPanel');
       if (!panel) return;
+      if (keepOnlyMode) {
+        panel.style.display = 'none';
+        officialMatchesCount = 0;
+        return;
+      }
       let panelVisible = false;
       const q = input.value.trim().toLowerCase();
       officialMatchesCount = 0;
@@ -2397,11 +2930,17 @@
       cards = [...document.querySelectorAll('.tool-card')];
       const el = document.getElementById('updateDate');
       if (el && typeof lastUpdated !== 'undefined') el.textContent = lastUpdated;
+      applyOfficialPanelCollapsedState();
+      syncKeepStateToCards();
+      updateKeepSwitchUI();
+      updateKeepSwitchPosition();
     }
 
     window.addEventListener('resize', () => {
       updateOfficialVisibility();
       updateSiteTitleVisibility();
+      updateKeepSwitchPosition();
+      updateTopButtonState();
     });
 
     // 卡片點擊邏輯
@@ -2410,10 +2949,15 @@
       if (!card) return;
 
       const expandBtn = e.target.closest('.expand');
+      const keepBtn = e.target.closest('.card-keep-toggle');
       const toolDetail = e.target.closest('.tool-detail');
       const toolHeader = e.target.closest('.tool-header');
       
-      if (expandBtn) {
+      if (keepBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleCardKeep(card);
+      } else if (expandBtn) {
         // 點擊展開按鈕：切換展開狀態
         card.classList.toggle('expanded');
         const icon = expandBtn.querySelector('.material-icons');
@@ -2466,7 +3010,8 @@
       const byTag = selected.length
         ? (filterMode === 'all' ? selected.every(t => tags.includes(t)) : tags.some(t => selected.includes(t)))
         : true;
-      return bySite && byTag;
+      const byKeep = keepOnlyMode ? isCardKept(card) : true;
+      return bySite && byTag && byKeep;
     }
 
     function applyFilters() {
@@ -2622,15 +3167,38 @@
     });
 
     const toTopBtn = document.getElementById('toTop');
+    const toTopIcon = toTopBtn ? toTopBtn.querySelector('.material-icons') : null;
 
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 150) {
+    function updateTopButtonState() {
+      if (!toTopBtn || !toTopIcon) return;
+      const scrollY = window.scrollY;
+      const bottomDock = isBottomDockLayout();
+      const showingTop = scrollY > 150;
+
+      if (bottomDock) {
+        toTopMode = 'top';
+        toTopIcon.textContent = 'arrow_upward';
+        toTopBtn.classList.toggle('visible', showingTop);
+      } else if (scrollY <= 10) {
+        toTopMode = 'refresh';
+        toTopIcon.textContent = 'refresh';
         toTopBtn.classList.add('visible');
       } else {
-        toTopBtn.classList.remove('visible');
+        toTopMode = 'top';
+        toTopIcon.textContent = 'arrow_upward';
+        toTopBtn.classList.add('visible');
       }
+
+      const titleKey = toTopMode === 'refresh' ? 'refresh_page' : 'to_top';
+      toTopBtn.title = getUiString(titleKey);
+
       const updatePill = document.getElementById('updatePill');
-      if (updatePill) updatePill.classList.toggle('hidden', window.scrollY > 30);
+      if (updatePill) updatePill.classList.toggle('hidden', scrollY > 30);
+    }
+
+    window.addEventListener('scroll', () => {
+      updateKeepSwitchPosition();
+      updateTopButtonState();
     });
 
     searchPill.addEventListener('click', (e) => {
@@ -2667,8 +3235,53 @@
       applyFilters();
     });
 
+    if (keepSwitchBtn) {
+      keepSwitchBtn.addEventListener('click', () => {
+        keepOnlyMode = !keepOnlyMode;
+        persistKeepState();
+        updateKeepSwitchUI();
+        runSearch(false);
+      });
+    }
+
+    const officialPanelToggle = document.getElementById('officialPanelToggle');
+    if (officialPanelToggle) {
+      officialPanelToggle.addEventListener('click', () => {
+        setOfficialPanelCollapsed(!officialCollapsed);
+      });
+    }
+
     const infoModalDrop = document.getElementById('infoModalDrop');
     const closeInfoBtn = document.getElementById('closeInfoBtn');
+    const changeLogModalDrop = document.getElementById('changeLogModalDrop');
+    const closeChangeLogBtn = document.getElementById('closeChangeLogBtn');
+    const updatePill = document.getElementById('updatePill');
+
+    function openChangeLogModal() {
+      renderChangeLogContent();
+      changeLogModalDrop?.classList.add('open');
+    }
+
+    function closeChangeLogModal() {
+      changeLogModalDrop?.classList.remove('open');
+    }
+
+    if (updatePill) {
+      updatePill.addEventListener('click', openChangeLogModal);
+      updatePill.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openChangeLogModal();
+        }
+      });
+    }
+
+    closeChangeLogBtn?.addEventListener('click', closeChangeLogModal);
+    changeLogModalDrop?.addEventListener('click', (event) => {
+      if (event.target === changeLogModalDrop) {
+        closeChangeLogModal();
+      }
+    });
 
     document.getElementById('mainLogo').addEventListener('click', () => {
       infoModalDrop.classList.add('open');
@@ -2709,6 +3322,10 @@
 
     toTopBtn.addEventListener('click', (e) => {
       e.preventDefault();
+      if (!isBottomDockLayout() && toTopMode === 'refresh') {
+        window.location.reload();
+        return;
+      }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
@@ -2740,12 +3357,14 @@
     (async function init() {
       let initialLang = 'zh-Hant';
       try { initialLang = localStorage.getItem(LANGUAGE_STORAGE_KEY) || 'zh-Hant'; } catch (e) {}
+      loadPersistedState();
       await loadLanguageConfig(initialLang);
       _reinitUI();
       updateSiteTitleVisibility();
       applyFilters();
+      updateKeepSwitchPosition();
+      updateTopButtonState();
     })();
   </script>
 </body>
 </html>
-
