@@ -1,6 +1,6 @@
-var lastUpdated = "2026-10-11 22:23";
+var lastUpdated = "2026-10-26 22:49";
 
-var recentChanges = "";
+var recentChanges = "# 大標題 = \\# 大標題\n## 小標題 = \\## 小標題\n\n*斜體* = \\*斜體\\*\n**粗體**  = \\*\\*粗體\\*\\*\n***粗斜體*** = \\*\\*\\*粗斜體\\*\\*\\*\n~~刪除線~~ = \\~\\~刪除線\\~\\~\n__底線__ = \\_\\_底線\\_\\_\n__*底線斜體*__ = \\_\\_\\*底線斜體\\*\\_\\_\n__**底線粗體**__ = \\_\\_\\*\\*底線粗體\\*\\*\\_\\_\n__***底線粗斜體***__ = \\_\\_\\*\\*\\*底線粗斜體\\*\\*\\*\\_\\_\n||國防布|| = \\|\\|國防布\\|\\|\n\n`代碼塊` = \\`代碼塊\\`\n\n```多行代碼塊``` = \\`\\`\\`多行代碼塊\\`\\`\\`\n\n> 引言 \n= \\> 引言\n\n> 多行引言\n> =  \\>\\>\\> 多行引言";
 
 var officialConfig = [
   {
@@ -187,7 +187,7 @@ var officialConfig = [
 
 var toolConfig = [
   {
-    "name": "⭐乃木坂46 SNS",
+    "name": "乃木坂46 SNS",
     "desc": "Telegram チャンネル",
     "detail": "・[乃木坂46 OFFICIAL YouTube CHANNEL](https://www.youtube.com/@nogizaka46SMEJ)\n・[乃木坂配信中](https://www.youtube.com/@nogizakahaishinchu)\n・[X（旧Twitter）](https://x.com/nogizaka46)\n・[Instagram](https://www.instagram.com/nogizaka46_official/)\n・[Facebook](https://www.facebook.com/nogizaka46)\n・[TikTok](https://www.tiktok.com/@nogizaka46_official)\n・[Line](https://lin.ee/EwCV3ub)\n・[Weibo](https://weibo.com/u/6372196907)\n・[Bilibili](https://space.bilibili.com/603028270)",
     "tags": [
@@ -195,7 +195,8 @@ var toolConfig = [
       "sns",
       "blog",
       "information",
-      "photo"
+      "photo",
+      "featured"
     ],
     "groups": [
       "nogi"
@@ -264,7 +265,8 @@ var toolConfig = [
       "saku",
       "hina"
     ],
-    "link": "https://sakamichi.f-frontier.com/"
+    "link": "https://sakamichi.f-frontier.com/",
+    "hidden": true
   },
   {
     "name": "⭐乃木坂46データベース",
