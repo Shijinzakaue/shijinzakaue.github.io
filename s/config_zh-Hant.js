@@ -1,6 +1,6 @@
-var lastUpdated = "2026-10-11 22:26";
+var lastUpdated = "2026-10-27 10:47";
 
-var recentChanges = "";
+var recentChanges = "## version\n2026.10.26 UPDATE to v1.4.0\n- 增加 最近變動區\n- 增加 個人本地收藏功能\n- 修正 推薦站點的展示方式為卡片左上角黃標\n";
 
 var officialConfig = [
   {
