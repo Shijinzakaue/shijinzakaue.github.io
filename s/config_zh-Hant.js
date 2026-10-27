@@ -1,6 +1,6 @@
-var lastUpdated = "2026-10-27 15:57";
+var lastUpdated = "2026-10-27 16:10";
 
-var recentChanges = "## New\n\n2026.10.02 [乃木分形 Database](https://captaine46.github.io/nogifura-data/)\n2026.09.20\n- [sakulabo](https://buddies46.stars.ne.jp/satellite/sakulabo/)\n- [sakumap](https://buddies46.stars.ne.jp/satellite/sakumap/#map)\n- [Buddies](https://buddies46.stars.ne.jp/satellite/buddies/)\n- [Bloomy](https://buddies46.stars.ne.jp/satellite/Bloomy/)\n2026.08.22 [Hinatamap 聖地巡禮地圖](https://hinatamap.pages.dev/)\n\n## Edit\n\n--\n\n## Remove\n\n2026.10.27 [坂道ちゃんねる](https://sakamichi.f-frontier.com/)\n2026.07.31 [Nogizaka46 Archive](https://files.nogizaka46.cc)\n\n## version\n\n2026.10.26 UPDATE to v1.4.0\n- *增加* 最近變動區\n- *增加* 個人本地收藏功能\n- *修正* 推薦站點的展示方式為卡片左上角黃標";
+var recentChanges = "## New\n\n`2026.10.02`[乃木分形 Database](https://captaine46.github.io/nogifura-data/)\n`2026.09.20`\n- [sakulabo](https://buddies46.stars.ne.jp/satellite/sakulabo/)\n- [sakumap](https://buddies46.stars.ne.jp/satellite/sakumap/#map)\n- [Buddies](https://buddies46.stars.ne.jp/satellite/buddies/)\n- [Bloomy](https://buddies46.stars.ne.jp/satellite/Bloomy/)\n`2026.08.22`[Hinatamap 聖地巡禮地圖](https://hinatamap.pages.dev/)\n\n## Edit\n\n--\n\n## Remove\n\n`2026.10.27`[坂道ちゃんねる](https://sakamichi.f-frontier.com/)\n`2026.07.31`[Nogizaka46 Archive](https://files.nogizaka46.cc)\n\n## Version\n\n`2026.10.26` UPDATE to v1.4.0\n- *增加* 最近變動區\n- *增加* 個人本地收藏功能\n- *修正* 推薦站點的展示方式為卡片左上角黃標";
 
 var officialConfig = [
   {
