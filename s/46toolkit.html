@@ -42,11 +42,14 @@
       --grid-gap: 16px;
       --content-max: calc(var(--card-width) * 3 + var(--grid-gap) * 2);
       --logo-safe: 64px;
-      --dock-btn-size: 60px;
+      --dock-btn-size-base: 60px;
+      --dock-btn-size: var(--dock-btn-size-base);
       --dock-rail-width: calc(var(--dock-btn-size) + 14px);
       --dock-gap: 8px;
-      --keep-switch-size-desktop: 70px;
-      --fab-size: 66px;
+      --keep-switch-size-desktop-base: 60px;
+      --keep-switch-size-desktop: var(--keep-switch-size-desktop-base);
+      --fab-size-base: 66px;
+      --fab-size: var(--fab-size-base);
       --safe-bottom: env(safe-area-inset-bottom, 0px);
       --overlay-light: rgba(255,255,255,.02);
       --overlay-light-hover: rgba(255,255,255,.05);
@@ -276,9 +279,18 @@
     .language-control[data-role="top"] {
       flex-shrink: 0;
       position: absolute;
-      right: 12px;
+      right: 0;
       top: 50%;
       transform: translateY(-50%);
+    }
+    @media (min-width: 1201px) {
+      .top-zone-inner {
+        padding-right: 0;
+      }
+      .language-control[data-role="top"] {
+        right: 0;
+        margin-right: 0;
+      }
     }
     .language-control.language-control--modal {
       min-width: 112px;
@@ -403,11 +415,12 @@
     }
 
     .keep-switch {
+      --keep-switch-size: var(--keep-switch-size-desktop);
       position: fixed;
-      right: calc(16px + (var(--dock-rail-width) - var(--keep-switch-size-desktop)) / 2);
+      right: calc(16px + (var(--dock-rail-width) - var(--keep-switch-size)) / 2);
       top: 10px;
-      width: var(--keep-switch-size-desktop);
-      height: var(--keep-switch-size-desktop);
+      width: var(--keep-switch-size);
+      height: var(--keep-switch-size);
       opacity: 0;
       visibility: hidden;
       z-index: 31;
@@ -442,7 +455,7 @@
     }
     .dock-btn:hover { color: var(--text); background: var(--overlay-light-hover); }
     .dock-btn.active, .dock-btn.has-filters { background: rgba(147,58,253,.15); color: var(--accent); }
-    .dock-btn .material-icons { font-size: 34px; line-height: 1; }
+    .dock-btn .material-icons { font-size: calc(var(--dock-btn-size) * 0.57); line-height: 1; }
     .dock-btn img { width: 65%; height: 65%; object-fit: contain; filter: drop-shadow(0 1px 1px rgba(0,0,0,.35)); opacity: 0.8; }
     .dock-btn.active img { opacity: 1; }
     .dock-divider {
@@ -521,7 +534,7 @@
     .clear-filters-btn:hover { background: rgba(255,255,255,.1); color: var(--text); }
     
     .container { 
-      padding: 26px 102px 120px 20px;
+      padding: 26px calc(16px + var(--dock-rail-width) + 12px) 120px 20px;
       transition: padding-right .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
@@ -823,7 +836,7 @@
     }
     @media (max-width: 800px) {
       .cards { grid-template-columns: minmax(0, var(--card-width)); }
-      .container { padding-right: 102px; padding-left: 20px; }
+      .container { padding-right: calc(16px + var(--dock-rail-width) + 12px); padding-left: 20px; }
       .filter-panel { right: 100px; }
     }
 
@@ -987,12 +1000,11 @@
       }
 
       .keep-switch {
+        --keep-switch-size: var(--dock-btn-size);
         top: auto;
         left: 26px;
         right: auto;
         bottom: calc(32px + var(--dock-btn-size) + var(--safe-bottom) + var(--dock-gap) * 3);
-        width: var(--dock-btn-size);
-        height: var(--dock-btn-size);
       }
 
       .filter-panel {
@@ -1318,8 +1330,12 @@
       text-decoration: none;
       transition: transform .2s ease, background .2s ease, opacity .2s ease, visibility .2s;
     }
+    .fab.keep-switch {
+      width: var(--keep-switch-size);
+      height: var(--keep-switch-size);
+    }
     .fab:hover { transform: scale(1.1); background: rgba(147,58,253,.15); }
-    .fab .material-icons { font-size: 30px; line-height: 1; }
+    .fab .material-icons { font-size: calc(var(--fab-size) * 0.45); line-height: 1; }
 
     .info-modal-backdrop {
       position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 200; display: flex; align-items: center; justify-content: center;
@@ -1331,6 +1347,56 @@
       width: 90%; max-width: 400px; background: var(--panel); border: 1px solid rgba(255,255,255,.08); border-radius: 16px;
       padding: 24px; transform: translateY(20px); transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       box-shadow: 0 10px 40px rgba(0,0,0,.5);
+    }
+    #changeLogModal {
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+    }
+    #infoModal {
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+    }
+    #changeLogModal .info-modal-body {
+      min-height: 0;
+      overflow-y: hidden;
+      overflow-x: hidden;
+    }
+    #infoModal .info-modal-body {
+      min-height: 0;
+      overflow-y: hidden;
+      overflow-x: hidden;
+    }
+    #changeLogModal .info-modal-body.is-scrollable,
+    #infoModal .info-modal-body.is-scrollable {
+      overflow-y: auto;
+    }
+    #changeLogModal .info-modal-body::-webkit-scrollbar {
+      width: 4px;
+    }
+    #infoModal .info-modal-body::-webkit-scrollbar {
+      width: 4px;
+    }
+    #changeLogModal .info-modal-body::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    #infoModal .info-modal-body::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    #changeLogModal .info-modal-body::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,.15);
+      border-radius: 999px;
+    }
+    #infoModal .info-modal-body::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,.15);
+      border-radius: 999px;
+    }
+    html[data-theme="light"] #changeLogModal .info-modal-body::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,.15);
+    }
+    html[data-theme="light"] #infoModal .info-modal-body::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,.15);
     }
     .info-modal-backdrop.open .info-modal { transform: translateY(0); }
     .info-modal-header {
@@ -1953,7 +2019,7 @@
     const supportPanel = document.getElementById('supportPanel');
     const supportHandle = document.getElementById('supportHandle');
     const keepSwitchBtn = document.getElementById('keepSwitch');
-    const APP_VERSION = 'v1.4.0';
+    const APP_VERSION = 'v1.4.1';
     const appVersionEl = document.getElementById('appVersion');
     if (appVersionEl) appVersionEl.textContent = APP_VERSION;
     const LANGUAGE_STORAGE_KEY = 'toolkit:lang';
@@ -2352,7 +2418,6 @@
     function updateKeepSwitchPosition() {
       if (!keepSwitchBtn || !searchPill) return;
       if (isBottomDockLayout()) {
-        keepSwitchBtn.style.top = '';
         return;
       }
       const pillRect = searchPill.getBoundingClientRect();
@@ -2360,6 +2425,56 @@
       const btnSize = btnRect.height || parseFloat(getComputedStyle(keepSwitchBtn).height) || 60;
       const nextTop = Math.round(pillRect.top + (pillRect.height / 2) - (btnSize / 2));
       keepSwitchBtn.style.top = `${Math.max(10, nextTop)}px`;
+    }
+
+    let topLanguageSyncRaf = 0;
+    function syncTopLanguageWithCards() {
+      const topLanguageControl = document.querySelector('.language-control[data-role="top"]');
+      const topZoneInner = document.querySelector('.top-zone-inner');
+      const cardsGrid = document.querySelector('.cards');
+      if (!topLanguageControl || !topZoneInner || !cardsGrid) return;
+
+      if (window.innerWidth <= 1200) {
+        topLanguageControl.style.removeProperty('right');
+        return;
+      }
+
+      const topRight = topZoneInner.getBoundingClientRect().right;
+      const cardsRight = cardsGrid.getBoundingClientRect().right;
+      const rightOffset = Math.max(0, Math.round(topRight - cardsRight));
+      topLanguageControl.style.right = `${rightOffset}px`;
+    }
+
+    function scheduleTopLanguageSync() {
+      if (topLanguageSyncRaf) return;
+      topLanguageSyncRaf = requestAnimationFrame(() => {
+        topLanguageSyncRaf = 0;
+        syncTopLanguageWithCards();
+      });
+    }
+
+    function syncModalBodyScrollability(modalId) {
+      const modal = document.getElementById(modalId);
+      const body = modal ? modal.querySelector('.info-modal-body') : null;
+      if (!body) return;
+
+      const backdrop = modal.closest('.info-modal-backdrop');
+      if (backdrop && !backdrop.classList.contains('open')) {
+        body.classList.remove('is-scrollable');
+        return;
+      }
+
+      body.classList.remove('is-scrollable');
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const modalRect = modal.getBoundingClientRect();
+          const maxHeight = window.innerHeight * 0.8;
+          const isAtMaxHeight = modalRect.height >= (maxHeight - 12);
+          const overflowDelta = body.scrollHeight - body.clientHeight;
+          const needsScroll = isAtMaxHeight && overflowDelta > 6;
+          body.classList.toggle('is-scrollable', needsScroll);
+        });
+      });
     }
 
     function loadPersistedState() {
@@ -2934,13 +3049,18 @@
       syncKeepStateToCards();
       updateKeepSwitchUI();
       updateKeepSwitchPosition();
+      scheduleTopLanguageSync();
     }
 
     window.addEventListener('resize', () => {
       updateOfficialVisibility();
       updateSiteTitleVisibility();
+      updateAdaptiveDockScale();
       updateKeepSwitchPosition();
+      scheduleTopLanguageSync();
       updateTopButtonState();
+      if (infoModalDrop?.classList.contains('open')) syncModalBodyScrollability('infoModal');
+      if (changeLogModalDrop?.classList.contains('open')) syncModalBodyScrollability('changeLogModal');
     });
 
     // 卡片點擊邏輯
@@ -3066,6 +3186,7 @@
         });
         updateCount();
         document.getElementById('noResultsMsg').style.display = (hasVisibleCard || hasOfficial) ? 'none' : 'block';
+        scheduleTopLanguageSync();
         return;
       }
 
@@ -3118,6 +3239,7 @@
         currentIndex = 0;
         updateCount();
         document.getElementById('noResultsMsg').style.display = hasOfficial ? 'none' : 'block';
+        scheduleTopLanguageSync();
         return;
       }
 
@@ -3131,6 +3253,7 @@
         current.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
       updateCount();
+      scheduleTopLanguageSync();
     }
 
     input.addEventListener('focus', () => searchWrap.classList.add('focused'));
@@ -3168,12 +3291,157 @@
 
     const toTopBtn = document.getElementById('toTop');
     const toTopIcon = toTopBtn ? toTopBtn.querySelector('.material-icons') : null;
+    const dockEl = document.getElementById('dock');
+    const rootStyle = document.documentElement.style;
+    let adaptiveBaseDockSize = 0;
+    let adaptiveBaseFabSize = 0;
+
+    function updateAdaptiveDockScale() {
+      if (!toTopBtn || !filterToggle) {
+        return;
+      }
+
+      const compactThreshold = 620;
+      const compactMode = window.innerHeight < compactThreshold;
+      const firstDockBtn = dockBtns[0];
+
+      if (!compactMode) {
+        rootStyle.removeProperty('--dock-btn-size');
+        rootStyle.removeProperty('--keep-switch-size-desktop');
+        rootStyle.removeProperty('--fab-size');
+        if (dockEl) {
+          dockEl.style.position = '';
+          dockEl.style.right = '';
+          dockEl.style.top = '';
+          dockEl.style.bottom = '';
+          dockEl.style.transform = '';
+        }
+        toTopBtn.style.position = '';
+        toTopBtn.style.left = '';
+        toTopBtn.style.top = '';
+        toTopBtn.style.right = '';
+        toTopBtn.style.bottom = '';
+        if (keepSwitchBtn) {
+          keepSwitchBtn.style.position = '';
+          keepSwitchBtn.style.left = '';
+          keepSwitchBtn.style.top = '';
+          keepSwitchBtn.style.right = '';
+          keepSwitchBtn.style.bottom = '';
+        }
+
+        if (firstDockBtn) adaptiveBaseDockSize = firstDockBtn.getBoundingClientRect().width || adaptiveBaseDockSize;
+        adaptiveBaseFabSize = toTopBtn.getBoundingClientRect().width || adaptiveBaseFabSize;
+        return;
+      }
+
+      const rawScale = window.innerHeight / compactThreshold;
+      const scale = Math.min(1, rawScale);
+
+      if (!adaptiveBaseDockSize && firstDockBtn) adaptiveBaseDockSize = firstDockBtn.getBoundingClientRect().width;
+      if (!adaptiveBaseFabSize) adaptiveBaseFabSize = toTopBtn.getBoundingClientRect().width;
+
+      const dockBase = adaptiveBaseDockSize || 60;
+      const syncedSize = Math.max(1, Math.round(dockBase * scale));
+      const syncedFab = syncedSize;
+
+      rootStyle.setProperty('--dock-btn-size', `${syncedSize}px`);
+      rootStyle.setProperty('--keep-switch-size-desktop', `${syncedSize}px`);
+      rootStyle.setProperty('--fab-size', `${syncedFab}px`);
+      toTopBtn.style.position = 'fixed';
+
+      const filterRect = filterToggle.getBoundingClientRect();
+      const distance = syncedSize * 1.5;
+      const filterCenterX = filterRect.left + filterRect.width / 2;
+      const filterCenterY = filterRect.top + filterRect.height / 2;
+      const bottomDock = isBottomDockLayout();
+
+      if (dockEl && !bottomDock) {
+        dockEl.style.position = 'fixed';
+        dockEl.style.right = '16px';
+        dockEl.style.bottom = 'auto';
+        dockEl.style.transform = 'none';
+
+        const dockRect = dockEl.getBoundingClientRect();
+        const dockHeight = dockRect.height || (syncedSize * 6);
+        const margin = 16;
+        const viewportHeight = window.innerHeight;
+        const startTop = (viewportHeight - dockHeight) / 2;
+        const targetTop = viewportHeight - dockHeight - margin;
+        const moveStartHeight = compactThreshold;
+        const moveEndHeight = 420;
+        const progress = Math.max(
+          0,
+          Math.min(1, (moveStartHeight - viewportHeight) / (moveStartHeight - moveEndHeight))
+        );
+        const nextTop = startTop + (targetTop - startTop) * progress;
+        dockEl.style.top = `${Math.round(Math.max(margin, nextTop))}px`;
+      } else if (dockEl) {
+        dockEl.style.position = '';
+        dockEl.style.right = '';
+        dockEl.style.top = '';
+        dockEl.style.bottom = '';
+        dockEl.style.transform = '';
+      }
+
+      let centerX = bottomDock ? filterCenterX : (filterCenterX - distance);
+      let centerY = bottomDock ? (filterCenterY - distance) : filterCenterY;
+
+      const half = syncedFab / 2;
+      const margin = 8;
+      const minCenterX = margin + half;
+      const maxCenterX = window.innerWidth - margin - half;
+      const minCenterY = margin + half;
+      const maxCenterY = window.innerHeight - margin - half;
+      centerX = Math.max(minCenterX, Math.min(maxCenterX, centerX));
+      centerY = Math.max(minCenterY, Math.min(maxCenterY, centerY));
+
+      toTopBtn.style.left = `${Math.round(centerX - half)}px`;
+      toTopBtn.style.top = `${Math.round(centerY - half)}px`;
+      toTopBtn.style.right = 'auto';
+      toTopBtn.style.bottom = 'auto';
+
+      if (keepSwitchBtn && bottomDock) {
+        const leftDockRect = firstDockBtn ? firstDockBtn.getBoundingClientRect() : filterRect;
+        const leftDockCenterX = leftDockRect.left + leftDockRect.width / 2;
+        const leftDockCenterY = leftDockRect.top + leftDockRect.height / 2;
+
+        let keepCenterX = leftDockCenterX;
+        let keepCenterY = leftDockCenterY - distance;
+        keepCenterX = Math.max(minCenterX, Math.min(maxCenterX, keepCenterX));
+        keepCenterY = Math.max(minCenterY, Math.min(maxCenterY, keepCenterY));
+
+        keepSwitchBtn.style.position = 'fixed';
+        keepSwitchBtn.style.left = `${Math.round(keepCenterX - half)}px`;
+        keepSwitchBtn.style.top = `${Math.round(keepCenterY - half)}px`;
+        keepSwitchBtn.style.right = 'auto';
+        keepSwitchBtn.style.bottom = 'auto';
+      } else if (keepSwitchBtn) {
+        keepSwitchBtn.style.position = '';
+        keepSwitchBtn.style.left = '';
+        keepSwitchBtn.style.top = '';
+        keepSwitchBtn.style.right = '';
+        keepSwitchBtn.style.bottom = '';
+      }
+    }
 
     function updateTopButtonState() {
       if (!toTopBtn || !toTopIcon) return;
       const scrollY = window.scrollY;
       const bottomDock = isBottomDockLayout();
       const showingTop = scrollY > 150;
+      const compactThreshold = 620;
+      const compactMode = window.innerHeight < compactThreshold;
+
+      if (compactMode) {
+        const allowRefreshInDockSide = !bottomDock && window.innerHeight < compactThreshold && scrollY <= 10;
+        toTopMode = allowRefreshInDockSide ? 'refresh' : 'top';
+        toTopIcon.textContent = allowRefreshInDockSide ? 'refresh' : 'arrow_upward';
+        toTopBtn.classList.add('visible');
+        toTopBtn.title = getUiString(toTopMode === 'refresh' ? 'refresh_page' : 'to_top');
+        const updatePill = document.getElementById('updatePill');
+        if (updatePill) updatePill.classList.toggle('hidden', scrollY > 30);
+        return;
+      }
 
       if (bottomDock) {
         toTopMode = 'top';
@@ -3260,6 +3528,7 @@
     function openChangeLogModal() {
       renderChangeLogContent();
       changeLogModalDrop?.classList.add('open');
+      syncModalBodyScrollability('changeLogModal');
     }
 
     function closeChangeLogModal() {
@@ -3285,6 +3554,7 @@
 
     document.getElementById('mainLogo').addEventListener('click', () => {
       infoModalDrop.classList.add('open');
+      syncModalBodyScrollability('infoModal');
     });
 
     closeInfoBtn.addEventListener('click', () => {
@@ -3362,6 +3632,7 @@
       _reinitUI();
       updateSiteTitleVisibility();
       applyFilters();
+      updateAdaptiveDockScale();
       updateKeepSwitchPosition();
       updateTopButtonState();
     })();
